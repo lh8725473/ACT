@@ -1,0 +1,9 @@
+<div class="group-view" ng-controller="App.Users.Groups.Controller">
+	<div class="buttonGroup">
+		<button ng-click='addGroup()' class="btn btn-default">
+			创建群组
+		</button>
+	</div>
+	<div class="groupGridStyle" ng-grid="groupGridOptions"></div>
+	<loading-indicator ng-show="loading"></loading-indicator>
+</div>

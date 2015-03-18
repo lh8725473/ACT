@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>全携通</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="云协作,网盘,云盘,云笔记,云办公,在线办公,移动办公,灵利,协作办公,全携通,云管家,上海灵利信息,私有云,公有云,灵利云计算,灵利云协作,灵利全携通,ACT,HandsSync" />
+    <meta name="description" content="公司主营业务为客户提供云协作服务,可为企业沟通提供高效的文件管理、分享、讨论和协作等功能,更好的整合其内部和外部的所有资源,进行无障碍的沟通和协作,为机构提供了一个对内数据协作的中心和对外文档共享的云协作平台" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?4c3c918cadc6ad3aceb76b34c3c29302";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+
+    <!-- build:css css/home/home.css -->
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <!-- endbuild -->
+
+    <style type="text/css">
+      html, body{
+        width: 100%;
+        height: 100%;
+        min-height: 768px;
+        font-family: Arial,SimHei,Microsoft YaHei,sans-serif;
+      }
+
+      a:hover, a:focus{
+        text-decoration: none;
+      }
+
+      .top{
+        width: 100%;
+        background: url("images/home_top_bg.jpg") no-repeat scroll rgba(0, 0, 0, 0);
+        background-size: cover;
+        -moz-background-size: cover;
+        height: 100%;
+        min-width: 1280px;
+      }
+
+      .top-bar{
+        height: 30%;
+      }
+
+      .logo{
+        margin-top: 20px;
+      }
+
+      .logo a{
+        cursor: pointer;
+      }
+
+      li{
+        list-style: none outside none;
+      }
+
+      .link_url li{
+        display: inline-block;
+        font-size: 14px;
+      }
+
+      .link_url{
+        margin-right: 65px;
+      }
+
+      .link_list_li {
+        margin: 32px 13px 0;
+      }
+
+      .link_list_li a {
+        color: #ffffff;
+        font-size: 16px;
+      }
+
+      .button-group{
+        margin-top: 28px;
+      }
+
+      .login{
+        border: 1px solid #ffffff;
+        padding: 3px 20px;
+        color: #FFFFFF;
+        margin-right: 10px;
+      }
+
+      .regist{
+        padding: 3px 20px;
+      }
+
+      .btn:hover, .btn:focus{
+        color: #FFFFFF;
+      }
+
+      .btn-warning:hover, .btn-warning:focus{
+        background-color: #f0ad4e;
+        border-color: #eea236;
+      }
+
+      .top-screenshow-text{
+        height: 70%;
+      }
+
+      .screenshow-text{
+        height: 100%;
+        color: #ffffff;
+        padding-left: 50px;
+        padding-top: 120px;
+      }
+
+      .screenshow-text li{
+        margin-top: 10px;
+      }
+
+      .top-screenshow{
+        /*background: url("images/home_top_screenshow.png") no-repeat scroll rgba(0, 0, 0, 0);*/
+        background-size: cover;
+        -moz-background-size: cover;
+        height: 100%;
+      }
+
+      .top-screenshow img{
+        max-height: 100%;
+        position: absolute;
+        bottom: 0;
+      }
+
+      .try-out{
+        margin-top: 20px;
+        padding: 10px 70px;
+      }
+
+      .main{
+        width: 100%;
+        max-height: 768px;
+        height: 100%;
+        min-width: 1280px;
+      }
+
+      .contact-div{
+        min-width: 1280px;
+        height: 100%;
+        padding-bottom: 100px;
+      }
+
+      .second-contact{
+        background-color: #f6f6f6;
+      }
+
+      .contact{
+        height: 100%;
+        padding: 0;
+      }
+
+      .contact-text h4{
+        font-size: 24px;
+      }
+
+      .contact-text span{
+        font-size: 18px;
+      }
+
+      .contact img{
+        /*width: 100%;
+        height: 100%;*/
+      }
+
+      .contact-text{
+        margin-top: 300px;
+      }
+
+      .contact-text .col-sm-9{
+        padding: 0;
+      }
+
+      .try-user{
+        background: url("images/home_try_bg.png") no-repeat scroll rgba(0, 0, 0, 0);
+        background-size: cover;
+        -moz-background-size: cover;
+        height: 430px;
+        width: 100%;
+        text-align: center;
+        min-width: 1280px;
+      }
+
+      .try-user h4{
+        font-size: 30px;
+        margin-bottom: 100px;
+        color: #ffffff;
+      }
+
+      .try-user .use{
+        padding-top: 120px;
+      }
+
+      .try-user input{
+        background: none;
+        border: 1px solid #ffffff;
+        color: #ffffff;
+        padding: 10px 20px;
+        width: 230px;
+        margin-right: 20px;
+      }
+
+      .try-user a{
+        width: 230px;
+        padding: 10px 20px;
+        border-radius: 0;
+      }
+
+      .provide{
+        margin-top: 80px;
+        min-width: 1280px;
+        height: 310px;
+        text-align: center;
+      }
+
+      .provide h4{
+        font-size: 32px;
+        margin-bottom: 30px;
+      }
+
+      .bottom{
+        color: #ffffff;
+        background-color: #387e9e;
+        height: 200px;
+        min-width: 1280px;
+      }
+
+      .bottom .link-cpoy-right{
+        margin-top: 18px;
+      }
+
+      .bottom .link_list_li{
+        font-size: 18px;
+      }
+
+      .bottom .link_url{
+        margin-right: 0;
+      }
+
+      .bottom .cpoy-right{
+        margin-top: 30px;
+        padding-left: 13px;
+      }
+
+      .bottom .container{
+        min-width: 1170px;
+      }
+
+      .bottom .business{
+        margin-top: 50px;
+      }
+
+      .bottom .operation{
+        font-size: 18px;
+      }
+
+      .bottom .phone{
+        margin-top: 5px;
+      }
+
+      .bottom .friend-ship-link{
+        margin-top: 50px;
+      }
+
+      .bottom .link-text{
+        font-size: 18px;
+      }
+
+      .bottom .link{
+        margin-top: 5px;
+      }
+
+      .bottom .link a{
+        color: #ffffff;
+      }
+
+      .bottom .two-dimension-code{
+        margin-top: 50px;
+      }
+
+      .bottom .code-text{
+        font-size: 18px;
+      }
+
+      .bottom .code{
+        margin-top: 5px;
+      }
+      .cpoy-right a{
+        color: #ffffff;
+      }
+    </style>
+
+	</head>
+	<body>
+	  <div class="top">
+	    <div class="container top-bar">
+	      <div class="logo pull-left">
+	        <a href="home.html">
+	          <img src="images/home_top_logo_white.png" />
+	        </a>
+	      </div>
+	      <div class="pull-right button-group">
+          <a class="btn login" href="login.html">登录</a>
+          <a class="btn btn-warning regist" href="regist.html">注册</a>
+        </div>
+
+	      <div class="link_url pull-right">
+          <li class="link_list_li">
+            <a class="" href="home.html">首页</a>
+          </li>
+          <li class="link_list_li">
+            <a class="" href="#feature">功能</a>
+          </li>
+          <li class="link_list_li">
+            <a class="" href="pricing.html">套餐</a>
+          </li>
+          <li class="link_list_li">
+            <a class="" href="#businessMainly">业务洽谈</a>
+          </li>
+          <li class="link_list_li">
+            <a class="" href="apps.html">下载</a>
+          </li>
+        </div>
+	    </div>
+	    <div class="container top-screenshow-text">
+	      <div class="screenshow-text col-sm-5">
+	        <h3>高效便捷的云协作体验</h3>
+	        <li class="">
+            <span class="active" > > 大容量云端存储</span>
+          </li>
+          <li class="">
+            <span class=""> > 全新协作方式，分享、讨论、任务指派，让移动工作变得更智慧</span>
+          </li>
+          <li class="">
+            <span class=""> > 强大的管理员控制，时刻掌握团队动向</span>
+          </li>
+          <a class="btn login try-out" href="login.html">立即试用</a>
+	      </div>
+	      <div class="top-screenshow col-sm-5 pull-right">
+	        <img src="images/home_top_screenshow.png"  class="img-responsive"/>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="contact-div" id="feature">
+	    <div class="contact pull-left col-sm-7">
+        <img src="images/home_screenshow2.png" class="img-responsive"/>
+      </div>
+      <div class="contact-text pull-right col-sm-4">
+        <h4>全新的文件分享与完善的权限机制</h4>
+        <span class="col-sm-9">全携通支持两种文件分享的方式：模拟现实中组建团队的方式，
+                    将不同的人以不同的权限邀请到文件夹中参与协作，从而共享
+                    其中的资源；同时支持为文件或文件夹生成可访问的链接进行分享，为您带来全新的云协作体验。</span>
+      </div>
+	  </div>
+	  <div class="contact-div second-contact">
+	    <div class="contact pull-right col-sm-7">
+        <img src="images/home_screenshow3.png" class="img-responsive"/>
+      </div>
+      <div class="contact-text pull-left col-sm-4 col-md-offset-1">
+        <h4>统一的账号管理</h4>
+        <span class="col-sm-9">普通网盘所产生的“孤岛”使得资源分享杂乱不便而难以控制。
+                    全携通为企业（学校、机构或团队）提供了可管理内部所有
+                    成员的管理账号，帮助您实现内部成员的账号管控。</span>
+      </div>
+	  </div>
+	  <div class="contact-div">
+	    <div class="contact pull-left col-sm-7">
+        <img src="images/home_screenshow4.png" class="img-responsive"/>
+      </div>
+      <div class="contact-text pull-right col-sm-4">
+        <h4>即时对话</h4>
+        <span class="col-sm-9">针对协作文件发表评论，随时随地沟通、洽谈项目的进度。
+                    为您的团队创建及时、高效、安全的移动工作环境。</span>
+      </div>
+	  </div>
+    <div class="try-user">
+      <div class="use">
+        <h4>立即拥有高效便捷的云协作体验</h4>
+        <!--<input type="text" placeholder="姓名" class=""/>
+        <input type="text" placeholder="邮件地址"  class=""/>-->
+        <a class="btn btn-warning" href="login.html">免费体验</a>
+      </div>
+    </div>
+    <div class="provide container">
+
+      <h4>为您提供更多</h4>
+      <div class="col-sm-3"><img src="images/home_more_1.png" width="100%" height="230px"/></div>
+      <div class="col-sm-3"><img src="images/home_more_2.png" width="100%" height="230px"/></div>
+      <div class="col-sm-3"><img src="images/home_more_3.png" width="100%" height="230px"/></div>
+      <div class="col-sm-3"><img src="images/home_more_4.png" width="100%" height="230px"/></div>
+    </div>
+	  <div class="bottom">
+	    <div class="container">
+	      <div class="col-sm-4 link-cpoy-right">
+  	      <div class="link_url">
+            <li class="link_list_li">
+              <a class="" href="about.html">关于我们</a>
+            </li>
+            <li class="link_list_li">
+              <a class="" href="http://www.sharpinteract.com/join-us.html">加入我们</a>
+            </li>
+            <li class="link_list_li">
+              <a class="" href="#help">使用帮助</a>
+            </li>
+          </div>
+          <div class="cpoy-right">
+            <div><a href="http://www.sharpinteract.com/agreement.html" target="_blank">服务条款</a></div>
+            <div>版权所有 ©2014 上海灵利信息技术有限公司</div>
+            <div><a href="http://www.miitbeian.gov.cn/" target="_blank">沪ICP备14032131号-2</a></div>
+          </div>
+        </div>
+        <div class="col-sm-3 business">
+          <div class="operation" id="businessMainly">业务洽谈</div>
+          <div class="phone">电话： 021-62129363</div>
+          <div>邮箱： lingli@sharpinteract.com</div>
+        </div>
+        <div class="col-sm-3 friend-ship-link">
+          <div class="link-text">友情链接</div>
+          <div class="link"><a href="http://www.sharpinteract.com/" target="_blank">上海灵利信息技术有限公司</a></div>
+        </div>
+        <div class="col-sm-2 pull-right two-dimension-code">
+          <div class="code-text">官方微信</div>
+          <div class="code">
+            <img src="images/homePage/weixin.jpg" height="70px" width="70px"/>
+          </div>
+          <div>全携通</div>
+        </div>
+	    </div>
+	  </div>
+	</body>
+</html>

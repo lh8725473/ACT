@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>全携通 – 下载Android 和Iphone移动云协作Apps</title>
+    <meta name="keywords" content="移动云协作下载, 安卓云协作应用，云协作手机应用，Anroid应用, Iphone Apps，网盘,云盘,云笔记,云办公,在线办公,移动办公,灵利,协作办公,全携通,云管家,灵利云协作,灵利全携通,HandsSync" />
+    <meta name="description" content="公司主营业务为客户提供云协作服务,可为企业沟通提供高效的文件管理、分享、讨论和协作等功能,更好的整合其内部和外部的所有资源,进行无障碍的沟通和协作,为机构提供了一个对内数据协作的中心和对外文档共享的云协作平台" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?4c3c918cadc6ad3aceb76b34c3c29302";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+
+    <!-- build:css css/apps/apps.css -->
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <!-- endbuild -->
+
+    <style type="text/css">
+      html, body{
+        width: 100%;
+        height: 100%;
+        font-family: Arial,SimHei,Microsoft YaHei,sans-serif;
+      }
+
+      a:hover, a:focus{
+        text-decoration: none;
+      }
+
+      .top{
+        width: 100%;
+        min-width: 1280px;
+        border-bottom: 1px solid #e6e6e6;
+        padding-bottom: 15px;
+        margin-bottom: 50px;
+      }
+
+      .top-bar{
+        height: 30%;
+      }
+
+      .logo{
+        margin-top: 20px;
+      }
+
+      .logo a{
+        cursor: pointer;
+      }
+
+      li{
+        list-style: none outside none;
+      }
+
+      .link_url li{
+        display: inline-block;
+        font-size: 14px;
+      }
+
+      .link_url{
+        margin-right: 65px;
+      }
+
+      .link_list_li {
+        margin: 32px 13px 0;
+      }
+
+      .link_list_li a {
+        color: #797878;
+        font-size: 16px;
+      }
+
+      .button-group{
+        margin-top: 28px;
+      }
+
+      .login{
+        border: 1px solid #797878;
+        padding: 3px 20px;
+        color: #797878;
+        margin-right: 10px;
+      }
+
+      .regist{
+        padding: 3px 20px;
+      }
+
+      .btn:hover, .btn:focus{
+        color: #797878;
+      }
+
+      .btn-warning:hover, .btn-warning:focus{
+        background-color: #f0ad4e;
+        border-color: #eea236;
+        color: #ffffff;
+      }
+
+      .top-screenshow-text{
+        height: 70%;
+      }
+
+      .screenshow-text{
+        height: 100%;
+        color: #ffffff;
+        padding-left: 50px;
+        padding-top: 120px;
+      }
+
+      .screenshow-text li{
+        margin-top: 10px;
+      }
+
+      .top-screenshow{
+        background: url("images/home_top_screenshow.png") no-repeat scroll rgba(0, 0, 0, 0);
+        background-size: cover;
+        -moz-background-size: cover;
+        height: 100%;
+      }
+
+      .try-out{
+        margin-top: 20px;
+        padding: 10px 70px;
+      }
+
+      .main{
+        min-width: 1280px;
+        min-height: 520px;
+        padding-top: 50px;
+      }
+
+      .img img{
+        width: 100%;
+      }
+
+      .bottom{
+        color: #ffffff;
+        background-color: #387e9e;
+        height: 190px;
+        width: 100%;
+        min-width: 1280px;
+      }
+
+      .bottom .link-cpoy-right{
+        margin-top: 18px;
+      }
+
+      .bottom .link_list_li{
+        font-size: 18px;
+      }
+
+      .bottom .link_url{
+        margin-right: 0;
+      }
+
+      .bottom .cpoy-right{
+        margin-top: 30px;
+        padding-left: 13px;
+      }
+
+      .bottom .container{
+        min-width: 1170px;
+      }
+
+      .bottom .business{
+        margin-top: 50px;
+      }
+
+      .bottom .operation{
+        font-size: 18px;
+      }
+
+      .bottom .phone{
+        margin-top: 5px;
+      }
+
+      .bottom .friend-ship-link{
+        margin-top: 50px;
+      }
+
+      .bottom .link-text{
+        font-size: 18px;
+      }
+
+      .bottom .link{
+        margin-top: 5px;
+      }
+
+      .bottom .link a{
+        color: #ffffff;
+        cursor: pointer;
+      }
+
+      .bottom .two-dimension-code{
+        margin-top: 50px;
+      }
+
+      .bottom .code-text{
+        font-size: 18px;
+      }
+
+      .bottom .code{
+        margin-top: 5px;
+      }
+
+      .bottom a{
+        color: #ffffff;
+      }
+
+      .down-load .logo-img{
+        margin-bottom: 40px;
+      }
+
+      .down-load .iPhone{
+        margin-bottom: 10px;
+      }
+
+      .down-load .iPhone a{
+        cursor: pointer;
+      }
+
+      .down-load .andriod a{
+        cursor: pointer;
+      }
+
+      .down-load .to-login{
+        font-size: 16px;
+      }
+
+      .down-load .to-login a{
+        color: #797878;
+        cursor: pointer;
+      }
+      .col-sm-7{
+        width: 58.3333%;
+      }
+      .col-sm-5{
+        width: 41.6667%;
+      }
+    </style>
+
+	</head>
+	<body>
+	  <div class="top">
+	    <div class="container top-bar">
+	      <div class="logo pull-left">
+	        <a href="home.html">
+	          <img src="images/home_top_bar_whitebg_logo.png" />
+	        </a>
+	      </div>
+	      <div class="pull-right button-group">
+          <a class="btn login" href="login.html">登录</a>
+          <a class="btn btn-warning regist" href="regist.html">注册</a>
+        </div>
+
+	      <div class="link_url pull-right">
+          <li class="link_list_li">
+            <a class="" href="home.html">首页</a>
+          </li>
+          <li class="link_list_li">
+            <a class="" href="home.html#feature">功能</a>
+          </li>
+          <li class="link_list_li">
+            <a class="" href="pricing.html">套餐</a>
+          </li>
+          <li class="link_list_li">
+            <a class="" href="#businessMainly">业务洽谈</a>
+          </li>
+          <li class="link_list_li">
+            <a class="" href="apps.html">下载</a>
+          </li>
+        </div>
+	    </div>
+	  </div>
+	  <div class="main container">
+	    <div class="img col-sm-7">
+	      <img src="images/home_downloadpage_screenshow.png" />
+	    </div>
+	    <div class="down-load col-sm-5">
+	      <div class="logo-img col-sm-12">
+          <img src="images/home_downloadpage_logo.png" />
+	      </div>
+	      <div class="col-sm-6">
+  	      <div class="iPhone">
+  	        <a href="https://itunes.apple.com/us/app/quan-xie-tong/id914925405" target="_Blank">
+              <img src="images/home_downloadpage_btn_iPhone.png" />
+            </a>
+          </div>
+          <div class="andriod">
+            <a href="http://www.quanxietong.com/api/app/download?type=app_android">
+              <img src="images/home_downloadpage_btn_andriod.png" />
+            </a>
+          </div>
+	      </div>
+	      <div class="col-sm-6">
+            <img src="images/qrcode.png" height="100%" width="60%"/>
+        </div>
+        <div class="col-sm-6 to-login"><a href="login.html" target="_Blank"> 网页版点击此处直接登录  > </a></div>
+	    </div>
+	  </div>
+	  <div class="bottom">
+      <div class="container">
+        <div class="col-sm-4 link-cpoy-right">
+          <div class="link_url">
+            <li class="link_list_li">
+              <a class="" href="about.html">关于我们</a>
+            </li>
+            <li class="link_list_li">
+              <a class="" href="http://www.sharpinteract.com/join-us.html">加入我们</a>
+            </li>
+            <li class="link_list_li">
+              <a class="" href="#help">使用帮助</a>
+            </li>
+          </div>
+          <div class="cpoy-right">
+            <div><a href="http://www.sharpinteract.com/agreement.html" target="_blank">服务条款</a></div>
+            <div>版权所有 ©2014 上海灵利信息技术有限公司</div>
+            <div><a href="http://www.miitbeian.gov.cn/" target="_blank">沪ICP备14032131号-2</a></div>
+          </div>
+        </div>
+        <div class="col-sm-3 business">
+          <div class="operation" id="businessMainly">业务洽谈</div>
+          <div class="phone">电话： 021-62129363</div>
+          <div>邮箱： lingli@sharpinteract.com</div>
+        </div>
+        <div class="col-sm-3 friend-ship-link">
+          <div class="link-text">友情链接</div>
+          <div class="link"><a href="http://www.sharpinteract.com/" target="_blank">上海灵利信息技术有限公司</a></div>
+        </div>
+        <div class="col-sm-2 pull-right two-dimension-code">
+          <div class="code-text">官方微信</div>
+          <div class="code">
+            <img src="images/getqrcode-ACT.jpg" height="70px" width="70px"/>
+          </div>
+          <div>lingli-qxt</div>
+        </div>
+      </div>
+    </div>
+	</body>
+</html>

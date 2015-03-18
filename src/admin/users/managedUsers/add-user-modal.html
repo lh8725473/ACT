@@ -1,0 +1,76 @@
+<div class="modal-header">
+	<button class="bootbox-close-button close" type="button" ng-click="cancel()">×</button>
+	<h3 class="modal-title">添加内部人员</h3>
+</div>
+<div class="modal-body">
+	<form role="form" class="form-horizontal userDetail"  name="myForm" ng-submit="ok(user)">
+		<h4>新用户账户信息</h4>
+		<div class="form-group">
+			<label class="col-sm-2 control-label" for="username">姓名</label>
+			<div class="col-sm-8">
+				<input type="name" name="username" placeholder="请填写用户的真实姓名以便管理" ng-class="{ empty: userEmpty }" class="form-control" ng-model="user.real_name" required></div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">邮箱</label>
+			<div class="col-sm-8">
+				<input type="email" placeholder="此邮箱将作为登录名使用，请准确填写" class="form-control" ng-model="user.email" required></div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">容量</label>
+			<div class="col-sm-2">
+				<input type="text"  class="form-control" ng-disabled="user.space_unlimited" ng-model="user.total_space"/>
+			</div>
+			<label class="unit col-sm-1">GB</label>
+			<div class="col-sm-3">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="user.space_unlimited">无限制</label>
+				</div>
+			</div>
+		</div>
+
+		<h4 class="division">访问权限</h4>
+		<div class="permission-form form-group hide">
+			<div class="col-sm-8">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="user.config.show_member">允许该用户查看所有的内部用户&nbsp;</label>
+					<span tooltip="如果选中，则该用户在邀请协作人时可以在自己的联系人列表中访问到其他的内部用户；而除非是自己邀请过的协作人，否则外部用户不会出现在该用户的联系人列表中。" tooltip-append-to-body="true" class="glyphicon glyphicon-info-sign"></span>
+				</div>
+			</div>
+		</div>
+		<div class="permission-form form-group ">
+			<div class="col-sm-8">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="user.config.desktop_sync">允许该用户在全携通与桌面端间同步文件&nbsp;</label>
+					<span tooltip="如果选中，则允许该用户在全携通网页端与桌面客户端之间双向同步文件。" tooltip-append-to-body="true" class="glyphicon glyphicon-info-sign"></span>
+				</div>
+			</div>
+		</div>
+		<div class="permission-form form-group hide">
+			<div class="col-sm-8">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" id="checkbox" ng-model="user.config.inner_share">限定该用户在自己的文件夹中只能邀请内部用户&nbsp;</label>
+					<span  tooltip-placement="bottom" tooltip="如果选中，则禁止该用户在自己的文件夹中邀请外部用户进行协作。" tooltip-append-to-body="true" class="glyphicon glyphicon-info-sign"></span>
+				</div>
+			</div>
+		</div>
+		<div class="form-group division">
+			<label class="col-sm-2 control-label" for="seach">所属群组</label>
+			<div class="col-sm-5">
+				<input type="button" class="btn btn-default" ng-click="addGroupWindow()" value="选择所属群组"/>
+			</div>
+		</div>
+		<div class="form-group indented">
+			<div class="gridStyle col-sm-12" ng-grid="gridAddGroup"></div>
+		</div>
+
+		<div class="modal-footer">
+			<button class="btn btn-primary" type="submit">保存</button>
+			<input type="button" class="btn" ng-click="cancel()" value="取消" />
+		</div>
+	</form>
+
+</div>

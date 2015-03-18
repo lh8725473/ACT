@@ -1,0 +1,285 @@
+//讨论
+.ng-pageslide {
+  border-left: 1px solid #E8E8E8;
+  box-shadow: -3px 0 8px rgba(176, 176, 176, 0.7);
+  height: auto !important;
+}
+.user-discuss-view {
+    height: 36px;
+      height: 36px;
+      width: 100%;
+      border-bottom: 1px solid #C3C3C3;
+      background-color: #E9EDF1;
+    .nav-sidebar {
+      li {
+        height: 36px;
+        line-height: 36px;
+        font-size: 16px;
+        float: left;
+        color: #8A8B8B;
+        margin: 0 20px;
+        position: relative;
+      }
+      li.active {
+        color: #1F6ABD;
+      }
+      li:hover{
+        color: #1F6ABD;
+        cursor: pointer;
+      }
+      button {
+        font-size: 24px;
+        margin: 6px 20px 0 0;
+      }
+      .triangle-up {
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-bottom: 8px solid #fff;
+        position: absolute;
+        bottom: 0;
+        left: 43%;
+      }
+      .triangle-up.triangle-up-surround {
+        border-bottom: 9px solid #C3C3C3;
+        border-left-width: 6px;
+        border-right-width: 6px;
+        bottom: 1px;
+      }
+    }
+    .preview-disscuss-file {
+      height: 36px;
+      line-height: 36px;
+      padding: 0 20px;
+      background-color: #E9E9E9;
+      font-size: 16px;
+      /*color: #9A9A9A;*/
+      .file-name {
+        float: left;
+        max-width: 260px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .preview {
+        float: right;
+        cursor: pointer;
+        color: #999;
+        &:hover{
+            color: #428bca;
+        }
+      }
+    }
+
+    .text-info {
+      color: #5bc0de;
+    }
+    img{
+        float: left;
+        border-radius: 3px;
+    }
+
+    .list-at-user {
+        width: 100%;
+        max-width: 198px;
+        position: fixed;
+        background: white;
+        border: 1px solid #a4a4a4;
+        z-index: 100000;
+        padding: 0px;
+        li{
+            padding: 5px;
+            border-bottom: 1px solid #a4a4a4;
+            list-style-type: none;
+        }
+        li.list-cur{
+            background: #b9dff4;
+        }
+        li:hover{
+            cursor: pointer;
+            background: #b9dff4;
+        }
+    }
+
+    .scroller {
+        bottom: 140px;
+        overflow: hidden;
+        position: absolute;
+        top: 74px;
+        left: 0;
+        right: 0;
+    }
+
+    .disc-item{
+        padding: 10px;
+        .disc-box{
+            margin-left: 35px;
+            .disc-name{
+              color: #A0A0A0;
+              font-size: 14px;
+              height: 14px;
+              line-height: 14px;
+              margin-bottom: 3px;
+              .delete-disc{
+                display: none;
+                margin-left: 10px;
+              }
+              .reply-disc{
+                display: none;
+              }
+            }
+            .disc-time{
+              color: #c0c0c0;
+              font-size: 12px;
+            }
+            .disc-content {
+              color: #4A4A4A;
+              word-wrap: break-word;
+            }
+        }
+    }
+
+    .disc-item:hover .disc-name .reply-disc{
+        display: block;
+        cursor: pointer;
+    }
+
+    .is_owner:hover .disc-name .delete-disc{
+        display: block;
+        cursor: pointer;
+    }
+
+    .is_owner:hover .disc-name .reply-disc{
+        display: none;
+    }
+
+    .disc-item.is_deleted:hover .disc-name .reply-disc{
+        display: none;
+    }
+
+    .is_owner.is_deleted:hover .disc-name .delete-disc{
+        display: none;
+    }
+
+    .disc-item.is_deleted .disc-content{
+        color: #c0c0c0;
+        text-decoration: line-through;
+    }
+    .disc-item.is_deleted .disc-content a{
+        color: #c0c0c0;
+        text-decoration: line-through;
+    }
+
+    .disc-inputbox{
+        background-color: white;
+        bottom: 0px;
+        height: 140px;
+        position: absolute;
+        padding: 0;
+        textarea {
+          box-sizing: border-box;
+          padding: 5px 10px;
+          width: 100%;
+          height: 90px;
+          border: 1px solid #C3C3C3;
+          border-left: none;
+          border-right: none;
+        }
+        textarea:focus {
+          outline: none;
+          border-color: #B8B8B8;
+          box-shadow: 0 -3px 5px #c3c3c3;
+        }
+        label{
+          margin-top: 13px;
+          margin-right: 5px;
+          font-size: 12px;
+          font-weight: lighter;
+          color: #777;
+        }
+        label.tip {
+          margin-left:20px;
+        }
+        button {
+          padding: 5px 10px;
+          margin-top: 4px;
+          margin-right: 20px;
+          color: #fff;
+          background-color: #1F6ABD;
+        }
+    }
+
+    .version{
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        /*padding: 5px 10px 10px 10px;*/
+        overflow-y: hidden;
+        .version-item{
+            padding: 0 20px;
+            .time-user{
+              border-bottom: 1px solid #e5e5e5;
+              padding: 10px 0;
+              color: #999;
+              .version-info-left{
+                width: 50%;
+                .version-info{
+                  line-height: 30px;
+                }
+                .version-user-head{
+                  height: 30px;
+                  width: 30px;
+                  margin-right: 5px;
+                }
+                .user-operation{
+                  max-width: 130px;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+                }
+              }
+              .version-info-middle{
+                width: 20%;
+                margin-top: 25px;
+              }
+              .version-info-right{
+                width: 30%;
+              }
+            }
+            .file-preview{
+              cursor: pointer;
+              margin-top: 10px;
+              margin-left: 10px;
+              height: 12px;
+              width: 17px;
+              background: url("../../images/web_versions_preview_mouse_off.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+              &:hover{
+                background: url("../../images/web_versions_preview_mouse_on.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+              }
+            }
+            .current-set{
+              cursor: pointer;
+              color: #999;
+              &:hover{
+                  color: #428bca;
+              }
+            }
+            .current-version{
+              color: #428bca;
+            }
+            .version-action{
+                cursor: pointer;
+                width: 19px;
+                height: 17px;
+                margin-top: 13px;
+                background: url("../../images/download_btn_off.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+            }
+            .version-action:hover{
+                background: url("../../images/download_btn_on.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+            }
+        }
+    }
+}

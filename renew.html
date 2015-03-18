@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>全携通 – 套餐</title>
+    <meta name="keywords" content="移动云协作下载, 安卓云协作应用，云协作手机应用，Anroid应用, Iphone Apps，网盘,云盘,云笔记,云办公,在线办公,移动办公,灵利,协作办公,全携通,云管家,灵利云协作,灵利全携通,HandsSync" />
+    <meta name="description" content="公司主营业务为客户提供云协作服务,可为企业沟通提供高效的文件管理、分享、讨论和协作等功能,更好的整合其内部和外部的所有资源,进行无障碍的沟通和协作,为机构提供了一个对内数据协作的中心和对外文档共享的云协作平台" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?4c3c918cadc6ad3aceb76b34c3c29302";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+
+    <!-- build:js js/renew.js -->
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="bower_components/json2/json2.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="bower_components/jqueryui/jquery-ui.js"></script>
+    <script type="text/javascript" src="bower_components/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:css css/renew/renew.css -->
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/jqueryui/themes/flick/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.css">
+    <!-- endbuild -->
+    <!-- build:js js/global/config.js -->
+    <script type="text/javascript" src="src/global/_config.js"></script>
+    <!-- endbuild -->
+    <style type="text/css">
+      .header {
+        background-image: url("images/openlink_topbar.png");
+        color: white;
+        height: 40px;
+      }
+      .header img {
+        margin-top: 5px;
+      }
+      .body {
+        padding-top: 40px;
+        font-family: Arial, sans-serif;
+      }
+      .th-head.hove {
+        color: #333;
+      }
+      .th-head {
+        padding: 10px 20px;
+        background-color: #8babcc;
+        color: #f3f9f8;
+      }
+      .th-price {
+        padding-top: 10px;
+        font-size: 20px;
+        height: 80px;
+      }
+      .th-peoples {
+        margin-top: 3px;
+      }
+      .th-capacity {
+        margin-top: 3px;
+        margin-bottom: 3px;
+      }
+      .th-fileByte {
+        margin-top: 3px;
+        margin-bottom: 10px;
+      }
+      th .btn {
+        width: 80%;
+      }
+      .table > thead > tr > th {
+        padding: 0;
+        padding-bottom: 8px;
+      }
+      .hove {
+        background-color: #F3F9F8;
+      }
+      .btn-warning:hover,
+      .btn-warning:focus {
+        background-color: #f0ad4e;
+        border-color: #eea236;
+        color: #ffffff;
+      }
+      .btn-default:hover,
+      .btn-default:focus {
+        background-color: #fff;
+        border-color: #797878;
+        color: #797878;
+      }
+      .test.btn-default:hover,
+      .test.btn-default:focus {
+        background-color: #fff;
+        border-color: #ccc;
+        color: #333;
+      }
+      .btn-default:hover,
+      .btn-default:focus {
+        background-color: #fff;
+        border-color: #797878;
+        color: #797878;
+      }
+      .table-bordered {
+        border: none !important;
+      }
+      .table thead th {
+        border-top: 1px solid #ddd !important;
+      }
+      .table thead th.empty {
+        border: none !important;
+      }
+      .th-buy {
+        height: 34px;
+      }
+      .form-group {
+        height: 40px;
+        margin-bottom: 10px;
+      }
+      .ui-state-default,
+      .ui-widget-content .ui-state-default,
+      .ui-widget-header .ui-state-default {
+        background: #0073ea;
+        border: 1px solid #0073ea;
+      }
+      #renewalModal .slider-pips {
+        padding-left: 10px;
+        padding-top: 10px;
+      }
+      #upgradeModal .slider-pips {
+        padding-left: 10px;
+        padding-top: 10px;
+      }
+      .is-used{
+        font-size: 12px;
+        color: red;
+      }
+      .format-date{
+        font-size: 12px;
+        color: red;
+      }
+      #renewalModal .modal-footer{
+        text-align: left;
+      }
+      #renewalModal .modal-footer span{
+        color: #f0ad4e;
+        font-size: 25px;
+        padding-top: 5px;
+        margin-right: 10px;
+      }
+      #renewalModal .modal-footer button{
+        float: right;
+        margin-right: 250px;
+      }
+
+      #upgradeModal .modal-footer{
+        text-align: left;
+      }
+      #upgradeModal .modal-footer span{
+        color: #f0ad4e;
+        font-size: 25px;
+        padding-top: 5px;
+        margin-right: 10px;
+      }
+      #upgradeModal .modal-footer button{
+        float: right;
+        margin-right: 250px;
+      }
+      #confirmModal .modal-content{
+        height: 270px;
+      }
+      #confirmModal .modal-content .modal-body{
+        height: 140px;
+        padding-top: 50px;
+      }
+      .hint-mark{
+        color: red;
+        padding-bottom: 10px;
+      }
+      #upgradeModal .hint-mark span{
+        font-size: 14px;
+        color: red;
+        margin-right: 0px;
+      }
+      #upgradeModal .radio-group{
+        height: auto;
+      }
+
+      .ui-widget-content {
+        border: 1px solid #aaaaaa/*{borderColorContent}*/;
+        background: #ffffff/*{bgColorContent}*/ url("images/ui-bg_flat_75_ffffff_40x100.png")/*{bgImgUrlContent}*/ 50%/*{bgContentXPos}*/ 50%/*{bgContentYPos}*/ repeat-x/*{bgContentRepeat}*/;
+        color: #222222/*{fcContent}*/;
+      }
+
+    </style>
+    <script type="text/javascript">
+      //获取URL参数
+      function getUrlParameter(name) {
+        var queryString = window.location.toString().split("#");
+        if (queryString.length > 1) {
+          var params = queryString[1].split("&");
+          for (var i = 0; i < params.length; ++i) {
+            var param = params[i].split("=");
+            if (param[0] == name) {
+              return unescape(param[1]);
+            }
+          }
+        }
+      }
+
+      //读取cookie
+      function readCookie(name) {
+        var nameEQ = name + '=';
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1, c.length);
+          }
+          if (c.indexOf(nameEQ) == 0) {
+            return c.substring(nameEQ.length, c.length);
+          }
+        }
+        return null;
+      }
+
+      //errorMsg
+      function errorMsg(str) {
+        $('.errorMsg').find('p').text(str);
+        $('.errorMsg').css('left', ($(window).width() * 0.5 - ($('.errorMsg').width() + 50) * 0.5) + 'px');
+        $('.errorMsg').css('top', $(window).height() * 0.1);
+        $(".errorMsg").fadeIn();
+        setTimeout(function() {
+          $(".errorMsg").fadeOut();
+        }, 2000);
+      }
+
+      //获取价格
+      function getPrice(package_id, payType, num){
+        var priceData = {
+          price: 0,
+          lack_price: 0
+        }
+        if(payType == 'y'){
+          num = 1
+        }else if(payType == 'r'){
+          num = 0
+        }
+        if(package_id != '0'){
+          var data = {
+            "user_id":readCookie('userId'),
+            "cloud_id": readCookie('cloudId'),
+            "package_id":package_id,
+            "pay_type":payType,
+            "num":num,
+            "debug" :"true",
+            "action": "upgrade"
+          }
+
+          $.ajax({
+            url : CONFIG.API_ROOT + '/order/getPrice',
+            type : 'POST',
+            dataType : 'json',
+            async: false,
+            traditional: true,
+            headers: {
+              'HTTP_X_OAUTH': readCookie('token')
+            },
+            data : JSON.stringify(data)
+          }).done(function(responseJSON) {
+            priceData.price = responseJSON.result.price
+            priceData.lack_price = responseJSON.result.lack_price
+          }).fail(function(xhr, status, error) {
+
+          });
+
+        }
+
+        return priceData
+
+      }
+
+      //获取订单
+      function getOrder(package_id, payType, num){
+        var orderData = {
+          payUrl: '',
+          order_id: 0
+        }
+
+        if(payType == 'y'){
+          num = 1
+        }else if(payType == 'r'){
+          num = 0
+        }
+
+        var data = {
+          "user_id":readCookie('userId'),
+          "cloud_id": readCookie('cloudId'),
+          "package_id":package_id,
+          "pay_type":payType,
+          "num":num,
+          "debug" :"true",
+          "action": "upgrade"
+        }
+
+        $.ajax({
+          url : CONFIG.API_ROOT + '/order/create',
+          type : 'POST',
+          dataType : 'json',
+          async: false,
+          headers: {
+            'HTTP_X_OAUTH': readCookie('token')
+          },
+          data : JSON.stringify(data)
+        }).done(function(responseJSON) {
+          orderData.payUrl = responseJSON.result.pay_url
+          orderData.order_id = responseJSON.result.order_id
+        }).fail(function(xhr, status, error) {
+
+        });
+
+        return orderData
+
+      }
+
+      $(document).ready(function() {
+        $('.col-1').mouseover(function() {
+          $('.col-1').addClass("hove");
+          $('.th-head1').addClass("hove");
+        });
+        $('.col-1').mouseout(function() {
+          $('.col-1').removeClass("hove");
+          $('.th-head1').removeClass("hove");
+        });
+        $('.col-2').mouseover(function() {
+          $('.col-2').addClass("hove");
+          $('.th-head2').addClass("hove");
+        });
+        $('.col-2').mouseout(function() {
+          $('.col-2').removeClass("hove");
+          $('.th-head2').removeClass("hove");
+        });
+        $('.col-3').mouseover(function() {
+          $('.col-3').addClass("hove");
+          $('.th-head3').addClass("hove");
+        });
+        $('.col-3').mouseout(function() {
+          $('.col-3').removeClass("hove");
+          $('.th-head3').removeClass("hove");
+        });
+        $('.col-4').mouseover(function() {
+          $('.col-4').addClass("hove");
+          $('.th-head4').addClass("hove");
+        });
+        $('.col-4').mouseout(function() {
+          $('.col-4').removeClass("hove");
+          $('.th-head4').removeClass("hove");
+        });
+        $('.col-5').mouseover(function() {
+          $('.col-5').addClass("hove");
+          $('.th-head5').addClass("hove");
+        });
+        $('.col-5').mouseout(function() {
+          $('.col-5').removeClass("hove");
+          $('.th-head5').removeClass("hove");
+        });
+
+
+        var format_date = ''
+        var package_name = ''
+        $.ajax({
+          url : CONFIG.API_ROOT + '/cloud/checkPackage',
+          type : 'GET',
+          dataType : 'json',
+          async: false,
+          headers: {
+            'HTTP_X_OAUTH': readCookie('token')
+          }
+        }).done(function(responseJSON) {
+          format_date = responseJSON.result.format_date
+          package_name = responseJSON.result.package_name
+        }).fail(function(xhr, status, error) {
+          window.location.href = 'login.html';
+        });
+
+        var package_id = parseInt(getUrlParameter('package_id'))
+        var nowComboType = package_id + 1
+
+        for (var i = 1; i < package_id + 1; i++) {
+          $(".col-" + i + " .th-buy").html('<div style="padding-top: 6px;">&nbsp;</div>')
+        }
+        $(".col-" + nowComboType + " .th-buy").html('<a data-toggle="modal" data-target="#renewalModal" data-backdrop="static" class="btn btn-warning" id="renewal" package_id =' + package_id + ' >我要续费</a>')
+        $(".col-" + nowComboType + " .is-used").html('(正在使用)')
+        $(".col-" + nowComboType + " .format-date").html(format_date + " 到期")
+        for (var i = nowComboType + 1; i < 5; i++) {
+          $(".col-" + i + " .th-buy").html('<a data-toggle="modal" data-target="#upgradeModal" data-backdrop="static" class="btn btn-warning upgrade" id="xufei" package_id =' + (i - 1) + ' >立即升级</a>')
+        }
+        //免费版 不可用 没有到期时间
+        $(".col-1"+" .th-buy").html('<div style="padding-top: 6px;">&nbsp;</div>')
+        $(".col-1"+" .format-date").html('&nbsp;')
+
+        var typeValue = ['', '初级协作版', '中级协作版', '高级协作版']
+        var yearValue = ['', 1000, 2800, 4800]
+        var monthValue = ['', 128, 298, 498]
+
+        //续费参数
+        var renewalPayType = 'y'
+        var renewalYearValue = 1000
+        var renewalMonthValue = 128
+        var renewalMonthCount = 3
+        var renewalPayUrl = ''
+
+        //升级参数
+        var upgradePayType = 'y'
+        var upgradeYearValue = 1000
+        var upgradeMonthValue = 128
+        var upgradeMonthCount = 3
+        var upgradePackageId = 0
+        var upgradePayUrl = ''
+
+        //订单号
+        var order_id = 0
+
+        //续费绑定弹出层事件
+        $("#renewal").bind("click", function() { //续费
+          renewalYearValue = yearValue[package_id]
+          renewalMonthValue = monthValue[package_id]
+          renewalPayType = $("#renewalModal .radio-group input[type='radio']:checked").val()
+          $("#renewalModal #renewalModalLabel").html('"' + typeValue[package_id] + '" 续费');
+          $("#renewalModal .yearPrice").html(yearValue[package_id]);
+          $("#renewalModal .monthPrice").html(monthValue[package_id]);
+          if(renewalPayType == 'y'){
+            $("#renewalModal .slider-pips").hide()
+          }else{
+            $("#renewalModal .slider-pips").show()
+          }
+
+          var priceData = getPrice(package_id, renewalPayType, renewalMonthCount)
+          $("#renewalPrice").html(priceData.price)
+        });
+
+        $("#renewalModal .radio-group input[type='radio']").change(function () {
+          renewalPayType = $("#renewalModal .radio-group input[type='radio']:checked").val()
+          if(renewalPayType == 'y'){
+            $("#renewalModal .slider-pips").hide()
+          }else{
+            $("#renewalModal .slider-pips").show()
+          }
+          var priceData = getPrice(package_id, renewalPayType, renewalMonthCount)
+          $("#renewalPrice").html(priceData.price)
+        })
+
+        $("#renewalModal .slider")
+          .slider({
+            min: 1,
+            max: 12,
+            value: 3,
+          })
+          .slider("pips", {
+            rest: "label"
+          })
+          .slider("float")
+          .on("slidechange", function(e, ui) {
+            renewalMonthCount = ui.value
+            var priceData = getPrice(package_id, renewalPayType, renewalMonthCount)
+            $("#renewalPrice").html(priceData.price)
+          });
+
+        $("#renewalPay").bind("click", function() {//续费跳转页面
+          var orderData = getOrder(package_id, renewalPayType, renewalMonthCount)
+          window.open(orderData.payUrl)
+          order_id = orderData.order_id
+          $('#confirmModal').modal({
+            backdrop: 'static'
+          })
+
+          $('.pay-again').unbind('click');
+          //重新支付
+          $('.pay-again').click(function(e) {
+            //是否支付完成
+            var order_finished = false
+
+            $.ajax({
+              url : CONFIG.API_ROOT + '/order/check/' + order_id,
+              type : 'GET',
+              async: false,
+              dataType : 'json'
+            }).done(function(responseJSON) {
+              if(responseJSON.result == 'failure'){//支付失败
+                order_finished = false
+                $(".errorMsg").removeClass('alert-success')
+                $(".errorMsg").addClass('alert-danger')
+                errorMsg('支付结果正在处理中，请稍作等待或选择重新支付')
+              }else{
+                order_finished = true
+                $(".errorMsg").removeClass('alert-danger')
+                $(".errorMsg").addClass('alert-success')
+                errorMsg('支付已成功，无需重新支付')
+                setTimeout(function(){
+                  window.location.href = 'index.html';
+                },1000)
+              }
+            }).fail(function(xhr, status, error) {
+
+            });
+
+            if(!order_finished){
+              var orderData = getOrder(package_id, renewalPayType, renewalMonthCount)
+              window.open(orderData.payUrl)
+              order_id = orderData.order_id
+            }
+
+          })
+        })
+
+
+        //升级弹出层事件
+        $(".upgrade").bind("click", function() { //升级
+          if(package_id == 0){
+            $('#renew').hide()
+            $('.hint-mark').hide()
+            $('.yearRadio').attr("checked","checked")
+          }
+
+          upgradePayType = $("#upgradeModal .radio-group input[type='radio']:checked").val()
+          upgradePackageId = $(this).attr('package_id')
+          upgradeYearValue = yearValue[$(this).attr('package_id')]
+          upgradeMonthValue = monthValue[$(this).attr('package_id')]
+          $('#upgradeModal .selectpicker').val($(this).attr('package_id'))
+          $("#upgradeModal #upgradeModalLabel").html('升级到 "' + typeValue[$(this).attr('package_id')] + '"');
+          $("#upgradeModal .now-type").html('"' + package_name + '"');
+          $("#upgradeModal .target-type").html('"' + typeValue[$(this).attr('package_id')]+ '"');
+          $("#upgradeModal .format-date").html(format_date);
+          $("#upgradeModal .yearPrice").html(yearValue[$(this).attr('package_id')]);
+          $("#upgradeModal .monthPrice").html(monthValue[$(this).attr('package_id')]);
+
+          if(upgradePayType == 'y' || upgradePayType == 'r'){
+            $("#upgradeModal .slider-pips").hide()
+          }else{
+            $("#upgradeModal .slider-pips").show()
+          }
+
+          var priceData = getPrice(upgradePackageId, upgradePayType, upgradeMonthCount)
+          $("#upgradePrice").html(priceData.price)
+          $("#upgradeModal .lack-price").html(priceData.lack_price)
+        });
+
+        $("#upgradeModal .radio-group input[type='radio']").change(function () {
+          upgradePayType = $("#upgradeModal .radio-group input[type='radio']:checked").val()
+          if(upgradePayType == 'y' || upgradePayType == 'r'){
+            $("#upgradeModal .slider-pips").hide()
+          }else{
+            $("#upgradeModal .slider-pips").show()
+          }
+          var priceData = getPrice(upgradePackageId, upgradePayType, upgradeMonthCount)
+          $("#upgradePrice").html(priceData.price)
+        })
+
+        $("#upgradeModal .slider")
+          .slider({
+            min: 1,
+            max: 12,
+            value: 3,
+          })
+          .slider("pips", {
+            rest: "label"
+          })
+          .slider("float")
+          .on("slidechange", function(e, ui) {
+            upgradeMonthCount = ui.value
+            var priceData = getPrice(upgradePackageId, upgradePayType, upgradeMonthCount)
+            $("#upgradePrice").html(priceData.price)
+          });
+
+        $("#upgradePay").bind("click", function() {//升级跳转页面
+          var orderData = getOrder(upgradePackageId, upgradePayType, upgradeMonthCount)
+          window.open(orderData.payUrl)
+          order_id = orderData.order_id
+          $('#confirmModal').modal({
+            backdrop: 'static'
+          })
+
+          $('.pay-again').unbind('click');
+          $('.pay-again').click(function(e) {
+            //是否支付完成
+            var order_finished = false
+
+            $.ajax({
+              url : CONFIG.API_ROOT + '/order/check/' + order_id,
+              type : 'GET',
+              async: false,
+              dataType : 'json'
+            }).done(function(responseJSON) {
+              if(responseJSON.result == 'failure'){//支付失败
+                order_finished = false
+                $(".errorMsg").removeClass('alert-success')
+                $(".errorMsg").addClass('alert-danger')
+                errorMsg('支付结果正在处理中，请稍作等待或选择重新支付')
+              }else{
+                order_finished = true
+                $(".errorMsg").removeClass('alert-danger')
+                $(".errorMsg").addClass('alert-success')
+                errorMsg('支付已成功，无需重新支付')
+                setTimeout(function(){
+                  window.location.href = 'index.html';
+                },1000)
+              }
+            }).fail(function(xhr, status, error) {
+
+            });
+
+            if(!order_finished){
+              var orderData = getOrder(upgradePackageId, upgradePayType, upgradeMonthCount)
+              order_id = orderData.order_id
+              window.open(orderData.payUrl)
+            }
+          })
+        })
+
+        //支付完成
+        $('.pay-finished').click(function(e) {
+          $.ajax({
+            url : CONFIG.API_ROOT + '/order/check/' + order_id,
+            type : 'GET',
+            dataType : 'json'
+          }).done(function(responseJSON) {
+            if(responseJSON.result == 'failure'){//支付失败
+              $(".errorMsg").removeClass('alert-success')
+              $(".errorMsg").addClass('alert-danger')
+              errorMsg('支付结果正在处理中，请稍作等待或选择重新支付')
+            }else{
+              $(".errorMsg").removeClass('alert-danger')
+              $(".errorMsg").addClass('alert-success')
+              errorMsg('支付成功')
+              setTimeout(function(){
+                window.location.href = 'index.html';
+              },1000)
+            }
+          }).fail(function(xhr, status, error) {
+
+          });
+        });
+
+      })
+    </script>
+
+
+  </head>
+
+  <body>
+    <div class="header">
+      <div class="container">
+        <img src="images/renew_log.png" height="30px" width="135px" />
+      </div>
+    </div>
+    <div class="body">
+      <div class="container">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="empty"></th>
+                <th class="col-1">
+                  <div>
+                    <div class="th-head th-head1 text-center">免费版</div>
+                    <div class="is-used text-center">&nbsp;</div>
+                    <div class="text-center format-date">&nbsp;</div>
+                    <div class="th-price text-center">免费</br>&nbsp;</div>
+                    <div class="th-peoples text-center">10人以内团队</div>
+                    <div class="th-capacity text-center">20G存储空间</div>
+                    <div class="th-fileByte text-center">单个文件最大1G</div>
+                    <div class="th-buy text-center"><a class="btn btn-default test" data-toggle="modal" data-target="#myModal">免费试用</a>
+                    </div>
+                  </div>
+                </th>
+                <th class="col-2">
+                  <div class="th-head th-head2 text-center">初级协作版</div>
+                  <div class="is-used text-center">&nbsp;</div>
+                  <div class="text-center format-date">&nbsp;</div>
+                  <div class="th-price text-center">128/月</br>1000/年&nbsp;<img src="images/youhui_mark.png" /></div>
+                  <div class="th-peoples text-center">20人以内团队</div>
+                  <div class="th-capacity text-center">200G存储空间</div>
+                  <div class="th-fileByte text-center">单个文件最大5G</div>
+                  <div class="th-buy text-center"><a class="btn btn-warning" href="regist.html#package_id=1">立即购买</a>
+                  </div>
+                </th>
+                <th class="col-3">
+                  <div class="th-head th-head3 text-center">中级协作版</div>
+                  <div class="is-used text-center">&nbsp;</div>
+                  <div class="text-center format-date">&nbsp;</div>
+                  <div class="th-price text-center">298/月</br>2800/年&nbsp;<img src="images/youhui_mark.png" /></div>
+                  <div class="th-peoples text-center">50人以内团队</div>
+                  <div class="th-capacity text-center">500G存储空间</div>
+                  <div class="th-fileByte text-center">单个文件最大5G</div>
+                  <div class="th-buy text-center"><a class="btn btn-warning" href="regist.html#package_id=2">立即购买</a>
+                  </div>
+                </th>
+                <th class="col-4">
+                  <div class="th-head th-head4 text-center">高级协作版</div>
+                  <div class="is-used text-center">&nbsp;</div>
+                  <div class="text-center format-date">&nbsp;</div>
+                  <div class="th-price text-center">498/月</br>4800/年&nbsp;<img src="images/youhui_mark.png" /></div>
+                  <div class="th-peoples text-center">100人以内团队</div>
+                  <div class="th-capacity text-center">1T存储空间</div>
+                  <div class="th-fileByte text-center">单个文件最大5G</div>
+                  <div class="th-buy text-center"><a class="btn btn-warning" href="regist.html#package_id=3">立即购买</a>
+                  </div>
+                </th>
+                <th class="col-5">
+                  <div class="th-head th-head5 text-center">定制版</div>
+                  <div class="is-used text-center">&nbsp;</div>
+                  <div class="text-center format-date">&nbsp;</div>
+                  <div class="th-price text-center">联系我们</br>&nbsp;</div>
+                  <div class="th-peoples text-center">不限团队人数</div>
+                  <div class="th-capacity text-center">不限存储空间</div>
+                  <div class="th-fileByte text-center">单个文件最大5G</div>
+                  <div class="th-buy text-center"><a class="btn btn-warning" href="home.html#businessMainly">021-62129363</a>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-center">桌面客户端同步</td>
+                <td class="text-center col-1">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-2">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-3">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-4">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-5">
+                  <img src="images/pricing_select.png" />
+                </td>
+              </tr>
+              <tr>
+                <td class="text-center">移动设备访问</td>
+                <td class="text-center col-1">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-2">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-3">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-4">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-5">
+                  <img src="images/pricing_select.png" />
+                </td>
+              </tr>
+              <tr>
+                <td class="text-center">加密存储和加密传输</td>
+                <td class="text-center col-1">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-2">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-3">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-4">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-5">
+                  <img src="images/pricing_select.png" />
+                </td>
+              </tr>
+              <tr>
+                <td class="text-center">文件历史版本数</td>
+                <td class="text-center col-1">10</td>
+                <td class="text-center col-2">50</td>
+                <td class="text-center col-3">50</td>
+                <td class="text-center col-4">100</td>
+                <td class="text-center col-5">100</td>
+              </tr>
+              <tr>
+                <td class="text-center">桌面客户端同步</td>
+                <td class="text-center col-1">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-2">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-3">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-4">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-5">
+                  <img src="images/pricing_select.png" />
+                </td>
+              </tr>
+              <tr>
+                <td class="text-center">权限角色</td>
+                <td class="text-center col-1">2</td>
+                <td class="text-center col-2">7</td>
+                <td class="text-center col-3">7</td>
+                <td class="text-center col-4">7</td>
+                <td class="text-center col-5">7</td>
+              </tr>
+              <tr>
+                <td class="text-center">桌面客户端同步</td>
+                <td class="text-center col-1">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-2">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-3">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-4">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-5">
+                  <img src="images/pricing_select.png" />
+                </td>
+              </tr>
+              <tr>
+                <td class="text-center">安全分享</td>
+                <td class="text-center col-1">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-2">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-3">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-4">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-5">
+                  <img src="images/pricing_select.png" />
+                </td>
+              </tr>
+              <tr>
+                <td class="text-center">多种文件预览</td>
+                <td class="text-center col-1">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-2">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-3">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-4">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-5">
+                  <img src="images/pricing_select.png" />
+                </td>
+              </tr>
+              <tr>
+                <td class="text-center">管理控制台</td>
+                <td class="text-center col-1">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-2">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-3">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-4">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-5">
+                  <img src="images/pricing_select.png" />
+                </td>
+              </tr>
+              <tr>
+                <td class="text-center">用户管理</td>
+                <td class="text-center col-1">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-2">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-3">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-4">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-5">
+                  <img src="images/pricing_select.png" />
+                </td>
+              </tr>
+              <tr>
+                <td class="text-center">用户自定义</td>
+                <td class="text-center col-1">不支持</td>
+                <td class="text-center col-2">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-3">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-4">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-5">
+                  <img src="images/pricing_select.png" />
+                </td>
+              </tr>
+              <tr>
+                <td class="text-center">日志与报表</td>
+                <td class="text-center col-1">不支持</td>
+                <td class="text-center col-2">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-3">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-4">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-5">
+                  <img src="images/pricing_select.png" />
+                </td>
+              </tr>
+              <tr>
+                <td class="text-center">用户自定义</td>
+                <td class="text-center col-1">不支持</td>
+                <td class="text-center col-2">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-3">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-4">
+                  <img src="images/pricing_select.png" />
+                </td>
+                <td class="text-center col-5">
+                  <img src="images/pricing_select.png" />
+                </td>
+              </tr>
+              <tr>
+                <td class="text-center">日志与报表</td>
+                <td class="text-center col-1"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-2"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-3"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-4"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-5"><img src="images/pricing_select.png" /></td>
+              </tr>
+              <tr>
+                <td class="text-center">访问统计</td>
+                <td class="text-center col-1"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-2"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-3"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-4"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-5"><img src="images/pricing_select.png" /></td>
+              </tr>
+              <tr>
+                <td class="text-center">安全报告</td>
+                <td class="text-center col-1"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-2"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-3"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-4"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-5">定制</td>
+              </tr>
+              <tr>
+                <td class="text-center">自定义URL</td>
+                <td class="text-center col-1"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-2"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-3"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-4"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-5">定制</td>
+              </tr>
+              <tr>
+                <td class="text-center">自定义管理角色</td>
+                <td class="text-center col-1"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-2"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-3"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-4"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-5">定制</td>
+              </tr>
+              <tr>
+                <td class="text-center">全局内容管理</td>
+                <td class="text-center col-1"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-2"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-3"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-4"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-5">定制</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- renewalModal -->
+    <div class="modal fade" id="renewalModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="renewalModalLabel">Modal title</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group radio-group pay">
+              <div class="radio">
+                <label>
+                  <input type="radio" name="renewalModaloptionsRadios" id="" value="y" checked> 年付（
+                  <span class="yearPrice">2800</span>/年）
+                  <img src="images/youhui_mark.png" />
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="renewalModaloptionsRadios" id="" value="m"> 月付（
+                  <span class="monthPrice">2800</span>/月）
+                </label>
+              </div>
+            </div>
+            <div class="form-group slider-pips pay">
+              <div class="slider col-sm-8"></div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <span>合计:</span>
+            <span id="renewalPrice">1500</span>
+            <span>元</span>
+            <button type="button" class="btn btn-warning" id="renewalPay">确认支付</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- upgradeModal -->
+    <div class="modal fade" id="upgradeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="upgradeModalLabel">Modal title</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group radio-group pay">
+              <div class="radio" id="renew">
+                <label>
+                  <input type="radio" name="upgradeModaloptionsRadios" value="r" checked>
+                                            仅升级
+                </label>
+              </div>
+
+              <div class="radio">
+                <label>
+                  <input type="radio" class="yearRadio" name="upgradeModaloptionsRadios" id="" value="y"> 年付（
+                  <span class="yearPrice">2800</span>/年）
+                  <img src="images/youhui_mark.png" />
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="upgradeModaloptionsRadios" id="" value="m"> 月付（
+                  <span class="monthPrice">2800</span>/月）
+                </label>
+              </div>
+            </div>
+            <div class="form-group slider-pips pay">
+              <div class="slider col-sm-8"></div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="hint-mark">当前使用套餐为&nbsp;<span class="now-type"></span>&nbsp;,升级到&nbsp;<span class="target-type"></span>&nbsp;会立即生效还需支付到&nbsp;<span class="format-date"></span>&nbsp;的套餐差价为&nbsp;<span class="lack-price"></span>元</div>
+            <span>合计:</span>
+            <span id="upgradePrice">1500</span>
+            <span>元</span>
+            <button type="button" class="btn btn-warning" id="upgradePay">立即支付</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 确认支付 -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" id="closeModal" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="confirmModalLabel">请您在新打开的页面中完成支付</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <span>支付完成前请不要关闭此窗口</span><br />
+              <span>如果支付失败，请<a href="home.html#businessMainly" target="_blank">联系我们</a>，我们将竭诚为您服务</span>
+            </div>
+          </div>
+          <div class="modal-footer text-center">
+            <button type="button" class="btn btn-primary pay-finished">支付成功</button>
+            <button type="button" class="btn btn-warning pay-again">重新支付</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-dismissable alert-danger errorMsg" style="display: none; position: fixed; z-index: 10002;">
+      <button aria-hidden="true" data-dismiss="alert" class="close" type="button">
+        ×
+      </button>
+      <p style="margin-right: 15px;">
+
+      </p>
+    </div>
+
+  </body>
+
+</html>

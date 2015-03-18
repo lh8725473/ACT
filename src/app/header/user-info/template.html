@@ -1,0 +1,68 @@
+<div class="modal-header">
+  <button class="bootbox-close-button close" type="button" ng-click="cancel()">
+    ×
+  </button>
+  <h3 class="modal-title">{{'LANG_USER_ACCOUNT_SETTING' | translate}}</h3>
+</div>
+<div class="modal-body">
+  <form role="form" class="form-horizontal link-share-content">
+    <h5>{{'LANG_USER_PERSONAL_SETTING' | translate}}</h5>
+    <div class="form-group user-info">
+      <div class="col-sm-3 updateImg" ng-click = "updateImg()" title="{{'LANG_USER_UPLOAD_NEW_AVATOR' | translate}}">
+        <img ng-src="{{userInfo.avatar}}" height="64px" width="64px"/>
+        <div class="upload-div"
+          ng-file-drop="onFileSelect($files)"
+          ng-file-drag-over-class="drop-box-over"
+          ng-file-drag-over-delay="100"
+          ng-file-select="onFileSelect($files)" title="{{'LANG_USER_UPLOAD_NEW_AVATOR' | translate}}" accept="image/*">
+        </div>
+      </div>
+      <div class="col-sm-9">
+        <div class="form-group">
+          <label>{{'LANG_USER_NAME' | translate}} </label>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" ng-model="userInfo.real_name">
+        </div>
+        <div class="form-group">
+          <label>{{'LANG_USER_MOBILE_NUMBER' | translate}}</label>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" ng-model="userInfo.phone">
+        </div>
+        <div class="form-group">
+          <label>{{'LANG_USER_EMAIL_ADDRESS' | translate}}</label>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" ng-model="userInfo.email" disabled>
+        </div>
+      </div>
+    </div>
+
+    <h5>{{'LANG_USER_UPDATE_PASSWORD' | translate}}</h5>
+    <div class="form-group">
+       <label class="col-sm-3 control-label">{{'LANG_USER_CURRENT_PASSWORD' | translate}}</label>
+       <div class="col-sm-9">
+         <input type="password" class="form-control" ng-model="userInfo.old_password">
+       </div>
+    </div>
+    <div class="form-group">
+       <label class="col-sm-3 control-label">{{'LANG_USER_NEW_PASSWORD' | translate}}</label>
+       <div class="col-sm-9">
+         <input type="password" class="form-control" ng-model="userInfo.new_password">
+       </div>
+    </div>
+    <div class="form-group">
+       <label class="col-sm-3 control-label">{{'LANG_USER_CONFIRM_PASSWORD' | translate}}</label>
+       <div class="col-sm-9">
+         <input type="password" class="form-control" ng-model="userInfo.confim_password">
+       </div>
+    </div>
+    <div class="form-group save-button">
+      <div class="col-sm-10 col-sm-offset-1">
+        <input type="button" class="btn btn-primary form-control" ng-click="updateInfo(userInfo)" value="{{'LANG_USER_SAVE' | translate}}">
+        </input>
+      </div>
+    </div>
+  </form>
+</div>

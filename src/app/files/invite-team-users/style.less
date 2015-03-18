@@ -1,0 +1,175 @@
+//邀请协作人
+.invite-team-users{
+    h3{
+      margin-left: 15px;
+    }
+    h5{
+      margin-top: 24px;
+    }
+    .modal-dialog {
+        width: 100%;
+
+        .modal-content {
+            border: none;
+            border-radius: none;
+            background: transparent;
+             box-shadow: none;
+        }
+    }
+    .invite-team-users-inner {
+//      transition:width 0.5s;
+//      -moz-transition:width 0.5s; /* Firefox 4 */
+//      -webkit-transition:width 0.5s; /* Safari and Chrome */
+//      -o-transition:width 0.5s; /* Opera */
+        width: 400px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 6px;
+        margin: 0 auto;
+        background: white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        &.broad {
+            width: 700px;
+        }
+    }
+    .invite-form{
+        height: 500px;
+        .invite-content{
+            width: 360px;
+        }
+        .input-from-group{
+            margin-bottom: 5px;
+        }
+        .or-from-group{
+            margin-bottom: 5px;
+            text-align: center;
+        }
+        .select-from-group{
+            margin-bottom: 5px;
+        }
+        .selected-groups-users{
+            border: 1px solid #e5e5e5;
+            margin-left: 15px;
+            height: 76px;
+            padding: 0;
+            width: 92%;
+            position: relative;
+            overflow-y: hidden;
+        }
+        .dropdown{
+          button{
+            text-align: left;
+            span.caret{
+              float: right;/* IE */
+              margin-top: 8px;/* IE */
+            }
+
+            @media screen and (-webkit-min-device-pixel-ratio:0) {
+              .invite-team-users .invite-form .dropdown button span.caret {
+                float: right;/* Chrome 4 */
+                margin-top: 8px;/* Chrome 4 */
+                margin-left:0px;/* Chrome 4 */
+              }
+            }
+
+            @-moz-document url-prefix() {
+              .invite-team-users .invite-form .dropdown button span.caret {
+                float: right;/* Firefox 4 */
+                margin-top: -10px;/* Firefox 4 */
+                margin-left:0px;/* Firefox 4 */
+              }
+            }
+          }
+          .dropdown-menu{
+              width: 100%;
+              text-align: left;
+              li{
+                cursor:pointer;
+              }
+          }
+        }
+
+        textarea.comment-input {
+          height: 54px;
+          font-size: 12px;
+          color: #666;
+        }
+
+        .selectedItem{
+            background: none repeat scroll 0 0 #eee;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            float: left;
+            margin: 5px;
+            padding: 3px;
+            .deleteSelected{
+                padding: 5px;
+                cursor: pointer;
+            }
+        }
+        form{
+            height: 100%;
+            h5{
+              border-bottom: 1px solid #e5e5e5;
+            }
+        }
+        .select-invite{
+            height: 100%;
+            border-left: 1px solid #e5e5e5;
+            width: 300px;
+            .form-group{
+                height: 20px;
+            }
+            .group{
+                padding: 5px;
+                .group-user{
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+                    padding-left: 25px;
+                }
+            }
+            .user{
+              padding: 5px;
+            }
+            .user.is_invited{
+              color: #c0c0c0;
+            }
+            .group.is_invited{
+              color: #c0c0c0;
+            }
+            .user-checkbox{
+              float: left;
+              padding: 2px;
+              width: 25px;
+            }
+            .group-checkbox{
+              float: left;
+              padding: 2px;
+              width: 25px;
+            }
+            .scroller{
+              overflow-x: hidden;
+              overflow-y: hidden;
+              bottom: 0;
+              left: 0;
+              margin-left: 15px;
+              right: 0;
+              top: 55px;
+              position: absolute;
+              padding-right: 5px;
+              .group-name{
+                  max-width: 90px;
+              }
+            }
+             .arrows-img{
+                background: url("../../images/arrows.png") no-repeat scroll 0 -113px rgba(0, 0, 0, 0);
+                cursor: pointer;
+                float: right;
+                height: 8px;
+                margin-top: 8px;
+                transition: -moz-transform 0.2s ease 0s;
+                width: 15px;
+             }
+        }
+
+    }
+}

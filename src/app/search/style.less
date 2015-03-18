@@ -1,0 +1,402 @@
+.file-team {
+    position: absolute;
+    bottom: 40px;
+}
+
+//文件列表
+.search-view {
+  margin-right: 300px;
+  height: 100%;
+  position: relative;
+  min-width: 600px;
+
+  .search-file-row{
+    width: 100%;
+    height: 60px;
+  }
+  .search-path{
+    color: #666;
+    padding-left: 5.5%;
+  }
+
+  .scroller {
+    overflow-y: hidden;
+    bottom: 0px;
+    left: 0;
+    margin-left: 40px;
+    right: 0;
+    top: 138px;
+    position: absolute;
+  }
+
+  .file-row{
+    margin-right: 40px;
+    border-bottom: 1px solid #E8E8E8;
+    overflow: hidden;
+    font-size: 14px;
+    padding-bottom: 7px;
+  }
+  .file-row:hover{
+      background-color: #ebf1f7;
+      .link-share-ico{
+          opacity: 1;
+      }
+      .share-ico{
+          opacity: 1;
+      }
+      .discuss-ico{
+          opacity: 1;
+      }
+      .version-ico{
+          opacity: 1;
+      }
+  }
+  .top-bar{
+    height: 45px;
+    padding-left: 40px;
+    padding-top: 12px;
+    font-size: 15px;
+    .folder-crumb{
+      margin-left: 5px;
+    }
+    .root-path a{
+      color: #aeaeae;
+      position: relative;
+      top: 1px;
+    }
+    .root-path.isRoot a{
+       color: #676767;
+    }
+    .root-path a:hover, .root-path a:focus{
+      text-decoration: underline;
+    }
+    .folder-crumb a{
+      color: #aeaeae;
+      position: relative;
+      top: 2px;
+    }
+    .folder-crumb a:hover, .folder-crumb a:focus{
+      text-decoration: underline;
+    }
+    .folder-crumb:last-child{
+        a{
+            color: #676767;
+        }
+    }
+  }
+  .top-bar-bottom{
+      height: 6px;
+      background-size: 100% 100%;
+      background-image: url("../../images/top_shadow.png");
+  }
+  .buttonGroup{
+    border-bottom: 1px solid #afafaf;
+    height: 48px;
+    margin-left: 40px;
+    padding-top: 10px;
+    button{
+        padding: 3px 6px;
+        margin-left: 5px;
+    }
+  }
+  .title{
+     height: 39px;
+     margin-left: 40px;
+     margin-right: 40px;
+     border-bottom: 1px solid #afafaf;
+     color: #676767;
+     font-weight: bold;
+     .title-checkbox{
+        width: 4%;
+     }
+     .title-name{
+         width: 30%;
+     }
+     .title-state{
+         width: 25%;
+     }
+     .title-size{
+         width: 5%;
+     }
+     .title-size{
+         width: 13%;
+     }
+     .title-permission{
+         width: 13%;
+     }
+     .title-action{
+         width: 15%;
+     }
+     .col{
+       float: left;
+       padding: 8px;
+     }
+  }
+  .folder-grid {
+    .table{
+       height : 100%;
+       bottom: 30px;
+       left: 0;
+       right: 0;
+       top: 25px;
+       .create-folder-div{
+           border-bottom: 1px solid #cfcfcf;
+           height: 65px;
+           padding-left: 30px;
+           padding-top: 15px;
+       }
+       .state-td{
+           width: 25%;
+           float: left;
+           padding-top: 22px;
+           padding-left: 5px;
+           color: #666;
+           overflow: hidden;
+           text-overflow: ellipsis;
+           white-space: nowrap;
+       }
+       .file-sise-td{
+           width: 13%;
+           float: left;
+           padding-top: 22px;
+           padding-left: 8px;
+           color: #666;
+       }
+       .permission-td{
+           width: 13%;
+           float: left;
+           padding-left: 8px;
+           padding-top: 22px;
+           color: #666;
+       }
+       .action-td{
+           width: 15%;
+           float: left;
+           padding-top: 22px;
+           padding-left: 8px;
+           span{
+             margin-left: 2px;
+             color: #666;
+           }
+       }
+       a:hover, a:focus{
+           text-decoration: none;
+           cursor: pointer;
+           &.noPreview{
+               cursor: auto;
+           }
+       }
+    }
+
+  }
+
+  .selected{
+    background-color: #ebf1f7;
+  }
+
+  .input-checkbox-td{
+    padding-top: 20px;
+    width: 4%;
+    padding-left: 8px;
+    padding-right: 8px;
+    float: left;
+  }
+
+  .create-buttonGroup{
+    float: left;
+  }
+
+  .form-control{
+    width: 270px;
+  }
+
+  .rename-file{
+    width: 125px;
+  }
+
+  .rename-form{
+    padding-top: 5px;
+  }
+
+  .img-name-td{
+    width: 30%;
+    float: left;
+    padding-top: 10px;
+    padding-left: 8px;
+    position: relative;
+    .rename-form{
+      width: 260px;
+    }
+    .rename-buttonGroup{
+      float: left;
+      padding-left: 5px;
+    }
+    .ioc{
+      width: 42px;
+      height: 42px;
+      float: left;
+    }
+    img{
+      float: left;
+      &.sync{
+        left: 30px;
+        position: relative;
+        top: -13px;
+      }
+    }
+    .seach-path{
+      color: red;
+    }
+    .file-name{
+      float: left;
+      width: 75%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding-left: 8px;
+      padding-top: 5px;
+      font-size: 15px;
+      a{
+        color: #333;
+        font-weight: 500;
+      }
+      a:hover{
+        color: #1f69ba;
+        text-decoration: underline;
+      }
+    }
+    .tag{
+      color: #888;
+      font-size: 10px;
+      span{
+        display: inline-block;
+        // background-color: #c2c2c2;
+        padding: 1px 4px;
+        border-radius: 1px;
+        border: 1px solid #E0E0E0;
+        transition: background 0.25s linear 0s;
+        margin-right: 2px;
+      }
+      .add-tag:hover{
+        cursor: pointer;
+        background: #448DE8;
+        color: #fff;
+      }
+    }
+  }
+
+  .action-td{
+    padding-top: 22px;
+    height: 40px;
+  }
+  .link-share-ico{
+    float: left;
+    background: url("../../images/contact_comment_link_icon.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background-position: 0px -38px;
+    height:19px;
+    width: 16px;
+    opacity: 0.5;
+    &.is_edit{
+      cursor: pointer;
+    }
+    &.is_edit.has_link{
+      background: url("../../images/link_done.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    }
+    &.is_edit:hover{
+      cursor: pointer;
+      background-position: -16px -38px;
+    }
+    &.is_edit.has_link:hover{
+      background: url("../../images/link_done.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    }
+  }
+  .share-ico{
+    float: left;
+    background: url("../../images/contact_comment_link_icon.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background-position: 0px 0px;
+    height:19px;
+    width: 16px;
+    margin-left: 10px;
+    opacity: 0.5;
+    &.is_edit{
+      cursor: pointer;
+    }
+    &.is_edit:hover{
+      cursor: pointer;
+      background-position: -16px 0px;
+    }
+  }
+  .discuss-ico{
+    float: left;
+    background: url("../../images/contact_comment_link_icon.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background-position: 0px -19px;
+    height:19px;
+    width: 16px;
+    margin-left: 10px;
+    opacity: 0.5;
+    &.is_edit{
+      cursor: pointer;
+    }
+    &.is_edit:hover{
+      cursor: pointer;
+      background-position: -16px -19px;
+    }
+  }
+
+  .version-ico{
+    float: left;
+    background: url("../../images/contact_comment_link_icon.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background-position: 0px -57px;
+    height:19px;
+    width: 16px;
+    margin-left: 10px;
+    opacity: 0.5;
+    &.is_edit{
+       cursor: pointer;
+    }
+    &.is_edit:hover{
+       cursor: pointer;
+       background-position: -16px -57px;
+    } 
+  }
+
+  .position-fixed {
+    position: fixed;
+    z-index: 1000;
+  }
+
+}
+
+.folder-table{
+  height: 85%;
+}
+
+.snap-content {
+ background-color: #fff;
+ border-left: 1px solid #ccc;
+}
+
+//文件上传窗口
+.modal-upload{
+  .upload-box{
+    font-size: 16px;
+    border: 2px dashed #c6c6c6;
+    text-align: center;
+    height: 150px;
+    .upload-select:hover{
+      a{
+        text-decoration: underline;
+      }
+    }
+    .upload-select{
+      top: 40px;
+      margin: 0 auto;
+      width: 130px;
+      cursor: pointer;
+    }
+    .upload-drop{
+      position: relative;
+      top: 60px;
+    }
+  }
+}

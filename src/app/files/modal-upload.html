@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <button class="bootbox-close-button close" type="button" ng-click="cancel()">
+    ×
+  </button>
+  <h3 class="modal-title">{{'LANG_UPLOAD_FILE' | translate}}</h3>
+</div>
+<div class="modal-body">
+  <div class="upload-box"
+    ng-file-drop="onFileSelect($files)"
+    ng-file-drag-over-class="drop-box-over"
+    ng-file-drag-over-delay="100">
+    <div ng-file-select="onFileSelect($files)" class="upload-select" data-multiple="{{multiple}}"><a>{{'LANG_UPLOAD_SELECT_FILE_TO_UPLOAD' | translate}}</a></div>
+    <div class="upload-drop">{{'LANG_UPLOAD_DRAG_FILE_TO_UPLOAD' | translate}}</div>
+  </div>
+</div>

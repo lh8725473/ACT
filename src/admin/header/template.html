@@ -1,0 +1,18 @@
+<div class="header-view" ng-controller="App.Header.Controller">
+	<div class="header-ext">
+		<div class="indicator pull-left">{{'ADMIN_CONSOLE_OF_ACT' | translate}}</div>
+		<!--<div class="pull-left" ng-click = "changeLanguage('en-EN')">English</div>
+		<div class="pull-left" ng-click = "changeLanguage('zh-CN')">中文</div> -->
+		<div class="back-main pull-right" ng-click = "backToindex()">
+			<div class="back-img"></div>
+			返回我的主页面
+		</div>
+	</div>
+	<div class="header-search" role="navigation">
+		<div class="logo pull-left"></div>
+		<div class="search">
+			<input type="text" class="search-text form-control" placeholder="搜索内部用户" ng-model = "seachInputValue" ng-keydown = "searchByKeyDown($event,seachInputValue)"/>
+			<button class="search-button btn btn-default" ng-click = "searchByButton(seachInputValue)">搜索</button>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,330 @@
+//文件预览
+.preview-file{
+    min-width: 1024px;
+    position: absolute;
+    .preview-file-inner{
+        width: 1024px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-top: none;
+        border-bottom: none;
+        border-radius: 0;
+        margin: 0 auto;
+        background: white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        &.broad {
+            width: 900px;
+        }
+    }
+
+    .modal-dialog{
+        height: 100%;
+        width: 100%;
+        margin: 0 auto;
+    }
+    .modal-content{
+        height: 100%;
+        border-radius: 0;
+        border-top: none;
+        border-bottom: none;
+    }
+    .upload-new-version{
+        float: right;
+        padding: 2px 3px;
+        margin: 13px 30px 0 0;
+    }
+    .download{
+        float: right;
+        padding: 2px 25px;
+        margin: 13px 20px 0 0;
+    }
+
+    .preview-view{
+        height: 100%;
+        padding: 0;
+        .image-preview{
+            text-align: center;
+            bottom: 20px;
+            left: 13px;
+            position: absolute;
+            right: 14px;
+            top: 65px;
+            height: 85%;
+            img{
+                max-height: 100%;
+                max-width: 80%;
+            }
+        }
+        .txt-preview{
+            word-break: break-all;
+            bottom: 20px;
+            left: 13px;
+            position: absolute;
+            right: 14px;
+            top: 65px;
+            overflow-y: auto;
+        }
+        .office-preview{
+            border: 1px solid #e5e5e5;
+            bottom: 20px;
+            left: 13px;
+            position: absolute;
+            right: 14px;
+            top: 65px;
+            margin: 0 15px;
+        }
+    }
+    .modal-body{
+        position: relative;
+        height: 100%;
+        padding: 0;
+    }
+    .preview-action{
+        position: absolute;
+        bottom: 0;
+    }
+    .modal-header{
+        padding: 0;
+        height: 50px;
+        border-bottom-color: #C3C3C3;
+        background-color: #F0F0F0;
+        h3 {
+            height: 50px;
+            line-height: 50px;
+            font-weight: lighter;
+            padding-left: 30px;
+        }
+    }
+    .discuss-version-view{
+        border-left: 1px solid #c3c3c3;
+        height: 100%;
+        padding: 0;
+        .nav-sidebar{
+            height: 36px;
+            padding: 0 20px;
+            border-bottom: 1px solid #C3C3C3;
+            background-color: #E9EDF1;
+            li{
+               float: left;
+               cursor: pointer;
+               margin: 7px 20px 0 0;
+
+               &.active{
+                   color: #1F6ABD;
+               }
+            }
+            .close {
+                font-size: 24px;
+                margin-top: 6px;
+            }
+        }
+        .scroller {
+          position: absolute;
+          top: 48px;
+          left: 0;
+          right: 0;
+          bottom: 160px;
+//        padding-top: 12px;
+          padding-left: 10px;
+          overflow-y: hidden;
+        }
+        .discuss{
+          .disc-item{
+            padding: 10px;
+            img{
+              float: left;
+              border-radius: 3px;
+            }
+            .disc-box{
+              margin-left: 35px;
+              .disc-name{
+                color: #A0A0A0;
+                font-size: 14px;
+                height: 14px;
+                line-height: 14px;
+                margin-bottom: 3px;
+                .delete-disc{
+                  display: none;
+                  margin-left: 10px;
+                }
+                .reply-disc{
+                  display: none;
+                }
+              }
+              .disc-time{
+                color: #c0c0c0;
+                font-size: 12px;
+              }
+              .disc-content {
+                color: #4A4A4A;
+              }
+            }
+          }
+
+          .disc-item:hover .disc-name .reply-disc{
+            display: block;
+            cursor: pointer;
+          }
+
+          .is_owner:hover .disc-name .delete-disc{
+            display: block;
+            cursor: pointer;
+          }
+
+          .is_owner:hover .disc-name .reply-disc{
+            display: none;
+          }
+
+          .disc-item.is_deleted:hover .disc-name .reply-disc{
+            display: none;
+          }
+
+          .is_owner.is_deleted:hover .disc-name .delete-disc{
+            display: none;
+          }
+
+          .disc-item.is_deleted .disc-content{
+            color: #c0c0c0;
+            text-decoration: line-through;
+          }
+          .disc-item.is_deleted .disc-content a{
+            color: #c0c0c0;
+            text-decoration: line-through;
+          }
+          .disc-item.is_deleted{
+            .disc-content{
+              color: #c0c0c0;
+              text-decoration: line-through;
+            }
+          }
+        }
+
+        .version{
+            position: absolute;
+            top: 46px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /*padding: 0px 20px 0px 20px;*/
+            overflow-y: hidden;
+            overflow-x: hidden;
+            .version-item{
+              padding: 0 20px;
+              .time-user{
+                border-bottom: 1px solid #e5e5e5;
+                padding: 10px 0;
+                color: #999;
+                .version-info-left{
+                  width: 50%;
+                  .version-info{
+                    line-height: 30px;
+                  }
+                  .version-user-head{
+                    height: 30px;
+                    width: 30px;
+                    margin-right: 5px;
+                  }
+              }
+              .version-info-middle{
+                width: 20%;
+                margin-top: 25px;
+              }
+              .version-info-right{
+                width: 30%;
+              }
+            }
+                .file-preview{
+                  cursor: pointer;
+                  margin-top: 10px;
+                  margin-left: 10px;
+                  height: 12px;
+                  width: 17px;
+                  background: url("../../images/web_versions_preview_mouse_off.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+                  &:hover{
+                    background: url("../../images/web_versions_preview_mouse_on.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+                  }
+                }
+                .current-set{
+                  cursor: pointer;
+                  color: #999;
+                  &:hover{
+                      color: #428bca;
+                  }
+                }
+                .current-version{
+                  color: #428bca;
+                }
+                .version-user{
+                    max-width: 50px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+                .version-action{
+                    cursor: pointer;
+                    width: 19px;
+                    height: 17px;
+                    margin-top: 13px;
+                    background: url("../../images/download_btn_off.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);;
+                }
+                .version-action:hover{
+                    background: url("../../images/download_btn_on.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);;
+                }
+            }
+        }
+
+        .disc-inputbox{
+          bottom: 0;
+          height: 160px;
+          position: absolute;
+          textarea {
+            box-sizing: border-box;
+            width: 100%;
+            border: 1px solid #c3c3c3;
+            border-left: none;
+            border-right: none;
+            height: 120px;
+            padding: 5px;
+          }
+          textarea:focus {
+            outline: none;
+            border-color: #B8B8B8;
+            box-shadow: 0 -3px 5px #C3C3C3;
+          }
+          label{
+              margin-top: 4px;
+              margin-right: 5px;
+              color: #777;
+              font-weight: lighter;
+          }
+          label.pull-left {
+            margin-left: 5px;
+            font-size: 12px;
+          }
+
+          button {
+            padding: 2px 10px;
+            margin-right: 10px;
+            background: #1F6ABD;
+            color: #fff;
+          }
+        }
+    }
+
+    .ueditor{
+      width: 100%;
+      border: 1px solid #e5e5e5;
+      bottom: 0;
+      position: absolute;
+      top: 65px;
+      .edui-editor{
+        width: 100%!important;
+        border: 1px solid #e5e5e5;
+        bottom: 0;
+        position: absolute;
+        top: 0px;
+      }
+      .edui-editor-iframeholder{
+        width: 100%!important;
+      }
+    }
+}

@@ -1,0 +1,87 @@
+<div class="header-view" ng-controller="App.Header.Controller">
+  <div class="header-top">
+    <div class="slogan pull-left">{{'LANG_HEADER_INFO' | translate}} </div>
+    <div class="user-info pull-right" dropdown is-open="userInfoMenuOpen">
+      <div class="username dropdown-toggle" ng-class="{hover: hover}" ng-mouseenter="hover = true" ng-mouseleave="hover = false">
+        <span>{{user.real_name}}</span>
+        <div class="personalInfor"></div>
+      </div>
+      <ul class="dropdown-menu" role="menu">
+            <li ng-click = "userInfoWin()"><a>{{'LANG_HEADER_PERSONAL_INFORMATION' | translate}}</a></li>
+            <li ng-click = "toLogin()"><a>{{'LANG_HEADER_QUIT' | translate}}</a></li>
+      </ul>
+      <img class="userpic" ng-src="{{user.avatar}}" alt="" />
+    </div>
+    <div class="to-admin-control pull-right" ng-click = "toadmin()" ng-show = "roleId == '1'">{{'LANG_HEADER_ADMIN_CONTROL' | translate}}</div>
+    <div class="notif_box" class="message-notice pull-right">
+      <div class="message-dropdown" dropdown ng-class="{ active: message_show }" is-open="messageOpen" ng-click = "openMessageList()">
+        <span class="message dropdown-toggle" title="{{'LANG_HEADER_MESSAGE' | translate}}"></span>
+        <label class="message-count letter-count" ng-show = "showMessageCount">{{messageCount}}</label>
+        <perfect-scrollbar class="dropdown-menu" role="menu" class="scroller" wheel-propagation="true" wheel-speed="1" refresh-on-change="true">
+           <loading-indicator ng-show="loading"></loading-indicator>
+           <div class="no-message" ng-show = "no_message"></div>
+           <li ng-click = "messageDetail($event, message)" ng-repeat="message in messageList" ng-class = "{ isRead : message.is_read == 'true' }" ng-hide = "no_message">
+             <a ng-click="goToFolder(message.folder_id)">
+              <div>
+                <img class="message-userpic" ng-src="{{message.avatar}}" alt="" height="30px" width="30px"/>
+                <div class="message-content">
+                  <div class="message-tittle-date">
+                    <label class="message-tittle" title="{{message.title}}">{{message.title}}</label>
+                    <label class="message-date">{{message.format_date}}</span>
+                  </div>
+                  <div class="message-msg">
+                    {{message.content}}
+                  </div>
+                  <div class="message-action">
+                    <label class="message-read" ng-click = "toIsRead($event, message)" title="{{'LANG_HEADER_MARK_AS_READ' | translate}}" ng-show = "message.is_read != 'true'"></label>
+                    <label class="message-delete" ng-click = "deleteMessage($event, message)" title="{{'LANG_HEADER_DELETE' | translate}}"></span>
+                  </div>
+                </div>
+              </div>
+             </a>
+           </li>
+        </perfect-scrollbar>
+      </div>
+      <div class="notice-dropdown" dropdown ng-class="{ active: notice_show }" is-open="noticeOpen" ng-click = "openNoticeList()">
+       <span class="notice dropdown-toggle" title="{{'LANG_HEADER_NOTIFICATION' | translate}}"></span>
+       <label class="message-count notice-count" ng-show = "showMoticeCount">{{noticeCount}}</label>
+       <perfect-scrollbar class="dropdown-menu" role="menu" class="scroller" wheel-propagation="true" wheel-speed="1" refresh-on-change="">
+          <loading-indicator ng-show="loading"></loading-indicator>
+          <div class="no-notice" ng-show = "no_notice"></div>
+          <li ng-click = "noticeDetail($event, notice)" ng-repeat="notice in noticeList" ng-class = "{ isRead : notice.is_read == 'true' }" ng-hide = "no_notice" >
+             <a ng-click="goToFolder(notice.folder_id)">
+              <div>
+                <img class="message-userpic" ng-src="{{notice.avatar}}" alt="" height="30px" width="30px"/>
+                <div class="message-content">
+                  <div class="message-tittle-date">
+                    <label class="message-tittle" title="{{notice.title}}">{{notice.title}}</label>
+                    <label class="message-date">{{notice.format_date}}</span>
+                  </div>
+                  <div class="message-msg">
+                    {{notice.content}}
+                  </div>
+                  <div class="message-action">
+                    <label class="message-read" ng-click = "toIsRead($event, notice)" ng-show = "notice.is_read != 'true'"></label>
+                    <label class="message-delete" ng-click = "deleteMessage($event, notice)"></span>
+                  </div>
+                </div>
+              </div>
+             </a>
+           </li>
+       </perfect-scrollbar>
+      </div>
+    </div>
+  </div>
+  <div class="header-search" role="navigation">
+    <div class="logo pull-left"></div>
+    <div class="search pull-left">
+      <input type="text" placeholder="{{'LANG_HEADER_SEARCH_HINT' | translate}}" class="search-text form-control" ng-model = "searchFilesValue" ng-keydown = "searchByKeyDown($event,searchFilesValue)">
+      <button class="search-button btn btn-default" ng-click = "searchByButton(searchFilesValue)">{{'LANG_HEADER_SEARCH' | translate}}</button>
+    </div>
+    <div class="pull-left buy-product" ng-show = "user.sadmin">
+      <span ng-show = "package.package_id == 0">您正在使用的是全携通&nbsp;<label class="product-type">{{package.package_name}}</label>，升级可创建更大团队，拥有更多功能&nbsp;&nbsp;&nbsp;<a href="renew.html#package_id={{package.package_id}}">立即升级</a></span>
+      <span ng-show = "package.package_id != 0 && !package.remind">您所使用的全携通&nbsp;<label class="product-type">{{package.package_name}}</label>&nbsp;&nbsp;&nbsp;<a href="renew.html#package_id={{package.package_id}}">查看</a></span>
+      <span ng-show = "package.package_id != 0 && package.remind">您所使用的全携通&nbsp;<label class="product-type">{{package.package_name}}</label>&nbsp;离使用结束还有{{package.last_days}}天&nbsp;&nbsp;&nbsp;<a href="renew.html#package_id={{package.package_id}}">继续使用</a></span>
+    </div>
+  </div>
+</div>

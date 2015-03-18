@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html ng-app="App" class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html ng-app="App" class="lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html ng-app="App" class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html ng-app="App" class=""> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>全携通</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?4c3c918cadc6ad3aceb76b34c3c29302";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <!-- build:css css/link-share/link-share.css -->
+  <link rel="stylesheet" type="text/css" href="bower_components/perfect-scrollbar/src/perfect-scrollbar.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/umeditor/themes/default/css/umeditor.css">
+  <link rel="stylesheet" type="text/css" href="src/link-share/link-share.css">
+  <!-- endbuild -->
+
+</head>
+<body>
+  <div class="header" ng-include="'src/link-share/header/template.html'"></div>
+  <div class="main container">
+
+    <div class="col-sm-8 col-sm-offset-2 right-main" ui-view></div>
+
+    <div class="main-bottom">
+  		<div>
+  			版权所有©2013 上海灵利信息技术有限公司
+  		</div>
+  		<div>
+  			沪网文[2011]0682-074增值电信业务经营许可证编号:沪B2-20080012
+  		</div>
+	  </div>
+  </div>
+  <div class="enter-password" ng-controller="App.LinkShare.InputPasswordController" ng-show = "neddPassword">
+    <div class="input-password">
+      <img src="./images/logo_white_max.png" />
+      <div class="form-group">
+        <input class="form-control" type="password" placeholder="输入文件提取密码" ng-model = "password"/>
+        <input type="button"  class="btn btn-warning" value="确定" ng-click = "checkPassword(password)"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="upload-progress-dialog" style="display: block;" ng-include="'src/link-share/upload-progress-dialog/template.html'"></div>
+
+  <script id="template/modal/window.html" type="text/ng-template">
+    <div tabindex="-1" role="dialog" class="modal fade" ng-class="{in: animate}" ng-style="{'z-index': 1050 + index*10, display: 'block'}" ng-click="close($event)">
+        <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg'}"><div class="modal-content" modal-transclude>
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <!-- build:js js/global/config.js -->
+  <script type="text/javascript" src="src/global/_config.js"></script>
+  <!-- endbuild -->
+
+  <!-- build:js js/link-share.js -->
+  <script type="text/javascript" src="bower_components/ng-file-upload/angular-file-upload-shim.js"></script>
+  <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+
+  <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+  <script type="text/javascript" src="bower_components/angular-translate/angular-translate.js"></script>
+  <script type="text/javascript" src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
+
+  <script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
+  <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script type="text/javascript" src="src/link-share/ui-bootstrap-fix.js"></script>
+  <script type="text/javascript" src="bower_components/ng-file-upload/angular-file-upload.js"></script>
+
+  <script type="text/javascript" src="bower_components/angular-md5/angular-md5.js"></script>
+  <script type="text/javascript" src="bower_components/angular-resource/angular-resource.js"></script>
+  <script type="text/javascript" src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script type="text/javascript" src="bower_components/ng-context-menu/dist/ng-context-menu.js"></script>
+  <script type="text/javascript" src="bower_components/perfect-scrollbar/src/perfect-scrollbar.js"></script>
+  <script type="text/javascript" src="bower_components/angular-perfect-scrollbar/src/angular-perfect-scrollbar.js"></script>
+  <script type="text/javascript" src="bower_components/angular-ueditor/dist/angular-umeditor.js"></script>
+
+  <script type="text/javascript" src="src/link-share/widgets/widgets.js"></script>
+  <script type="text/javascript" src="src/link-share/widgets/notification/factory.js"></script>
+  <script type="text/javascript" src="src/link-share/widgets/utils/factory.js"></script>
+  <!-- resources -->
+  <script type="text/javascript" src="src/link-share/resources/resources.js"></script>
+  <script type="text/javascript" src="src/link-share/resources/users.js"></script>
+  <script type="text/javascript" src="src/link-share/resources/share.js"></script>
+  <script type="text/javascript" src="src/link-share/resources/folders.js"></script>
+  <script type="text/javascript" src="src/link-share/resources/files.js"></script>
+
+
+  <script type="text/javascript" src="src/link-share/main/module.js"></script>
+  <script type="text/javascript" src="src/link-share/main/controller.js"></script>
+  <script type="text/javascript" src="src/link-share/main/input-password-controller.js"></script>
+  <script type="text/javascript" src="src/link-share/main/preview-file/controller.js"></script>
+
+  <script type="text/javascript" src="src/link-share/header/module.js"></script>
+  <script type="text/javascript" src="src/link-share/header/controller.js"></script>
+
+  <script type="text/javascript" src="src/link-share/upload-progress-dialog/module.js"></script>
+  <script type="text/javascript" src="src/link-share/upload-progress-dialog/controller.js"></script>
+
+  <script type="text/javascript" src="src/link-share/sidebar/module.js"></script>
+  <script type="text/javascript" src="src/link-share/sidebar/controller.js"></script>
+
+  <script type="text/javascript" src="src/global/config.js"></script>
+  <script type="text/javascript" src="src/link-share/app.js"></script>
+  <!-- endbuild -->
+
+  <script type="text/javascript" src="bower_components/umeditor/umeditor.config.js"></script>
+  <script type="text/javascript" src="bower_components/umeditor/umeditor.js"></script>
+</body>
+</html>

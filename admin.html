@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html ng-app="App" class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html ng-app="App" class="lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html ng-app="App" class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html ng-app="App" class=""> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>管理控制台</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?4c3c918cadc6ad3aceb76b34c3c29302";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+  <!-- build:css css/admin/admin.css -->
+  <link rel="stylesheet" type="text/css" href="bower_components/perfect-scrollbar/src/perfect-scrollbar.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/ng-grid/ng-grid.css">
+  <link rel="stylesheet" type="text/css" href="src/admin/admin.css">
+  <!-- endbuild -->
+
+</head>
+<body>
+  <div class="header" ng-include="'src/admin/header/template.html'"></div>
+  <div class="main">
+    <div class="sidebar" ng-include="'src/admin/sidebar/template.html'"></div>
+    <div class="right-main" ui-view></div>
+  </div>
+  <div class="no-right-view" ng-show="noRight" ng-include="'src/admin/501/template.html'"></div>
+
+  <!-- build:js js/global/config.js -->
+  <script type="text/javascript" src="src/global/_config.js"></script>
+  <!-- endbuild -->
+
+  <!-- build:js js/admin.js -->
+  <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+  <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+  <script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
+  <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script type="text/javascript" src="bower_components/ng-grid/build/ng-grid.js"></script>
+  <script type="text/javascript" src="bower_components/highcharts/highcharts.js"></script>
+  <script type="text/javascript" src="bower_components/highcharts-ng/dist/highcharts-ng.js"></script>
+  <script type="text/javascript" src="bower_components/es5-shim/es5-shim.js"></script>
+  <script type="text/javascript" src="bower_components/angular-translate/angular-translate.js"></script>
+  <script type="text/javascript" src="bower_components/angular-resource/angular-resource.js"></script>
+  <script type="text/javascript" src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script type="text/javascript" src="bower_components/perfect-scrollbar/src/perfect-scrollbar.js"></script>
+  <script type="text/javascript" src="bower_components/angular-perfect-scrollbar/src/angular-perfect-scrollbar.js"></script>
+  <script type="text/javascript" src="bower_components/ng-file-upload/angular-file-upload.js"></script>
+
+  <!-- global components -->
+  <script type="text/javascript" src="src/global/loading-indicator/loading-indicator.js"></script>
+  <!---->
+
+  <script type="text/javascript" src="src/admin/widgets/widgets.js"></script>
+  <script type="text/javascript" src="src/admin/widgets/notification/factory.js"></script>
+  <script type="text/javascript" src="src/admin/widgets/utils/factory.js"></script>
+
+
+  <!-- locales -->
+  <script type="text/javascript" src="src/admin/locales/module.js"></script>
+  <script type="text/javascript" src="src/admin/locales/en-EN.js"></script>
+  <script type="text/javascript" src="src/admin/locales/zh-CN.js"></script>
+
+  <!-- resources -->
+  <script type="text/javascript" src="src/admin/resources/resources.js"></script>
+  <script type="text/javascript" src="src/admin/resources/users.js"></script>
+  <script type="text/javascript" src="src/admin/resources/group.js"></script>
+  <script type="text/javascript" src="src/admin/resources/externalUsers.js"></script>
+  <script type="text/javascript" src="src/admin/resources/overView.js"></script>
+  <script type="text/javascript" src="src/admin/resources/share.js"></script>
+  <script type="text/javascript" src="src/admin/resources/cloud.js"></script>
+
+
+  <script type="text/javascript" src="src/admin/header/module.js"></script>
+  <script type="text/javascript" src="src/admin/header/controller.js"></script>
+  <script type="text/javascript" src="src/admin/sidebar/module.js"></script>
+  <script type="text/javascript" src="src/admin/sidebar/controller.js"></script>
+  <script type="text/javascript" src="src/admin/overview/module.js"></script>
+  <script type="text/javascript" src="src/admin/overview/controller.js"></script>
+  <script type="text/javascript" src="src/admin/users/userHeader/module.js"></script>
+  <script type="text/javascript" src="src/admin/users/userHeader/controller.js"></script>
+
+  <script type="text/javascript" src="src/admin/users/managedUsers/module.js"></script>
+  <script type="text/javascript" src="src/admin/users/managedUsers/controller.js"></script>
+  <script type="text/javascript" src="src/admin/users/managedUsers/editUser/module.js"></script>
+  <script type="text/javascript" src="src/admin/users/managedUsers/editUser/controller.js"></script>
+
+  <script type="text/javascript" src="src/admin/users/externalUsers/module.js"></script>
+  <script type="text/javascript" src="src/admin/users/externalUsers/controller.js"></script>
+  <script type="text/javascript" src="src/admin/users/externalUsers/editExternalUser/module.js"></script>
+  <script type="text/javascript" src="src/admin/users/externalUsers/editExternalUser/controller.js"></script>
+
+  <script type="text/javascript" src="src/admin/users/groups/module.js"></script>
+  <script type="text/javascript" src="src/admin/users/groups/controller.js"></script>
+  <script type="text/javascript" src="src/admin/users/groups/editGroup/module.js"></script>
+  <script type="text/javascript" src="src/admin/users/groups/editGroup/controller.js"></script>
+
+  <script type="text/javascript" src="src/admin/users/module.js"></script>
+  <script type="text/javascript" src="src/admin/users/controller.js"></script>
+
+  <script type="text/javascript" src="src/admin/reports/module.js"></script>
+  <script type="text/javascript" src="src/admin/reports/controller.js"></script>
+  <script type="text/javascript" src="src/admin/settings/module.js"></script>
+  <script type="text/javascript" src="src/admin/settings/controller.js"></script>
+
+  <script type="text/javascript" src="src/global/config.js"></script>
+  <script type="text/javascript" src="src/admin/admin.js"></script>
+  <!-- endbuild -->
+</body>
+</html>

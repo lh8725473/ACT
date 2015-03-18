@@ -1,0 +1,82 @@
+<div class="modal-header editUser-header">
+	<h3 class="modal-title">更改用户设置</h3>
+</div>
+<div class="modal-body editUser" ng-controller="App.Users.ManagedUsers.EditUser.Controller">
+		<div class="col-sm-1" style="margin-left:10px;">
+			<img ng-src="{{user.avatar}}" height="64px" width="64px"/>
+		</div>
+		<div class="col-sm-10">
+			<h4 class="modal-title" style="margin-top:0;">姓名</h4>
+			<div class="form-group">
+				<input type="text" ng-model="user.real_name" class="form-control user-name"/>
+			</div>
+			<h4 class="modal-title" style="margin-top:0;">邮箱</h4>
+			<div class="form-group email-group">
+				<input type="email" ng-model="user.email" class="form-control user-email pull-left" disabled/>
+				<input type="button" class="btn btn-default" value="重发邀请" ng-click="resendEmail()" ng-show = "!user.activate"/>
+			</div>
+			<h4 class="modal-title" style="margin-top:0;">容量</h4>
+			<div class="form-group">
+				<input type="text" ng-model="user.total_space" class="form-control user-total-space"/>
+				<label class="">GB</label>
+				<label class="checkbox-label">
+					<input type="checkbox" ng-model="user.space_unlimited">
+				  无限制</label>
+			</div>
+			<h4 class="modal-title">用户权限</h4>
+			<div class="form-group permission-checkbox hide">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="user.config.show_member"/>
+						允许该用户查看所有的内部用户&nbsp;</label><span tooltip="如果选中，则该用户在邀请协作人时可以在自己的联系人列表中访问到其他的内部用户；而除非是自己邀请过的协作人，否则外部用户不会出现在该用户的联系人列表中。" tooltip-append-to-body="true" class="glyphicon glyphicon-info-sign"></span>
+				</div>
+			</div>
+			<div class="form-group permission-checkbox">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="user.config.desktop_sync"/>
+						允许该用户在全携通与桌面端间同步文件&nbsp;</label><span tooltip="如果选中，则允许该用户在全携通网页端与桌面客户端之间双向同步文件。" tooltip-append-to-body="true" class="glyphicon glyphicon-info-sign"></span>
+				</div>
+			</div>
+			<div class="form-group permission-checkbox hide">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="user.config.inner_share"/>
+						限定该用户在自己的文件夹中只能邀请内部用&nbsp;</label><span  tooltip-placement="bottom" tooltip="如果选中，则禁止该用户在自己的文件夹中邀请外部用户进行协作。" tooltip-append-to-body="true" class="glyphicon glyphicon-info-sign"></span>
+				</div>
+			</div>
+			<div class="form-group permission-checkbox" ng-show = "coAdmin">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="user.config.co_admin">
+						协同管理员&nbsp;</label><span tooltip="授予该用户管理员权限（不能管理主要管理员 main admin，也即不能点击main admin进行编辑；并且协同管理员不能取消自己的管理员权限）。" tooltip-append-to-body="true" class="glyphicon glyphicon-info-sign"></span>
+				</div>
+			</div>
+			<h4 class="modal-title">用户所在群组</h4>
+			<div class="form-group">
+				<input type ="text" placeholder="搜索所在群组" class="form-control seach-group" ng-model="seachGroupsValue" ng-change="seachGroups(seachGroupsValue)"/>
+				<input type="button" class="btn btn-default" value="添加群组" ng-click="addGroupsWin()"/>
+			</div>
+			<div class="form-group gridStyleform">
+				<div class="gridStyle col-sm-8" ng-grid="gridGroup"></div>
+				<div class="col-sm-4"></div>
+			</div>
+			<h4 class="modal-title">可访问的协作文件夹</h4>
+			<div class="form-group seach-folder">
+				<input type ="text" placeholder="搜索所在文件夹" class="form-control seach-group" ng-model="seachFoldersValue" ng-change="seachFolders(seachFoldersValue)"/>
+				<input type="button" class="btn btn-default" value="添加协作文件夹" ng-click= "addFolderWin()"/>
+			</div>
+			<div class="form-group gridStyleform">
+				<div class="gridStyle col-sm-8" ng-grid="gridFolder"></div>
+				<div class="col-sm-4"></div>
+			</div>
+			<div class="form-group">
+				<a ui-sref="users.managedUsers">
+					<button class="btn btn-primary" ng-click="updateUser(user)">保存修改</button>
+				</a>
+				<a ui-sref="users.managedUsers">
+					<button class="btn btn-default">取消</button>
+				</a>
+			</div>
+		</div>
+</div>

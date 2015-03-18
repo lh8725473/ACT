@@ -1,0 +1,23 @@
+<div class="modal-header">
+	<h3 class="modal-title">选择人员</h3>
+</div>
+<div class="modal-body">
+	<form role="form" class="form-horizontal">
+		<div class="form-group">
+			<div class="col-sm-5">
+				<input type="name" placeholder="输入人员名称查找" class="form-control" ng-model="seachUsersValue" ng-change="seachUsers(seachUsersValue)">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="gridStyle col-sm-12" ng-grid="selectedMemberGridOptions"></div>
+		</div>
+	</form>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="ok(group)">
+		确定
+	</button>
+	<button class="btn" ng-click="cancel()">
+		取消
+	</button>
+</div>

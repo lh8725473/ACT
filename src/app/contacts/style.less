@@ -1,0 +1,103 @@
+.contacts-view{
+    .scroller{
+        overflow-y: hidden;
+        bottom: 0;
+        left: 0;
+        margin-left: 0;
+        right: 0;
+        top: 46px;
+        position: absolute;
+    }
+}
+
+
+
+.top-bar{
+  height: 45px;
+  padding-left: 40px;
+  padding-top: 12px;
+  font-size: 15px;
+  .folder-crumb{
+    margin-left: 5px;
+  }
+  .root-path a{
+    color: #676767;
+    position: relative;
+    top: 1px;
+  }
+  .root-path.isRoot a{
+    color: #676767;
+  }
+  .root-path a:hover, .root-path a:focus{
+    text-decoration: none;
+  }
+  .folder-crumb a{
+    color: #aeaeae;
+    position: relative;
+    top: 2px;
+  }
+  .folder-crumb a:hover, .folder-crumb a:focus{
+    text-decoration: none;
+  }
+  .folder-crumb:last-child{
+    a{
+      color: #676767;
+    }
+  }
+}
+
+.top-bar-bottom{
+  height: 6px;
+  background-size: 100% 100%;
+  background-image: url("../../images/top_shadow.png");
+}
+
+table.gridtable {
+  margin-left: 35px;
+  font-size:16px;
+  border-collapse: collapse;
+  width:95%;
+  line-height: 24px;
+  tr.contact-title {
+    border-color: #afafaf;
+  }
+}
+table.gridtable tr {
+  border-bottom: 1px solid #E8E8E8;
+  border-left: none;
+  border-right: none;
+  border-top:none;
+}
+table.gridtable tr.contact-item {
+  font-size: 13px;
+  color: #666;
+  .contact-name {
+    font-size: 14px;
+    color: #333;
+  }
+}
+table.gridtable tr.contact-item:hover {
+  background-color: #ebf1f7;
+}
+
+table.gridtable th {
+  //color: #333333;
+  //font-weight: bold;
+  font-size:14px;
+  color: #676767;
+  padding: 8px;
+}
+table.gridtable td {
+  color: #999999;
+  padding: 8px;
+}
+
+.img-avatar {
+  width: 38px;
+  height: 38px;
+}
+
+input.actionbutton {
+  width: 18px;
+  height: 18px;
+}

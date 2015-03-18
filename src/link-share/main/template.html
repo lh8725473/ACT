@@ -1,0 +1,96 @@
+<div class="link-share" ng-controller="App.LinkShare.Controller">
+  <div class="trash-view col-sm-9">
+    <div class="top-bar">
+      <div class="pull-left root-path" ng-class = "{ isRoot: isRoot }">
+        <a ui-sref="shares({folderId: 0})">
+                        所有文件
+        </a>
+      </div>
+      <div class="folder-crumb pull-left" ng-repeat="path in folderPath">
+        <img src="images/arrow_icon.png" />
+        <a ui-sref="shares({folderId: path.id})">
+          {{path.name}}
+        </a>
+      </div>
+      <div class="pull-right expiration-date">
+        链接有效至{{linkDetail.expiration_date}}
+      </div>
+    </div>
+    <div class="top-bar-bottom"></div>
+    <div class="buttonGroup">
+      <button ng-click="upload()" class="btn btn-default" ng-disabled="isRoot || !uploadButton" ng-show = "linkDetail.obj_type == 'folder'">
+        上传文件
+      </button>
+      <button ng-click='downloadFile()' class="btn btn-default" ng-disabled = "!dowloadButton" ng-show = "linkDetail.is_download">
+        下载文件
+      </button>
+    </div>
+    <div class="title">
+      <div class="title-checkbox col">
+        <input type="checkbox" ng-click = "selectedAllswitch()" ng-model = "selectedAll"/>
+      </div>
+      <div class="title-name col">
+        <span>名称</span>
+      </div>
+      <div class="title-state col">
+        <span>修改时间</span>
+      </div>
+      <div class="title-size col">
+        <span>大小</span>
+      </div>
+    </div>
+    <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="5" refresh-on-change="">
+    <div class="folder-grid">
+      <div class="table">
+        <div class="file-row" ng-repeat="linkShare in linkShareList" ng-class = "{ selected: linkShare.checked }" ng-click = "selectRecycle($event, linkShare)">
+          <div class="input-checkbox-td">
+            <input type="checkbox" ng-model = "linkShare.checked" ng-click = "selectRecycle($event, linkShare)"/>
+          </div>
+          <div class="img-name-td">
+            <img ng-src = "{{linkShare.smallIcon}}" height="42px" width="42px"/>
+            <div class="file-name">
+              <a ui-sref="shares({folderId: linkShare.file_id})" ng-show = "linkShare.folder">
+                {{linkShare.folder_name}}
+              </a>
+              <a ng-show = "!linkShare.folder&&linkShare.isPreview&&!linkShare.isNote" ng-click = "previewFile(linkShare)">
+                {{linkShare.file_name}}
+              </a>
+              <a ng-show = "!linkShare.folder&&!linkShare.isPreview&&!linkShare.isNote" ng-class = "{ noPreview: !linkShare.isPreview }">
+                {{linkShare.file_name}}
+              </a>
+              <a ng-click = "previewFile(linkShare)" ng-show = "!linkShare.folder&&linkShare.isNote" ng-class = "{ noPreview: !linkShare.is_preview }" title="{{linkShare.file_name}}">
+                {{linkShare.file_name}}
+              </a>
+            </div>
+          </div>
+          <div class="state-td" title="{{linkShare.action}}">
+            {{linkShare.action}}
+          </div>
+          <div class="file-sise-td">
+            <img src="images/file_icon.png" ng-show = "linkShare.folder"/>
+            <span ng-show = "linkShare.folder">{{linkShare.file_count}}</span>
+            <span ng-hide = "linkShare.folder">{{linkShare.format_size}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    </perfect-scrollbar>
+  </div>
+  <div class="link-detail col-sm-3">
+      <div class="img-name-email">
+          <div class="img">
+          <img ng-src = "{{linkDetail.owner_avatar}}" height="50px" width="50px"/>
+        </div>
+        <div class="name-email">
+          <div><label class="owner-uname" title="{{linkDetail.owner_uname}}">{{linkDetail.real_name}}</label></div>
+          <div><label class="email" title="{{linkDetail.email}}">{{linkDetail.email}}</label></div>
+        </div>
+      </div>
+      <div class="explain-title">
+        <h5>说明</h5>
+      </div>
+      <div>
+        {{linkDetail.comment}}
+      </div>
+  </div>
+</div>

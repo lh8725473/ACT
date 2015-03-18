@@ -1,0 +1,24 @@
+﻿<div class="contacts-view" ng-controller="App.Contacts.Controller">
+	<div class="top-bar">
+		<div class="pull-left root-path" ng-class="{ isRoot: isRoot }">
+			<a>{{'LANG_CONTACTS_HEADER' | translate}}</a>
+		</div>
+	</div>
+	<div class="top-bar-bottom">
+	</div>
+	<perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="1" refresh-on-change="contactList">
+		<table class="gridtable">
+			<tr class="contact-title">
+				<th width="150px">{{'LANG_CONTACTS_NAME' | translate}}</th>
+				<th width="150px">{{'LANG_CONTACTS_EMAIL_ADDRESS' | translate}}</th>
+				<th width="150px">{{'LANG_CONTACTS_PHONE_NUMBER' | translate}}</th>
+			</tr>
+			<tr class="contact-item" ng-repeat="contact in contactList" ng-mouseover="displayContactAction();">
+				<td class="contact-name">
+					<img ng-src="{{contact.avatar}}" class="img-avatar" />&nbsp;{{contact.contact_name}}</td>
+				<td>{{contact.contact_email}}</td>
+				<td>{{contact.contact_phone}}</td>
+			</tr>
+		</table>
+	</perfect-scrollbar>
+</div>

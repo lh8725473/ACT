@@ -1,0 +1,23 @@
+<div class="modal-body">
+  <div class="preview-view col-sm-12">
+    <div class="modal-header">
+      <button class="bootbox-close-button close" type="button" ng-click="cancel()">
+        ×
+      </button>
+      <h3 class="modal-title">"{{obj.file_name}}"文件预览</h3>
+    </div>
+    <loading-indicator ng-show="loading"></loading-indicator>
+    <div class="image-preview" ng-show = "fileType == 'image'">
+      <img ng-src="{{imageSrc}}" alt=""/>
+    </div>
+    <div class="txt-preview" ng-show = "fileType == 'txt'" ng-bind-html = "previewValue">
+
+    </div>
+    <div class="office-preview" ng-show = "fileType == 'office' || fileType == 'pdf'" ng-bind-html = "previewValue">
+
+    </div>
+    <div class="txt-preview" ng-show = "fileType == 'note'" >
+      <div class="umeditor" id = "umeditor"></div>
+    </div>
+  </div>
+</div>

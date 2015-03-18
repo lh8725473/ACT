@@ -1,0 +1,20 @@
+<div class="note-view"  id = "note-view" ng-controller="App.Note.Controller">
+  <div class="note-btn">
+    <button class="btn btn-default" ng-click = "goBack()">返回</button>
+    <button class="btn btn-primary" ng-click = "changeEdit()" ng-show = "is_edit && !edit_flag">编辑</button>
+    <button class="btn btn-primary" ng-click = "saveNote()" ng-show = "edit_flag">发布</button>
+    <button class="btn btn-primary pull-right" ng-click = "openUserDiscuss()">打开讨论</button>
+  </div>
+  <div class="note-editor" ng-show = "edit_flag">
+    <div class="note-title">
+      <input class="title-input form-control" type="text" placeholder="请填写标题" ng-model = "file_name"/>
+    </div>
+    <div class="umeditor" id = "umeditor"></div>
+
+  </div>
+
+  <div class="note-preview" ng-bind-html = "previewNote()" ng-show = "!edit_flag">
+
+  </div>
+
+</div>

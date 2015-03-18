@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>全携通 – 套餐</title>
+		<meta name="keywords" content="移动云协作下载, 安卓云协作应用，云协作手机应用，Anroid应用, Iphone Apps，网盘,云盘,云笔记,云办公,在线办公,移动办公,灵利,协作办公,全携通,云管家,灵利云协作,灵利全携通,HandsSync" />
+		<meta name="description" content="公司主营业务为客户提供云协作服务,可为企业沟通提供高效的文件管理、分享、讨论和协作等功能,更好的整合其内部和外部的所有资源,进行无障碍的沟通和协作,为机构提供了一个对内数据协作的中心和对外文档共享的云协作平台" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+
+		<script>
+			var _hmt = _hmt || [];
+			(function() {
+				var hm = document.createElement("script");
+				hm.src = "//hm.baidu.com/hm.js?4c3c918cadc6ad3aceb76b34c3c29302";
+				var s = document.getElementsByTagName("script")[0];
+				s.parentNode.insertBefore(hm, s);
+			})();
+		</script>
+
+    <!-- build:js js/pricing.js -->
+		<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+		<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+		<!-- endbuild -->
+
+		<!-- build:css css/pricing/pricing.css -->
+		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+		<!-- endbuild -->
+		<style type="text/css">
+		  html, body{
+        width: 100%;
+        height: 100%;
+        font-family: Arial,SimHei,Microsoft YaHei,sans-serif;
+      }
+      .nav > li > a:hover, .nav > li > a:focus {
+        text-decoration: none;
+        background-color: #f8f8f8;
+      }
+			.top {
+				height: 76px;
+				border-bottom: 1px solid #e6e6e6;
+				background-color: #f8f8f8;
+			}
+			a:hover, a:focus{
+        text-decoration: none;
+      }
+      a{
+        cursor: pointer;
+      }
+			.top .container {
+				height: 100%;
+			}
+			.navbar-collapse {
+				padding: 15px;
+			}
+			.navbar-right a {
+				margin-top: 5px;
+			}
+			.navbar-header {
+				height: 100%;
+			}
+			.navbar-header .navbar-brand {
+				height: auto;
+				margin-top: 5px;
+			}
+			.navbar-collapse .link {
+				margin-top: -3px;
+			}
+			.navbar-toggle {
+				margin-top: 15px;
+			}
+			.navbar-toggle .icon-bar {
+				background-color: #666 !important;
+			}
+			.navbar-nav > li > a{
+			  background-color: #f8f8f8;
+			}
+			.body {
+				padding-top: 96px;
+				font-family: Arial,sans-serif;
+			}
+
+			.th-head{
+			  padding: 10px 20px;
+			  background-color: #8babcc;
+			  color: #f3f9f8;
+			}
+			.th-price{
+			  padding-top: 20px;
+			  font-size: 20px;
+			  height: 80px;
+			}
+			.th-peoples{
+			  margin-top: 3px;
+			}
+			.th-capacity{
+			  margin-top: 3px;
+			  margin-bottom: 3px;
+			}
+			.th-fileByte{
+			  margin-top: 3px;
+			  margin-bottom: 10px;
+			}
+			th .btn{
+			  width: 80%;
+			}
+			.table > thead > tr > th{
+			  padding: 0;
+			  padding-bottom: 8px;
+			}
+			.hove{
+			  background-color: #F3F9F8;
+			}
+			.bottom{
+			  background-color: #387e9e;
+        color: #ffffff;
+        min-height: 200px;
+			}
+			.bottom .link-cpoy-right {
+        margin-top: 50px;
+        padding-left: 13px;
+      }
+      .bottom .link_url {
+        float: left;
+        margin-right: 0;
+        width: 100%;
+      }
+      .link_url li {
+        display: inline-block;
+        font-size: 18px;
+        /*margin: 32px 13px 0;*/
+        list-style: outside none none;
+      }
+      .bottom a {
+        color: #ffffff;
+      }
+      .bottom .cpoy-right {
+        float: left;
+        padding-left: 15px;
+        padding-top: 30px;
+        width: 100%;
+      }
+      .business{
+        margin-top: 50px;
+        padding-left: 27px;
+      }
+      .friend-ship-link{
+        margin-top: 50px;
+        padding-left: 27px;
+      }
+      .two-dimension-code{
+        margin-top: 50px;
+        padding-left: 27px;
+      }
+
+      .navbar-nav.navbar-right:last-child{
+        margin-right: 0px;
+      }
+      .navbar-collapse{
+        background-color: #f8f8f8;
+      }
+      .nav-btn{
+        margin-left: 55px;
+        padding-top: 10px;
+      }
+      .btn-warning:hover, .btn-warning:focus{
+        background-color: #f0ad4e;
+        border-color: #eea236;
+        color: #ffffff;
+      }
+      .btn-default:hover, .btn-default:focus{
+        background-color: #fff;
+        border-color: #797878;
+        color: #797878;
+      }
+      .regist{
+        padding: 3px 20px;
+      }
+      .login {
+        border: 1px solid #797878;
+        color: #797878;
+        margin-right: 10px;
+        padding: 3px 20px;
+      }
+      .link a{
+        color: #797878;
+        font-size: 16px;
+      }
+      .link-com{
+        color: #ffffff;
+      }
+        .th-head.hove{
+          color: #333;
+        }
+      .test.btn-default:hover, .test.btn-default:focus{
+        background-color: #fff;
+        border-color: #ccc;
+        color: #333;
+      }
+      .table-bordered{
+        border: none !important;
+      }
+      .table thead th{
+        border-top: 1px solid #ddd !important;
+      }
+      .table thead th.empty{
+        border: none !important;
+      }
+      .btn-default:hover, .btn-default:focus{
+        background-color: #fff;
+        border-color: #797878;
+        color: #797878;
+      }
+		</style>
+
+	</head>
+
+	<body>
+		<nav class="navbar navbar-fixed-top top" role="navigation">
+			<div class="container">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">
+						<img src="images/home_top_bar_whitebg_logo.png" />
+					</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+					<div class="nav navbar-nav navbar-right nav-btn">
+						<a class="btn btn-default login" href="login.html">登录</a>
+						<a class="btn btn-warning regist" href="regist.html">注册</a>
+					</div>
+					<ul class="nav navbar-nav link navbar-right">
+            <li class="active"><a href="home.html">首页</a>
+            </li>
+            <li><a href="home.html#feature">功能</a>
+            </li>
+            <li><a href="#">套餐</a>
+            </li>
+            <li><a href="home.html#businessMainly">业务洽谈</a>
+            </li>
+            <li><a href="apps.html">下载</a>
+            </li>
+          </ul>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container-fluid -->
+		</nav>
+
+		<div class="body">
+			<div class="container">
+				<div class="table-responsive">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th class="empty"></th>
+								<th class="col-1">
+                  <div>
+                    <div class="th-head th-head1 text-center">免费版</div>
+                    <div class="th-price text-center">免费</br>&nbsp;</div>
+                    <div class="th-peoples text-center">10人以内团队</div>
+                    <div class="th-capacity text-center">20G存储空间</div>
+                    <div class="th-fileByte text-center">单个文件最大1G</div>
+                    <div class="th-buy text-center"><a class="btn btn-default test" href="regist.html#package_id=0">免费试用</a></div>
+                  </div>
+								</th>
+								<th class="col-2">
+								  <div class="th-head th-head2 text-center">初级协作版</div>
+                  <div class="th-price text-center">128/月</br>1000/年</div>
+                  <div class="th-peoples text-center">20人以内团队</div>
+                  <div class="th-capacity text-center">200G存储空间</div>
+                  <div class="th-fileByte text-center">单个文件最大5G</div>
+                  <div class="th-buy text-center"><a class="btn btn-warning" href="regist.html#package_id=1">立即购买</a></div>
+								</th>
+								<th class="col-3">
+								  <div class="th-head th-head3 text-center">中级协作版</div>
+                  <div class="th-price text-center">298/月</br>2800/年</div>
+                  <div class="th-peoples text-center">50人以内团队</div>
+                  <div class="th-capacity text-center">500G存储空间</div>
+                  <div class="th-fileByte text-center">单个文件最大5G</div>
+                  <div class="th-buy text-center"><a class="btn btn-warning" href="regist.html#package_id=2">立即购买</a></div>
+								</th>
+								<th class="col-4">
+								  <div class="th-head th-head4 text-center">高级协作版</div>
+                  <div class="th-price text-center">498/月</br>4800/年</div>
+                  <div class="th-peoples text-center">100人以内团队</div>
+                  <div class="th-capacity text-center">1T存储空间</div>
+                  <div class="th-fileByte text-center">单个文件最大5G</div>
+                  <div class="th-buy text-center"><a class="btn btn-warning" href="regist.html#package_id=3">立即购买</a></div>
+								</th>
+								<th class="col-5">
+								  <div class="th-head th-head5 text-center">定制版</div>
+                  <div class="th-price text-center">联系我们</br>&nbsp;</div>
+                  <div class="th-peoples text-center">不限团队人数</div>
+                  <div class="th-capacity text-center">不限存储空间</div>
+                  <div class="th-fileByte text-center">单个文件最大5G</div>
+                  <div class="th-buy text-center"><a class="btn btn-warning" href="home.html#businessMainly">021-62129363</a></div>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="text-center">桌面客户端同步</td>
+								<td class="text-center col-1"><img src="images/pricing_select.png" /></td>
+								<td class="text-center col-2"><img src="images/pricing_select.png" /></td>
+								<td class="text-center col-3"><img src="images/pricing_select.png" /></td>
+								<td class="text-center col-4"><img src="images/pricing_select.png" /></td>
+								<td class="text-center col-5"><img src="images/pricing_select.png" /></td>
+							</tr>
+							<tr>
+								<td class="text-center">移动设备访问</td>
+								<td class="text-center col-1"><img src="images/pricing_select.png" /></td>
+								<td class="text-center col-2"><img src="images/pricing_select.png" /></td>
+								<td class="text-center col-3"><img src="images/pricing_select.png" /></td>
+								<td class="text-center col-4"><img src="images/pricing_select.png" /></td>
+								<td class="text-center col-5"><img src="images/pricing_select.png" /></td>
+							</tr>
+							<tr>
+								<td class="text-center">加密存储和加密传输</td>
+								<td class="text-center col-1"><img src="images/pricing_select.png" /></td>
+								<td class="text-center col-2"><img src="images/pricing_select.png" /></td>
+								<td class="text-center col-3"><img src="images/pricing_select.png" /></td>
+								<td class="text-center col-4"><img src="images/pricing_select.png" /></td>
+								<td class="text-center col-5"><img src="images/pricing_select.png" /></td>
+							</tr>
+							<tr>
+                <td class="text-center">文件历史版本数</td>
+                <td class="text-center col-1">10</td>
+                <td class="text-center col-2">50</td>
+                <td class="text-center col-3">50</td>
+                <td class="text-center col-4">100</td>
+                <td class="text-center col-5">100</td>
+              </tr>
+              <tr>
+                <td class="text-center">桌面客户端同步</td>
+                <td class="text-center col-1"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-2"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-3"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-4"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-5"><img src="images/pricing_select.png" /></td>
+              </tr>
+              <tr>
+                <td class="text-center">权限角色</td>
+                <td class="text-center col-1">2</td>
+                <td class="text-center col-2">7</td>
+                <td class="text-center col-3">7</td>
+                <td class="text-center col-4">7</td>
+                <td class="text-center col-5">定制</td>
+              </tr>
+              <tr>
+                <td class="text-center">桌面客户端同步</td>
+                <td class="text-center col-1"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-2"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-3"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-4"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-5"><img src="images/pricing_select.png" /></td>
+              </tr>
+              <tr>
+                <td class="text-center">安全分享</td>
+                <td class="text-center col-1"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-2"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-3"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-4"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-5"><img src="images/pricing_select.png" /></td>
+              </tr>
+              <tr>
+                <td class="text-center">多种文件预览</td>
+                <td class="text-center col-1"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-2"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-3"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-4"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-5"><img src="images/pricing_select.png" /></td>
+              </tr>
+              <tr>
+                <td class="text-center">管理控制台</td>
+                <td class="text-center col-1"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-2"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-3"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-4"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-5"><img src="images/pricing_select.png" /></td>
+              </tr>
+              <tr>
+                <td class="text-center">用户管理</td>
+                <td class="text-center col-1"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-2"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-3"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-4"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-5"><img src="images/pricing_select.png" /></td>
+              </tr>
+              <tr>
+                <td class="text-center">用户自定义</td>
+                <td class="text-center col-1">不支持</td>
+                <td class="text-center col-2"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-3"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-4"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-5"><img src="images/pricing_select.png" /></td>
+              </tr>
+              <tr>
+                <td class="text-center">日志与报表</td>
+                <td class="text-center col-1"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-2"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-3"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-4"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-5"><img src="images/pricing_select.png" /></td>
+              </tr>
+              <tr>
+                <td class="text-center">访问统计</td>
+                <td class="text-center col-1"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-2"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-3"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-4"><img src="images/pricing_select.png" /></td>
+                <td class="text-center col-5"><img src="images/pricing_select.png" /></td>
+              </tr>
+              <tr>
+                <td class="text-center">安全报告</td>
+                <td class="text-center col-1"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-2"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-3"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-4"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-5">定制</td>
+              </tr>
+              <tr>
+                <td class="text-center">自定义URL</td>
+                <td class="text-center col-1"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-2"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-3"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-4"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-5">定制</td>
+              </tr>
+              <tr>
+                <td class="text-center">自定义管理角色</td>
+                <td class="text-center col-1"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-2"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-3"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-4"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-5">定制</td>
+              </tr>
+              <tr>
+                <td class="text-center">全局内容管理</td>
+                <td class="text-center col-1"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-2"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-3"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-4"><img src="images/pricing_support_mark_off.png" /></td>
+                <td class="text-center col-5">定制</td>
+              </tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</div>
+		<div class="bottom">
+      <div class="container">
+        <div class="col-sm-4 link-cpoy-right">
+          <div class="link_url">
+            <li class="link_list_li col-sm-4 col-xs-12">
+              <a class="" href="about.html">关于我们</a>
+            </li>
+            <li class="link_list_li col-sm-4 col-xs-12">
+              <a class="" href="http://www.sharpinteract.com/join-us.html">加入我们</a>
+            </li>
+            <li class="link_list_li col-sm-4 col-xs-12">
+              <a class="" href="#help">使用帮助</a>
+            </li>
+          </div>
+          <div class="cpoy-right">
+            <div><a href="http://www.sharpinteract.com/agreement.html" target="_blank">服务条款</a></div>
+            <div>版权所有 ©2014 上海灵利信息技术有限公司</div>
+            <div><a href="http://www.miitbeian.gov.cn/" target="_blank">沪ICP备14032131号-2</a></div>
+          </div>
+        </div>
+        <div class="col-sm-3 business">
+          <div class="operation" id="businessMainly">业务洽谈</div>
+          <div class="phone">电话： 021-62129363</div>
+          <div>邮箱： lingli@sharpinteract.com</div>
+        </div>
+        <div class="col-sm-3 friend-ship-link">
+          <div class="link-text">友情链接</div>
+          <div class="link-com"><a href="http://www.sharpinteract.com/" target="_blank">上海灵利信息技术有限公司</a></div>
+        </div>
+        <div class="col-sm-2 pull-right two-dimension-code">
+          <div class="code-text">官方微信</div>
+          <div class="code">
+            <img src="images/getqrcode-ACT.jpg" height="70px" width="70px"/>
+          </div>
+          <div>lingli-qxt</div>
+        </div>
+      </div>
+    </div>
+
+
+	</body>
+	<script type="text/javascript">
+	  $(document).ready(function() {
+      $('.col-1').mouseover(function(){
+        $('.col-1').addClass("hove");
+        $('.th-head1').addClass("hove");
+      });
+      $('.col-1').mouseout(function(){
+        $('.col-1').removeClass("hove");
+        $('.th-head1').removeClass("hove");
+      });
+      $('.col-2').mouseover(function(){
+        $('.col-2').addClass("hove");
+        $('.th-head2').addClass("hove");
+      });
+      $('.col-2').mouseout(function(){
+        $('.col-2').removeClass("hove");
+        $('.th-head2').removeClass("hove");
+      });
+      $('.col-3').mouseover(function(){
+        $('.col-3').addClass("hove");
+        $('.th-head3').addClass("hove");
+      });
+      $('.col-3').mouseout(function(){
+        $('.col-3').removeClass("hove");
+        $('.th-head3').removeClass("hove");
+      });
+      $('.col-4').mouseover(function(){
+        $('.col-4').addClass("hove");
+        $('.th-head4').addClass("hove");
+      });
+      $('.col-4').mouseout(function(){
+        $('.col-4').removeClass("hove");
+        $('.th-head4').removeClass("hove");
+      });
+      $('.col-5').mouseover(function(){
+        $('.col-5').addClass("hove");
+        $('.th-head5').addClass("hove");
+      });
+      $('.col-5').mouseout(function(){
+        $('.col-5').removeClass("hove");
+        $('.th-head5').removeClass("hove");
+      });
+	  })
+	</script>
+
+</html>

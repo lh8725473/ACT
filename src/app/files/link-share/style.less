@@ -1,0 +1,48 @@
+//链接分享
+.link-share{
+    .modal-dialog{
+        width: 350px;
+        .input-group{
+            margin-bottom: 5px;
+        }
+        .dropdown{
+          button{
+            text-align: left;
+            span.caret{
+              float: right;/* IE */
+              margin-top: 8px;/* IE */
+            }
+
+            @media screen and (-webkit-min-device-pixel-ratio:0) {
+              .link-share .modal-dialog .dropdown button span.caret {
+                float: right;/* Chrome 4 */
+                margin-top: 8px;/* Chrome 4 */
+                margin-left:0px;/* Chrome 4 */
+              }
+            }
+
+            @-moz-document url-prefix() {
+              .link-share .modal-dialog .dropdown button span.caret {
+                float: right;/* Firefox 4 */
+                margin-top: -10px;/* Firefox 4 */
+                margin-left:0px;/* Firefox 4 */
+              }
+            }
+          }
+          .dropdown-menu{
+              text-align: left;
+              width: 100%;
+              li{
+                  cursor: pointer;
+              }
+          }
+        }
+
+        .input-password{
+            margin-top: 5px;
+        }
+        .code_src{
+            margin-right: 5px;
+        }
+    }
+}

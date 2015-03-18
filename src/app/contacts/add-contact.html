@@ -1,0 +1,18 @@
+<div class="modal-header">
+  <button class="bootbox-close-button close" type="button" ng-click="cancel()">
+    ×
+  </button>
+  <h3 class="modal-title">添加联系人</h3>
+</div>
+<div class="modal-body">
+    邮箱地址：<input type="text" placeholder="请输入联系人的邮箱地址" name="name" ng-model="contact_email"><br/><br/>
+    联系人姓名：<input type="text" placeholder="请输入联系人的姓名" name="name" ng-model="contact_name">
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="ok(contact_email, contact_name)">
+    确定
+  </button>
+  <button class="btn btn-default" ng-click="cancel()">
+    取消
+  </button>
+</div>

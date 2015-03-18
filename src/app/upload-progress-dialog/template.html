@@ -1,0 +1,29 @@
+<div ng-show="shown" ng-controller="App.UploadProgressDialog.Controller" class="upload-progress-win" ng-class = "{ is_min: !isMax }">
+  <div class="dialog-header">
+      <div class="dialog-title">{{'LANG_UPLOAD_LIST' | translate}}</div>
+      <div class="dialog-btn btn-close" ng-click="hide()"></div>
+      <div class="dialog-btn btn-max" ng-show="!isMax" ng-click="max()"></div>
+      <div class="dialog-btn btn-min" ng-show="isMax" ng-click="min()"></div>
+  </div>
+  <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="1" refresh-on-change="files" ng-show="isMax">
+      <div class="progress-item" id="ddupload_file_1_progress" ng-repeat="file in files" ng-if = "!file.removed">
+          <img class="file-icon" src="./images/file_icon.png">
+          <span class="file-name" title="{{file.name}}">{{file.name}}</span>
+          <span class="file-size" ng-show = "file.progress == 100">{{file.fomateSize}}</span>
+          <span class="file-progress" ng-hide = "file.progress == 100">
+            <a style="width:{{file.progress}}%"></a>
+          </span>
+          <span class="file-progress-size" ng-hide = "file.progress == 100">
+            {{file.progress}}%
+          </span>
+          <span class="delete-upload dialog-btn" ng-show = "file.progress == 100" ng-click="remove(file)">
+          </span>
+          <span class="file-upload-success dialog-btn" ng-show = "file.progress == 100">
+          </span>
+          <div class="pull-right" ng-click="remove(file)">
+            <span class="delete-upload dialog-btn" ng-hide = "file.progress == 100" ng-click="file.upload.abort()">
+            </span>
+          </div>
+      </div>
+  </perfect-scrollbar>
+</div>

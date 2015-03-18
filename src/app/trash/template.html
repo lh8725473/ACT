@@ -1,0 +1,69 @@
+<div class="trash-view" ng-controller="App.Trash.Controller">
+  <div class="top-bar">
+    <div class="pull-left root-path" ng-class = "{ isRoot: isRoot }">
+      <a>{{'LANG_TRASH_RECYCLE_BIN' |  translate}}</a>
+    </div>
+  </div>
+  <div class="top-bar-bottom">
+  </div>
+  <div class="buttonGroup">
+    <button ng-click="emptyRecycle()" class="btn btn-default" ng-disabled = "!showEmpty">{{'LANG_TRASH_RECYCLE_EMPTY' |  translate}}</button>
+    <button ng-click='revertRecycle()' class="btn btn-default" ng-disabled = "!revertButton">{{'LANG_TRASH_RECYCLE_UNDELETE' |  translate}}</button>
+    <button ng-click='deleteRecycle()' class="btn btn-default" ng-disabled = "!deleteButton">{{'LANG_TRASH_RECYCLE_DELETE' |  translate}}</button>
+  </div>
+  <div class="title">
+    <div class="title-checkbox col">
+      <input type="checkbox" ng-click = "selectedAllswitch()" ng-model = "selectedAll"/>
+    </div>
+    <div class="title-name col">
+      <span>{{'LANG_TRASH_RECYCLE_FILE_NAME' |  translate}}</span>
+    </div>
+    <div class="title-state col">
+      <span>{{'LANG_TRASH_RECYCLE_DELETE_DATE' |  translate}}</span>
+    </div>
+    <div class="title-size col">
+      <span>{{'LANG_TRASH_RECYCLE_SIZE' |  translate}}</span>
+    </div>
+  </div>
+  <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="1" refresh-on-change="">
+  <loading-indicator ng-show="loading"></loading-indicator>
+  <div class="folder-grid">
+    <div class="table">
+        <div class="file-row" ng-repeat="recycle in recycleList" ng-class = "{ selected: recycle.checked }" ng-click = "selectRecycle($event, recycle)">
+          <div class="input-checkbox-td">
+          <input type="checkbox" ng-model = "recycle.checked" ng-click = "selectRecycle($event, recycle)"/>
+          </div>
+          <div class="img-name-td">
+            <img ng-src = "{{recycle.smallIcon}}" height="42px" width="42px"/>
+            <div class="file-name">
+              <a  ng-show = "recycle.folder" title="{{recycle.folder_name}}">
+                {{recycle.folder_name}}
+              </a>
+              <a ng-show = "!recycle.folder" title="{{recycle.file_name}}">
+                {{recycle.file_name}}
+              </a>
+
+            </div>
+          </div>
+          <div class="state-td" title="{{recycle.create_uname}}{{'LANG_TRASH_RECYCLE_ON' | translate}}{{recycle.format_date}}{{'LANG_TRASH_RECYCLE_UPDATE' | translate}}"> {{recycle.create_uname}}{{'LANG_TRASH_RECYCLE_ON' | translate}}{{recycle.format_date}}{{'LANG_TRASH_RECYCLE_UPDATE' | translate}} </div>
+          <div class="file-sise-td">
+            <img src="images/file_icon.png" ng-show = "recycle.folder"/>
+            <span ng-show = "recycle.folder">{{recycle.file_count}}</span>
+            <span ng-hide = "recycle.folder">{{recycle.format_size}}</span>
+          </div>
+        </div>
+    </div>
+  </div>
+  </perfect-scrollbar>
+</div>
+<div class="team-collaboration" ng-controller="App.Files.TeamController">
+  <div class="no-groups-users">
+    <div class="groups-users-header col-sm-12">
+      <span class="pull-left">{{'LANG_TRASH_RECYCLE_BIN' |  translate}} </span>
+    </div>
+    <perfect-scrollbar class="empty-scroller" wheel-propagation="true" wheel-speed="1" suppress-scroll-x = "true">
+      <div class="recycle_guide1 pull-left col-sm-12"></div>
+      <div class="recycle_guide2 pull-left col-sm-12"></div>
+    </perfect-scrollbar>
+  </div>
+</div>

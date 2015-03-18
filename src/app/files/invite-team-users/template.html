@@ -1,0 +1,107 @@
+<div class="invite-team-users-inner" ng-class="{broad:broad}">
+  <div class="modal-header">
+    <button class="bootbox-close-button close" type="button" ng-click="cancel()">
+      ×
+    </button>
+    <h3 class="modal-title">{{'LANG_INVITE_TO' | translate}}"{{folder_name}}"</h3>
+  </div>
+  <div class="modal-body invite-form">
+    <form role="form" class="form-horizontal invite-content" ng-class="{'col-sm-12':!broad, 'col-sm-8':broad}">
+      <div class="form-group input-from-group">
+        <div class="col-sm-12">
+          <input type="name" class="form-control" placeholder="{{'LANG_INVITE_EXTERNAL_USER_HINT' | translate}}" ng-model="inviteInputValue" ng-keydown="inviteBypress($event, inviteInputValue)">
+        </div>
+      </div>
+      <div class="form-group or-from-group">
+        <div class="col-sm-12">
+          {{'LANG_INVITE_OR' | translate}}
+        </div>
+      </div>
+      <div class="form-group select-from-group">
+        <div class="col-sm-12">
+          <input type="button" class="btn btn-default form-control" ng-click="showGRroupUser()" value="{{'LANG_INVITE_SELECT' | translate}}"></input>
+        </div>
+      </div>
+      <h5>{{'LANG_INVITE_SELECTED' | translate}}</h5>
+      <div class="form-group">
+        <perfect-scrollbar class="selected-groups-users" wheel-propagation="true" wheel-speed="1" refresh-on-change="invitedList.userList" suppress-scroll-x = "true">
+          <div class="selectedItem" ng-repeat="group in invitedList.groupList">
+            <span class="selectedName">{{group.group_name}}</span>
+            <span class="fa fa-times deleteSelected" ng-click = "deleteSelectedGroup(group)">x</span>
+          </div>
+          <div class="selectedItem" ng-repeat="user in invitedList.userList">
+            <span class="selectedName">{{user.real_name}}</span>
+            <span class="fa fa-times deleteSelected" ng-click = "deleteSelectedUser(user)">x</span>
+          </div>
+        </perfect-scrollbar>
+      </div>
+      <h5>{{'LANG_INVITE_ACCESS_AUTHORITY' | translate}}</h5>
+      <div class="form-group">
+        <div class="col-sm-12">
+          <div class="dropdown" is-open="permissionOpen">
+            <button class="btn btn-default dropdown-toggle form-control" type="button" data-toggle="dropdown">
+              {{selectedPermissionValue | translate}}
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li role="presentation" ng-repeat="value in permission_value_list" ng-click = "selectedPermission(value)" tooltip-append-to-body="true" tooltip-placement="left" tooltip="{{value.t | translate}}">
+                <a role="menuitem" tabindex="-1">
+                  {{value.v | translate}}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <h5>{{'LANG_INVITE_NOTES' | translate}}</h5>
+      <div class="form-group">
+        <div class="col-sm-12">
+          <textarea type="text" placeholder="" class="form-control comment-input" ng-model = "comment"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-12">
+          <input type="button" class="btn btn-primary form-control" ng-disabled="disableBtn"  ng-click="createShare()" value="{{invite_send | translate}}" >
+        </div>
+      </div>
+    </form>
+    <div class="col-sm-4 select-invite"  ng-show = "broad">
+      <div class="form-group">
+        <div class="col-sm-12">
+          <input type="name" class="form-control" name="username" placeholder="{{'LANG_INVITE_ENTER_SEARCH' | translate}}" ng-model="searchText">
+        </div>
+      </div>
+      <div class="form-group">
+        <!--<div class="col-sm-12">
+          全选
+        </div>-->
+      </div>
+        <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="1" refresh-on-change="searchText" suppress-scroll-x = "true">
+          <div class="groups-div">
+            <div class="group" ng-repeat="group in groupList | filter:{group_name:searchText}" ng-class = "{ is_invited: group.invited }" >
+              <div class="group-checkbox">
+                <input type="checkbox" ng-click = "inviteBySelect(group, group.selected)" ng-model = "group.selected" ng-disabled = "group.invited"/>
+              </div>
+              <img  width="24px" height="24px" src="./images/grouplist_icon.png"/>
+              <span class="group-name">{{group.group_name}}</span>
+              <span class="group-user-count">({{group.user_count}})</span>
+              <span class="arrows-img" ng-click = "changeGroupshow(group)"></span>
+              <div class="col-sm-12 group-user" ng-repeat="user in group.users" ng-show = "group.show" ng-disabled = "group.invited">
+                <img  width="24px" height="24px" ng-src="{{user.avatar}}"/>
+                <span class="group-name">{{user.real_name}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="users-div">
+            <div class="user" ng-repeat="user in userList | filter:{real_name:searchText}" ng-class = "{ is_invited: user.invited }" >
+              <div class="user-checkbox">
+                <input type="checkbox" ng-click = "inviteBySelect(user, user.selected)" ng-model = "user.selected" ng-disabled = "user.invited"/>
+              </div>
+              <img  width="24px" height="24px" ng-src="{{user.avatar}}"/>
+              <span class="group-name">{{user.real_name}}</span>
+            </div>
+          </div>
+        </perfect-scrollbar>
+    </div>
+  </div>
+</div>

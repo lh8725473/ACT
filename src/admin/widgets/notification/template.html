@@ -1,0 +1,6 @@
+<div class="modal-body">
+    <div class="alert alert-{{notification.type}} alert-dismissible" role="alert">
+      <button type="button" class="close" ng-click="close()" ng-show="notification.closeable" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+      {{notification.msg}}
+    </div>
+</div>

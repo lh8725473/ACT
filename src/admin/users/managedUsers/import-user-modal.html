@@ -1,0 +1,20 @@
+<div class="modal-header">
+	<button class="bootbox-close-button close" type="button" ng-click="cancel()">
+		×
+	</button>
+	<h3 class="modal-title">导入用户</h3>
+</div>
+<div class="modal-body">
+	<div class="upload-box" ng-file-drop="onFileSelect($files)" ng-file-drag-over-class="drop-box-over" ng-file-drag-over-delay="100" ng-show = "!loading">
+		<div ng-file-select="onFileSelect($files)" class="upload-select" data-multiple="true" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"><a>选择文件</a>
+		</div>
+		<div class="upload-drop">也可以拖拽文件到该区域，完成上传</div>
+	</div>
+  <div class="loading upload-box" ng-show = "loading">
+    <label>导入中...</label>
+    <loading-indicator ng-show="loading"></loading-indicator>
+  </div>
+  <div class="text-center down-load">
+    <a href="../api/assets/ExampleUserUpload.xlsx" target="_blank" class="text-center">下载批量添加用户模板</a>
+  </div>
+</div>

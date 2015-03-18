@@ -1,0 +1,99 @@
+<div ng-controller="App.Files.UserDiscussController">
+   <pageslide
+    ps-speed="0.5"
+    ps-custom-top="78px"
+    ps-custom-bottom="40px"
+    ps-size="400px"
+    href="#user-discuss-right"
+    ps-open="discussOpened">
+  </pageslide>
+  <div class="user-discuss-view" id="user-discuss-right" >
+    <ul class="nav nav-sidebar">
+        <li class="disc" ng-class="{ active: navType == 'dis'}" ng-click = "changeNavType('dis')">
+          {{'LANG_FILE_DISCUSS' | translate}}({{discuss_file.discuss_count}})
+          <div class="triangle-up triangle-up-surround" ng-show="navType == 'dis'"></div>
+          <div class="triangle-up" ng-show="navType == 'dis'"></div>
+        </li>
+        <li class="ver" ng-class="{ active: navType == 'ver'}" ng-click = "changeNavType('ver')">
+          {{'LANG_FILE_VERSION' | translate}}({{discuss_file.version_count}})
+          <div class="triangle-up triangle-up-surround" ng-show="navType == 'ver'"></div>
+          <div class="triangle-up" ng-show="navType == 'ver'"></div>
+
+        </li>
+        <button id="user-discuss-right-close" type="button" class="bootbox-close-button close" ng-click = "closeSocket('ver')">
+          ×
+        </button>
+      </ul>
+      <div class="preview-disscuss-file">
+        <div class="file-name" title="{{file.file_name}}">{{file.file_name}}</div>
+        <a class="preview" ng-click = "previewFile(fileHistoryList[0])" ng-show = "isPreview">{{'LANG_FILE_PREVIEW' | translate}}</a>
+      </div>
+       <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="1" refresh-on-change="userDiscussList" ng-show = "navType == 'dis'" suppress-scroll-x = "true" scroll-down = "true">
+       <loading-indicator ng-show="loading"></loading-indicator>
+        <div class="disc-item-list col-sm-12">
+          <div ng-repeat="userDiscuss in userDiscussList" class="disc-item" ng-class="{ is_owner: userDiscuss.is_owner, is_deleted: userDiscuss.is_deleted == 'true'  }">
+            <img ng-src = "{{userDiscuss.avatar}}" height="30px" width="30px"/>
+            <div class="disc-box">
+              <div class="disc-name">{{userDiscuss.real_name}}
+                <div class="delete-disc pull-right" ng-click = "deleteUserDiscuss(userDiscuss)">{{'LANG_FILE_DELETE' | translate}}</div>
+                <div class="reply-disc pull-right" ng-click = "replyUserDiscuss(userDiscuss)">{{'LANG_FILE_REPLY' | translate}}</div>
+              </div>
+              <div class="disc-time">{{userDiscuss.format_date}}</div>
+              <div class="disc-content" ng-bind-html = "userDiscuss.content"></div>
+            </div>
+          </div>
+        </div>
+       </perfect-scrollbar>
+      <div class="disc-inputbox col-sm-12" ng-show = "navType == 'dis'">
+      <textarea id="inputor" rows="5" placeholder="{{'DISCUSS_ENTER_KEY_SEND' | translate}}" cols="20" at="atOptions" ng-keydown = "createUserDiscussByPress($event)" ng-model = "discussContent" focus-me="textareaFocus" ng-trim="false" ng-disabled="textareaDisabled"></textarea>
+      <button class="btn btn-default pull-right" ng-disabled="discussButton" ng-click = "createUserDiscuss($event)">
+        {{postbtn | translate}}
+      </button>
+      <label class="pull-right">{{discussCount}}/200</label>
+      <label class="tip pull-left">{{'LANG_FILE_AT_COLLABORATOR' | translate}}</label>
+    </div>
+    <perfect-scrollbar class="version" wheel-propagation="true" wheel-speed="1" refresh-on-change="fileHistoryList" ng-show = "navType == 'ver'" suppress-scroll-x = "true" >
+      <div ng-repeat="fileHistory in fileHistoryList" class="version-item">
+        <div class="time-user">
+          <div class="pull-left version-info-left">
+            <div>{{fileHistory.format_date}}</div>
+            <div class="version-info">
+              <img class="pull-left version-user-head" ng-src = "{{fileHistory.avatar}}" alt="" />     
+              <div class="pull-left user-operation" title="{{fileHistory.user_name | translate}} {{(fileHistory | personAction) | translate}}">{{fileHistory.user_name | translate}} {{(fileHistory | personAction) | translate}}</div>
+              <div class="file-preview pull-left" tooltip-append-to-body="true" tooltip-placement="top" tooltip="{{'USER_DISCUSS_FILE_PREVIEW' | translate}}" ng-click = "previewFile(fileHistory)" ng-show = "isPreview && !$first">
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <div class="pull-left text-center version-info-middle">{{fileHistory.format_size}}</div>
+          <div class="pull-right version-info-right">
+            <div>
+              <a class="current-set pull-right" ng-hide = "$first || !is_edit" ng-click = "revertFileVersion(fileHistory.version_id)">
+                {{'USER_DISCUSS_REVERT_THIS_VERSION' | translate}}
+              </a>
+              <div class="current-version pull-right" ng-show = "$first">
+                {{'USER_DISCUSS_CURRENT_VERSION' | translate}}
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <div>
+              <div class="version-action pull-right" ng-click = "downLoadHistory(fileHistory)" ng-show = "discuss_file.is_download" tooltip-append-to-body="true" tooltip-placement="top" tooltip="{{'USER_DISCUSS_VERSION_DOWNLOAD' | translate}}">
+              </div>              
+            </div>     
+          </div>     
+          <div class="clearfix"></div>
+        </div>
+        <!-- <div class="time-user row">
+          <div class="version-time pull-left">{{fileHistory.format_date}}</div>
+          <div class="version-user pull-right">{{fileHistory.user_name}}</div>
+        </div>
+        <div class="name-size-action">
+          <div class="version-size pull-left">{{fileHistory.format_size}}</div>
+          <div class="version-action pull-right" ng-click = "downLoadHistory(fileHistory)" ng-show = "discuss_file.is_download">
+
+          </div>
+        </div> -->
+      </div>
+    </perfect-scrollbar>
+  </div>
+</div>

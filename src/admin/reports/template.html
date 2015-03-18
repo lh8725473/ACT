@@ -1,0 +1,89 @@
+<div class="reports-view" ng-controller="App.Reports.Controller">
+    <div class="top-bar">
+        <div class="pull-left">
+          <span>活动日志</span>
+        </div>
+    </div>
+    <div class="top-bar-bottom">
+    </div>
+    <div class="buttonGroup">
+            <span>开始日期</span>
+            <p class="input-group date-picker">
+              <input type="text" class="form-control date-input" datepicker-popup="{{format}}" ng-model="startDate" is-open="openStart" min-date="" max-date="'2015-06-22'" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event, 'startDate')">
+                  <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+              </span>
+            </p>
+
+            <span>截止日期</span>
+            <p class="input-group date-picker">
+              <input type="text" class="form-control date-input" datepicker-popup="{{format}}" ng-model="endDate" is-open="openEnd" min-date="" max-date="'2015-06-22'" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event, 'endDate')">
+                  <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+              </span>
+            </p>
+
+            <button ng-click="searchUserLog()" class="btn btn-primary search-btn">搜索</button>
+            <button ng-click="exportUserLog()" class="btn btn-default export-btn">导出</button>
+    </div>
+    <div class="title">
+        <div class="title-time col">
+            <span>时间</span>
+        </div>
+        <div class="title-user col">
+            <span>用户名</span>
+        </div>
+        <div class="title-mail col">
+            <span>邮箱</span>
+        </div>
+        <div class="title-opreate col">
+            <span>操作</span>
+        </div>
+        <div class="title-file col">
+            <span>文件</span>
+        </div>
+        <div class="title-fileExt col">
+            <span>种类</span>
+        </div>
+        <div class="title-location col">
+            <span>位置</span>
+        </div>
+    </div>
+    <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="1" refresh-on-change="userLogList"
+                       on-scroll="onUserLogListScroll(scrollTop, scrollHeight)">
+        <div class="log-grid">
+            <div class="log-row" ng-repeat="userLog in userLogList" >
+                <div class="log-time col">
+                    <span>{{userLog.create_date}}</span>
+                </div>
+                <div class="log-user col">
+                    <span>{{userLog.real_name}}</span>
+                </div>
+                <div class="log-mail col">
+                    <span title="{{userLog.email}}">{{userLog.email}}</span>
+                </div>
+                <div class="log-opreate col">
+                    <span>{{userLog.action}}</span>
+                </div>
+                <div class="log-file col">
+                    <span title="{{userLog.obj_name}}">{{userLog.obj_name}}</span>
+                </div>
+                <div class="log-fileExt col">
+                    <span>{{userLog.obj_type}}</span>
+                </div>
+                <div class="log-location col">
+                    <span title="{{userLog.path}}">{{userLog.path}}</span>
+                </div>
+            </div>
+        </div>
+        <loading-indicator ng-show="loading"></loading-indicator>
+    </perfect-scrollbar>
+    <div class="main-bottom">
+        <div> 版权所有©2014 上海灵利信息技术有限公司</div>
+        <div> 沪网文[2011]0682-074增值电信业务经营许可证编号:沪B2-20080012</div>
+    </div>
+</div>

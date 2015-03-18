@@ -1,0 +1,104 @@
+<div class="modal-header">
+  <button class="bootbox-close-button close" type="button" ng-click="cancel()">
+    ×
+  </button>
+  <h3 class="modal-title">"{{obj.file_name || obj.folder_name}}"{{'LANG_LINK_SHARE' | translate}}</h3>
+</div>
+<div class="modal-body">
+  <form role="form" class="form-horizontal link-share-content" ng-show = "!has_link">
+    <h5>{{'LANG_LINK_EXPIRER_DATE' | translate}}</h5>
+    <p class="input-group">
+      <input type="text" class="form-control" show-weeks="true" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" ng-required="true" current-text="{{'LANG_DATEPICKER_TODAY' | translate}}" clear-text="{{'LANG_DATEPICKER_EMPTY' | translate}}" close-text="{{'LANG_DATEPICKER_COLSE' | translate}}" disabled="disabled"/>
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-default" ng-click="open($event)">
+          <i class="glyphicon glyphicon-calendar"></i>
+        </button> </span>
+    </p>
+    <div class="checkbox">
+      <label class="pull-left">
+        <input type="checkbox" ng-model="set_password" ng-click = "changeLinkSharePasswordShow()">
+        {{'LANG_LINK_SET_ACCESS_PASSWORD' | translate}} </label>
+    </div>
+    <div class="form-group input-password">
+      <div class="col-sm-11 col-sm-offset-1">
+        <input type="{{linkSharePasswordType}}" class="form-control" placeholder="{{pass_placeholder | translate}}" ng-model="linkSharePassword" ng-disabled="!set_password">
+      </div>
+      <div class="col-sm-11 col-sm-offset-1">
+        <!-- <div class="checkbox">
+          <label class="pull-left">
+            <input type="checkbox" ng-click="changeLinkSharePasswordType()">
+            显示密码 </label>
+        </div> -->
+      </div>
+    </div>
+    <h5>{{'LANG_LINK_AUTHORITY' | translate}}</h5>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <div class="dropdown" is-open="permissionOpen" is-open="permissionOpen">
+          <button class="btn btn-default dropdown-toggle form-control" type="button" data-toggle="dropdown">
+            {{linkSharePermissionValue | translate}}
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li role="presentation" ng-repeat="value in linkSharePermissionValueList" ng-click = "changeLinkSharePermission(value)">
+              <a role="menuitem" tabindex="-1">
+                {{value | translate}}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <h5>{{'LANG_LINK_DESCRIPTION' | translate}}</h5>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <textarea type="text" placeholder="" class="form-control comment-input" ng-model = "comment"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <input type="button" class="btn btn-primary form-control" ng-click="createLinkShare()" value="{{'LANG_LINK_GENERATE_LINK' | translate}}">
+        </input>
+      </div>
+    </div>
+  </form>
+  <form role="form" class="form-horizontal send-share-content" ng-hide = "!has_link">
+    <h5>{{'LANG_LINK_ADDRESS' | translate}}</h5>
+    <div class="form-group">
+      <div class="col-sm-9">
+        <input type="text" class="form-control" ng-model="link">
+      </div>
+      <div class="col-sm-3">
+        <input type="button" class="btn btn-default form-control" value="{{'LANG_LINK_COPY' | translate}}" clip-click-fallback="fallback(copy)" clip-copy="link" clip-click="showCopySuccess()">
+        </input>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-6 col-sm-offset-3 code_src">
+        <img width="145px" ng-src = "{{code_src}}"/>
+      </div>
+      <div class="col-sm-6 col-sm-offset-3">
+        <input type="button" class="btn btn-default form-control" ng-click="backToCreate()" value="{{'LANG_LINK_RETURN' | translate}}">
+        </input>
+      </div>
+    </div>
+    <h5>{{'LANG_LINK_MAIL_SHARE' | translate}}</h5>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <input
+          type="hidden"
+          ui-select2="emailSelectOptions"
+          ng-model="selectedEmails"
+          style="width:100%;"
+          />
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <input type="button" class="btn btn-primary form-control" ng-click="sendEmail()" value="{{'LANG_LINK_SEND_MAIL' | translate}}">
+        </input>
+      </div>
+    </div>
+
+  </form>
+</div>

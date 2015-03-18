@@ -1,0 +1,85 @@
+<div class="team-collaboration" ng-controller="App.Files.TeamController">
+  <div class="no-groups-users" ng-show = "isRoot">
+    <div class="groups-users-header col-sm-12">
+      <span class="pull-left">{{'LANG_TEAM_COLLABORATION_TIPS' | translate}} </span>
+      <div class="pull-right invite" ng-click = "inviteTeamUsers()" ng-show = "folder_delete || !isRoot" tooltip-append-to-body="true" tooltip-placement="left" tooltip="{{'LANG_TEAM_COLLABORATION_INVITE_OTHERS' | translate}}"></div>
+    </div>
+    <perfect-scrollbar class="empty-scroller" wheel-propagation="true" wheel-speed="1" suppress-scroll-x = "true">
+      <div class="h4_add_guide pull-left col-sm-12">{{'LANG_TEAM_COLLABORATION_COLLABORATE_SHARE' | translate}}</div>
+      <div class="add_guide pull-left col-sm-12"></div>
+      <div class="h4_add_link pull-left col-sm-12">{{'LANG_TEAM_COLLABORATION_LINK_SHARE' | translate}}</div>
+      <div class="add_link pull-left col-sm-12"></div>
+    </perfect-scrollbar>
+  </div>
+
+  <div class="groups-users" ng-hide = "isRoot">
+    <div class="groups-users-header col-sm-12">
+      <span class="pull-left">{{'LANG_TEAM_COLLABORATION_ALL_COLLABORATOR' | translate}}({{shareObj.user_count}})</span>
+      <div class="pull-right invite" ng-click = "inviteTeamUsers()" ng-show = "folder_delete" tooltip-append-to-body="true" tooltip-placement="left" tooltip="{{'LANG_TEAM_COLLABORATION_INVITE_OTHERS' | translate}}"></div>
+    </div>
+    <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="1" refresh-on-change="shareObj.list.users">
+      <loading-indicator ng-show="loading"></loading-indicator>
+      <div class="groups col-sm-12" ng-repeat="group in groups" ng-class = "{not_edit : !folder_edit , not_edit : group.is_edit }">
+        <div class="group-div">
+          <div class="img" ng-click = "changeGroupshow(group)">
+            <span class="arrows-img" ng-class="{ group_show: group.show }"></span>
+            <img  width="24px" height="24px" src="./images/grouplist_icon.png"/>
+          </div>
+          <div class="group-name">
+            <span>{{group.group_name}}</span>
+            <span class="group-user-count">({{group.user_count}})</span>
+          </div>
+          <div class="group-permission">
+            <span class="dropdown-toggle" left-context-menu="onLeftClick()"  data-target="g{{group.id}}">{{group.permission_value | translate}}<span class="caret"></span></span>
+            <div class="dropdown position-fixed" id="g{{group.id}}">
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+                <li role="presentation" ng-repeat="value in group.permission_value_list" ng-click = "changeGroupPermission(group, value.v)" tooltip-append-to-body="true" tooltip-placement="left" tooltip="{{value.t | translate}}">
+                  <a role="menuitem" tabindex="-1">
+                    {{value.v | translate}}
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="delete-group">
+            <span class="" ng-click = "deleteGroupShare(group)">X</span>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="col-sm-12 group-user" ng-repeat="user in group.users" ng-show = "group.show">
+            <img  width="24px" height="24px" ng-src="{{user.avatar}}"/>
+            <span class="group-name">{{user.real_name}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="users col-sm-12" ng-repeat="user in users" ng-class = "{ is_owner: user.is_owner , not_edit : !folder_edit }" >
+        <div class="img">
+          <img  width="24px" height="24px" ng-src="{{user.avatar}}"/>
+        </div>
+        <div class="user-name">
+          <span class="user-name">{{user.real_name}}</span>
+        </div>
+        <div class="user-permission">
+        <span class="dropdown-toggle" left-context-menu="onLeftClick()"  data-target="u{{user.user_id}}">{{user.permission_value | translate}}<span class="caret"></span></span>
+          <div class="dropdown position-fixed" id="u{{user.user_id}}">
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+              <li role="presentation" ng-repeat="value in user.permission_value_list" ng-click = "changeUserPermission(user, value.v)" tooltip-append-to-body="true" tooltip-placement="left" tooltip="{{value.t | translate}}" >
+              <a role="menuitem" tabindex="-1">
+                {{value.v | translate}}
+              </a>
+            </li>
+            </ul>
+          </div>
+        </div>
+        <div class="delete-user">
+          <span class="" ng-click = "deleteUserShare(user)">X</span>
+        </div>
+      </div>
+    </perfect-scrollbar>
+    <div class="team-link-share">
+      <div class="col-sm-12">
+        <input type="button" class="btn btn-primary form-control" ng-click="linkShare()" value="{{linkBtnText | translate}}"></input>
+      </div>
+    </div>
+  </div>
+</div>

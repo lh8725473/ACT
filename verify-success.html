@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>全携通</title>
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?4c3c918cadc6ad3aceb76b34c3c29302";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+    <!-- build:css css/verify-success/verify-success.css -->
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <!-- endbuild -->
+    <!-- build:js js/verify-success.js -->
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- endbuild -->
+    <!-- build:js js/global/config.js -->
+    <script type="text/javascript" src="src/global/_config.js"></script>
+    <!-- endbuild -->
+
+		<style>
+		  html, body {
+        font-family: Arial,SimHei,Microsoft YaHei,sans-serif;
+      }
+      h4{
+        margin-top: 20px;
+        margin-bottom: 30px;
+      }
+      .congratulation{
+        font-size: 30px;
+      }
+		  .back-img{
+		    background-image: url("images/binding-phone.png");
+        background-repeat: no-repeat;
+        height: 561px;
+        margin: 100px auto;
+        width: 865px;
+		  }
+      .btn{
+        background-color: #1b599b;
+        color: #ffffff;
+        width: 285px;
+      }
+      .btn:hover, .btn:focus{
+        color: #ffffff;
+      }
+      .text{
+        margin-left: 426px;
+        position: relative;
+        top: 100px;
+      }
+      .confirm{
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
+      .phone{
+        width: 285px;
+        margin-bottom: 30px;
+        margin-left: 78px;
+      }
+      .tologin{
+        position: relative;
+        margin-left: 426px;
+        top: 280px;
+      }
+      a{
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+
+		</style>
+
+		<script type="text/javascript">
+
+      //获取URL参数
+      function getUrlParameter(name) {
+        var queryString = window.location.toString().split("#");
+        if (queryString.length > 1) {
+          var params = queryString[1].split("&");
+          for (var i = 0; i < params.length; ++i) {
+            var param = params[i].split("=");
+            if (param[0] == name) {
+              return unescape(param[1]);
+            }
+          }
+        }
+      }
+      //errorMsg
+      function errorMsg(str) {
+        $('.errorMsg').find('p').text(str);
+        $('.errorMsg').css('left', ($(window).width() * 0.5 - ($('.errorMsg').width() + 50) * 0.5) + 'px');
+        $('.errorMsg').css('top', $(window).height() * 0.1);
+        $(".errorMsg").fadeIn();
+        setTimeout(function() {
+          $(".errorMsg").fadeOut();
+        }, 2000);
+      }
+
+      $(document).ready(function() {
+        $('#logohome').click(function(e) {
+          window.location.href = 'home.html';
+        });
+
+        var email = getUrlParameter('email')
+
+        $(".errorMsg .close").click(function() {
+          $(".errorMsg").hide();
+        })
+
+        $('input').focus(function() {
+          $(this).parents('.input-group').addClass('input-group-focus')
+        })
+
+        $('input').blur(function() {
+          $(this).parents('.input-group').removeClass('input-group-focus')
+        })
+
+        function validatemobile(mobile){
+            if(mobile.length==0){
+              $(".errorMsg").removeClass('alert-success')
+              $(".errorMsg").addClass('alert-danger')
+              errorMsg('请输入手机号码！')
+              return false;
+            }
+            if(mobile.length!=11){
+              $(".errorMsg").removeClass('alert-success')
+              $(".errorMsg").addClass('alert-danger')
+              errorMsg('请输入有效的手机号码！')
+              return false;
+            }
+
+            var myreg = /^(((13[0-9]{1})|15[0-9]{1}|18[0-9]{1})+\d{8})$/;
+            if(!myreg.test(mobile)){
+              $(".errorMsg").removeClass('alert-success')
+              $(".errorMsg").addClass('alert-danger')
+              errorMsg('请输入有效的手机号码！')
+              return false;
+            }
+            return true;
+        }
+
+
+        function bindingPhone() {
+          var phone = $('#telephone')[0].value;
+          if(!validatemobile(phone)){
+            return
+          }
+          $.ajax({
+            url : CONFIG.API_ROOT + '/cloud/regist?act=addphone&email=' + email + '&phone=' + phone,
+            type : 'post',
+            dataType : 'json'
+          }).done(function(responseJSON) {
+            $(".errorMsg").removeClass('alert-danger')
+            $(".errorMsg").addClass('alert-success')
+            errorMsg("绑定手机成功")
+            setTimeout(function() {
+              window.location.href = 'login.html'
+            }, 2000);
+          }).fail(function(xhr, status, error) {
+            var err = eval('(' + xhr.responseText + ')')
+            $(".errorMsg").removeClass('alert-success')
+            $(".errorMsg").addClass('alert-danger')
+            errorMsg(err.result)
+          });
+        }
+
+        $("#bindingPhone").click(bindingPhone)
+      });
+    </script>
+
+	</head>
+	<body>
+		<div class="main container">
+		  <div class="back-img">
+		    <div class="text text-center">
+		      <h4 class="congratulation">恭喜您:账户激活成功</h4>
+		      <h4>现在绑定手机号码即可赢取5G空间</h4>
+		      <input type="text" placeholder="输入您的手机号码" id="telephone" class="form-control phone"/>
+		      <button class="btn" id="bindingPhone">立即绑定</button>
+		    </div>
+		    <div class="tologin text-center">
+          <a href="login.html">暂不绑定手机，直接登录</a>
+		    </div>
+		  </div>
+		</div>
+		<div class="alert alert-dismissable alert-danger errorMsg" style="display: none; position: fixed; z-index: 10002;">
+      <button aria-hidden="true" data-dismiss="alert" class="close" type="button">
+        ×
+      </button>
+      <p style="margin-right: 15px;">
+
+      </p>
+    </div>
+	</body>
+</html>

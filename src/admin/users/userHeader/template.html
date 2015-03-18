@@ -1,0 +1,19 @@
+<div class="user-header-view" ng-controller="App.Users.UserHeader.Controller">
+  <ul class="nav nav-sidebar">
+    <li ng-class="{ active: $state.includes('users.managedUsers') || $state.includes('users.editUser') }">
+      <a ui-sref="users.managedUsers">
+        	内部用户
+      </a>
+    </li>
+    <li ng-class="{ active: $state.includes('users.groups') ||  $state.includes('users.editGroup') }">
+      <a ui-sref="users.groups">
+       		群组
+      </a>
+    </li>
+    <li ng-class="{ active: $state.includes('users.externalUsers') ||  $state.includes('users.editExternalUser') }">
+      <a ui-sref="users.externalUsers">
+        	外部用户
+      </a>
+    </li>
+  </ul>
+</div>

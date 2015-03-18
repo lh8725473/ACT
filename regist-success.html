@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>全携通</title>
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?4c3c918cadc6ad3aceb76b34c3c29302";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+    <!-- build:css css/regist-success/regist-success.css -->
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <!-- endbuild -->
+    <!-- build:js js/regist-success.js -->
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- endbuild -->
+    <!-- build:js js/global/config.js -->
+    <script type="text/javascript" src="src/global/_config.js"></script>
+    <!-- endbuild -->
+
+		<style>
+		  html, body {
+        font-family: Arial,SimHei,Microsoft YaHei,sans-serif;
+      }
+      h4{
+        color: #2685fc;
+        margin-top: 20px;
+        margin-bottom: 30px;
+      }
+		  .main{
+		    margin-top: 130px;
+		  }
+      .btn{
+        background-color: #1b599b;
+        color: #ffffff;
+        width: 200px;
+      }
+      .btn:hover, .btn:focus{
+        color: #ffffff;
+      }
+      .confirm{
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
+      .register{
+        margin-top: 20px;
+      }
+      .to-login{
+        margin-right: 85px;
+      }
+
+
+		</style>
+
+		<script type="text/javascript">
+
+      //获取URL参数
+      function getUrlParameter(name) {
+        var queryString = window.location.toString().split("#");
+        if (queryString.length > 1) {
+          var params = queryString[1].split("&");
+          for (var i = 0; i < params.length; ++i) {
+            var param = params[i].split("=");
+            if (param[0] == name) {
+              return unescape(param[1]);
+            }
+          }
+        }
+      }
+      //errorMsg
+      function errorMsg(str) {
+        $('.errorMsg').find('p').text(str);
+        $('.errorMsg').css('left', ($(window).width() * 0.5 - ($('.errorMsg').width() + 50) * 0.5) + 'px');
+        $('.errorMsg').css('top', $(window).height() * 0.1);
+        $(".errorMsg").fadeIn();
+        setTimeout(function() {
+          $(".errorMsg").fadeOut();
+        }, 2000);
+      }
+
+      $(document).ready(function() {
+        $('#logohome').click(function(e) {
+          window.location.href = 'home.html';
+        });
+
+        var email = getUrlParameter('email')
+        $('#email').html(email)
+
+        $(".errorMsg .close").click(function() {
+          $(".errorMsg").hide();
+        })
+
+        $('input').focus(function() {
+          $(this).parents('.input-group').addClass('input-group-focus')
+        })
+
+        $('input').blur(function() {
+          $(this).parents('.input-group').removeClass('input-group-focus')
+        })
+
+        function resend(){
+          $.ajax({
+            url : CONFIG.API_ROOT + '/cloud/regist?act=resend&email=' + email,
+            type : 'POST',
+            dataType : 'json'
+          }).done(function(responseJSON) {
+            $(".errorMsg").removeClass('alert-danger')
+            $(".errorMsg").addClass('alert-success')
+            errorMsg("重新发送成功")
+
+          }).fail(function(xhr, status, error) {
+            var err = eval('(' + xhr.responseText + ')')
+            $(".errorMsg").removeClass('alert-success')
+            $(".errorMsg").addClass('alert-danger')
+            errorMsg(err.result)
+          })
+        }
+
+        $("#resend").click(resend)
+      });
+    </script>
+
+	</head>
+	<body>
+		<div class="main container text-center">
+			<img src="images/mail_icon.png" />
+			<h4>账户激活</h4>
+      <div>
+        <span>确认邮件已经发送您的邮箱：</span>
+        <span id="email">17121357421321@qq.com</span>
+      </div>
+      <div class="confirm">
+        <p>点击邮件里的确认链接即可激活账号</p>
+      </div>
+      <div>
+        <button class="btn" id="resend">再次发送</button>
+      </div>
+      <div class="register">
+        <a class="to-login" href="login.html">立即登录</a>
+        <a class="to-home" href="home.html">返回首页</a>
+      </div>
+		</div>
+		<div class="alert alert-dismissable alert-danger errorMsg" style="display: none; position: fixed; z-index: 10002;">
+      <button aria-hidden="true" data-dismiss="alert" class="close" type="button">
+        ×
+      </button>
+      <p style="margin-right: 15px;">
+
+      </p>
+    </div>
+	</body>
+</html>

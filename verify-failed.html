@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>全携通</title>
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+    <!-- build:css css/verify-failed/verify-failed.css -->
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <!-- endbuild -->
+    <!-- build:js js/verify-failed.js -->
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- endbuild -->
+    <!-- build:js js/global/config.js -->
+    <script type="text/javascript" src="src/global/_config.js"></script>
+    <!-- endbuild -->
+
+		<style>
+		  a {
+        cursor: pointer;
+      }
+
+      label {
+        font-weight: normal;
+      }
+
+      button {
+        background-color: #1b599b;
+        color: #FFFFFF;
+      }
+
+      button:hover {
+        background-color: #1b599b;
+        color: #FFFFFF;
+      }
+
+      button:focus {
+        background-color: #1b599b;
+        color: #FFFFFF;
+      }
+
+      .btn:hover, .btn:hover {
+        background-color: #1b599b;
+        color: #FFFFFF;
+      }
+
+      .main {
+        margin-top: 50px;
+      }
+
+      .register {
+        margin-top: 7px;
+      }
+
+      .input-group .input-group-addon {
+        background-color: #FFFFFF;
+        border: 0 none;
+        color: #ACB4BF;
+        padding-right: 0;
+      }
+
+      .input-group .input-group-addon.input-email {
+        border: 0 none;
+        color: #ACB4BF;
+        padding-right: 0;
+      }
+
+      .input-group input {
+        background-color: #FFFFFF;
+        border: 0 none;
+        padding-right: 0;
+      }
+
+      .input-group {
+        border: 1px solid #CCCCCC;
+        border-radius: 4px;
+      }
+
+      .input-group.input-group-focus {
+        border-color: #66AFE9;
+      }
+      .form-control:focus {
+        border-color: #CCCCCC;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+      }
+      .input-group:focus {
+        border-color: #66AFE9;
+      }
+
+      .wrapper {
+        margin: 0 auto;
+        max-width: 340px;
+        text-align: center;
+        position: relative;
+        top: 140px;
+      }
+
+      .wrapper-finded {
+        margin: 0 auto;
+        max-width: 340px;
+        text-align: center;
+        position: relative;
+        top: 140px;
+        display: none;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .checkbox {
+        margin-top: -8px;
+      }
+
+      .form-back {
+        height: 400px;
+        margin-top: -25px;
+        background: url(images/form-back.png) no-repeat top;
+      }
+      .wrapper .register{
+        margin-top: 75px;
+      }
+      .wrapper-finded .register{
+        margin-top: 65px;
+      }
+
+
+		</style>
+
+		<script type="text/javascript">
+		  //获取URL参数
+      function getUrlParameter(name) {
+        var queryString = window.location.toString().split("#");
+        if (queryString.length > 1) {
+          var params = queryString[1].split("&");
+          for (var i = 0; i < params.length; ++i) {
+            var param = params[i].split("=");
+            if (param[0] == name) {
+              return unescape(param[1]);
+            }
+          }
+        }
+      }
+
+      //errorMsg
+      function errorMsg(str) {
+        $('.errorMsg').find('p').text(str);
+        $('.errorMsg').css('left', ($(window).width() * 0.5 - ($('.errorMsg').width() + 50) * 0.5) + 'px');
+        $('.errorMsg').css('top', $(window).height() * 0.1);
+        $(".errorMsg").fadeIn();
+        setTimeout(function() {
+          $(".errorMsg").fadeOut();
+        }, 2000);
+      }
+
+      $(document).ready(function() {
+        $('#logohome').click(function(e) {
+          window.location.href = 'home.html';
+        });
+
+        var email = getUrlParameter('email')
+
+        $(".errorMsg .close").click(function() {
+          $(".errorMsg").hide();
+        })
+
+        $('input').focus(function() {
+          $(this).parents('.input-group').addClass('input-group-focus')
+        })
+
+        $('input').blur(function() {
+          $(this).parents('.input-group').removeClass('input-group-focus')
+        })
+
+        function resend(){
+          $.ajax({
+            url : CONFIG.API_ROOT + '/cloud/regist?act=resend&email=' + email,
+            type : 'POST',
+            dataType : 'json'
+          }).done(function(responseJSON) {
+            $(".errorMsg").removeClass('alert-danger')
+            $(".errorMsg").addClass('alert-success')
+            errorMsg("重新发送成功")
+
+          }).fail(function(xhr, status, error) {
+            var err = eval('(' + xhr.responseText + ')')
+            $(".errorMsg").removeClass('alert-success')
+            $(".errorMsg").addClass('alert-danger')
+            errorMsg(err.result)
+          })
+        }
+
+        $("#resend").click(resend)
+      });
+    </script>
+
+	</head>
+	<body>
+		<div class="main container text-center">
+      <img src="images/loginlogo.png" style="position:relative;cursor: pointer;" id="logohome"/>
+      <div class="form-back">
+        <div class="wrapper">
+          <form id="" class="form" roll="form">
+            <div class="form-group">
+              <h4>激活失败，激活链接无效或已过期</h4>
+            </div>
+            <div class="text-center">
+              <button class="btn btn-block" type="button" id="resend">重&nbsp;新&nbsp;发&nbsp;送&nbsp;邮&nbsp;件</button>
+            </div>
+            <div class="register">
+              <label class="pull-left"> 已有账号？
+                <a class= "" href="login.html">立即登录</a>
+              </label>
+              <a class="pull-right" href="home.html">返回首页</a>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+    <div class="alert alert-dismissable alert-danger errorMsg" style="display: none; position: fixed; z-index: 10002;">
+      <button aria-hidden="true" data-dismiss="alert" class="close" type="button">
+        ×
+      </button>
+      <p style="margin-right: 15px;">
+
+      </p>
+    </div>
+	</body>
+</html>

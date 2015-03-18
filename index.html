@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html ng-app="App" class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html ng-app="App" class="lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html ng-app="App" class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html ng-app="App" class=""> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>全携通</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?4c3c918cadc6ad3aceb76b34c3c29302";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <!-- build:css css/app/app.css -->
+  <link rel="stylesheet" type="text/css" href="bower_components/select2/select2.css">
+ 
+  <link rel="stylesheet" type="text/css" href="bower_components/ng-grid/ng-grid.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/perfect-scrollbar/src/perfect-scrollbar.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/angular-treeview/css/angular.treeview.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/angular-snap/angular-snap.min.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/bootstrap-select/dist/css/bootstrap-select.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/jquery.atwho/dist/css/jquery.atwho.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/ztree_v3/css/zTreeStyle/zTreeStyle.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/flexslider/flexslider.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/umeditor/themes/default/css/umeditor.css">
+  <link rel="stylesheet" type="text/css" href="src/app/app.css">
+  <!-- endbuild -->
+</head>
+<body>
+  <div class="header" ng-include="'src/app/header/template.html'"></div>
+  <div class="main">
+    <div class="sidebar" ng-include="'src/app/sidebar/template.html'"></div>
+
+    <div class="right-main" ui-view></div>
+
+    <div class="main-bottom">
+  		<div>
+  			版权所有©2013 上海灵利信息技术有限公司
+  		</div>
+  		<div>
+  			沪网文[2011]0682-074增值电信业务经营许可证编号:沪B2-20080012
+  		</div>
+	  </div>
+  </div>
+
+  <div class="discuss" ng-include="'src/app/files/user-discuss/template.html'"></div>
+
+  <div class="upload-progress-dialog" style="display: block;" ng-include="'src/app/upload-progress-dialog/template.html'"></div>
+
+  <script id="template/modal/window.html" type="text/ng-template">
+    <div tabindex="-1" role="dialog" class="modal fade" ng-class="{in: animate}" ng-style="{'z-index': 1050 + index*10, display: 'block'}" ng-click="close($event)">
+        <div class="modal-dialog" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg'}"><div class="modal-content" modal-transclude>
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <!-- build:js js/global/config.js -->
+  <script type="text/javascript" src="src/global/_config.js"></script>
+  <!-- endbuild -->
+
+  <!-- build:js js/app.js -->
+  <script type="text/javascript" src="bower_components/ng-file-upload/angular-file-upload-shim.js"></script>
+  <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+  <script type="text/javascript" src="bower_components/select2/select2.js"></script>
+  <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+  <script type="text/javascript" src="src/global/at-directive.js"></script>
+  <script type="text/javascript" src="bower_components/perfect-scrollbar/src/perfect-scrollbar.js"></script>
+  <script type="text/javascript" src="bower_components/angular-ui-select2/src/select2.js"></script>
+  <script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
+  <script type="text/javascript" src="src/app/fix-library/datepicker-locale-fix.js"></script>
+  <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script type="text/javascript" src="src/app/fix-library/ui-bootstrap-fix.js"></script>
+  <script type="text/javascript" src="bower_components/ng-grid/build/ng-grid.js"></script>
+
+  <script type="text/javascript" src="bower_components/ng-file-upload/angular-file-upload.js"></script>
+  <script type="text/javascript" src="bower_components/angular-perfect-scrollbar/src/angular-perfect-scrollbar.js"></script>
+
+  <script type="text/javascript" src="bower_components/es5-shim/es5-shim.js"></script>
+  <script type="text/javascript" src="bower_components/angular-translate/angular-translate.js"></script>
+  <script type="text/javascript" src="bower_components/angular-resource/angular-resource.js"></script>
+  <script type="text/javascript" src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script type="text/javascript" src="bower_components/ng-context-menu/dist/ng-context-menu.js"></script>
+  <script type="text/javascript" src="bower_components/ng-context-menu/dist/ng-left-context-menu.js"></script>
+  <script type="text/javascript" src="bower_components/angular-treeview/angular.treeview.js"></script>
+  <script type="text/javascript" src="bower_components/snapjs/snap.js"></script>
+  <script type="text/javascript" src="bower_components/angular-snap/angular-snap.js"></script>
+  <script type="text/javascript" src="bower_components/ng-pageslide/dist/angular-pageslide-directive.js"></script>
+  <script type="text/javascript" src="bower_components/angular-bootstrap-select/build/angular-bootstrap-select.min.js"></script>
+  <script type="text/javascript" src="bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
+  <script type="text/javascript" src="bower_components/ng-clip/src/ngClip.js"></script>
+  <script type="text/javascript" src="bower_components/zeroclipboard/dist/ZeroClipboard.js"></script>
+  <script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script type="text/javascript" src="bower_components/Caret.js/dist/jquery.caret.js"></script>
+  <script type="text/javascript" src="bower_components/jquery.atwho/dist/js/jquery.atwho.js"></script>
+  <script type="text/javascript" src="bower_components/ngSocket/dist/ngSocket.js"></script>
+  <script type="text/javascript" src="bower_components/json2/json2.js"></script>
+  <script type="text/javascript" src="bower_components/ng-highLightText/src/jquery.highLightText.js"></script>
+  <script type="text/javascript" src="bower_components/ng-highLightText/src/ng-highLightText.js"></script>
+  <script type="text/javascript" src="bower_components/Watch.JS/src/watch.js"></script>
+  <script type="text/javascript" src="bower_components/ztree_v3/js/jquery.ztree.all-3.5.js"></script>
+  <script type="text/javascript" src="bower_components/ng-zTree/src/ng-zTree-directive.js"></script>
+
+  <script type="text/javascript" src="bower_components/angular-ueditor/dist/angular-umeditor.js"></script>
+  <script type="text/javascript" src="bower_components/flexslider/jquery.flexslider.js"></script>
+  <script type="text/javascript" src="bower_components/angular-flexslider/angular-flexslider.js"></script>
+  <!-- global components -->
+  <script type="text/javascript" src="src/global/loading-indicator/loading-indicator.js"></script>
+  <!---->
+  <script type="text/javascript" src="src/app/widgets/widgets.js"></script>
+  <script type="text/javascript" src="src/app/widgets/confirm-modal/factory.js"></script>
+  <script type="text/javascript" src="src/app/widgets/notification/factory.js"></script>
+  <script type="text/javascript" src="src/app/widgets/utils/factory.js"></script>
+
+  <!-- locales -->
+  <script type="text/javascript" src="src/app/locales/module.js"></script>
+  <script type="text/javascript" src="src/app/locales/en-EN.js"></script>
+  <script type="text/javascript" src="src/app/locales/zh-CN.js"></script>
+
+  <!-- resources -->
+  <script type="text/javascript" src="src/app/resources/resources.js"></script>
+  <script type="text/javascript" src="src/app/resources/users.js"></script>
+  <script type="text/javascript" src="src/app/resources/folders.js"></script>
+  <script type="text/javascript" src="src/app/resources/files.js"></script>
+  <script type="text/javascript" src="src/app/resources/message.js"></script>
+  <script type="text/javascript" src="src/app/resources/folderAction.js"></script>
+  <script type="text/javascript" src="src/app/resources/downLoadFile.js"></script>
+  <script type="text/javascript" src="src/app/resources/share.js"></script>
+  <script type="text/javascript" src="src/app/resources/userDiscuss.js"></script>
+  <script type="text/javascript" src="src/app/resources/cloud.js"></script>
+  <script type="text/javascript" src="src/app/resources/shareAction.js"></script>
+  <script type="text/javascript" src="src/app/resources/trash.js"></script>
+  <script type="text/javascript" src="src/app/resources/contact.js"></script>
+  <script type="text/javascript" src="src/app/resources/search.js"></script>
+  <script type="text/javascript" src="src/app/resources/tag.js"></script>
+
+  <script type="text/javascript" src="src/app/header/module.js"></script>
+  <script type="text/javascript" src="src/app/header/controller.js"></script>
+  <script type="text/javascript" src="src/app/header/user-info/controller.js"></script>
+
+  <script type="text/javascript" src="src/app/sidebar/module.js"></script>
+  <script type="text/javascript" src="src/app/sidebar/controller.js"></script>
+
+  <script type="text/javascript" src="src/app/updates/module.js"></script>
+  <script type="text/javascript" src="src/app/updates/controller.js"></script>
+
+  <script type="text/javascript" src="src/app/files/module.js"></script>
+  <script type="text/javascript" src="src/app/files/controller.js"></script>
+  <script type="text/javascript" src="src/app/files/move-file/controller.js"></script>
+  <script type="text/javascript" src="src/app/files/copy-file/controller.js"></script>
+  <script type="text/javascript" src="src/app/files/create-tag/controller.js"></script>
+  <script type="text/javascript" src="src/app/files/preview-file/controller.js"></script>
+  <script type="text/javascript" src="src/app/files/invite-team-users/controller.js"></script>
+  <script type="text/javascript" src="src/app/files/link-share/controller.js"></script>
+  <script type="text/javascript" src="src/app/files/team-collaboration/controller.js"></script>
+  <script type="text/javascript" src="src/app/files/user-discuss/controller.js"></script>
+
+  <script type="text/javascript" src="src/app/contacts/module.js"></script>
+  <script type="text/javascript" src="src/app/contacts/controller.js"></script>
+
+  <script type="text/javascript" src="src/app/trash/module.js"></script>
+  <script type="text/javascript" src="src/app/trash/controller.js"></script>
+
+  <script type="text/javascript" src="src/app/search/module.js"></script>
+  <script type="text/javascript" src="src/app/search/controller.js"></script>
+
+  <script type="text/javascript" src="src/app/note/module.js"></script>
+  <script type="text/javascript" src="src/app/note/controller.js"></script>
+
+  <script type="text/javascript" src="src/app/upload-progress-dialog/module.js"></script>
+  <script type="text/javascript" src="src/app/upload-progress-dialog/controller.js"></script>
+
+  <script type="text/javascript" src="src/global/config.js"></script>
+  <script type="text/javascript" src="src/app/app.js"></script>
+  <!-- endbuild -->
+
+  <script type="text/javascript" src="bower_components/umeditor/umeditor.config.js"></script>
+  <script type="text/javascript" src="bower_components/umeditor/umeditor.js"></script>
+ 
+</body>
+</html>

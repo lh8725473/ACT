@@ -1,0 +1,68 @@
+.note-view {
+  width: 98%;
+  padding: 20px;
+  height: 100%;
+
+  .note-preview{
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    position: absolute;
+    top: 54px;
+    bottom: 10px;
+    left: 20px;
+    right: 45px;
+    overflow: auto;
+    padding: 5px;
+  }
+
+  .note-editor{
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    position: absolute;
+    top: 54px;
+    bottom: 10px;
+    left: 20px;
+    right: 45px;
+    .edui-container{
+      width: 100% !important;
+      position: absolute;
+      top: 55px;
+      bottom: 0;
+      .edui-editor-body{
+        top: 33px;
+        bottom: 0;
+        position: absolute;
+        width: 100%;
+        overflow-y: auto;
+        textarea{
+          width: 100% !important;
+          min-height: 0px !important;
+          height: 99% !important;
+        }
+        .edui-body-container{
+          width: 100% !important;
+          min-height: 0px !important;
+          height: 100% !important;
+        }
+      }
+    }
+    .note-title{
+      height: 55px;
+    }
+    .form-control{
+      border: none;
+      font-size: 30px;
+      height: 55px;
+    }
+    .form-control:focus{
+      box-shadow: none;
+    }
+    .ueditor{
+      width: 100%;
+      .edui-editor{
+        width: 100% !important;
+        border: none;
+      }
+    }
+  }
+}

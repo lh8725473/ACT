@@ -1,0 +1,22 @@
+<div class="sidebar-view" ng-controller="App.Sidebar.Controller">
+  <ul class="nav nav-sidebar">
+    <li ng-class="{ active: $state.includes('overview') }">
+      <a ui-sref="overview" class="overview">
+        <span class="overview-img"></span>
+        	概况
+      </a>
+    </li>
+    <li ng-class="{ active: $state.includes('users') }">
+      <a ui-sref="users.managedUsers" class="users">
+        <span class="users-img"></span>
+        	用户与群组
+      </a>
+    </li>
+    <li ng-class="{ active: $state.includes('reports') }">
+      <a ui-sref="reports" class="reports">
+        <span class="reports-img"></span>
+        	报表
+      </a>
+    </li>
+  </ul>
+</div>

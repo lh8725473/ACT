@@ -1,0 +1,32 @@
+<div class="sidebar-view" ng-controller="App.Sidebar.Controller">
+  <ul class="nav nav-sidebar">
+    <li ng-class="{ active: $state.includes('files') }">
+      <a ui-sref="files" class="files">
+        <span class="files-img"></span>
+        	所有文件
+      </a>
+    </li>
+    <li ng-class="{ active: $state.includes('updates') }">
+      <a ui-sref="updates" class="updates">
+        <span class="updates-img"></span>
+        	最近更新
+      </a>
+    </li>
+    <li ng-class="{ active: $state.includes('contacts') }">
+      <a ui-sref="contacts" class="contacts">
+        <span class="contacts-img"></span>
+        	联系人
+      </a>
+    </li>
+    <li ng-class="{ active: $state.includes('trash') }">
+      <a ui-sref="trash" class="trash">
+        <span class="trash-img"></span>
+       		回收中心
+      </a>
+    </li>
+  </ul>
+  <div class="storage">
+  	<div class="col-sm-12 storage-progressbar"><progressbar class="" value= "storage.percentage" type="success">{{storage.percentage}}%</progressbar></div>
+  	<span class="pull-right">{{storage.used_space}}/{{storage.total_space}}</span>
+  </div>
+</div>

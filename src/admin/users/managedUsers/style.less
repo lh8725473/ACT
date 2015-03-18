@@ -1,0 +1,187 @@
+.managedUsers-view {
+  height: 100%;
+  a{
+    text-decoration: none;
+  }
+  .spinner{
+      margin: 70px auto;
+  }
+  .buttonGroup{
+      border-bottom: 1px solid #afafaf;
+      margin: 0 40px;
+      padding-bottom: 9px;
+      padding-left: 57px;
+      padding-top: 9px;
+  }
+  .gridStyle {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 53px;
+    padding: 0 97px;
+    .ngVerticalBarVisible{
+        width: 0;
+    }
+    .ngHeaderSortColumn {
+
+    }
+    .ngCellText{
+        border-bottom: 1px solid #E8E8E8;
+        padding-top: 20px;
+        padding-left: 0px;
+        font-size: 14px;
+        color: #666;
+     }
+     .ngHeaderCell{
+         border-bottom: 1px solid #afafaf;
+     }
+     .user-name{
+         padding-top: 10px;
+         font-size: 15px;
+         color: #333;
+         img {
+           margin-right: 5px;
+         }
+     }
+     .action img{
+         cursor: pointer;
+         margin-left: 20px;
+     }
+     .action img:first-child{
+         margin-left: 0px;
+     }
+
+     .ngRow {
+        background-color: white;
+      }
+      .ngRow:hover {
+        background-color: #ebf1f7;
+      }
+
+      .ngTopPanel {
+        background-color: white;
+
+      }
+
+     .activety{
+         padding-top: 10px;
+     }
+//   .grid-align {
+//       text-align: center;
+//   }
+  }
+
+   button {
+       margin-left: 12px;
+   }
+   .btn.btn-default:first-child{
+       margin-left: 0px;
+   }
+}
+
+.add-user-modal-view {
+  .account-admin.ng-hide-remove {
+    .opacity(0);
+    .transition(all linear 0.5s);
+  }
+  .account-admin.ng-hide-remove-active {
+    .opacity(100);
+  }
+  .account-admin.ng-hide-add {
+    .opacity(100);
+    .transition(all linear 0.5s);
+  }
+  .account-admin.ng-hide-add-active {
+    .opacity(0);
+  }
+
+  .empty{
+      border: 1px solid red;
+  }
+
+  .tdroll{
+      width: 140px;
+  }
+
+  h4{
+      border-bottom: 1px solid #e5e5e5;
+      padding-bottom: 5px;
+  }
+
+  .permission-form{
+      padding-left: 20px;
+  }
+
+  .unit{
+      padding-top: 6px;
+      padding-left: 0px;
+  }
+
+  .gridStyle{
+      height: 130px;
+  }
+
+  input.ng-invalid.ng-dirty {
+    border: 1px solid red;
+  }
+
+  .form-group {     margin-bottom: 5px;   }
+
+  .control-label {
+    text-align: left;
+  }
+  .col-sm-8 {
+    padding-left: 0;
+  }
+
+  .indented {
+    margin-left: 100px;
+    margin-right: 15px;
+    .gridStyle {
+      padding: 0;
+
+      border: 1px solid #E0E0E0;
+    }
+  }
+}
+
+
+//文件上传窗口
+.import-user-modal-view{
+    .upload-box{
+        font-size: 16px;
+        border: 2px dashed #c6c6c6;
+        text-align: center;
+        height: 150px;
+        .upload-select:hover{
+            a{
+                text-decoration: underline;
+            }
+        }
+        .upload-select{
+            position: relative;
+            top: 40px;
+            margin: 0 auto;
+            width: 130px;
+            cursor: pointer;
+        }
+        .upload-drop{
+            position: relative;
+            top: 60px;
+        }
+    }
+    .loading{
+      label{
+        margin-top: 45px;
+      }
+    }
+    .down-load{
+      margin-top: 10px;
+    }
+    .loading-indicator{
+        .spinner{
+            margin-top: 0;
+        }
+    }
+}

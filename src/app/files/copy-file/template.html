@@ -1,0 +1,24 @@
+<div class="modal-header">
+    <button class="bootbox-close-button close" type="button" ng-click="cancel()">
+        ×
+    </button>
+    <h3 class="modal-title">{{'LANG_COPY_FOLDER' | translate}}</h3>
+</div>
+<div class="modal-body">
+    <!--<div
+    data-angular-treeview="true"
+    data-tree-id="{{treeId}}"
+    data-tree-model="treedata"
+    data-node-id="id"
+    data-node-label="text"
+    data-node-children="_child" >-->
+    <ul class="ztree" id="tree" z-nodes="zNodes" setting="setting" z-tree></ul>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">
+        {{'LANG_COPY_MOVE' | translate}}
+    </button>
+    <button class="btn btn-default" ng-click="cancel()">
+        {{'LANG_BUTTON_CANCEL' | translate}}
+    </button>
+</div>

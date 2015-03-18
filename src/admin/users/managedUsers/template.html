@@ -1,0 +1,9 @@
+<div class="managedUsers-view" ng-controller="App.Users.ManagedUsers.Controller" ng-claas="{empty : true}">
+	<div class="buttonGroup">
+		<button ng-click='addUser()' class="btn btn-default">添加用户</button>
+		<button ng-click='exportUser()' class="btn btn-default">导出</button>
+		<button ng-click='importUser()' class="btn btn-default">批量添加用户</button>
+	</div>
+  <div class="gridStyle" ng-grid="gridOptions" ></div>
+  <loading-indicator ng-show="loading"></loading-indicator>
+</div>

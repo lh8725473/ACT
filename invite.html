@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>全携通</title>
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?4c3c918cadc6ad3aceb76b34c3c29302";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+    <!-- build:css css/invite/invite.css -->
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <!-- endbuild -->
+    <!-- build:js js/invite.js -->
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- endbuild -->
+    <!-- build:js js/global/config.js -->
+    <script type="text/javascript" src="src/global/_config.js"></script>
+    <!-- endbuild -->
+
+		<style>
+			a {
+				cursor: pointer;
+			}
+
+			label {
+				font-weight: normal;
+			}
+
+			button {
+				background-color: #1b599b;
+				color: #FFFFFF;
+			}
+
+			button:hover {
+				background-color: #1b599b;
+				color: #FFFFFF;
+			}
+
+			button:focus {
+				background-color: #1b599b;
+				color: #FFFFFF;
+			}
+
+			.btn:hover, .btn:hover {
+				background-color: #1b599b;
+				color: #FFFFFF;
+			}
+
+			.main {
+				margin-top: 50px;
+			}
+
+			.register {
+				margin-top: 7px;
+			}
+
+			.input-group .input-group-addon {
+				background-color: #FFFFFF;
+				border: 0 none;
+				color: #ACB4BF;
+				padding-right: 0;
+			}
+
+			.input-group .input-group-addon.input-email {
+        background-color: #eee;
+        border: 0 none;
+        color: #ACB4BF;
+        padding-right: 0;
+      }
+
+			.input-group input {
+				background-color: #FFFFFF;
+				border: 0 none;
+				padding-right: 0;
+			}
+
+			.input-group {
+				border: 1px solid #CCCCCC;
+				border-radius: 4px;
+			}
+
+			.input-group.input-group-focus {
+				border-color: #66AFE9;
+			}
+			.form-control:focus {
+				border-color: #CCCCCC;
+				box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+			}
+			.input-group:focus {
+				border-color: #66AFE9;
+			}
+
+			.wrapper {
+				margin: 0 auto;
+				max-width: 340px;
+				text-align: center;
+				position: relative;
+				top: 80px;
+			}
+
+			.form-group {
+				margin-bottom: 20px;
+			}
+
+			.checkbox {
+				margin-top: -8px;
+			}
+
+			.form-back {
+				height: 400px;
+				margin-top: -25px;
+				background: url(images/form-back.png) no-repeat top;
+			}
+
+
+		</style>
+
+		<script type="text/javascript">
+      function createCookie(name, value, days) {
+        if (days) {
+          var date = new Date();
+          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+          var expires = '; expires=' + date.toGMTString();
+        } else {
+          var expires = '';
+        }
+        document.cookie = name + '=' + value + expires + '; path=/';
+      }
+
+      function readCookie(name) {
+        var nameEQ = name + '=';
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1, c.length);
+          }
+          if (c.indexOf(nameEQ) == 0) {
+            return c.substring(nameEQ.length, c.length);
+          }
+        }
+        return null;
+      }
+
+      function eraseCookie(name) {
+        createCookie(name, '', -1);
+      }
+
+      //获取URL参数
+      function getUrlParameter(name) {
+        var queryString = window.location.toString().split("#");
+        if (queryString.length > 1) {
+          var params = queryString[1].split("&");
+          for (var i = 0; i < params.length; ++i) {
+            var param = params[i].split("=");
+            if (param[0] == name) {
+              return unescape(param[1]);
+            }
+          }
+        }
+      }
+      //errorMsg
+      function errorMsg(str) {
+        $('.errorMsg').find('p').text(str);
+        $('.errorMsg').css('left', ($(window).width() * 0.5 - ($('.errorMsg').width() + 50) * 0.5) + 'px');
+        console.log($('#alert').width())
+        $('.errorMsg').css('top', $(window).height() * 0.1);
+        $(".errorMsg").fadeIn();
+        setTimeout(function() {
+          $(".errorMsg").fadeOut();
+        }, 2000);
+      }
+
+      $(document).ready(function() {
+        $('#logohome').click(function(e) {
+          window.location.href = 'home.html';
+        });
+
+        var key = getUrlParameter('key')
+        $.ajax({
+          url : CONFIG.API_ROOT + '/user/invite?key=' + key,
+          type : 'GET',
+          dataType : 'json'
+        }).done(function(responseJSON) {
+          $('#email').val(responseJSON.result.email)
+        }).fail(function(xhr, status, error) {
+          var err = eval('(' + xhr.responseText + ')');
+          errorMsg(err.result)
+        })
+
+        $(".errorMsg .close").click(function() {
+          $(".errorMsg").hide();
+        })
+
+        $('input').focus(function() {
+          $(this).parents('.input-group').addClass('input-group-focus')
+        })
+
+        $('input').blur(function() {
+          $(this).parents('.input-group').removeClass('input-group-focus')
+        })
+
+        function loginHandler() {
+          var passWord = $('#password')[0].value;
+          var confirmPassword = $('#confirmPassword')[0].value;
+          if (!passWord) {
+            errorMsg('请输入密码');
+            return false;
+          }
+          if(passWord.length<6){
+            errorMsg('密码长度大于6位');
+            return false;
+          }
+          if (!confirmPassword) {
+            errorMsg('请输入确认密码');
+            return false;
+          }
+          if(passWord !=confirmPassword){
+            errorMsg('密码与确认密码不一致');
+            return false;
+          }
+          var data = {
+            'password' : passWord,
+            'key' : getUrlParameter('key')
+          };
+          $.ajax({
+            url : CONFIG.API_ROOT + '/user/regist',
+            type : 'post',
+            dataType : 'json',
+            data : data
+          }).done(function(responseJSON) {
+            var token = responseJSON.result['access_token'];
+            var expiresin = responseJSON.result['expires_in'];
+            var user_name = responseJSON.result['user_name'];
+            var user_pic = responseJSON.result['avatar'];
+            var user_id = responseJSON.result['user_id'];
+            var role_id = responseJSON.result['role_id'];
+
+            createCookie('token', token);
+            createCookie('userName', user_name);
+            createCookie('userPic', user_pic);
+            createCookie('userId', user_id);
+            createCookie('userType', 'qxt');
+            createCookie('roleId', role_id);
+            createCookie('lang', 'zh-CN');
+
+            window.location.href = 'index.html';
+          }).fail(function(xhr, status, error) {
+            var err = eval('(' + xhr.responseText + ')')
+            errorMsg(err.result)
+          });
+        }
+
+        $('#active').click(function(){
+          loginHandler()
+        });
+        $(document).keypress(function(e) {
+          if (e.keyCode === 13) {
+            loginHandler()
+          }
+        });
+      });
+    </script>
+
+	</head>
+	<body>
+		<div class="main container text-center">
+			<img src="images/logo.jpg" style="position:relative;cursor: pointer;" id="logohome"/>
+			<div class="form-back">
+				<div class="wrapper">
+					<form id="" class="form" roll="form">
+						<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon input-email"><span class="glyphicon glyphicon-envelope"></span></span>
+								<input type="email" placeholder="Email" id="email" class="form-control" disabled>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+								<input type="password" maxlength="16" data-minlength="6" id="password" placeholder="设置初始密码" class="form-control" tabindex="1" autocapitalize="off" autocomplete="off">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="input-group">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+								<input type="password" maxlength="16" data-minlength="6" id="confirmPassword" placeholder="确认密码" class="form-control" tabindex="1" autocapitalize="off" autocomplete="off">
+							</div>
+						</div>
+						<div class="checkbox text-center">
+							<span class="agree">点击激活表示同意&nbsp;《<a class="show_agree" href="http://www.sharpinteract.com/agreement.html " target="_blank">服务条款</a>》</span>
+						</div>
+						<div class="text-center">
+							<button class="btn btn-block" type="button" id="active">激&nbsp;&nbsp;&nbsp;活</button>
+						</div>
+						<div class="register">
+							<label class="pull-left">
+								已有账号？
+								<a class= "" href="login.html">立即登录</a>
+							</label>
+							<a class="pull-right" href="home.html">
+								返回首页
+							</a>
+						</div>
+					</form>
+				</div>
+			</div>
+
+		</div>
+		<div class="footer text-center">
+			<a href="http://www.sharpinteract.com/agreement.html" target="_blank">服务条款</a>
+			&nbsp;
+			<a href="http://www.sharpinteract.com/privacy_policy.html" target="_blank">隐私政策</a>
+			&nbsp;
+			<span style="color: #999999">版权所有 ©2014  上海灵利信息技术有限公司</span>
+		</div>
+		<div class="alert alert-dismissable alert-danger errorMsg" style="display: none; position: fixed; z-index: 10002;">
+      <button aria-hidden="true" data-dismiss="alert" class="close" type="button">
+        ×
+      </button>
+      <p style="padding-right: 15px;">
+
+      </p>
+    </div>
+
+	</body>
+</html>

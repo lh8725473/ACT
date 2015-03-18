@@ -1,0 +1,1 @@
+angular.module('App.Users', ['App.Users.UserHeader','App.Users.ManagedUsers','App.Users.ManagedUsers.EditUser','App.Users.ExternalUsers','App.Users.ExternalUsers.EditExternalUser','App.Users.Groups','App.Users.Groups.EditGroup']);
