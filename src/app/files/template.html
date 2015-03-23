@@ -94,8 +94,8 @@
           <span class="pull-left" ng-show="obj.folder">{{obj.user_count}}</span>
           <div class = "discuss-ico" ng-hide = "obj.folder" ng-click="openUserDiscuss($event, obj)" ng-class = "{ is_edit: obj.is_preview }" tooltip-append-to-body="true" tooltip-placement="top" tooltip="{{'LANG_FILE_DISCUSS' | translate}}"></div>
           <span class = "pull-left">{{obj.discuss_count}}</span>
-          <div class = "version-ico" ng-hide = "obj.folder" ng-click="openFileVersion($event, obj)" ng-class = "{ is_edit: obj.is_preview }" tooltip-append-to-body="true" tooltip-placement="top" tooltip="{{'LANG_FILES_VERSION_TITLE' | translate}}"></div>
-          <span class = "pull-left">{{obj.version_count}}</span>
+          <div class = "version-ico" ng-hide = "obj.folder || obj.isNote" ng-click="openFileVersion($event, obj)" ng-class = "{ is_edit: obj.is_preview }" tooltip-append-to-body="true" tooltip-placement="top" tooltip="{{'LANG_FILES_VERSION_TITLE' | translate}}"></div>
+          <span class = "pull-left" ng-hide="obj.isNote">{{obj.version_count}}</span>
         </div>
       </div>
       <div class="dropdown position-fixed" id="myMenu">

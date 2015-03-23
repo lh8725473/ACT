@@ -26,20 +26,20 @@ angular.module('App.LinkShare').controller('App.LinkShare.Controller', [
     $scope.key = $state.params.key
     //链接分享所在文件ID
     $scope.folderId = $state.params.folderId || 0
-    if($scope.folderId == 0){
+    if ($scope.folderId == 0) {
       $scope.isRoot = true
     }
 
     //外部链接文件列表(不需要密码时)
     $scope.linkShareList = Share.getLinkShareList({
-      key : $scope.key,
-      pwd : $cookieStore.get('password'),
-      folder_id : $scope.folderId
+      key: $scope.key,
+      pwd: $cookieStore.get('password'),
+      folder_id: $scope.folderId
     })
 
     //渲染文件列表
-    function refreshList(linkShareList){
-      angular.forEach(linkShareList, function(linkShare){
+    function refreshList(linkShareList) {
+      angular.forEach(linkShareList, function(linkShare) {
         //对象是否被选中
         linkShare.checked = false
 
@@ -52,8 +52,8 @@ angular.module('App.LinkShare').controller('App.LinkShare.Controller', [
 
         //对象是否能被预览
         var fileType = Utils.getFileTypeByName(linkShare.file_name || linkShare.folder_name)
-        linkShare.isPreview = (fileType && $scope.linkDetail.is_preview) ? true : false
-        linkShare.isNote = (fileType == 'note') ? true : false
+        linkShare.isPreview = (fileType && $scope.linkDetail.is_preview && fileType != 'note') ? true : false
+        linkShare.fileType = fileType
 
         //文件图像
         if (linkShare.isFolder == 1) { //文件夹
@@ -82,12 +82,12 @@ angular.module('App.LinkShare').controller('App.LinkShare.Controller', [
     //外部链接文件列表(需要密码时)
     $scope.$on('password', function($event, password) {
       $scope.linkShareList = Share.getLinkShareList({
-        key : $scope.key,
-        pwd : password
+        key: $scope.key,
+        pwd: password
       })
       $scope.linkShareList.$promise.then(function(linkShareList) {
         refreshList(linkShareList)
-      },function(error) {
+      }, function(error) {
         var neddPassword = true;
         $rootScope.$broadcast('neddPassword', neddPassword);
         $rootScope.$broadcast('key', $scope.key);
@@ -96,18 +96,18 @@ angular.module('App.LinkShare').controller('App.LinkShare.Controller', [
 
     //外部链接详细信息
     $scope.linkDetail = Share.getLinkShareDetail({
-      key : $scope.key
+      key: $scope.key
     })
 
     $scope.linkDetail.$promise.then(function(linkDetail) {
       //权限列表
-      var is_owner = linkDetail.permission.substring(0, 1)  //协同拥有者 or 拥有者1
-      var is_delete =  linkDetail.permission.substring(1, 2)  //删除权限
-      var is_edit =  linkDetail.permission.substring(2, 3)  //编辑权限
-      var is_getLink =  linkDetail.permission.substring(3, 4)  //链接权限
-      var is_preview =  linkDetail.permission.substring(4, 5)  //预览权限
-      var is_download =  linkDetail.permission.substring(5, 6)  //下载权限
-      var is_upload =  linkDetail.permission.substring(6, 7)  //上传权限
+      var is_owner = linkDetail.permission.substring(0, 1) //协同拥有者 or 拥有者1
+      var is_delete = linkDetail.permission.substring(1, 2) //删除权限
+      var is_edit = linkDetail.permission.substring(2, 3) //编辑权限
+      var is_getLink = linkDetail.permission.substring(3, 4) //链接权限
+      var is_preview = linkDetail.permission.substring(4, 5) //预览权限
+      var is_download = linkDetail.permission.substring(5, 6) //下载权限
+      var is_upload = linkDetail.permission.substring(6, 7) //上传权限
 
       linkDetail.is_owner = (is_owner == '1') ? true : false
       linkDetail.is_delete = (is_delete == '1') ? true : false
@@ -117,22 +117,22 @@ angular.module('App.LinkShare').controller('App.LinkShare.Controller', [
       linkDetail.is_download = (is_getLink == '1') ? true : false
       linkDetail.is_upload = (is_upload == '1') ? true : false
 
-      if(linkDetail.is_upload){
+      if (linkDetail.is_upload) {
         $scope.uploadButton = true
       }
 
-      if(linkDetail.comment==''){
+      if (linkDetail.comment == '') {
         linkDetail.comment = 'Ta很懒什么也没留下'
       }
 
       $scope.linkShareList.$promise.then(function(linkShareList) {
         refreshList($scope.linkShareList)
-      },function(error) {
+      }, function(error) {
         var neddPassword = true;
         $rootScope.$broadcast('neddPassword', neddPassword);
         $rootScope.$broadcast('key', $scope.key);
       })
-    },function(error) {
+    }, function(error) {
       Notification.show({
         title: '失败',
         type: 'danger',
@@ -142,38 +142,38 @@ angular.module('App.LinkShare').controller('App.LinkShare.Controller', [
     })
 
     //点击选择或者取消选中文件
-    $scope.selectRecycle = function($event, linkShare){
+    $scope.selectRecycle = function($event, linkShare) {
       //阻止事件冒泡
       $event.stopPropagation()
       linkShare.checked = !linkShare.checked
       $scope.selectedAll = true
       for (var i = 0; i < $scope.linkShareList.length; i++) {
-        if(!$scope.linkShareList[i].checked){
+        if (!$scope.linkShareList[i].checked) {
           $scope.selectedAll = false
         }
       }
       //暂不支持批量下载  与文件夹下载
       var i = 0
-      angular.forEach($scope.linkShareList, function(linkShare){
-        if(linkShare.checked){
+      angular.forEach($scope.linkShareList, function(linkShare) {
+        if (linkShare.checked) {
           i++;
         }
       })
 
-      if(i != 1){
+      if (i != 1) {
         $scope.dowloadButton = false
-      }else{
+      } else {
         for (var i = 0; i < $scope.linkShareList.length; ++i) {
           if ($scope.linkShareList[i].checked == true)
             break
         }
         $scope.checkedObj = $scope.linkShareList[i]
-        if($scope.checkedObj.isFolder == 1 ){
+        if ($scope.checkedObj.isFolder == 1 || $scope.checkedObj.fileType == 'note') {
           $scope.dowloadButton = false
-        }else{
+        } else {
           $scope.dowloadButton = true
         }
-       }
+      }
     }
 
     //全部选择状态
@@ -189,11 +189,11 @@ angular.module('App.LinkShare').controller('App.LinkShare.Controller', [
     //外部链接文件夹路径
     $scope.folderPath = Folders.getFolderPath({
       folder_id: $scope.folderId,
-      key : $scope.key
+      key: $scope.key
     })
 
     //下载文件
-    $scope.downloadFile = function(){
+    $scope.downloadFile = function() {
       for (var i = 0; i < $scope.linkShareList.length; ++i) {
         if ($scope.linkShareList[i].checked == true)
           break
@@ -207,7 +207,7 @@ angular.module('App.LinkShare').controller('App.LinkShare.Controller', [
         iframe.style.display = 'none'
         document.body.appendChild(iframe)
       }
-      iframe.src = CONFIG.API_ROOT + '/share/key?act=download&key=' + $scope.key + '&pwd=' + $cookieStore.get('password') +'&file_id=' + $scope.checkedObj.file_id
+      iframe.src = CONFIG.API_ROOT + '/share/key?act=download&key=' + $scope.key + '&pwd=' + $cookieStore.get('password') + '&file_id=' + $scope.checkedObj.file_id
     }
 
     //上传文件
@@ -220,21 +220,37 @@ angular.module('App.LinkShare').controller('App.LinkShare.Controller', [
         resolve: {}
       })
 
-      uploadModal.result.then(function($files) {
-        $rootScope.$broadcast('uploadFiles', $files);
+      uploadModal.result.then(function(files) {
+        var $files = [];
+        for (var i = 0; i < files.length; i++) {
+          var fileType = Utils.getFileTypeByName(files[i].name)
+          if(fileType == 'note'){
+            Notification.show({
+              title: '失败',
+              type: 'danger',
+              msg: '不允许上传.note类型文件',
+              closeable: false
+            })
+          }else{
+            $files.push(files[i]);
+          }
+        }
+        if($files.length != 0){
+          $rootScope.$broadcast('uploadFiles', $files);
+        }  
       })
     }
 
     //上传成功后刷新列表
     $scope.$on('uploadFilesDone', function() {
       $scope.linkShareList = Share.getLinkShareList({
-        key : $scope.key,
-        pwd : $cookieStore.get('password'),
-        folder_id : $scope.folderId
+        key: $scope.key,
+        pwd: $cookieStore.get('password'),
+        folder_id: $scope.folderId
       })
       $scope.linkShareList.$promise.then(function(linkShareList) {
-         refreshList(linkShareList)
-       })
+        refreshList(linkShareList)
+      })
     })
 
     // upload file
@@ -260,7 +276,7 @@ angular.module('App.LinkShare').controller('App.LinkShare.Controller', [
     ]
 
     //检查预览的文件大小及类型
-    function checkFileValid (obj) {
+    function checkFileValid(obj) {
       var fileSize = obj.file_size;
       var fileType = Utils.getFileTypeByName(obj.file_name);
       if ('office' == fileType) {
@@ -268,20 +284,17 @@ angular.module('App.LinkShare').controller('App.LinkShare.Controller', [
         if (fileSize > 10485760) {
           return false;
         }
-      }
-      else
-        if('pdf'==fileType){
-          //pdf设置最大预览为50M
-          if(fileSize>52428800)
-          {
-            return false;
-          }
+      } else if ('pdf' == fileType) {
+        //pdf设置最大预览为50M
+        if (fileSize > 52428800) {
+          return false;
         }
+      }
       return true;
     }
 
     //文件预览
-    $scope.previewFile = function (obj) {
+    $scope.previewFile = function(obj) {
       var validFile = checkFileValid(obj);
       if (validFile) {
         var previewFileModal = $modal.open({
@@ -290,12 +303,12 @@ angular.module('App.LinkShare').controller('App.LinkShare.Controller', [
           backdrop: 'static',
           controller: 'App.LinkShare.PreviewFileController',
           resolve: {
-            obj: function () {
+            obj: function() {
               return obj
             }
           }
         })
-      }else {
+      } else {
         Notification.show({
           title: '失败',
           type: 'danger',

@@ -417,21 +417,21 @@ angular.module('App.Files').controller('App.Files.Controller', [
             folder_ids: deleteLsit.folder_ids
           }).$promise.then(function() {
             // for (var i = 0; i < deleteLsit.file_ids.length; i++) {
-            // 	for (var j = 0; j < $scope.objList.length; ++j) {
-            // 		if ($scope.objList[j].file_id == deleteLsit.file_ids[i]) {
-            // 			$scope.objList.splice(j, 1)
-            // 			break
-            // 		}
-            // 	}
+            //  for (var j = 0; j < $scope.objList.length; ++j) {
+            //    if ($scope.objList[j].file_id == deleteLsit.file_ids[i]) {
+            //      $scope.objList.splice(j, 1)
+            //      break
+            //    }
+            //  }
             // }
 
             // for (var i = 0; i < deleteLsit.folder_ids.length; i++) {
-            // 	for (var j = 0; j < $scope.objList.length; ++j) {
-            // 		if ($scope.objList[j].folder_id == deleteLsit.folder_ids[i]) {
-            // 			$scope.objList.splice(j, 1)
-            // 			break
-            // 		}
-            // 	}
+            //  for (var j = 0; j < $scope.objList.length; ++j) {
+            //    if ($scope.objList[j].folder_id == deleteLsit.folder_ids[i]) {
+            //      $scope.objList.splice(j, 1)
+            //      break
+            //    }
+            //  }
             // }
 
             Notification.show({
@@ -499,23 +499,23 @@ angular.module('App.Files').controller('App.Files.Controller', [
         $scope.show_dele_btn = false
         $scope.selectedAll = false
         // if (moveListResponse.success_list.folders.length != 0 || moveListResponse.success_list.files.length != 0) {
-        // 	for (var i = 0; i < moveListResponse.success_list.files.length; i++) {
-        // 		for (var j = 0; j < $scope.objList.length; ++j) {
-        // 			if ($scope.objList[j].file_id == moveListResponse.success_list.files[i].file_id) {
-        // 				$scope.objList.splice(j, 1)
-        // 				break
-        // 			}
-        // 		}
-        // 	}
+        //  for (var i = 0; i < moveListResponse.success_list.files.length; i++) {
+        //    for (var j = 0; j < $scope.objList.length; ++j) {
+        //      if ($scope.objList[j].file_id == moveListResponse.success_list.files[i].file_id) {
+        //        $scope.objList.splice(j, 1)
+        //        break
+        //      }
+        //    }
+        //  }
 
-        // 	for (var i = 0; i < moveListResponse.success_list.folders.length; i++) {
-        // 		for (var j = 0; j < $scope.objList.length; ++j) {
-        // 			if ($scope.objList[j].folder_id == moveListResponse.success_list.folders[i].folder_id) {
-        // 				$scope.objList.splice(j, 1)
-        // 				break
-        // 			}
-        // 		}
-        // 	}
+        //  for (var i = 0; i < moveListResponse.success_list.folders.length; i++) {
+        //    for (var j = 0; j < $scope.objList.length; ++j) {
+        //      if ($scope.objList[j].folder_id == moveListResponse.success_list.folders[i].folder_id) {
+        //        $scope.objList.splice(j, 1)
+        //        break
+        //      }
+        //    }
+        //  }
         // }
 
         if (moveListResponse.failed_list.folders.length == 0 && moveListResponse.failed_list.files.length == 0) {
@@ -584,14 +584,14 @@ angular.module('App.Files').controller('App.Files.Controller', [
       })
 
       copyListModal.result.then(function(copyListResponse) {
-          if (copyListResponse.failed_list.folders.length == 0 && copyListResponse.failed_list.files.length == 0) {
-            refreshFileList();
-            Notification.show({
-                title: '成功',
-                type: 'success',
-                msg: 'LANG_FILE_COPY_SUCCESS_MESSAGE',
-                closeable: true
-            });
+        if (copyListResponse.failed_list.folders.length == 0 && copyListResponse.failed_list.files.length == 0) {
+          refreshFileList();
+          Notification.show({
+            title: '成功',
+            type: 'success',
+            msg: 'LANG_FILE_COPY_SUCCESS_MESSAGE',
+            closeable: true
+          });
         } else {
           $scope.show_dele_btn = true
           var errorMsg = ''
@@ -615,6 +615,7 @@ angular.module('App.Files').controller('App.Files.Controller', [
             closeable: true
           })
         }
+        $rootScope.$broadcast('storage')
       })
     }
 
@@ -660,7 +661,7 @@ angular.module('App.Files').controller('App.Files.Controller', [
       var obj_preview = obj_permission.substring(4, 5) //预览权限
       var obj_download = obj_permission.substring(5, 6) //下载权限
       var obj_upload = obj_permission.substring(6, 7) //上传权限
-      //权限列表
+        //权限列表
       var obj_owner = (obj_owner == '1') ? true : false
       var obj_delete = (obj_delete == '1') ? true : false
       var obj_edit = (obj_edit == '1') ? true : false
@@ -1164,19 +1165,19 @@ angular.module('App.Files').controller('App.Files.Controller', [
                 })
               } else {
                 var fileType = Utils.getFileTypeByName(files[i].name)
-                if(fileType == 'note'){
+                if (fileType == 'note') {
                   Notification.show({
                     title: '失败',
                     type: 'danger',
                     msg: 'LANG_UPLOAD_TYPE_LIMIT',
                     closeable: false
                   })
-                }else{
+                } else {
                   $files.push(files[i]);
                   files_total_size += files[i].size;
                 }
               }
-              
+
             }
             var contain_same_file = false;
             $scope.objList.forEach(function(obj) {
@@ -1185,8 +1186,8 @@ angular.module('App.Files').controller('App.Files.Controller', [
                 if (!obj.folder && (obj.file_name.toLowerCase() == upload_file.name.toLowerCase()) && !contain_same_file) {
                   contain_same_file = true;
                   Confirm.show({
-                      title: 'LANG_FILES_CONFIRM',
-                      content: 'LANG_FILES_OVERLAP_CONFIRM',
+                    title: 'LANG_FILES_CONFIRM',
+                    content: 'LANG_FILES_OVERLAP_CONFIRM',
                     ok: function($modalInstance) {
                       $modalInstance.dismiss('cancel');
                       if (files_total_size > $scope.user_unused_size) {
@@ -1371,21 +1372,21 @@ angular.module('App.Files').controller('App.Files.Controller', [
     });
   };
 }).directive('focusMe', ['$timeout', '$parse',
-  function($timeout, $parse) {
-    return {
-      scope: {
-        'focus': '=focusMe'
-      },
-      link: function(scope, element) {
-        scope.$watch('focus', function(value) {
-          if (value === true) {
-            $timeout(function() {
-              element[0].focus();
-            });
-          }
-        });
-        element.bind('blur', function() {
-          scope.focus = false
+    function($timeout, $parse) {
+      return {
+        scope: {
+          'focus': '=focusMe'
+        },
+        link: function(scope, element) {
+          scope.$watch('focus', function(value) {
+            if (value === true) {
+              $timeout(function() {
+                element[0].focus();
+              });
+            }
+          });
+          element.bind('blur', function() {
+              scope.focus = false
         })
       }
     };

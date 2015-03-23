@@ -5,13 +5,15 @@ angular.module('App.Trash').controller('App.Trash.Controller', [
   'Utils',
   '$modal',
   'Notification',
+  '$rootScope',
   function(
     $scope,
     CONFIG,
     Trash,
     Utils,
     $modal,
-    Notification
+    Notification,
+    $rootScope
   ) {
 
     //回收站文件列表
