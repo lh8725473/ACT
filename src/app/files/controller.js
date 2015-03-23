@@ -164,7 +164,7 @@ angular.module('App.Files').controller('App.Files.Controller', [
       })
     })
 
-    // 删除或移动时刷新文件列表
+    // 删除,移动或复制时刷新文件列表
     function refreshFileList() {
       objListPage = 1;
       $scope.loading = true
@@ -584,13 +584,14 @@ angular.module('App.Files').controller('App.Files.Controller', [
       })
 
       copyListModal.result.then(function(copyListResponse) {
-        if (copyListResponse.failed_list.folders.length == 0 && copyListResponse.failed_list.files.length == 0) {
-          Notification.show({
-            title: '成功',
-            type: 'success',
-            msg: 'LANG_FILE_COPY_SUCCESS_MESSAGE',
-            closeable: true
-          })
+          if (copyListResponse.failed_list.folders.length == 0 && copyListResponse.failed_list.files.length == 0) {
+            refreshFileList();
+            Notification.show({
+                title: '成功',
+                type: 'success',
+                msg: 'LANG_FILE_COPY_SUCCESS_MESSAGE',
+                closeable: true
+            });
         } else {
           $scope.show_dele_btn = true
           var errorMsg = ''
@@ -659,7 +660,7 @@ angular.module('App.Files').controller('App.Files.Controller', [
       var obj_preview = obj_permission.substring(4, 5) //预览权限
       var obj_download = obj_permission.substring(5, 6) //下载权限
       var obj_upload = obj_permission.substring(6, 7) //上传权限
-        //权限列表
+      //权限列表
       var obj_owner = (obj_owner == '1') ? true : false
       var obj_delete = (obj_delete == '1') ? true : false
       var obj_edit = (obj_edit == '1') ? true : false
@@ -669,7 +670,7 @@ angular.module('App.Files').controller('App.Files.Controller', [
       var obj_upload = (obj_upload == '1') ? true : false
 
       //设置同步或者取消同步
-      $scope.syncText = (obj.isSynced == 0) ? '设置同步' : '取消同步'
+      $scope.syncText = (obj.isSynced == 0) ? 'LANG_SET_SYNC' : 'LANG_CANCEL_SYNC'
 
       //权限判断
       if (obj.owner_uid == $cookies.userId) { //拥有者
@@ -695,15 +696,12 @@ angular.module('App.Files').controller('App.Files.Controller', [
         } else {
           $scope.show_quit_menu = false
         }
-        if (obj_download) {
-          $scope.show_download_menu = true
-        } else {
-          $scope.show_download_menu = false
-        }
+        $scope.show_download_menu = (obj_download) ? true : false //下载菜单
       } else {
         $scope.show_quit_menu = false
         $scope.show_discuss_menu = (obj_preview) ? true : false //讨论菜单
-        $scope.show_download_menu = (obj_download) ? true : false //下载菜单
+        var fileType = Utils.getFileTypeByName(obj.file_name)
+        $scope.show_download_menu = (obj_download && fileType != 'note') ? true : false //下载菜单
       }
 
       //取消所有选中状态
@@ -1165,9 +1163,20 @@ angular.module('App.Files').controller('App.Files.Controller', [
                   closeable: false
                 })
               } else {
-                $files.push(files[i]);
-                files_total_size += files[i].size;
+                var fileType = Utils.getFileTypeByName(files[i].name)
+                if(fileType == 'note'){
+                  Notification.show({
+                    title: '失败',
+                    type: 'danger',
+                    msg: 'LANG_UPLOAD_TYPE_LIMIT',
+                    closeable: false
+                  })
+                }else{
+                  $files.push(files[i]);
+                  files_total_size += files[i].size;
+                }
               }
+              
             }
             var contain_same_file = false;
             $scope.objList.forEach(function(obj) {
@@ -1176,8 +1185,8 @@ angular.module('App.Files').controller('App.Files.Controller', [
                 if (!obj.folder && (obj.file_name.toLowerCase() == upload_file.name.toLowerCase()) && !contain_same_file) {
                   contain_same_file = true;
                   Confirm.show({
-                    title: '确认',
-                    content: '该目录下已经包含您此次上传文件列表中的同名文件，是否覆盖？',
+                      title: 'LANG_FILES_CONFIRM',
+                      content: 'LANG_FILES_OVERLAP_CONFIRM',
                     ok: function($modalInstance) {
                       $modalInstance.dismiss('cancel');
                       if (files_total_size > $scope.user_unused_size) {

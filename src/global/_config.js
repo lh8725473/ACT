@@ -91,6 +91,10 @@
       small: 'web_files_ppt.png',
       large: 'file_ppt_large.png'
     },
+    note: {
+      small: 'file_note.png',
+      large: 'file_note_large.png'
+    },
     all: { //default icon
       small: 'web_files_unknown.png',
       large: 'file_default_large.png'

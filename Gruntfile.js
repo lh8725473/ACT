@@ -52,12 +52,20 @@ module.exports = function(grunt) {
           dest: 'production/'
         }]
       },
-      fonts: {
+      homeFonts: {
         files: [{
           expand: true,
           cwd: './bower_components/bootstrap/dist/',
           src: ['fonts/**'],
           dest: 'production/bower_components/bootstrap/'
+        }]
+      },
+      fonts: {
+        files: [{
+          expand: true,
+          cwd: './bower_components/bootstrap/dist/',
+          src: ['fonts/**'],
+          dest: 'production/css/'
         }]
       },
       ZeroClipboard: {

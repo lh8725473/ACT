@@ -53,6 +53,7 @@ angular.module('App.Locales').config(['$translateProvider', function($translateP
 
     "*********************************************************": "Invite-team-users",
     "LANG_INVITE_MESSAGE_EMPTY_MAIL": "邀请人邮箱不能为空",
+    "LANG_INVITE_MESSAGE_VREIFY_MAIL": "邮箱格式不正确",
     "LANG_INVITE_MESSAGE_DEFAULT_INVITE_CONTENT": "你好，我想在全携通中与你分享文件夹",
     "LANG_INVITE_MESSAGE_INVITE_SUCCESS": "邀请成功",
 
@@ -104,6 +105,7 @@ angular.module('App.Locales').config(['$translateProvider', function($translateP
     "LANG_MOVE_FILES" : "移动文件(夹)",
     "LANG_MOVE_FILES_CONFIRM": "移动会将文件（夹）从当前的协作文件夹中移除并存放到所选的目录中，确定移动吗？",
     "LANG_MOVE_FILES_SAME_NAME_FILE": "存在同名文件或此操作无权限",
+    "LANG_MOVE_FILES_NOT_BE_CURRENT_FOLDER": "不能移动到当前文件夹下",
 
     "*********************************************************": "Copy-file",
     "LANG_COPY_FOLDER": "复制文件(夹)",
@@ -141,6 +143,8 @@ angular.module('App.Locales').config(['$translateProvider', function($translateP
     "LANG_FILES_FOLDER_NAME_NOT_MORE_THAN_200": "文件夹名不能超过200个字符",
     "LANG_FILES_FOLDER_NAME_CONTAIN_SPENCIAL_CHARACTERS": "文件名不允许含有特殊字符\\ \/ \: \* \? \" \< \> \|",
     "LANG_FILES_VERSION_TITLE": "版本",
+    "LANG_FILES_CONFIRM": "确认",
+    "LANG_FILES_OVERLAP_CONFIRM": "该目录下已经包含您此次上传文件列表中的同名文件，是否覆盖？",
 
     "*********************************************************": "delete files",
     "LANG_DELETE_FILES": "删除",
@@ -177,6 +181,7 @@ angular.module('App.Locales').config(['$translateProvider', function($translateP
     "*********************************************************": "app files",
     "LANG_FILE_ROOT_FOLDER": "根目录",
     "LANG_FILE_NEW_FOLDER": "新建文件夹",
+    "LANG_CREATE_NOTE": "新建笔记",
     "LANG_FILE_DELETE": "删除",
     "LANG_FILE_NAME": "文件名",
     "LANG_FILE_STATUS": "状态",
@@ -195,6 +200,8 @@ angular.module('App.Locales').config(['$translateProvider', function($translateP
     "LANG_FILE_ADD_TAG": "添加标签",
     "LANG_FILE_QUIT_COLLABORATION": "退出协作",
     "LANG_FILE_VERSION": "历史版本",
+    "LANG_SET_SYNC": "设置同步",
+    "LANG_CANCEL_SYNC": "取消同步",
     "LANG_FILE_PREVIEW": "预览 >",
 
     "LANG_FILE_REPLY": "回复",
@@ -252,9 +259,17 @@ angular.module('App.Locales').config(['$translateProvider', function($translateP
     "LANG_HEADER_NOTIFICATION": "通知",
     "LANG_HEADER_SEARCH_HINT": "搜索文件或者文件夹",
     "LANG_HEADER_SEARCH": "搜索",
+    "LANG_HEADER_COMBO_IS_USING": "您正在使用的是全携通",
+    "LANG_HEADER_COMBO_UPGRADE": "升级可创建更大团队，拥有更多功能",
+    "LANG_HEADER_COMBO_UPGRADE_IMMEDIATELY": "立即升级",
+    "LANG_HEADER_COMBO_USED": "您所使用的全携通",
+    "LANG_HEADER_COMBO_WATCH": "查看",
+    "LANG_HEADER_COMBO_USED_LEFT": "离使用结束还有{{left_days}}天",
+    "LANG_HEADER_COMBO_CONTINUE_USEING": "继续使用",
 
     "*********************************************************": "Upload progress-dialog",
     "LANG_UPLOAD_LIST": "上传列表",
+    "LANG_UPLOAD_TYPE_LIMIT": "不允许上传.note类型文件",
 
     "*********************************************************": "Sidebar",
     "LANG_SIDE_BAR_ALL_FILES": "所有文件",
@@ -274,6 +289,10 @@ angular.module('App.Locales').config(['$translateProvider', function($translateP
     "LANG_TRASH_RECYCLE_UPDATE": "更新",
     "LANG_TRASH_RECYCLE_COMFIRM_YES": "确定",
     "LANG_TRASH_RECYCLE_COMFIRM_NO": "取消",
+
+    "*********************************************************": "Note",
+    "LANG_NOTE_NAME_EMPTY": "笔记标题不能为空",
+    "LANG_NOTE_CONTENT_EMPTY": "笔记内容不能为空",
 
     "*********************************************************": "Revert recycle confirm",
     "LANG_TRASH_REVERT_COMFIRM_UNDELETE": "还原文件",

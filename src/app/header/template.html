@@ -79,9 +79,9 @@
       <button class="search-button btn btn-default" ng-click = "searchByButton(searchFilesValue)">{{'LANG_HEADER_SEARCH' | translate}}</button>
     </div>
     <div class="pull-left buy-product" ng-show = "user.sadmin">
-      <span ng-show = "package.package_id == 0">您正在使用的是全携通&nbsp;<label class="product-type">{{package.package_name}}</label>，升级可创建更大团队，拥有更多功能&nbsp;&nbsp;&nbsp;<a href="renew.html#package_id={{package.package_id}}">立即升级</a></span>
-      <span ng-show = "package.package_id != 0 && !package.remind">您所使用的全携通&nbsp;<label class="product-type">{{package.package_name}}</label>&nbsp;&nbsp;&nbsp;<a href="renew.html#package_id={{package.package_id}}">查看</a></span>
-      <span ng-show = "package.package_id != 0 && package.remind">您所使用的全携通&nbsp;<label class="product-type">{{package.package_name}}</label>&nbsp;离使用结束还有{{package.last_days}}天&nbsp;&nbsp;&nbsp;<a href="renew.html#package_id={{package.package_id}}">继续使用</a></span>
+      <span ng-show = "package.package_id == 0">{{'LANG_HEADER_COMBO_IS_USING' | translate}}&nbsp;<label class="product-type">{{package.package_name}}</label>，{{'LANG_HEADER_COMBO_UPGRADE' | translate}}&nbsp;&nbsp;&nbsp;<a href="renew.html#package_id={{package.package_id}}">{{'LANG_HEADER_COMBO_UPGRADE_IMMEDIATELY' | translate}}</a></span>
+      <span ng-show = "package.package_id != 0 && !package.remind">{{'LANG_HEADER_COMBO_USED' | translate}}&nbsp;<label class="product-type">{{package.package_name}}</label>&nbsp;&nbsp;&nbsp;<a href="renew.html#package_id={{package.package_id}}">{{'LANG_HEADER_COMBO_WATCH' | translate}}</a></span>
+      <span ng-show = "package.package_id != 0 && package.remind">{{'LANG_HEADER_COMBO_USED' | translate}}&nbsp;<label class="product-type">{{package.package_name}}</label>&nbsp;{{'LANG_HEADER_COMBO_USED_LEFT' | translate: '{left_days: package.last_days}'}}&nbsp;&nbsp;&nbsp;<a href="renew.html#package_id={{package.package_id}}">{{'LANG_HEADER_COMBO_CONTINUE_USEING' | translate}}</a></span>
     </div>
   </div>
 </div>

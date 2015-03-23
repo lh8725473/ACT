@@ -1,174 +1,137 @@
 <div class="files-view" ng-controller="App.Files.Controller">
-    <div class="top-bar">
-        <div class="pull-left root-path" ng-class="{ isRoot: isRoot }">
-            <a ui-sref="files({folderId: 0})">{{'LANG_FILE_ROOT_FOLDER' | translate}}
-            </a>
-        </div>
-        <div class="folder-crumb pull-left" ng-repeat="path in folderPath">
-            <img src="images/arrow_icon.png" />
-            <a ui-sref="files({folderId: path.id})">{{path.name}}
-            </a>
-        </div>
-        <!--<div class="view-model-swither pull-right">
-			视图转换and排序
-		</div>-->
+  <div class="top-bar">
+    <div class="pull-left root-path" ng-class="{ isRoot: isRoot }">
+      <a ui-sref="files({folderId: 0})">{{'LANG_FILE_ROOT_FOLDER' | translate}}</a>
     </div>
-    <div class="top-bar-bottom">
+    <div class="folder-crumb pull-left" ng-repeat="path in folderPath">
+      <img src="images/arrow_icon.png" />
+      <a ui-sref="files({folderId: path.id})">{{path.name}}</a>
     </div>
-    <div class="buttonGroup">
-        <button ng-click="upload()" class="btn btn-default" ng-disabled="!folder_upload">{{'LANG_UPLOAD_FILE' | translate}}</button>
-        <button ng-click="showCreateFolder()" class="btn btn-default" ng-disabled="!folder_delete">{{'LANG_FILE_NEW_FOLDER' | translate}}</button>
-        <button ng-click="createNote()" class="btn btn-default" ng-show="folder_edit">新建笔记</button>
-        <button ng-click="deleteObjList()" class="btn btn-default" ng-show="show_dele_btn">{{'LANG_FILE_DELETE' | translate}}</button>
-        <button ng-click="removeObjList()" class="btn btn-default" ng-show="show_dele_btn">{{'LANG_FILE_MOVE' | translate}}</button>
-        <button ng-click="copyObjList()" class="btn btn-default" ng-show="show_dele_btn">{{'LANG_FILE_COPY' | translate}}</button>
-    </div>
-    <div class="title">
-        <div class="title-checkbox col">
-            <input type="checkbox" ng-click="selectedAllswitch()" ng-model="selectedAll" />
+    <!--<div class="view-model-swither pull-right">视图转换and排序</div>
+  -->
+</div>
+<div class="top-bar-bottom"></div>
+<div class="buttonGroup">
+  <button ng-click="upload()" class="btn btn-default" ng-disabled="!folder_upload">{{'LANG_UPLOAD_FILE' | translate}}</button>
+  <button ng-click="showCreateFolder()" class="btn btn-default" ng-disabled="!folder_delete">{{'LANG_FILE_NEW_FOLDER' | translate}}</button>
+  <button ng-click="createNote()" class="btn btn-default" ng-show="folder_edit">
+  {{'LANG_CREATE_NOTE' | translate}}</button>
+  <button ng-click="deleteObjList()" class="btn btn-default" ng-show="show_dele_btn">{{'LANG_FILE_DELETE' | translate}}</button>
+  <button ng-click="removeObjList()" class="btn btn-default" ng-show="show_dele_btn">{{'LANG_FILE_MOVE' | translate}}</button>
+  <button ng-click="copyObjList()" class="btn btn-default" ng-show="show_dele_btn">{{'LANG_FILE_COPY' | translate}}</button>
+</div>
+<div class="title">
+  <div class="title-checkbox col">
+    <input type="checkbox" ng-click="selectedAllswitch()" ng-model="selectedAll" />
+  </div>
+  <div class="title-name col">
+    <span>{{'LANG_FILE_NAME' | translate}}</span>
+  </div>
+  <div class="title-state col">
+    <span>{{'LANG_FILE_STATUS' | translate}}</span>
+  </div>
+  <div class="title-size col">
+    <span>{{'LANG_FILE_SIZE' | translate}}</span>
+  </div>
+  <div class="title-permission col">
+    <span>{{'LANG_FILE_AUTHORITY' | translate}}</span>
+  </div>
+  <div class="title-action col">
+    <span>{{'LANG_FILE_SHARE' | translate}}</span>
+  </div>
+</div>
+<p class="file-null text-center" ng-show="option.isFileNull">{{'LANG_FILE_IS_NULL' | translate}}</p>
+<perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="1" refresh-on-change="objList" on-scroll="onFileListScroll(scrollTop, scrollHeight)">
+  <div class="folder-grid">
+    <div class="table">
+      <div ng-show = "showCreateFolderDiv" class="create-folder-div">
+        <input type="text" placeholder="{{'LANG_FILE_FOLDER_NAME' | translate}}" class="create-folder form-control col-sm-8" ng-model = "createFolderData.createFolderName" ng-enter = "createFolder(createFolderData.createFolderName)" focus-me="createFolderData.myInputFocus">
+        <div class="create-buttonGroup col-sm-6">
+          <button ng-click="createFolder(createFolderData.createFolderName)" class="btn btn-default">{{'LANG_BUTTON_CONFIRM' | translate}}</button>
+          <button ng-click="cancelCreate()" class="btn btn-default">{{'LANG_BUTTON_CANCEL' | translate}}</button>
         </div>
-        <div class="title-name col">
-            <span>{{'LANG_FILE_NAME' | translate}}</span>
+      </div>
+      <div class="file-row" ng-repeat="obj in objList" ng-class = "{ selected: obj.checked }" context-menu="onRightClick(obj)" data-target="myMenu" ng-click = "selectObj($event, obj)">
+        <div class="input-checkbox-td">
+          <input type="checkbox" ng-model = "obj.checked" ng-click = "selectCheck($event, obj)"/>
         </div>
-        <div class="title-state col">
-            <span>{{'LANG_FILE_STATUS' | translate}}</span>
-        </div>
-        <div class="title-size col">
-            <span>{{'LANG_FILE_SIZE' | translate}}</span>
-        </div>
-        <div class="title-permission col">
-            <span>{{'LANG_FILE_AUTHORITY' | translate}}</span>
-        </div>
-        <div class="title-action col">
-            <span>{{'LANG_FILE_SHARE' | translate}}</span>
-        </div>
-    </div>
-    <p class="file-null text-center" ng-show="option.isFileNull">{{'LANG_FILE_IS_NULL' | translate}}</p>
-    <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="1" refresh-on-change="objList" on-scroll="onFileListScroll(scrollTop, scrollHeight)">
-		<div class="folder-grid">
-			<div class="table">
-					<div ng-show = "showCreateFolderDiv" class="create-folder-div">
-							<input type="text" placeholder="{{'LANG_FILE_FOLDER_NAME' | translate}}" class="create-folder form-control col-sm-8" ng-model = "createFolderData.createFolderName" ng-enter = "createFolder(createFolderData.createFolderName)" focus-me="createFolderData.myInputFocus">
-							<div class="create-buttonGroup col-sm-6">
-								<button ng-click="createFolder(createFolderData.createFolderName)" class="btn btn-default">
-                  {{'LANG_BUTTON_CONFIRM' | translate}}
-								</button>
-								<button ng-click="cancelCreate()" class="btn btn-default">
-                  {{'LANG_BUTTON_CANCEL' | translate}}
-								</button>
-							</div>
-					</div>
-					<div class="file-row" ng-repeat="obj in objList" ng-class = "{ selected: obj.checked }" context-menu="onRightClick(obj)" data-target="myMenu" ng-click = "selectObj($event, obj)">
-						<div class="input-checkbox-td">
-						<input type="checkbox" ng-model = "obj.checked" ng-click = "selectCheck($event, obj)"/>
-						</div>
-						<div class="img-name-td">
-						  <div class="ioc">
-						    <img ng-src = "{{obj.smallIcon}}" height="42px" width="42px" onError="this.onerror=null;this.src='images/web_files_unknown.png';" />
-                <img src="images/web_sync.png" class="sync" ng-show = "obj.isSynced == 1"/>
-						  </div>
+        <div class="img-name-td">
+          <div class="ioc">
+            <img ng-src = "{{obj.smallIcon}}" height="42px" width="42px" onError="this.onerror=null;this.src='images/web_files_unknown.png';" />
+            <img src="images/web_sync.png" class="sync" ng-show = "obj.isSynced == 1"/>
+          </div>
 
-							<div class="file-name" ng-hide = "obj.rename">
-								<a ui-sref="files({folderId: obj.folder_id})" ng-show = "obj.folder" title="{{obj.folder_name}}">
-									{{obj.folder_name}}
-								</a>
-								<a ng-show = "!obj.folder&&obj.isPreview&&!obj.isNote" ng-click = "previewFile($event, obj)" title="{{obj.file_name}}">
-									{{obj.file_name}}
-								</a>
-								<a ng-show = "!obj.folder&&!obj.isPreview&&!obj.isNote" ng-class = "{ noPreview: !obj.isPreview }" title="{{obj.file_name}}">
-									{{obj.file_name}}
-								</a>
-								<a ng-click = "previewNote(obj)" ng-show = "!obj.folder&&obj.isNote" ng-class = "{ noPreview: !obj.is_preview }" title="{{obj.file_name}}">
-                  {{obj.file_name}}
-                </a>
-								<div class="tag">
-								  <span ng-repeat = "tag in obj.tags" ng-show = "obj.tags.length != 0">{{tag.tag_name}}</span>
-									<span class="add-tag" ng-show = "obj.tags.length == 0" ng-click = "createTag(obj)" >+{{'LANG_FILE_ADD_TAG' | translate}}</span>
-								</div>
-							</div>
-							<div class="rename-form" ng-show = "obj.rename">
-								<input type="text" class="rename-file form-control col-sm-8" ng-model = "obj.renameInputValue" ng-enter="renameFile($event, obj)" focus-me = "obj.focus" ng-click = "preventPropagation($event)">
-								<div class="rename-buttonGroup">
-									<button ng-click="renameFile($event, obj)" class="btn btn-default">
-                    {{'LANG_BUTTON_CONFIRM' | translate}}
-									</button>
-									<button ng-click="cancelRenameFile($event, obj)" class="btn btn-default">
-                    {{'LANG_BUTTON_CANCEL' | translate}}
-									</button>
-								</div>
-							</div>
-						</div>
-						<div class="state-td" title="{{obj.action}}"> {{obj.action}}</div>
-						<div class="file-sise-td">
-						  <img src="images/file_icon.png" ng-show = "obj.folder"/>
-						  <span ng-show = "obj.folder">{{obj.file_count}}</span>
-						  <span ng-hide = "obj.folder">{{obj.format_size}}</span>
-						</div>
-						<div class="permission-td"> {{obj.permission_value | translate}} </div>
-						<div class="action-td">
-							<div class = "link-share-ico" ng-click = "linkShare($event, obj)" ng-class = "{ is_edit: obj.is_getLink , has_link: obj.has_link }" tooltip-append-to-body="true" tooltip-placement="top" ng-show = "obj.is_getLink" tooltip="{{obj.linkText | translate}}"></div>
-							<div class = "link-share-ico" ng-click = "linkShare($event, obj)" ng-class = "{ is_edit: obj.is_getLink , has_link: obj.has_link}" ng-show = "!obj.is_getLink"></div>
-							<div class = "share-ico" ng-show = "obj.folder && obj.is_edit" ng-click = "inviteTeamUsers($event, obj)" ng-class = "{ is_edit: obj.is_edit }" tooltip-append-to-body="true" tooltip-placement="top" tooltip="{{'LANG_FILE_INVITE_COLLABORATOR' | translate}}"></div>
-							<div class = "share-ico" ng-show = "obj.folder && !obj.is_edit" ng-click = "inviteTeamUsers($event, obj)" ng-class = "{ is_edit: obj.is_edit }"></div>
-							<span class="pull-left" ng-show="obj.folder && obj.is_edit">{{obj.user_count}}</span>
-							<div class = "discuss-ico" ng-hide = "obj.folder" ng-click="openUserDiscuss($event, obj)" ng-class = "{ is_edit: obj.is_preview }" tooltip-append-to-body="true" tooltip-placement="top" tooltip="{{'LANG_FILE_DISCUSS' | translate}}"></div>
-							<span class = "pull-left">{{obj.discuss_count}} </span>
-							<div class = "version-ico" ng-hide = "obj.folder" ng-click="openFileVersion($event, obj)" ng-class = "{ is_edit: obj.is_preview }" tooltip-append-to-body="true" tooltip-placement="top" tooltip="{{'LANG_FILES_VERSION_TITLE' | translate}}"></div>
-							<span class = "pull-left">{{obj.version_count}} </span>
-						</div>
-					</div>
-					<div class="dropdown position-fixed" id="myMenu">
-						<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
-							<li ng-show = "show_download_menu">
-								<a class="pointer" role="menuitem" tabindex="1" ng-click="dowloadFile(checkedObj)">
-                  {{'LANG_FILE_DOWNLOAD' | translate}}
-								</a>
-							</li>
-							<li ng-show = "show_download_menu && checkedObj.folder && checkedObj.isSyncObj == checkedObj.isSynced">
-                <a class="pointer" role="menuitem" tabindex="2" ng-click="setSync(checkedObj)">
-                  {{syncText}}
-                </a>
-              </li>
-							<li ng-show = "show_delete_menu">
-								<a class="pointer" role="menuitem" tabindex="3" ng-click="deleteObj()">
-                  {{'LANG_FILE_DELETE' | translate}}
-								</a>
-							</li>
-							<li ng-show = "show_remove_menu">
-								<a class="pointer" role="menuitem" tabindex="4" ng-click="moveFile()">
-                  {{'LANG_FILE_MOVE' | translate}}
-								</a>
-							</li>
-                            <li ng-show = "show_remove_menu">
-								<a class="pointer" role="menuitem" tabindex="4" ng-click="copyObjList()">
-                  {{'LANG_FILE_COPY' | translate}}
-								</a>
-							</li>
-							<li ng-show = "show_rename_menu">
-								<a class="pointer" role="menuitem" tabindex="5" ng-click="renameFileForm()">
-                  {{'LANG_FILE_RENAME' | translate}}
-								</a>
-							</li>
-							<li ng-show = "show_discuss_menu">
-								<a ng-click="openUserDiscuss($event, checkedObj, true)" class="large button">
-                  {{'LANG_FILE_DISCUSS' | translate}}
-								</a>
-							</li>
-							<li>
-                <a ng-click="createTag(checkedObj)" class="large button">
-                  {{'LANG_FILE_ADD_TAG' | translate}}
-                </a>
-              </li>
-              <li ng-show = "show_quit_menu">
-                <a ng-click="quitTeam(checkedObj)" class="large button">
-                  {{'LANG_FILE_QUIT_COLLABORATION' | translate}}
-                </a>
-              </li>
-						</ul>
-					</div>
-			</div>
-		</div>
-  	<loading-indicator ng-show="loading"></loading-indicator>
-	</perfect-scrollbar>
+          <div class="file-name" ng-hide = "obj.rename">
+            <a ui-sref="files({folderId: obj.folder_id})" ng-show = "obj.folder" title="{{obj.folder_name}}">{{obj.folder_name}}</a>
+            <a ng-show = "!obj.folder&&obj.isPreview&&!obj.isNote" ng-click = "previewFile($event, obj)" title="{{obj.file_name}}">{{obj.file_name}}</a>
+            <a ng-show = "!obj.folder&&!obj.isPreview&&!obj.isNote" ng-class = "{ noPreview: !obj.isPreview }" title="{{obj.file_name}}">{{obj.file_name}}</a>
+            <a ng-click = "previewNote(obj)" ng-show = "!obj.folder&&obj.isNote" ng-class = "{ noPreview: !obj.is_preview }" title="{{obj.file_name}}">{{obj.file_name}}</a>
+            <div class="tag">
+              <span ng-repeat = "tag in obj.tags" ng-show = "obj.tags.length != 0">{{tag.tag_name}}</span>
+              <span class="add-tag" ng-show = "obj.tags.length == 0" ng-click = "createTag(obj)" >+{{'LANG_FILE_ADD_TAG' | translate}}</span>
+            </div>
+          </div>
+          <div class="rename-form" ng-show = "obj.rename">
+            <input type="text" class="rename-file form-control col-sm-8" ng-model = "obj.renameInputValue" ng-enter="renameFile($event, obj)" focus-me = "obj.focus" ng-click = "preventPropagation($event)">
+            <div class="rename-buttonGroup">
+              <button ng-click="renameFile($event, obj)" class="btn btn-default">{{'LANG_BUTTON_CONFIRM' | translate}}</button>
+              <button ng-click="cancelRenameFile($event, obj)" class="btn btn-default">{{'LANG_BUTTON_CANCEL' | translate}}</button>
+            </div>
+          </div>
+        </div>
+        <div class="state-td" title="{{obj.action}}">{{obj.action}}</div>
+        <div class="file-sise-td">
+          <img src="images/file_icon.png" ng-show = "obj.folder"/>
+          <span ng-show = "obj.folder">{{obj.file_count}}</span>
+          <span ng-hide = "obj.folder">{{obj.format_size}}</span>
+        </div>
+        <div class="permission-td">{{obj.permission_value | translate}}</div>
+        <div class="action-td">
+          <div class = "link-share-ico" ng-click = "linkShare($event, obj)" ng-class = "{ is_edit: obj.is_getLink , has_link: obj.has_link }" tooltip-append-to-body="true" tooltip-placement="top" ng-show = "obj.is_getLink" tooltip="{{obj.linkText | translate}}"></div>
+          <div class = "link-share-ico" ng-click = "linkShare($event, obj)" ng-class = "{ is_edit: obj.is_getLink , has_link: obj.has_link}" ng-show = "!obj.is_getLink"></div>
+          <div class = "share-ico" ng-show = "obj.folder && obj.is_edit" ng-click = "inviteTeamUsers($event, obj)" ng-class = "{ is_edit: obj.is_edit }" tooltip-append-to-body="true" tooltip-placement="top" tooltip="{{'LANG_FILE_INVITE_COLLABORATOR' | translate}}"></div>
+          <div class = "share-ico" ng-show = "obj.folder && !obj.is_edit" ng-click = "inviteTeamUsers($event, obj)" ng-class = "{ is_edit: obj.is_edit }"></div>
+          <span class="pull-left" ng-show="obj.folder">{{obj.user_count}}</span>
+          <div class = "discuss-ico" ng-hide = "obj.folder" ng-click="openUserDiscuss($event, obj)" ng-class = "{ is_edit: obj.is_preview }" tooltip-append-to-body="true" tooltip-placement="top" tooltip="{{'LANG_FILE_DISCUSS' | translate}}"></div>
+          <span class = "pull-left">{{obj.discuss_count}}</span>
+          <div class = "version-ico" ng-hide = "obj.folder" ng-click="openFileVersion($event, obj)" ng-class = "{ is_edit: obj.is_preview }" tooltip-append-to-body="true" tooltip-placement="top" tooltip="{{'LANG_FILES_VERSION_TITLE' | translate}}"></div>
+          <span class = "pull-left">{{obj.version_count}}</span>
+        </div>
+      </div>
+      <div class="dropdown position-fixed" id="myMenu">
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+          <li ng-show = "show_download_menu">
+            <a class="pointer" role="menuitem" tabindex="1" ng-click="dowloadFile(checkedObj)">{{'LANG_FILE_DOWNLOAD' | translate}}</a>
+          </li>
+          <li ng-show = "show_download_menu && checkedObj.folder && checkedObj.isSyncObj == checkedObj.isSynced">
+            <a class="pointer" role="menuitem" tabindex="2" ng-click="setSync(checkedObj)">{{syncText | translate}}</a>
+          </li>
+          <li ng-show = "show_delete_menu">
+            <a class="pointer" role="menuitem" tabindex="3" ng-click="deleteObj()">{{'LANG_FILE_DELETE' | translate}}</a>
+          </li>
+          <li ng-show = "show_remove_menu">
+            <a class="pointer" role="menuitem" tabindex="4" ng-click="moveFile()">{{'LANG_FILE_MOVE' | translate}}</a>
+          </li>
+          <li ng-show = "show_remove_menu">
+            <a class="pointer" role="menuitem" tabindex="4" ng-click="copyObjList()">{{'LANG_FILE_COPY' | translate}}</a>
+          </li>
+          <li ng-show = "show_rename_menu">
+            <a class="pointer" role="menuitem" tabindex="5" ng-click="renameFileForm()">{{'LANG_FILE_RENAME' | translate}}</a>
+          </li>
+          <li ng-show = "show_discuss_menu">
+            <a ng-click="openUserDiscuss($event, checkedObj, true)" class="large button">{{'LANG_FILE_DISCUSS' | translate}}</a>
+          </li>
+          <li>
+            <a ng-click="createTag(checkedObj)" class="large button">{{'LANG_FILE_ADD_TAG' | translate}}</a>
+          </li>
+          <li ng-show = "show_quit_menu">
+            <a ng-click="quitTeam(checkedObj)" class="large button">{{'LANG_FILE_QUIT_COLLABORATION' | translate}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <loading-indicator ng-show="loading"></loading-indicator>
+</perfect-scrollbar>
 </div>
 <div ng-include="'src/app/files/team-collaboration/template.html'"></div>

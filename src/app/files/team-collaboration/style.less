@@ -1,39 +1,45 @@
-.team-collaboration{
+.team-collaboration {
     width: 300px;
     border-left: 1px solid #ddd;
     position: absolute;
     right: 0;
     top: 0;
     bottom: 0;
+
     .position-fixed {
-      position: fixed;
-      z-index: 1000;
+        position: fixed;
+        z-index: 1000;
     }
-    .h4_add_guide{
+
+    .h4_add_guide {
         width: 100%;
         border-bottom: 1px solid #e8e8e8;
         padding: 0;
         margin-left: 15px;
     }
-    .add_guide{
+
+    .add_guide {
         width: 100%;
         margin-left: 20px;
         height: 305px;
         background: url("../../images/web_main_guide_add.png") no-repeat scroll rgba(0, 0, 0, 0);
     }
-    .h4_add_link{
+
+    .h4_add_link {
         width: 100%;
         border-bottom: 1px solid #e8e8e8;
         padding: 0;
         margin-left: 15px;
     }
-    .add_link{
+
+    .add_link {
         width: 100%;
         height: 250px;
         margin-left: 20px;
         background: url("../../images/web_main_guide_link.png") no-repeat scroll rgba(0, 0, 0, 0);
     }
-    .scroller{
+
+    .scroller {
         overflow-y: hidden;
         bottom: 60px;
         left: 0;
@@ -42,18 +48,21 @@
         top: 46px;
         position: absolute;
     }
-    .team-link-share{
+
+    .team-link-share {
         margin-top: 10px;
         border-top: 1px solid #e8e8e8;
         position: absolute;
         bottom: 0;
         height: 50px;
         width: 100%;
-        input{
+
+        input {
             margin-top: 8px;
         }
     }
-    .empty-scroller{
+
+    .empty-scroller {
         overflow-y: hidden;
         overflow-x: hidden;
         bottom: 0;
@@ -63,161 +72,44 @@
         top: 46px;
         position: absolute;
     }
-    .groups-users-header{
-      height: 36px;
-      line-height: 36px;
-      margin-bottom: 10px;
-      color: #555;
-      background-color: #E8ECF0;
-      .invite{
-        background: url("../../images/file_invite_contact_btn_off.png") no-repeat scroll rgba(0, 0, 0, 0);
-        cursor: pointer;
-        height: 17px;
-        width: 20px;
-        margin-top: 10px;
-      }
-      .invite:hover{
-        background: url("../../images/file_invite_contact_btn_pressed.png") no-repeat scroll rgba(0, 0, 0, 0);
-      }
-      a{
-        cursor: pointer;
-        text-decoration: none;
-      }
+
+    .groups-users-header {
+        height: 36px;
+        line-height: 36px;
+        margin-bottom: 10px;
+        color: #555;
+        background-color: #E8ECF0;
+
+        .invite {
+            background: url("../../images/file_invite_contact_btn_off.png") no-repeat scroll rgba(0, 0, 0, 0);
+            cursor: pointer;
+            height: 17px;
+            width: 20px;
+            margin-top: 10px;
+        }
+
+            .invite:hover {
+                background: url("../../images/file_invite_contact_btn_pressed.png") no-repeat scroll rgba(0, 0, 0, 0);
+            }
+
+        a {
+            cursor: pointer;
+            text-decoration: none;
+        }
     }
-    .dropdown-menu{
-        li{
+
+    .dropdown-menu {
+        li {
             cursor: pointer;
         }
     }
 
-    .groups{
+    .groups {
         padding: 5px 24px 5px 16px;
         font-size: 12px;
         color: #666;
-        .group-div{
-            height: 25px;
-            padding-bottom: 5px;
-            width: 100%;
-            .img{
-                cursor: pointer;
-                float: left;
-                width: 44px;
-                margin-right: 11px;
-            }
-            .group-name{
-                float: left;
-                width: 85px;
-                height: 24px;
-                line-height: 24px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                margin-right: 8px;
-            }
-            .group-permission{
-                float: left;
-                width: 80px;
-                height: 24px;
-                line-height: 24px;
-                position: relative;
-                color: #1f69ba;
-                span{
-                    cursor: pointer;
-                }
-                .caret{
-                    display: none;
-                }
-                .dropdown-menu{
-                    width: 85px;
-                    min-width: 85px;
-                    > li > a{
-                      font-size: 11px;
-                      padding: 3px 8px;
-                      overflow: hidden;
-                      text-overflow: ellipsis;
-                    }
-                    > li > a:hover {
-                      color: #262626;
-                      background-color: #E3E3E3;
-                    }
-                }
-            }
-            .delete-group{
-                cursor: pointer;
-                display: none;
-                float: right;
-                height: 24px;
-                line-height: 24px;
-            }
-        }
 
-        > .col-sm-12 {
-          padding-left: 42px;
-        }
-
-        .group-div:hover .caret{
-            display: inline-block;
-        }
-        .group-div:hover .delete-group{
-            display: inline-block;
-        }
-        .group-user{
-            padding-top: 5px;
-            padding-bottom: 5px;
-            img {
-              margin-right: 11px;
-            }
-        }
-    }
-    .groups:hover {
-      background-color: #ebf1f7;
-    }
-
-    .groups.not_edit .group-permission span{
-      cursor: auto;
-    }
-
-    .groups.not_edit{
-        .group-permission{
-            color: #666;
-        }
-        .dropdown-menu{
-            display: none;
-        }
-    }
-
-    .groups.not_edit:hover{
-        background-color : white;
-    }
-
-    .groups.not_edit:hover .caret{
-        display: none;
-    }
-    .groups.not_edit:hover .delete-group{
-        display: none;
-    }
-
-    .users{
-        padding-left: 36px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        padding-right: 24px;
-        height: 34px;
-        font-size: 12px;
-        color: #666;
-        .img{
-            float: left;
-            width: 35px;
-        }
-        .img:hover .arrows-img{
-            transform:rotate(90deg);
-            -sand-transform: rotate(90deg);/* IE */
-            -ms-transform: rotate(90deg); /* IE */
-            -moz-transform:rotate(90deg); /* Firefox 4 */
-            -webkit-transform:rotate(90deg); /* Safari and Chrome */
-            -o-transform:rotate(90deg); /* Opera */
-        }
-        .user-name{
+        .group-name {
             float: left;
             width: 85px;
             height: 24px;
@@ -227,35 +119,184 @@
             white-space: nowrap;
             margin-right: 8px;
         }
-        .user-permission{
+
+        .group-div {
+            height: 25px;
+            padding-bottom: 5px;
+            width: 100%;
+
+            .img {
+                cursor: pointer;
+                float: left;
+                width: 44px;
+                margin-right: 11px;
+            }
+
+            .group-permission {
+                float: left;
+                width: 80px;
+                height: 24px;
+                line-height: 24px;
+                position: relative;
+                color: #1f69ba;
+
+                span {
+                    cursor: pointer;
+                }
+
+                .caret {
+                    display: none;
+                }
+
+                .dropdown-menu {
+                    width: 85px;
+                    min-width: 85px;
+
+                    > li > a {
+                        font-size: 11px;
+                        padding: 3px 8px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+
+                        > li > a:hover {
+                            color: #262626;
+                            background-color: #E3E3E3;
+                        }
+                }
+            }
+
+            .delete-group {
+                cursor: pointer;
+                display: none;
+                float: right;
+                height: 24px;
+                line-height: 24px;
+            }
+        }
+
+        > .col-sm-12 {
+            padding-left: 42px;
+        }
+
+        .group-div:hover .caret {
+            display: inline-block;
+        }
+
+        .group-div:hover .delete-group {
+            display: inline-block;
+        }
+
+        .group-user {
+            padding-top: 5px;
+            padding-bottom: 5px;
+
+            img {
+                float: left;
+                margin-right: 11px;
+            }
+        }
+    }
+
+        .groups:hover {
+            background-color: #ebf1f7;
+        }
+
+        .groups.not_edit .group-permission span {
+            cursor: auto;
+        }
+
+        .groups.not_edit {
+            .group-permission {
+                color: #666;
+            }
+
+            .dropdown-menu {
+                display: none;
+            }
+        }
+
+            .groups.not_edit:hover {
+                background-color: white;
+            }
+
+                .groups.not_edit:hover .caret {
+                    display: none;
+                }
+
+                .groups.not_edit:hover .delete-group {
+                    display: none;
+                }
+
+    .users {
+        padding-left: 36px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-right: 24px;
+        height: 34px;
+        font-size: 12px;
+        color: #666;
+
+        .img {
+            float: left;
+            width: 35px;
+        }
+
+            .img:hover .arrows-img {
+                transform: rotate(90deg);
+                -sand-transform: rotate(90deg); /* IE */
+                -ms-transform: rotate(90deg); /* IE */
+                -moz-transform: rotate(90deg); /* Firefox 4 */
+                -webkit-transform: rotate(90deg); /* Safari and Chrome */
+                -o-transform: rotate(90deg); /* Opera */
+            }
+
+        .user-name {
+            float: left;
+            width: 85px;
+            height: 24px;
+            line-height: 24px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin-right: 8px;
+        }
+
+        .user-permission {
             float: left;
             position: relative;
             width: 80px;
             height: 24px;
             line-height: 24px;
             color: #1f69ba;
-            span{
+
+            span {
                 cursor: pointer;
             }
-            .caret{
+
+            .caret {
                 display: none;
             }
-            .dropdown-menu{
+
+            .dropdown-menu {
                 width: 85px;
                 min-width: 85px;
-                > li > a{
-                  font-size: 11px;
-                  padding: 3px 8px;
-                  overflow: hidden;
-                  text-overflow: ellipsis;
+
+                > li > a {
+                    font-size: 11px;
+                    padding: 3px 8px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
-                > li > a:hover {
-                  color: #262626;
-                  background-color: #E3E3E3;
-                }
+
+                    > li > a:hover {
+                        color: #262626;
+                        background-color: #E3E3E3;
+                    }
             }
         }
-        .delete-user{
+
+        .delete-user {
             float: right;
             cursor: pointer;
             display: none;
@@ -263,55 +304,68 @@
             line-height: 24px;
         }
     }
-    .users.is_owner .user-permission span{
-        cursor: auto;
-    }
-    .users.not_edit .user-permission span{
-        cursor: auto;
-    }
 
-    .users.is_owner{
-        .user-permission{
-            color: #666;
+        .users.is_owner .user-permission span {
+            cursor: auto;
         }
-        .dropdown-menu{
+
+        .users.not_edit .user-permission span {
+            cursor: auto;
+        }
+
+        .users.is_owner {
+            .user-permission {
+                color: #666;
+            }
+
+            .dropdown-menu {
+                display: none;
+            }
+        }
+
+        .users.not_edit {
+            .dropdown-menu {
+                display: none;
+            }
+        }
+
+        .users:hover {
+            background-color: #ebf1f7;
+        }
+
+        .users.is_owner:hover {
+            background-color: white;
+        }
+
+        .users.not_edit:hover {
+            background-color: white;
+        }
+
+        .users:hover .caret {
+            display: inline-block;
+        }
+
+        .users:hover .delete-user {
+            display: inline-block;
+        }
+
+        .users.is_owner:hover .caret {
             display: none;
         }
-    }
-    .users.not_edit{
-        .dropdown-menu{
+
+        .users.is_owner:hover .delete-user {
             display: none;
         }
-    }
 
-    .users:hover{
-        background-color: #ebf1f7;
-    }
-    .users.is_owner:hover{
-        background-color : white;
-    }
-    .users.not_edit:hover{
-        background-color : white;
-    }
-    .users:hover .caret{
-        display: inline-block;
-    }
-    .users:hover .delete-user{
-        display: inline-block;
-    }
-    .users.is_owner:hover .caret{
-        display: none;
-    }
-    .users.is_owner:hover .delete-user{
-        display: none;
-    }
-    .users.not_edit:hover .caret{
-        display: none;
-    }
-    .users.not_edit:hover .delete-user{
-        display: none;
-    }
-    .arrows-img{
+        .users.not_edit:hover .caret {
+            display: none;
+        }
+
+        .users.not_edit:hover .delete-user {
+            display: none;
+        }
+
+    .arrows-img {
         background: url("../../images/arrows.png") no-repeat scroll rgba(0, 0, 0, 0);
         background-position: 0 -69px;
         cursor: pointer;
@@ -320,14 +374,15 @@
         margin-top: 3px;
         margin-right: 5px;
         transition: -moz-transform 0.2s ease 0s;
-        -moz-transition:-moz-transform 0.2s; /* Firefox 4 */
-        -webkit-transition:-webkit-transform 0.2s; /* Safari and Chrome */
-        -o-transition:-o-transform 0.2s; /* Opera */
-        -ms-transition:-ms-transform 0.2s; /* IE */
-        -sand-transition:-sand-transform 0.2s; /* IE */
+        -moz-transition: -moz-transform 0.2s; /* Firefox 4 */
+        -webkit-transition: -webkit-transform 0.2s; /* Safari and Chrome */
+        -o-transition: -o-transform 0.2s; /* Opera */
+        -ms-transition: -ms-transform 0.2s; /* IE */
+        -sand-transition: -sand-transform 0.2s; /* IE */
         width: 15px;
         height: 15px;
-        &.group_show{
+
+        &.group_show {
             background-position: 0 -108px;
         }
     }

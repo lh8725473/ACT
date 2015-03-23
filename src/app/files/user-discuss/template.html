@@ -10,12 +10,12 @@
   <div class="user-discuss-view" id="user-discuss-right" >
     <ul class="nav nav-sidebar">
         <li class="disc" ng-class="{ active: navType == 'dis'}" ng-click = "changeNavType('dis')">
-          {{'LANG_FILE_DISCUSS' | translate}}({{discuss_file.discuss_count}})
+          {{'LANG_FILE_DISCUSS' | translate}}({{userDiscussList.length}})
           <div class="triangle-up triangle-up-surround" ng-show="navType == 'dis'"></div>
           <div class="triangle-up" ng-show="navType == 'dis'"></div>
         </li>
-        <li class="ver" ng-class="{ active: navType == 'ver'}" ng-click = "changeNavType('ver')">
-          {{'LANG_FILE_VERSION' | translate}}({{discuss_file.version_count}})
+        <li class="ver" ng-class="{ active: navType == 'ver'}" ng-click = "changeNavType('ver')" ng-hide="fileType == 'note'">
+          {{'LANG_FILE_VERSION' | translate}}({{fileHistoryList.length}})
           <div class="triangle-up triangle-up-surround" ng-show="navType == 'ver'"></div>
           <div class="triangle-up" ng-show="navType == 'ver'"></div>
 

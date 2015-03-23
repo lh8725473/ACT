@@ -159,6 +159,16 @@ angular.module('App.Files').controller('App.Files.InviteTeamUsersController', [
           })
           return
         }
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if(!re.test(inviteInputValue)){
+          Notification.show({
+            title: '失败',
+            type: 'danger',
+            msg: "LANG_INVITE_MESSAGE_VREIFY_MAIL",
+            closeable: false
+          })
+          return
+        }
         var user = {
           real_name: inviteInputValue,
           email: inviteInputValue

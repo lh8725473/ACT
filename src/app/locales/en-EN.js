@@ -53,6 +53,7 @@ angular.module('App.Locales').config(['$translateProvider', function($translateP
 
     "*********************************************************": "Invite-team-users",
     "LANG_INVITE_MESSAGE_EMPTY_MAIL": "Contact's email address can not empty",
+    "LANG_INVITE_MESSAGE_VREIFY_MAIL": "Email address format is not correct",
     "LANG_INVITE_MESSAGE_DEFAULT_INVITE_CONTENT": "Hi, I want to share this folder to you in HandsSync",
     "LANG_INVITE_MESSAGE_INVITE_SUCCESS": "Your invitiation has been sent successfully",
 
@@ -104,12 +105,13 @@ angular.module('App.Locales').config(['$translateProvider', function($translateP
     "LANG_MOVE_FILES" : "Move Folder",
     "LANG_MOVE_FILES_CONFIRM": "Are you sure you want to move this file?",
     "LANG_MOVE_FILES_SAME_NAME_FILE": "File already exist or the operation without permission",
+    "LANG_MOVE_FILES_NOT_BE_CURRENT_FOLDER": "Can not be moved to the current folder.",
 
     "*********************************************************": "Copy-file",
-    "LANG_Copy_FOLDER": "Copy Folder",
-    "LANG_Copy_MOVE": "Copy to",
-    "LANG_Copy_FILES": "Copy Folder",
-    "LANG_Copy_FILES_CONFIRM": "Are you sure you want to Copy this file?",
+    "LANG_COPY_FOLDER": "Copy Folder",
+    "LANG_COPY_MOVE": "Copy to",
+    "LANG_COPY_FILES": "Copy Folder",
+    "LANG_COPY_FILES_CONFIRM": "Are you sure you want to Copy this file?",
 
     "*********************************************************": "Preview-file",
     "LANG_PREVIEW_UPLOAD_NEW_VERSION": "Upload a new version",
@@ -141,6 +143,8 @@ angular.module('App.Locales').config(['$translateProvider', function($translateP
     "LANG_FILES_FOLDER_NAME_NOT_MORE_THAN_200": "Folder name length could not be more than 200 characters.",
     "LANG_FILES_FOLDER_NAME_CONTAIN_SPENCIAL_CHARACTERS": "Folder name could not contain special characters\\ \/ \: \* \? \" \< \> \|",
     "LANG_FILES_VERSION_TITLE": "Version",
+    "LANG_FILES_CONFIRM": "Confirm",
+    "LANG_FILES_OVERLAP_CONFIRM": "This directory contains files of the same name in the list of files you have uploaded, do you want to overwrite it?",
 
     "*********************************************************": "delete files",
     "LANG_DELETE_FILES": "Delete",
@@ -179,6 +183,7 @@ angular.module('App.Locales').config(['$translateProvider', function($translateP
     "LANG_FILE_ROOT_FOLDER": "Root",
     "LANG_FILE_NEW_FOLDER": "New Folder",
     "LANG_FILE_DELETE": "Delete",
+    "LANG_CREATE_NOTE": "Create note",
     "LANG_FILE_NAME": "Name",
     "LANG_FILE_STATUS": "Status",
     "LANG_FILE_SIZE": "Size",
@@ -197,6 +202,8 @@ angular.module('App.Locales').config(['$translateProvider', function($translateP
     "LANG_FILE_QUIT_COLLABORATION": "Leave",
     "LANG_FILE_DISCUSS": "Comment",
     "LANG_FILE_VERSION": "version history",
+    "LANG_SET_SYNC": "set sync",
+    "LANG_CANCEL_SYNC": "cancel sync",
     "LANG_FILE_PREVIEW": "Preview >",
     "LANG_FILE_REPLY": "Reply",
     "LANG_FILE_POST": "Send",
@@ -213,7 +220,7 @@ angular.module('App.Locales').config(['$translateProvider', function($translateP
     "LANG_FILE_DELETE_DISCUSS": "Delete Comment",
     "LANG_FILE_DELETE_DISCUSS_CONFIRM_MESSAGE": "Are you sure to delete it",
     
-    "LANG_FILE_IS_NULL": "Folder is empty, please click 'uplode file' to uplode file",
+    "LANG_FILE_IS_NULL": "Folder is empty, please click 'Upload File' to upload file",
 
     "*********************************************************": "user-info",
     "LANG_USER_ENTER_OLD_PASSWORD": "Enter your old Password",
@@ -240,7 +247,7 @@ angular.module('App.Locales').config(['$translateProvider', function($translateP
     "*********************************************************": "Header message",
     "LANG_HEADER_MESSAGE_DELETE_SUCCESS": "Your file has been successfully deleted",
 
-    "LANG_HEADER_INFO": "A high-efficency cooperative platform for the cloud era",
+    "LANG_HEADER_INFO": "A high-efficiency cooperative platform for the cloud era",
     "LANG_HEADER_PERSONAL_INFORMATION": "Account Setting",
     "LANG_HEADER_QUIT": "Log Out",
     "LANG_HEADER_ADMIN_CONTROL": "Admin Console",
@@ -250,9 +257,17 @@ angular.module('App.Locales').config(['$translateProvider', function($translateP
     "LANG_HEADER_NOTIFICATION": "Notice",
     "LANG_HEADER_SEARCH_HINT": "Search your files",
     "LANG_HEADER_SEARCH": "Search",
+    "LANG_HEADER_COMBO_IS_USING": "You are currently using the HandsSync",
+    "LANG_HEADER_COMBO_UPGRADE": "the upgrade can create a bigger team, and has more features",
+    "LANG_HEADER_COMBO_UPGRADE_IMMEDIATELY": "Upgrade immediately",
+    "LANG_HEADER_COMBO_USED": "The HandsSync you are using",
+    "LANG_HEADER_COMBO_WATCH": "View",
+    "LANG_HEADER_COMBO_USED_LEFT": "Your HandsSync plans is valid for {{left_days}} days.",
+    "LANG_HEADER_COMBO_CONTINUE_USEING": "Continue to use",
 
     "*********************************************************": "Upload progress-dialog",
     "LANG_UPLOAD_LIST": "Uploading",
+    "LANG_UPLOAD_TYPE_LIMIT": "Not allowed to upload .note type file",
 
     "*********************************************************": "Sidebar",
     "LANG_SIDE_BAR_ALL_FILES": "All Files",
@@ -272,6 +287,10 @@ angular.module('App.Locales').config(['$translateProvider', function($translateP
     "LANG_TRASH_RECYCLE_UPDATE": " update",
     "LANG_TRASH_RECYCLE_COMFIRM_YES": "ok",
     "LANG_TRASH_RECYCLE_COMFIRM_NO": "cancel",
+
+    "*********************************************************": "Note",
+    "LANG_NOTE_NAME_EMPTY": "Note name is not empty",
+    "LANG_NOTE_CONTENT_EMPTY": "Note content is not empty",
 
     "*********************************************************": "Revert recycle confirm",
     "LANG_TRASH_REVERT_COMFIRM_UNDELETE": "Undelete",

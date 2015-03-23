@@ -12,9 +12,9 @@
 		</div>
 	</div>
 	<div class="empty-tag-list" ng-show = "obj.tags.length == 0">{{'LANG_TAG_NO_TAG' | translate}}</div>
-	<div class="add-tag-title">{{'LANG_TAG_ADD_TAG' | translate}}</div>
+	<div class="add-tag-title">{{'LANG_TAG_ADD_TAG' | translate}}<span>({{'LANG_TAG_ADD_TAG_LIMIT' | translate}})</span></div>
 	<div class="add-tag-form">
-		<input type="text" placeholder="{{'LANG_TAG_ADD_TAG_LIMIT' | translate}}" class="form-control add-tag-input" maxlength="6" ng-enter = "createTag()" ng-model = "tag_name">
+		<input type="text" class="form-control add-tag-input" maxlength="6" ng-enter = "createTag()" ng-model = "tag_name">
 		<button class="btn btn-primary add-tag-button" ng-click = "createTag()">{{'LANG_TAG_ADD' | translate}}</button>
 	</div>
 </div>

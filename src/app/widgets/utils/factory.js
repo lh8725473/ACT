@@ -32,6 +32,8 @@ angular.module('App.Widgets').factory('Utils', [
         icon = icons.zip;
       } else if (ext == 'ppt' || ext == 'pptx') {
         icon = icons.ppt;
+      } else if (ext == 'note') {
+        icon = icons.note;
       }
 
       return {

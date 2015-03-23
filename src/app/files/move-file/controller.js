@@ -108,7 +108,7 @@ angular.module('App.Files').controller('App.Files.MoveFileController', [
           Notification.show({
               title: '失败',
               type: 'danger',
-              msg: '不能移动到当前文件夹下',
+              msg: 'LANG_MOVE_FILES_NOT_BE_CURRENT_FOLDER',
               closeable: false
           });
           return;

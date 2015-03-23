@@ -67,7 +67,7 @@ angular.module('App.Note').controller('App.Note.Controller', [
 
     //打开讨论
 		$scope.openUserDiscuss = function(){
-		  $rootScope.$broadcast('discuss_file', file)
+		  $rootScope.$broadcast('discuss_file', file, 'dis')
 		}
 
 		$scope.goBack = function() {
@@ -78,6 +78,24 @@ angular.module('App.Note').controller('App.Note.Controller', [
     //保存note
 		$scope.saveNote = function() {
 		  $scope.content = $scope.editor.getContent()
+      if($scope.file_name == ''){
+        Notification.show({
+          title: '失败',
+          type: 'danger',
+          msg: 'LANG_NOTE_NAME_EMPTY',
+          closeable: false
+        })
+        return
+      }
+      if($scope.content == ''){
+        Notification.show({
+          title: '失败',
+          type: 'danger',
+          msg: 'LANG_NOTE_CONTENT_EMPTY',
+          closeable: false
+        })
+        return
+      }
       Files.saveNote({
 
       },{
