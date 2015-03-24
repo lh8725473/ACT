@@ -242,7 +242,7 @@ angular.module('App.Header').controller('App.Header.Controller', [
     //搜索文件或者文件夹
     function doSearch(searchFilesValue) {
       //特殊字符正则表达式
-      var txt = new RegExp("[\\\\,\\:,\\*,\\/,\\?,\",\\<,\\>,\\|]")
+      var txt = new RegExp("[\\\\,\\:,\\.,\\*,\\/,\\?,\",\\<,\\>,\\|]")
       if(searchFilesValue == undefined || searchFilesValue.trim() == '' || txt.test(searchFilesValue)){
         Notification.show({
           title: '失败',

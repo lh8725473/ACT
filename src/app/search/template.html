@@ -53,9 +53,9 @@
                 <img src="images/web_sync.png" class="sync" ng-show = "obj.isSynced == 1"/>
               </div>
               <div class="file-name" ng-hide = "obj.rename">
-                <a class="high-light" ui-sref="files({folderId: obj.folder_id})" ng-show = "obj.folder" title="{{obj.folder_name}}" high-light-text = "{{obj.options}}">{{obj.folder_name}}</a>
-                <a class="high-light" ng-show = "!obj.folder&&obj.isPreview&&!obj.isNote" ng-click = "previewFile($event, obj)" title="{{obj.file_name}}" high-light-text = "{{obj.options}}">{{obj.file_name}}</a>
-                <a class="high-light" ng-show = "!obj.folder&&!obj.isPreview&&!obj.isNote" ng-class = "{ noPreview: !obj.isPreview }" title="{{obj.file_name}}" high-light-text = "{{obj.options}}">{{obj.file_name}}</a>
+                <a class="high-light" ui-sref="files({folderId: obj.folder_id})" ng-if = "obj.folder" title="{{obj.folder_name}}" high-light-text = "{{obj.options}}">{{obj.folder_name}}</a>
+                <a class="high-light" ng-if = "!obj.folder&&obj.isPreview&&!obj.isNote" ng-click = "previewFile($event, obj)" title="{{obj.file_name}}" high-light-text = "{{obj.options}}">{{obj.file_name}}</a>
+                <a class="high-light" ng-if = "!obj.folder&&!obj.isPreview&&!obj.isNote" ng-class = "{ noPreview: !obj.isPreview }" title="{{obj.file_name}}" high-light-text = "{{obj.options}}">{{obj.file_name}}</a>
                 <a ui-sref="note({folderId: obj.folder_id,fileId: obj.file_id})" ng-click = "editNote(obj)"   ng-show = "!obj.folder&&obj.isNote" title="{{obj.file_name}}">{{obj.file_name}}</a>
                 <div class="tag">
                   <span ng-repeat = "tag in obj.tags" ng-show = "obj.tags.length != 0">{{tag.tag_name}}</span>
