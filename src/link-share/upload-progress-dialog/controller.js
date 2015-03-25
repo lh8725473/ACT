@@ -8,6 +8,7 @@ angular.module('App.UploadProgressDialog').controller('App.UploadProgressDialog.
   'Utils',
   '$q',
   '$rootScope',
+  'Notification',
   function(
     $scope,
     $upload,
@@ -17,7 +18,8 @@ angular.module('App.UploadProgressDialog').controller('App.UploadProgressDialog.
     CONFIG,
     Utils,
     $q,
-    $rootScope
+    $rootScope,
+    Notification
   ) {
 
     $scope.shown = false
