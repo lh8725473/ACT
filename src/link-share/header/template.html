@@ -1,32 +1,67 @@
 <div class="header-view" ng-controller="App.Header.Controller">
-	<div class="header-top">
-	  <div class="logo">
-	    <!--<img src="./images/logo_white_min.png" />-->
-	  </div>
-	  <div class="pull-right button-group">
-	    <button ng-click='toregist()' class="btn btn-warning">注册</button>
-	    <button ng-click="toLogin()" class="btn btn-primary">登录</button>
-	  </div>
 
-		<!--<div class="user-info pull-right" dropdown is-open="status.isopen">
-			<div class="username dropdown-toggle" ng-class="{hover: hover}" ng-mouseenter="hover = true" ng-mouseleave="hover = false">
-				<span>{{user.user_name}}</span>
-				<div class="personalInfor"></div>
-			</div>
-			<ul class="dropdown-menu" role="menu">
-        		<li ng-click = "userInfoWin()"><a>个人信息</a></li>
-        		<li ng-click = "toLogin()"><a>退出</a></li>
-      </ul>
-			<img class="userpic" ng-src="{{user.avatar}}" alt="" />
-		</div>
-		<div class="to-admin-control pull-right" ng-click = "toadmin()">
-			管理控制台
-		</div>
-		<div class="notif_box" class="message-notice pull-right">
-			<span class="notice" title="通知"></span>
-			<label class="message-count notice-count" ng-show = "showMessageCount">{{messageCount}}</label>
-			<span class="message" title="消息"></span>
-			<label class="message-count letter-count" ng-show = "showMoticeCount">{{noticeCount}}</label>
-		</div>-->
-	</div>
+
+    <div class="header-top">
+        <a href="index.html">
+            <div class="logo">
+                <!--<img src="./images/logo_white_min.png" />-->
+            </div>
+        </a>
+        
+        <!-- has logged in -->
+        <div class="pull-right button-group" ng-show="hasLogedIn">        
+            <div class="user-info pull-right"  dropdown>
+                <div class="username dropdown-toggle" ng-class="{hover: hover}" ng-mouseenter="hover = true" ng-mouseleave="hover = false">
+                    <span>{{user.real_name}}</span>
+                    <div class="personalInfor"></div>
+                </div>
+                <ul class="dropdown-menu" role="menu">
+                    <li ng-click="toSignOut()"><a>{{'LANG_USER_SIGN_OUT' | translate}}</a></li>
+                </ul>
+                <img class="userpic" ng-src="{{user.avatar}}" alt="" />
+            </div>
+        </div>
+
+        <!-- not log in -->
+        <div class="pull-right button-group" ng-hide="hasLogedIn" dropdown>            
+            <button ng-click='toregist()' class="btn btn-warning">{{'LANG_USER_Register' | translate}}</button>
+            <button class="login-button btn btn-primary dropdown-toggle">{{'LANG_USER_LOGIN' | translate}}</button>            
+            <!-- login panel -->
+            <div class="login-panel dropdown-menu" role="menu">
+                <div class="wrapper">
+                    <div id="">
+                        <div class="form-group">
+                            <div class="login-panel-title">
+                                {{'LANG_USER_LOGIN' | translate}}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <input type="text" maxlength="50" id="username" placeholder="{{'LANG_USER_NAME_EMAIL' | translate}}" class="form-control" tabindex="1" autocapitalize="off" autocomplete="off" ng-model="userName" ng-click="$event.stopPropagation()">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                <input type="password" maxlength="50" id="password" placeholder="{{'LANG_USER_PASSWORD' | translate}}" class="form-control" tabindex="1" autocapitalize="off" autocomplete="off" ng-model="userPassword" ng-keypress="monitorKeyPress($event)" ng-click="$event.stopPropagation()">
+                            </div>
+                        </div>
+                        <div class="checkbox" ng-click="$event.stopPropagation()">
+                            <label class="pull-left">
+                                <input type="checkbox" id="checkbox" ng-model="remember">{{'LANG_USER_REMMBER_PASSWORD' | translate}}
+                            </label>
+                            <a class="pull-right" href="findpassword.html">{{'LANG_USER_FORGET_PASSWORD' | translate}}</a>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-block btn-lg btn-primary" ng-click="loginHandler()">{{'LANG_USER_LOGIN' | translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end login panel -->
+
+        </div>
+    </div>
 </div>
+

@@ -1,0 +1,13 @@
+<div class="settings-view" ng-controller="App.Settings.Controller">
+  <div class="top-bar">   
+    <a ui-sref="settings.profile" class="" ng-class="{ active: $state.includes('settings.profile')}">个人信息</a>
+    <a ui-sref="settings.security" class="lately-a" ng-class="{ active: $state.includes('settings.security')}">安全与密码</a>
+    <a ui-sref="settings.notification" class="lately-a" ng-class="{ active: $state.includes('settings.notification')}">通知设置</a>
+    <a ui-sref="settings.team" class="lately-a" ng-class="{ active: $state.includes('settings.team')}">我的团队</a>
+  </div>
+
+  <div class="top-bar-bottom"></div>
+
+  <div ui-view class=""></div>
+
+</div>

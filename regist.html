@@ -1,786 +1,902 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>全携通</title>
-		<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
-		<script>
-      var _hmt = _hmt || [];
-      (function() {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?4c3c918cadc6ad3aceb76b34c3c29302";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-		<!-- build:css css/regist/regist.css -->
-		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
-		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap-select/dist/css/bootstrap-select.css">
-		<link rel="stylesheet" type="text/css" href="bower_components/jqueryui/themes/flick/jquery-ui.css">
-		<link rel="stylesheet" type="text/css" href="bower_components/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.css">
-		<!-- endbuild -->
-		<!-- build:js js/regist.js -->
-		<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
-		<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-		<script type="text/javascript" src="bower_components/bootstrap-validator/dist/validator.js"></script>
-		<script type="text/javascript" src="bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
-		<script type="text/javascript" src="bower_components/jqueryui/jquery-ui.js"></script>
-		<script type="text/javascript" src="bower_components/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.js"></script>
-		<!-- endbuild -->
-		<!-- build:js js/global/config.js -->
-		<script type="text/javascript" src="src/global/_config.js"></script>
-		<!-- endbuild -->
-		<style>
-			html, body {
-	        font-family: Arial,SimHei,Microsoft YaHei,sans-serif;
-	        min-width: 1024px;
-	      }
-				a {
-					cursor: pointer;
-				}
-        .container {
-          min-width: 750px;
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>全携通 - 注册</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+    <!-- build:css css/regist/regist.css -->
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap-select/dist/css/bootstrap-select.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/jqueryui/themes/flick/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.css">
+    <!-- endbuild -->
+    <!-- build:js js/regist.js -->
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap-validator/dist/validator.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
+    <script type="text/javascript" src="bower_components/jqueryui/jquery-ui.js"></script>
+    <script type="text/javascript" src="bower_components/jquery-ui-slider-pips/dist/jquery-ui-slider-pips.js"></script>
+    <script type="text/javascript" src="src/global/fromURL.js"></script>
+    <!-- endbuild -->
+    <!-- build:js js/global/config.js -->
+    <script type="text/javascript" src="src/global/_config.js"></script>
+    <!-- endbuild -->
+    <style>
+    html,
+    body {
+        background: #ffffff;
+        position: relative;
+        font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "WenQuanYi Micro Hei", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
+    }
+    /* header */
+    /*====================================================
+      header
+    ====================================================*/
+    .main-header {
+        text-align: center;
+        padding: 30px 0;
+    }
+    .main-header #logohome {
+        max-width: 100%;
+    }
+    .main-header .login-line {
+        height: 6px;
+        background-image: url("images/top_shadow.png");
+        background-size: 100% 100%;
+        margin-top: 25px;
+    }
+    .price {
+        padding: 0;
+        font-size: 20px;
+    }
+    .pay-head {
+        height: 25px;
+    }
+    .input-tit {
+        position: relative;
+    }
+    .input-tit span {
+        position: absolute;
+        left: 25px;
+        top: 0;
+        line-height: 2.7em;
+    }
+    .input-tit input {
+        padding-left: 75px;
+    }
+    .input-tit input#user_name {
+        padding-left: 60px;
+    }
+    .input-tit input#cloud_name {
+        padding-left: 115px;
+    }
+    .input-tit input#real_name{
+        padding-left: 46px;
+    }
+    .form-control,
+    .btn {
+        height: 37px;
+    }
+    .form-group.pay {
+        margin-bottom: 5px;
+    }
+    .pay-head .text {
+        width: 100%;
+        font-size: 16px;
+        border-bottom: 1px solid #000000;
+    }
+    .check-pricing {
+        height: 20px;
+    }
+    .regist-btn .btn {
+        background-color: #1B599B;
+        opacity: 1;
+        color: #fff;
+    }
+    .help-block {
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+    .help-block ul {
+        margin: 0;
+        padding: 0;
+    }
+    .form-group.checkbox {
+        height: 30px;
+        margin-bottom: 10px;
+    }
+    .form-group.checkbox .help-block {
+        margin-top: 0px;
+    }
+    .ui-slider-horizontal.ui-slider-pips {
+        margin-bottom: 2em;
+        margin-top: 1em;
+    }
+      .eye {
+        display:none;
+      }
+    /*====================================================
+      media query
+
+    ====================================================*/
+    @media (max-width: 767px) {
+        .form-group {
+            margin-bottom: 0px;
         }
-        .col-sm-8 {
-          width: 66.66666667% !important;
+        .check-pricing {
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
-        .col-sm-4 {
-          width: 33.33333333% !important;
+        .register {
+            margin-top: 10px;
         }
-				label {
-					font-weight: normal;
-				}
-
-				button {
-					background-color: #1b599b;
-					color: #FFFFFF;
-				}
-
-				button:hover {
-					background-color: #1b599b;
-					color: #FFFFFF;
-				}
-
-				button:focus {
-					background-color: #1b599b;
-					color: #FFFFFF;
-				}
-
-				.btn:hover, .btn:hover {
-					/*background-color: #2685FC;
-					color: #FFFFFF;*/
-				}
-
-				.main {
-					margin-top: 50px;
-					/*min-height: 900px;*/
-				}
-
-				.register {
-					margin-top: 7px;
-				}
-
-				.input-group .input-group-addon {
-					background-color: #FFFFFF;
-					border: 0 none;
-					/*color: #ACB4BF;*/
-					padding-right: 0;
-				}
-
-				.input-group input {
-					background-color: #FFFFFF;
-					border: 0 none;
-					padding-right: 0;
-				}
-
-				.input-group {
-					border: 1px solid #CCCCCC;
-					border-radius: 4px;
-				}
-
-				.input-group.input-group-focus {
-					border-color: #66AFE9;
-				}
-				.form-control:focus {
-					border-color: #CCCCCC;
-					box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-				}
-				.input-group:focus {
-					border-color: #66AFE9;
-				}
-
-				.wrapper {
-				  left: 100px;
-					margin: 0 auto;
-					max-width: 600px;
-					text-align: left;
-					position: relative;
-					top: 40px;
-				}
-
-				.form-group {
-					margin-bottom: 10px;
-					height: 40px;
-				}
-
-				.checkbox {
-					height: 30px;
-					margin-top: 5px;
-				}
-				.checkbox label{
-				  margin-top: 5px;
-				}
-				.checkbox .help-block{
-				  margin-bottom: 0;
-				}
-
-				.form-back {
-					/*height: 550px;*/
-				}
-
-	      .has-error .input-group{
-	        border: 1px solid #a94442
-	      }
-
-	      .has-error .form-control{
-	        box-shadow: none
-	      }
-	      .has-error .form-control:focus{
-	        box-shadow: none
-	      }
-	      .btn-group.bootstrap-select{
-	        padding: 0;
-	      }
-	      .regist-btn{
-	        padding: 0;
-	        float: none;
-	      }
-	      .regist-btn .btn{
-	        background-color: #1b599b;
-	        opacity: 1;
-	      }
-	      .regist-btn .btn:hover, .regist-btn .btn:focus{
-	        background-color: #1b599b;
-	        color: #FFFFFF;
-	      }
-	      .login-line{
-	        height: 6px;
-	        background-image: url("images/top_shadow.png");
-	        background-size: 100% 100%;
-	        margin-top: 15px;
-	      }
-	      .footer{
-	        padding-bottom: 30px;
-	        margin-top: 100px;
-	      }
-	      .radio-group{
-	        height: 50px;
-	      }
-	      .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
-	        background: #0073ea;
-	        border: 1px solid #0073ea;
-	      }
-	      .price{
-	        padding: 0;
-	        font-size: 20px;
-	      }
-	      .pay-head{
-	        height: 25px;
-	      }
-	      .pay-head .text{
-	        font-size: 16px;
-	        border-bottom: 1px solid #000000;
-	        padding-left: 5px;
-	      }
-	      .check-pricing{
-	        height: 20px;
-	      }
-		  .ui-widget-content {
-			border: 1px solid #aaaaaa/*{borderColorContent}*/;
-			background: #ffffff/*{bgColorContent}*/ url("images/ui-bg_flat_75_ffffff_40x100.png")/*{bgImgUrlContent}*/ 50%/*{bgContentXPos}*/ 50%/*{bgContentYPos}*/ repeat-x/*{bgContentRepeat}*/;
-			color: #222222/*{fcContent}*/;
-		  }
-
-	      /*.ui-slider-pips .ui-slider-pip-selected-initial, .ui-slider-pips .ui-slider-pip-selected-initial-first, .ui-slider-pips .ui-slider-pip-selected-initial-second{
-	        color: #999;
-	      }*/
-		</style>
-
-		<script type="text/javascript">
-		  //获取URL参数
-      function getUrlParameter(name) {
-        var queryString = window.location.toString().split("#");
-        if (queryString.length > 1) {
-          var params = queryString[1].split("&");
-          for (var i = 0; i < params.length; ++i) {
-            var param = params[i].split("=");
-            if (param[0] == name) {
-              return unescape(param[1]);
-            }
-          }
+        .regist-btn {
+            margin-top: 20px;
         }
+        .footer {
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+      #myForm {
+        padding-bottom:25px;
       }
 
-			$(window).load(function() {
-			  $('#myForm').validator()
-			  $('#regist').attr('disabled', false)
-			  $('.selectpicker').selectpicker()
-				$('#logohome').click(function(e) {
-					window.location.href = '#';
-				});
-				window.onbeforeunload  = function(e){
-				  var cloud_name = $('#cloud_name')[0].value;
-          var real_name = $('#real_name')[0].value;
-          var email = $('#inputEmail')[0].value;
-          var pass_word = $('#inputPassword')[0].value;
-          var telephone = $('#telephone')[0].value;
+     .eye {
+        position:absolute;
+        right:25px;
+        top:12px;        
+        width:15px;
+        height:10px;
+        z-index:999;
+        display: block;
+      }
+    }
 
-				  if(cloud_name == '' && real_name == '' && email == '' && pass_word == '' && telephone == ''){
-				    cancelEvent(e)
-				  }
-          e = e || window.event;
-          var msg = "您确定要放弃注册？";
+    .ui-widget-content .ui-state-default,.ui-widget-header .ui-state-default{
+        background:url(images/ui-bg_highlight-soft_100_f6f6f6_1x100.png) 50% 50% repeat-x #f6f6f6;
+    }
+   
 
-          // IE
-          e.cancelBubble = true;
-          e.returnValue = msg;
+     
+    </style>
 
-          // Chrome / Safari
-          return msg;
+    <script type="text/javascript">
+
+    var winWidth = parseInt($(window).width());  //获取当前屏宽
+
+    window.onload = function () { 
+       if(winWidth>=768){
+        document.getElementById("inputPassword").type = "password"; 
+        return; 
+       }
+
+      var checkbox = document.getElementById("eye");
+      checkbox.onclick = changeType;
+
+    } 
+
+    function changeType() {      
+      var password = document.getElementById("inputPassword");
+      if (password.type == "text") {
+        password.type = "password";
+        this.style.opacity = 0.5;        
+      } else {
+        password.type = "text";        
+        this.style.opacity = 1;
+
+      }
+    }
+
+
+
+
+
+    function createCookie(name, value, days) {
+      if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        var expires = '; expires=' + date.toGMTString();
+      } else {
+        var expires = '';
+      }
+      document.cookie = name + '=' + value + expires + '; path=/';
+    }
+
+    //获取URL参数
+    function getUrlParameter(name) {
+        var queryString = window.location.toString().split("#");
+        if (queryString.length > 1) {
+            var params = queryString[1].split("&");
+            for (var i = 0; i < params.length; ++i) {
+                var param = params[i].split("=");
+                if (param[0] == name) {
+                    return unescape(param[1]);
+                }
+            }
+        }
+    }
+    
+    $(window).load(function() {
+        var ref_code = getUrlParameter('ref')
+        if(ref_code){
+          createCookie('REF_CODE', ref_code, 30);   
+        }
+        $('#myForm').validator()
+        $('#regist').attr('disabled', false)
+        $('.selectpicker').selectpicker()
+        $('#logohome').click(function(e) {
+            window.location.href = '#';
+        });
+        window.onbeforeunload = function(e) {
+            var cloud_name = $('#cloud_name')[0].value;
+            var real_name = $('#real_name')[0].value;
+            var email = $('#inputEmail')[0].value;
+            var pass_word = $('#inputPassword')[0].value;
+            var telephone = $('#telephone')[0].value;
+
+            if (cloud_name == '' && real_name == '' && email == '' && pass_word == '' && telephone == '') {
+                cancelEvent(e)
+            }
+            e = e || window.event;
+            var msg = "您确定要放弃注册？";
+
+            // IE
+            e.cancelBubble = true;
+            e.returnValue = msg;
+
+            // Chrome / Safari
+            return msg;
         }
 
-			});
+    });
 
-      //errorMsg
-      function errorMsg(str) {
+    //errorMsg
+    function errorMsg(str) {
         $('.errorMsg').find('p').text(str);
         $('.errorMsg').css('left', ($(window).width() * 0.5 - ($('.errorMsg').width() + 50) * 0.5) + 'px');
         $('.errorMsg').css('top', $(window).height() * 0.1);
         $(".errorMsg").fadeIn();
         setTimeout(function() {
-          $(".errorMsg").fadeOut();
+            $(".errorMsg").fadeOut();
         }, 4000);
-      }
+    }
 
-      //计算价格
-      function accountingPrice(package_id, payType, monthCount){
-        if(payType == 'y'){
-          monthCount = 1
+    //计算价格
+    function accountingPrice(package_id, payType, monthCount) {
+        if (payType == 'y') {
+            monthCount = 1
         }
-        if(package_id != '0'){
-          var data = {
-            "cloud_id": 0,
-            "package_id":package_id,
-            "pay_type":payType,
-            "num":monthCount,
-            "action": "upgrade"
-          }
-
-          $.ajax({
-            url : CONFIG.API_ROOT + '/order/getPrice',
-            type : 'POST',
-            dataType : 'json',
-            data : data
-          }).done(function(responseJSON) {
-            $('#price').html(responseJSON.result.price)
-          }).fail(function(xhr, status, error) {
-
-          });
-        }
-
-
-      }
-
-      //创建支付参数
-      var createData = {}
-      //支付页面url
-      var payUrl = ''
-      //支付订单号
-      var order_id = 0
-      //邮箱是否存在
-      var is_email_exist = false;
-
-			$(document).ready(function() {
-			  //套餐参数
-			  var package_id = getUrlParameter('package_id') || 0;
-			  //套餐付款方式
-			  var payType = 'y';
-			  //套餐付款月数
-			  var monthCount = 3;
-
-			  if(package_id == '0'){
-          $(".pay").hide()
-        }else if(package_id == '1'){
-          $('#yearPrice').html(1000)
-          $('#monthPrice').html(128)
-          $(".pay").show()
-        }else if(package_id == '2'){
-          $('#yearPrice').html(2800)
-          $('#monthPrice').html(298)
-          $(".pay").show()
-        }else{
-          $('#yearPrice').html(4800)
-          $('#monthPrice').html(498)
-          $(".pay").show()
-        }
-
-			  accountingPrice(package_id, payType, monthCount)
-
-        $('.selectpicker').val(package_id)
-
-        $('#inputEmail').change(function(){
-          $.ajax({
-            url : CONFIG.API_ROOT + '/user/emailCheck?email=' + $('#inputEmail')[0].value,
-            type : 'GET',
-            dataType : 'json'
-          }).done(function(responseJSON) {
-            if(!responseJSON.result.available){
-              $(".errorMsg").removeClass('alert-success')
-              $(".errorMsg").addClass('alert-danger')
-              is_email_exist = true
-              errorMsg("该邮箱已使用，请更换")
-            }else{
-//            $('.email-form .help-block').html('')
-              is_email_exist = false;
+        if (package_id != '0') {
+            var data = {
+                "cloud_id": 0,
+                "package_id": package_id,
+                "pay_type": payType,
+                "num": monthCount,
+                "action": "upgrade"
             }
-          })
 
-        })
+            $.ajax({
+                url: CONFIG.API_ROOT + '/order/getPrice',
+                type: 'POST',
+                dataType: 'json',
+                data: data
+            }).done(function(responseJSON) {
+                $('#price').html(responseJSON.result.price)
+            }).fail(function(xhr, status, error) {
 
-			  $(".slider")
-          .slider({
-            min: 1,
-            max: 12,
-            value: monthCount,
-          })
-          .slider("pips", {
-            rest: "label"
-          })
-          .on("slidechange", function(e,ui) {
-            monthCount = ui.value
-            accountingPrice(package_id, payType, monthCount)
-          });
-        if(package_id == '0'){
-          $(".pay").hide()
-        }else{
-          $(".pay").show()
+            });
         }
-        payType = $(".radio-group input[type='radio']:checked").val()
-        if(payType == 'y'){
-          $(".slider-pips").hide()
-        }
-        $(".radio-group input[type='radio']").change(function () {
-          payType = $(".radio-group input[type='radio']:checked").val()
-          if(payType == 'y'){
-            $(".slider-pips").hide()
-          }else{
-            $(".slider-pips").show()
-          }
-          accountingPrice(package_id, payType, monthCount)
-        })
-        $('.selectpicker').on('change', function(){
-          if(payType == 'y'){
-            $(".slider-pips").hide()
-          }else{
-            $(".slider-pips").show()
-          }
-          package_id = $('.selectpicker').val()
-          if(package_id == '0'){
+
+
+    }
+
+    //创建支付参数
+    var createData = {}
+        //支付页面url
+    var payUrl = ''
+        //支付订单号
+    var order_id = 0
+        //团队名是否存在
+    var is_cloud_name = false;
+        //用户名是否存在
+    var is_user_name_exist = false;
+        //邮箱是否存在
+    var is_email_exist = false;
+
+    $(document).ready(function() {
+        //套餐参数
+        var package_id = getUrlParameter('package_id') || 0;
+        //套餐付款方式
+        var payType = 'y';
+        //套餐付款月数
+        var monthCount = 3;
+
+        if (package_id == '0') {
             $(".pay").hide()
-          }else if(package_id == '1'){
+        } else if (package_id == '1') {
             $('#yearPrice').html(1000)
             $('#monthPrice').html(128)
             $(".pay").show()
-            if(payType == 'y'){
-              $(".slider-pips").hide()
-            }else{
-              $(".slider-pips").show()
-            }
-          }else if(package_id == '2'){
+        } else if (package_id == '2') {
             $('#yearPrice').html(2800)
             $('#monthPrice').html(298)
             $(".pay").show()
-            if(payType == 'y'){
-              $(".slider-pips").hide()
-            }else{
-              $(".slider-pips").show()
-            }
-          }else{
+        } else {
             $('#yearPrice').html(4800)
             $('#monthPrice').html(498)
             $(".pay").show()
-            if(payType == 'y'){
-              $(".slider-pips").hide()
-            }else{
-              $(".slider-pips").show()
+        }
+
+        accountingPrice(package_id, payType, monthCount)
+
+        $('.selectpicker').val(package_id)
+
+        $('#cloud_name').blur(function() {
+            $.ajax({
+                url: CONFIG.API_ROOT + '/cloud/cloudNameCheck?cloud_name=' + $('#cloud_name')[0].value,
+                type: 'GET',
+                dataType: 'json'
+            }).done(function(responseJSON) {
+                if (!responseJSON.result.available) {
+                    $(".errorMsg").removeClass('alert-success')
+                    $(".errorMsg").addClass('alert-danger')
+                    is_cloud_name = true
+                    errorMsg("该团队名已使用，请更换")
+                } else {
+                    is_cloud_name = false;
+                }
+            }).fail(function(xhr, status, error) {
+
+            });
+
+        })
+
+        $('#user_name').blur(function() {
+            $.ajax({
+                url: CONFIG.API_ROOT + '/user/userNameCheck?user_name=' + $('#user_name')[0].value,
+                type: 'GET',
+                dataType: 'json'
+            }).done(function(responseJSON) {
+                if (!responseJSON.result.available) {
+                    $(".errorMsg").removeClass('alert-success')
+                    $(".errorMsg").addClass('alert-danger')
+                    is_user_name_exist = true
+                    errorMsg("该用户名已使用，请更换")
+                } else {
+                    is_user_name_exist = false;
+                }
+            })
+
+        })
+
+        $('#inputEmail').blur(function() {
+            $.ajax({
+                url: CONFIG.API_ROOT + '/user/emailCheck?email=' + $('#inputEmail')[0].value,
+                type: 'GET',
+                dataType: 'json'
+            }).done(function(responseJSON) {
+                if (!responseJSON.result.available) {
+                    $(".errorMsg").removeClass('alert-success')
+                    $(".errorMsg").addClass('alert-danger')
+                    is_email_exist = true
+                    errorMsg("该邮箱已使用，请更换")
+                } else {
+                    //            $('.email-form .help-block').html('')
+                    is_email_exist = false;
+                }
+            })
+
+        })
+
+        $(".slider")
+            .slider({
+                min: 1,
+                max: 12,
+                value: monthCount,
+            })
+            .slider("pips", {
+                rest: "label"
+            })
+            .on("slidechange", function(e, ui) {
+                monthCount = ui.value
+                accountingPrice(package_id, payType, monthCount)
+            });
+        if (package_id == '0') {
+            $(".pay").hide()
+        } else {
+            $(".pay").show()
+        }
+        payType = $(".radio-group input[type='radio']:checked").val()
+        if (payType == 'y') {
+            $(".slider-pips").hide()
+        }
+        $(".radio-group input[type='radio']").change(function() {
+            payType = $(".radio-group input[type='radio']:checked").val()
+            if (payType == 'y') {
+                $(".slider-pips").hide()
+            } else {
+                $(".slider-pips").show()
             }
-          }
-          accountingPrice(package_id, payType, monthCount)
+            accountingPrice(package_id, payType, monthCount)
+        })
+        $('.selectpicker').on('change', function() {
+            if (payType == 'y') {
+                $(".slider-pips").hide()
+            } else {
+                $(".slider-pips").show()
+            }
+            package_id = $('.selectpicker').val()
+            if (package_id == '0') {
+                $(".pay").hide()
+            } else if (package_id == '1') {
+                $('#yearPrice').html(1000)
+                $('#monthPrice').html(128)
+                $(".pay").show()
+                if (payType == 'y') {
+                    $(".slider-pips").hide()
+                } else {
+                    $(".slider-pips").show()
+                }
+            } else if (package_id == '2') {
+                $('#yearPrice').html(2800)
+                $('#monthPrice').html(298)
+                $(".pay").show()
+                if (payType == 'y') {
+                    $(".slider-pips").hide()
+                } else {
+                    $(".slider-pips").show()
+                }
+            } else {
+                $('#yearPrice').html(4800)
+                $('#monthPrice').html(498)
+                $(".pay").show()
+                if (payType == 'y') {
+                    $(".slider-pips").hide()
+                } else {
+                    $(".slider-pips").show()
+                }
+            }
+            accountingPrice(package_id, payType, monthCount)
         })
 
         var email = ''
 
-			  $('#myForm').bind("submit", function() {
+        $('#myForm').bind("submit", function() {
+            var user_name = $('#user_name')[0].value;
+            var cloud_name = $('#cloud_name')[0].value;
+            var real_name = $('#real_name')[0].value;
+            email = $('#inputEmail')[0].value;
+            var pass_word = $('#inputPassword')[0].value;
+            var telephone = $('#telephone')[0].value;
+            var package_id = $('.selectpicker').val();
 
-			    var cloud_name = $('#cloud_name')[0].value;
-          var real_name = $('#real_name')[0].value;
-          email = $('#inputEmail')[0].value;
-          var pass_word = $('#inputPassword')[0].value;
-          var telephone = $('#telephone')[0].value;
-          var package_id = $('.selectpicker').val();
-
-          if(is_email_exist){
-            $(".errorMsg").removeClass('alert-success');
-            $(".errorMsg").addClass('alert-danger');
-            errorMsg("该邮箱已使用，请更换");
-            return false;
-          }
-
-          var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-          if(!re.test(email)){
-            $(".errorMsg").removeClass('alert-success')
-            $(".errorMsg").addClass('alert-danger')
-            errorMsg("邮件格式不正确")
-            return false
-          }
-
-          var data = {
-            'cloud_name' : cloud_name,
-            'real_name' : real_name,
-            'email' : email,
-            'password' : pass_word,
-            'phone' : telephone,
-            'package_id' : package_id
-          };
-          if(!$('#regist').hasClass('disabled')){
-            if(package_id !=0){
-              var newTab = window.open('about:blank')
+            if (is_cloud_name) {
+                $(".errorMsg").removeClass('alert-success');
+                $(".errorMsg").addClass('alert-danger');
+                errorMsg("该团队名已使用，请更换");
+                return false;
             }
-            if(cloud_name.replace(/^\s+|\s+$/g, "") == ''){
-              $(".errorMsg").removeClass('alert-success')
-              $(".errorMsg").addClass('alert-danger')
-              errorMsg("公司或团队名称不能为空")
-              return false
+            
+            if (is_user_name_exist) {
+                $(".errorMsg").removeClass('alert-success');
+                $(".errorMsg").addClass('alert-danger');
+                errorMsg("该用户名已使用，请更换");
+                return false;
             }
 
-            if(real_name.replace(/^\s+|\s+$/g, "") == ''){
-              $(".errorMsg").removeClass('alert-success')
-              $(".errorMsg").addClass('alert-danger')
-              errorMsg("姓名不能为空")
-              return false
+            if (is_email_exist) {
+                $(".errorMsg").removeClass('alert-success');
+                $(".errorMsg").addClass('alert-danger');
+                errorMsg("该邮箱已使用，请更换");
+                return false;
             }
 
-            if(telephone.replace(/^\s+|\s+$/g, "") == ''){
-              $(".errorMsg").removeClass('alert-success')
-              $(".errorMsg").addClass('alert-danger')
-              errorMsg("联系电话不能为空")
-              return false
+            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            if (!re.test(email)) {
+                $(".errorMsg").removeClass('alert-success')
+                $(".errorMsg").addClass('alert-danger')
+                errorMsg("邮件格式不正确")
+                return false
             }
 
-            $('#regist')[0].innerHTML = '加载中...'
-            $('#regist').attr('disabled', 'disabled')
-
-            $.ajax({
-              url : CONFIG.API_ROOT + '/cloud/regist',
-              type : 'post',
-              dataType : 'json',
-              data : data
-            }).done(function(responseJSON) {
-              $(".errorMsg").removeClass('alert-danger')
-              $(".errorMsg").addClass('alert-success')
-              window.onbeforeunload = ''
-              if(package_id == '0'){
-                window.location.href = 'regist-success.html#email=' + email;
-              }
-
-              if(payType == 'y'){
-                monthCount = 1
-              }
-              if(package_id != '0'){
-                $('#confirmModal').modal({
-                  backdrop: 'static'
-                })
-
-                var data = {
-                  "user_id":responseJSON.result.user_id,
-                  "cloud_id": responseJSON.result.cloud_id,
-                  "package_id":package_id,
-                  "pay_type":payType,
-                  "num":monthCount,
-                  "debug" :"true",
-                  "action": "upgrade"
+            var data = {
+                'user_name': user_name,
+                'cloud_name': cloud_name,
+                'real_name': real_name,
+                'email': email,
+                'password': pass_word,
+                'phone': telephone,
+                'package_id': package_id
+            };
+            if (!$('#regist').hasClass('disabled')) {
+                if (package_id != 0) {
+                    var newTab = window.open('about:blank')
+                }
+                if (cloud_name.replace(/^\s+|\s+$/g, "") == '') {
+                    $(".errorMsg").removeClass('alert-success')
+                    $(".errorMsg").addClass('alert-danger')
+                    errorMsg("公司或团队名称不能为空")
+                    return false
                 }
 
-                createData = data
+                if (real_name.replace(/^\s+|\s+$/g, "") == '') {
+                    $(".errorMsg").removeClass('alert-success')
+                    $(".errorMsg").addClass('alert-danger')
+                    errorMsg("姓名不能为空")
+                    return false
+                }
+
+                if (telephone.replace(/^\s+|\s+$/g, "") == '') {
+                    $(".errorMsg").removeClass('alert-success')
+                    $(".errorMsg").addClass('alert-danger')
+                    errorMsg("联系电话不能为空")
+                    return false
+                }
+
+                $('#regist')[0].innerHTML = '加载中...'
+                $('#regist').attr('disabled', 'disabled')
 
                 $.ajax({
-                  url : CONFIG.API_ROOT + '/order/create',
-                  type : 'POST',
-                  dataType : 'json',
-                  async: false,
-                  data : data
+                    url: CONFIG.API_ROOT + '/cloud/regist',
+                    type: 'post',
+                    dataType: 'json',
+                    data: data
                 }).done(function(responseJSON) {
-                  newTab.location = responseJSON.result.pay_url
-                  payUrl = responseJSON.result.pay_url
-                  order_id = responseJSON.result.order_id
+                    $(".errorMsg").removeClass('alert-danger')
+                    $(".errorMsg").addClass('alert-success')
+                    window.onbeforeunload = ''
+                    if(winWidth < 768){
+                        window.location.href = 'successRegisterOnMobie.html';
+                        return;
+                    }
+
+                    if (package_id == '0') {
+                      window.location.href = 'regist-success.html#email=' + email;
+                    }
+
+                    if (payType == 'y') {
+                        monthCount = 1
+                    }
+                    if (package_id != '0') {
+                        $('#confirmModal').modal({
+                            backdrop: 'static'
+                        })
+
+                        var data = {
+                            "user_id": responseJSON.result.user_id,
+                            "cloud_id": responseJSON.result.cloud_id,
+                            "package_id": package_id,
+                            "pay_type": payType,
+                            "num": monthCount,
+                            "debug": "true",
+                            "action": "upgrade"
+                        }
+
+                        createData = data
+
+                        $.ajax({
+                            url: CONFIG.API_ROOT + '/order/create',
+                            type: 'POST',
+                            dataType: 'json',
+                            async: false,
+                            data: data
+                        }).done(function(responseJSON) {
+                            newTab.location = responseJSON.result.pay_url
+                            payUrl = responseJSON.result.pay_url
+                            order_id = responseJSON.result.order_id
+                        }).fail(function(xhr, status, error) {
+
+                        });
+                    }
+
                 }).fail(function(xhr, status, error) {
-
+                    $(".errorMsg").removeClass('alert-success')
+                    $(".errorMsg").addClass('alert-danger')
+                    var err = eval('(' + xhr.responseText + ')')
+                    errorMsg(err.result)
+                    $('#regist')[0].innerHTML = '注&nbsp;&nbsp;&nbsp;册'
+                    $('#regist').removeAttr("disabled")
+                    if(newTab){
+                        newTab.close()
+                    }
                 });
-              }
+            }
 
-            }).fail(function(xhr, status, error) {
-              $(".errorMsg").removeClass('alert-success')
-              $(".errorMsg").addClass('alert-danger')
-              var err = eval('(' + xhr.responseText + ')')
-              errorMsg(err.result)
-              $('#regist')[0].innerHTML = '注&nbsp;&nbsp;&nbsp;册'
-              $('#regist').removeAttr("disabled")
-              newTab.close()
-            });
-          }
-
-          return false;
-			  })
+            return false;
+        })
 
         $('#logohome').click(function(e) {
-          window.location.href = 'home.html';
+            window.location.href = 'home.html';
         });
 
         //重新支付打开支付页面
         $('.pay-again').click(function(e) {
-          //是否支付完成
-          var order_finished = false
+            //是否支付完成
+            var order_finished = false
 
-          $.ajax({
-            url : CONFIG.API_ROOT + '/order/check/' + order_id,
-            type : 'GET',
-            async: false,
-            dataType : 'json'
-          }).done(function(responseJSON) {
-            if(responseJSON.result == 'failure'){//支付失败
-              order_finished = false
-              $(".errorMsg").removeClass('alert-success')
-              $(".errorMsg").addClass('alert-danger')
-              errorMsg('支付结果正在处理中，请稍作等待或选择重新支付')
-            }else{
-              order_finished = true
-              $(".errorMsg").removeClass('alert-danger')
-              $(".errorMsg").addClass('alert-success')
-              errorMsg('支付已成功,无需重新支付')
-              setTimeout(function(){
-                 window.location.href = 'regist-success.html#email=' + email;
-              },1000)
-            }
-          }).fail(function(xhr, status, error) {
-
-          });
-
-          if(!order_finished){
-            var newTab = window.open('about:blank');
             $.ajax({
-              url : CONFIG.API_ROOT + '/order/create',
-              type : 'POST',
-              dataType : 'json',
-              data : createData
+                url: CONFIG.API_ROOT + '/order/check/' + order_id,
+                type: 'GET',
+                async: false,
+                dataType: 'json'
             }).done(function(responseJSON) {
-              order_id = responseJSON.result.order_id
-              newTab.location = responseJSON.result.pay_url
+                if (responseJSON.result == 'failure') { //支付失败
+                    order_finished = false
+                    $(".errorMsg").removeClass('alert-success')
+                    $(".errorMsg").addClass('alert-danger')
+                    errorMsg('支付结果正在处理中，请稍作等待或选择重新支付')
+                } else {
+                    order_finished = true
+                    $(".errorMsg").removeClass('alert-danger')
+                    $(".errorMsg").addClass('alert-success')
+                    errorMsg('支付已成功,无需重新支付')
+                    setTimeout(function() {
+                        window.location.href = 'regist-success.html#email=' + email;
+                    }, 1000)
+                }
             }).fail(function(xhr, status, error) {
 
             });
-          }
+
+            if (!order_finished) {
+                var newTab = window.open('about:blank');
+                $.ajax({
+                    url: CONFIG.API_ROOT + '/order/create',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: createData
+                }).done(function(responseJSON) {
+                    order_id = responseJSON.result.order_id
+                    newTab.location = responseJSON.result.pay_url
+                }).fail(function(xhr, status, error) {
+
+                });
+            }
 
         });
 
         //支付完成
         $('.pay-finished').click(function(e) {
-          $.ajax({
-            url : CONFIG.API_ROOT + '/order/check/' + order_id,
-            type : 'GET',
-            dataType : 'json'
-          }).done(function(responseJSON) {
-            if(responseJSON.result == 'failure'){//支付失败
-              $(".errorMsg").removeClass('alert-success')
-              $(".errorMsg").addClass('alert-danger')
-              errorMsg('支付结果正在处理中，请稍作等待或选择重新支付')
-            }else{
-              $(".errorMsg").removeClass('alert-danger')
-              $(".errorMsg").addClass('alert-success')
-              errorMsg('支付成功')
-              setTimeout(function(){
-                 window.location.href = 'regist-success.html#email=' + email;
-              },1000)
-            }
-          }).fail(function(xhr, status, error) {
+            $.ajax({
+                url: CONFIG.API_ROOT + '/order/check/' + order_id,
+                type: 'GET',
+                dataType: 'json'
+            }).done(function(responseJSON) {
+                if (responseJSON.result == 'failure') { //支付失败
+                    $(".errorMsg").removeClass('alert-success')
+                    $(".errorMsg").addClass('alert-danger')
+                    errorMsg('支付结果正在处理中，请稍作等待或选择重新支付')
+                } else {
+                    $(".errorMsg").removeClass('alert-danger')
+                    $(".errorMsg").addClass('alert-success')
+                    errorMsg('支付成功')
+                    setTimeout(function() {
+                        window.location.href = 'regist-success.html#email=' + email;
+                    }, 1000)
+                }
+            }).fail(function(xhr, status, error) {
 
-          });
+            });
         });
 
         $("#closeModal").click(function() {
-          $('#regist')[0].innerHTML = '注册'
-          $('#regist').attr('disabled', false)
+            $('#regist')[0].innerHTML = '注册'
+            $('#regist').attr('disabled', false)
         })
 
         $(".errorMsg .close").click(function() {
-          $(".errorMsg").hide();
+            $(".errorMsg").hide();
         })
 
         $('input').focus(function() {
-          $(this).parents('.input-group').addClass('input-group-focus')
+            $(this).parents('.input-group').addClass('input-group-focus')
         })
 
         $('input').blur(function() {
-          $(this).parents('.input-group').removeClass('input-group-focus')
+            $(this).parents('.input-group').removeClass('input-group-focus')
         })
 
-      });
-		</script>
-	</head>
-	<body>
-		<div class="main container text-center">
-			<img src="images/loginlogo.png" style="position:relative;cursor: pointer;" id="logohome" />
-			<div class="login-line"></div>
-			<div class="form-back">
-				<div class="wrapper">
-					<form id="myForm" roll="form" data-toggle="validator" action="">
-						<div class="form-group">
-							<div class="input-group col-sm-8 pull-left">
-								<span class="input-group-addon"><span class="">公司或团队名称:</span></span>
-								<input type="text" id="cloud_name" class="form-control" maxlength="50" required data-error="请填写公司或团队名称">
-							</div>
-							<div class="help-block with-errors col-sm-4 pull-left"></div>
-						</div>
-						<div class="form-group">
-							<div class="input-group col-sm-8 pull-left">
-								<span class="input-group-addon"><span class="">姓名:</span></span>
-								<input type="text" id="real_name" class="form-control" maxlength="16" required data-error="请填写姓名">
-							</div>
-							<div class="help-block with-errors col-sm-4 pull-left"></div>
-						</div>
-						<div class="form-group email-form">
-							<div class="input-group col-sm-8 pull-left">
-								<span class="input-group-addon"><span class="">邮箱:</span></span>
-								<input type="email" id="inputEmail" class="form-control" required data-error="邮箱格式不正确">
-							</div>
-							<div class="help-block with-errors col-sm-4 pull-left"></div>
-						</div>
-						<div class="form-group">
-							<div class="input-group col-sm-8 pull-left">
-								<span class="input-group-addon"><span class="">设置密码:</span></span>
-								<input type="password" id="inputPassword" maxlength="16" data-minlength="6" class="form-control" required data-error="密码长度为6到16位">
-							</div>
-							<div class="help-block with-errors col-sm-4 pull-left"></div>
-						</div>
-						<div class="form-group">
-							<div class="input-group col-sm-8 pull-left">
-								<span class="input-group-addon"><span class="">确认密码:</span></span>
-								<input type="password" id="confirmPassword" class="form-control" data-match="#inputPassword" required data-error="2次密码不一致">
-							</div>
-							<div class="help-block with-errors col-sm-4 pull-left"></div>
-						</div>
-						<div class="form-group">
-							<div class="input-group col-sm-8 pull-left">
-								<span class="input-group-addon"><span class="">联系电话:</span></span>
-								<input type="text" id="telephone" class="form-control" required data-error="请填写联系电话">
-							</div>
-							<div class="help-block with-errors col-sm-4 pull-left"></div>
-						</div>
-						<div class="form-group">
-						  <select class="selectpicker col-sm-8">
-                <option value="0">免费版（10人以内）</option>
-                <option value="1">初级协作版（20人以内）</option>
-                <option value="2">中级协作版（50人以内）</option>
-                <option value="3">高级协作版（100人以内）</option>
-              </select>
-						</div>
-						<div class="form-group check-pricing">
-              <a href="pricing.html" target="_blank">查看套餐详情</a>
+    });
+    </script>
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?4c3c918cadc6ad3aceb76b34c3c29302";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container">
+            <img src="images/loginlogo.png" class="logohome" />
+            <div class="login-line"></div>
+        </div>
+    </header>
+    <form class="form-horizontal" id="myForm" roll="form" data-toggle="validator" action="">
+        <div class="container">
+            <div class="form-group">
+                <div class="input-tit col-sm-6 col-sm-offset-3">
+                    <span class="">公司或团队名称:</span>
+                    <input type="text" class="form-control" id="cloud_name" maxlength="50" required data-error="请填写公司或团队名称">
+                </div>
+                <p class="help-block with-errors col-sm-3"></p>
+            </div>
+            <div class="form-group">
+                <div class="input-tit col-sm-6 col-sm-offset-3">
+                    <span class="">姓名:</span>
+                    <input type="text" class="form-control" id="real_name" maxlength="16" required data-error="请填写姓名">
+                </div>
+                <p class="help-block with-errors  col-sm-3"></p>
+            </div>
+            <div class="form-group">
+                <div class="input-tit col-sm-6 col-sm-offset-3">
+                    <span class="">用户名:</span>
+                    <input type="text" class="form-control" id="user_name" maxlength="50" required data-error="请填写用户名">
+                </div>
+                <p class="help-block with-errors col-sm-3"></p>
+            </div>
+            <div class="form-group">
+                <div class="input-tit col-sm-6 col-sm-offset-3">
+                    <span class="">设置密码:</span>
+                    <input type="text" class="form-control" id="inputPassword" maxlength="16" data-minlength="6" required data-error="密码长度为6到16位">
+                    <div class="eye" id="eye" ><img class="img-responsive" src="images/eye.png" /></div>
+                </div>
+                <p class="help-block with-errors  col-sm-3"></p>
+            </div>
+          <script>
+            var html = '<div class="form-group">';
+                html +=   '<div class="input-tit col-sm-6 col-sm-offset-3">';
+                html +=    '<span class="">确认密码:</span>';
+                html +=    '<input type="password" class="form-control" id="confirmPassword" data-match="#inputPassword" required data-error="2次密码不一致">';
+                html += '</div>';
+                html += '<p class="help-block with-errors col-sm-3"></p>';
+                html += '</div>';
+            if (winWidth >= 768)
+              document.write(html);
+          </script> 
+            <div class="form-group">
+                <div class="input-tit col-sm-6 col-sm-offset-3">
+                    <span class="">联系邮箱:</span>
+                    <input type="email" class="form-control" id="inputEmail" required data-error="邮箱格式不正确">
+                </div>
+                <p class="help-block with-errors  col-sm-3"></p>
+            </div>
+
+            <div class="form-group">
+                <div class="input-tit col-sm-6 col-sm-offset-3">
+                    <span class="">联系电话:</span>
+                    <input type="text" class="form-control" id="telephone" required data-error="请填写联系电话">
+                </div>
+                <p class="help-block with-errors col-sm-3"></p>
+            </div>
+            <div class="form-group hidden-xs">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <select class="form-control selectpicker">
+                        <option value="0">免费版（10人以内）</option>
+                        <option value="1">初级协作版（20人以内）</option>
+                        <option value="2">中级协作版（50人以内）</option>
+                        <option value="3">高级协作版（100人以内）</option>  
+   
+                    </select>
+                </div>
+            </div>
+            <div class="form-group check-pricing hidden-xs">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <a href="pricing.html" class="" target="_blank">查看套餐详情</a>
+                </div>
             </div>
             <div class="form-group pay pay-head">
-              <label class="col-sm-8 text">付款计划</label>
+                <div class="col-sm-6 col-sm-offset-3">
+                    <label class="text">付款计划</label>
+                </div>
             </div>
-            <div class="form-group radio-group pay">
-              <div class="radio">
-                <label>
-                  <input type="radio" name="optionsRadios" id="optionsRadios1" value="y" checked>
-                                             年付（<span id="yearPrice">2800</span>/年）
-                  <img src="images/youhui_mark.png" />
-                </label>
-              </div>
-              <div class="radio">
-                <label>
-                  <input type="radio" name="optionsRadios" id="optionsRadios2" value="m">
-                                              月付（<span id="monthPrice">2800</span>/月）
-                </label>
-              </div>
+            <div class="form-group pay radio-group">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="y" checked> 年付（
+                            <span id="yearPrice">2800</span>/年）
+                            <img src="images/youhui_mark.png" />
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="m"> 月付（
+                            <span id="monthPrice">2800</span>/月）
+                        </label>
+                    </div>
+                </div>
             </div>
-						<div class="form-group slider-pips pay">
-						  <div class="slider col-sm-8"></div>
-						</div>
-						<div class="form-group pay">
-              <div class="col-sm-8 price">
-                合计：<span id="price">2800</span>元
-              </div>
+            <div class="form-group slider-pips pay">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <div class="slider"></div>
+                </div>
             </div>
-						<div class="form-group checkbox">
-							<label class="pull-left col-sm-8">
-								<input type="checkbox" id="checkbox" checked="checked" required data-error="请同意服务条款">我已阅读并同意
-								<a class="" href="http://www.sharpinteract.com/agreement.html" target="_blank">《全携通用户服务条款》</a>
-							</label>
-							<div class="help-block with-errors col-sm-4 pull-left"></div>
-						</div>
-						<div class="text-center regist-btn col-sm-8">
-							<button type="submit" class="btn btn-block" id="regist">注&nbsp;&nbsp;&nbsp;册</button>
-						</div>
-						<div class="register col-sm-8">
-							<label class="pull-left">
-								已有账号？
-								<a class="" href="login.html">立即登录</a>
-							</label>
-							<a class="pull-right" href="home.html">返回首页</a>
-						</div>
-					</form>
-				</div>
-			</div>
-
-		</div>
-		<div class="footer text-center">
-			<a href="http://www.sharpinteract.com/agreement.html" target="_blank">服务条款</a> &nbsp;
-			<a href="http://www.sharpinteract.com/privacy_policy.html" target="_blank">隐私政策</a> &nbsp;
-			<span style="color: #999999">版权所有 ©2014  上海灵利信息技术有限公司</span>
-		</div>
-		<div class="alert alert-dismissable alert-danger errorMsg" style="display: none; position: fixed; z-index: 10002;">
-			<button aria-hidden="true" data-dismiss="alert" class="close" type="button">
-				×
-			</button>
-			<p style="margin-right: 15px;">
-
-			</p>
-		</div>
-
-		<!-- confirmModal -->
-    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" id="closeModal" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-            </button>
-            <h4 class="modal-title" id="renewalModalLabel">请您在新打开的页面中完成支付</h4>
-          </div>
-          <div class="modal-body">
-            <div class="form-group">
-              <span>支付完成前请不要关闭此窗口</span><br />
-              <span>如果支付失败，请<a href="home.html#businessMainly" target="_blank">联系我们</a>，我们将竭诚为您服务</span>
+            <div class="form-group pay">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <div class="price">
+                        合计：<span id="price">2800</span>元
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="modal-footer text-center">
-            <button type="button" class="btn btn-primary pay-finished">支付成功</button>
-            <button type="button" class="btn btn-warning pay-again">重新支付</button>
-          </div>
+            <div class="form-group checkbox">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <label>
+                        <input type="checkbox" id="checkbox" checked="checked" required data-error="请同意服务条款">我已阅读并同意
+                        <a class="" href="http://www.sharpinteract.com/agreement.html" target="_blank">《全携通用户服务条款》</a>
+                    </label>
+                </div>
+                <p class="help-block with-errors col-sm-3"></p>
+            </div>
+            <div class="form-group text-center regist-btn">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <button type="submit" class="btn btn-block" id="regist">注&nbsp;&nbsp;&nbsp;册</button>
+                </div>
+            </div>
+            <div class="form-group register hidden-xs">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <label class="pull-left">
+                        已有账号？
+                        <a class="" href="login.html">立即登录</a>
+                    </label>
+                    <a class="pull-right" href="home.html">返回首页</a>
+                </div>
+            </div>
+            <div class="form-group footer hidden-xs">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <a href="http://www.sharpinteract.com/agreement.html" target="_blank">服务条款</a>&nbsp;
+                    <a href="http://www.sharpinteract.com/privacy_policy.html" target="_blank">隐私政策</a>
+                    <br/>
+                    <span style="color: #999999">版权所有 ©2014  上海灵利信息技术有限公司</span>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
+    </form>
 
-	</body>
+    <div class="alert alert-dismissable alert-danger errorMsg" style="display: none; position: fixed; z-index: 10002;">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">
+            ×
+        </button>
+        <p style="margin-right: 15px;">
+
+        </p>
+    </div>
+    <!-- confirmModal -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" id="closeModal" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="renewalModalLabel">请您在新打开的页面中完成支付</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <span>支付完成前请不要关闭此窗口</span>
+                        <br />
+                        <span>如果支付失败，请<a href="home.html#businessMainly" target="_blank">联系我们</a>，我们将竭诚为您服务</span>
+                    </div>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-primary pay-finished">支付成功</button>
+                    <button type="button" class="btn btn-warning pay-again">重新支付</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  <script>
+    
+   
+  </script>
+</body>
 
 </html>

@@ -15,7 +15,7 @@
     <ul class="ztree" id="tree" z-nodes="zNodes" setting="setting" z-tree></ul>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="ok()">
+    <button class="btn btn-primary" ng-disabled="copyMenuClicked" ng-click="ok()">
         {{'LANG_COPY_MOVE' | translate}}
     </button>
     <button class="btn btn-default" ng-click="cancel()">

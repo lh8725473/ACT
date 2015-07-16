@@ -3,6 +3,8 @@ jQuery(".slideBox").slide({ mainCell: ".bd ul", effect:"left", autoPlay: true })
 //onepage scroll
 
 var winHeight = parseInt($(window).height());
+var mainMenuActive = $(".main-menu-gray dd");//显示当前状态的菜单选择器
+
 //alert($(window).height());
 $(function () {
     $('.main').onepage_scroll({
@@ -11,12 +13,26 @@ $(function () {
         responsiveFallback:767,
         loop:false,        
         beforeMove: function (index) {
-           
+            mainMenuActive.removeClass("active");
+            
             switch(index){
                 case 1:
-                    $(".JS-main-menu-fixed").hide();
+                    $(".JS-main-menu-fixed").hide();                   
+                    break;                   
+                case 2:
+                    mainMenuActive.eq(1).addClass("active");
+                    break;
+                case 3:
+                    mainMenuActive.eq(1).addClass("active");
+                    break;
+                case 4:
+                    mainMenuActive.eq(1).addClass("active");
+                    break;
+                case 5:
+                    mainMenuActive.eq(1).addClass("active");
                     break;
                 case 6:
+                    mainMenuActive.eq(3).addClass("active");
                     $(".scroll-page").hide();
                     break;
                 default:
@@ -25,7 +41,8 @@ $(function () {
                  
             }
         },
-        afterMove: function(index){
+        afterMove: function (index) {
+           
         switch(index){
             case 1:
                 $(".JS-main-menu-fixed").hide();

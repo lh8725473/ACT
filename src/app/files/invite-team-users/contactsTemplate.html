@@ -1,0 +1,4 @@
+<a style="cursor:pointer;">
+  <img ng-src="{{match.model.avatar}}" alt="" width="24" />
+  <span bind-html-unsafe="match.label | typeaheadHighlight:query"/>
+</a>

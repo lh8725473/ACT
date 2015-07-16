@@ -20,6 +20,10 @@ angular.module('App.Widgets').factory('Confirm', [
           confirm.ok($modalInstance)
         }
 
+        $scope.extraButtonClick = function() {
+          confirm.extraButtonClick($modalInstance)
+        }
+
         $scope.cancel = function() {
           $modalInstance.dismiss('cancel')
         }

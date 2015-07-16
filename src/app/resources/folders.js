@@ -62,6 +62,18 @@ angular.module('App.Resources').factory('Folders', [
         params: {
           action: 'setSync'
         }
+      },
+      switchBlockMsg: {
+        method: "POST",
+        params: {
+          action: 'switchBlockMsg'
+        }
+      },
+      isBlockMsg: {
+        method: "GET",
+        params: {
+          action: 'isBlockMsg'
+        }
       }
     })
   }

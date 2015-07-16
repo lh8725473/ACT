@@ -85,6 +85,12 @@ angular.module('App.Resources').factory('Files', [
         },
         isArray: true
       },
+      remind:{
+        method: "POST",
+        params: {
+          action: 'remind'
+        }
+      },
       revertFileVersion:{
         method: "PUT",
         params: {

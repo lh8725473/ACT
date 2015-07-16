@@ -1,0 +1,67 @@
+<div class="settings-profile" ng-controller="App.Settings.Profile.Controller">
+	<perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="1" refresh-on-change="userLogList" on-scroll="onUserLogListScroll(scrollTop, scrollHeight)">
+		<div class="profile-l">
+			<div class="profile-l-t">
+				<img alt="" ng-src="{{userInfo.avatar}}">
+				<span ng-click = "updateImg()">
+					<a>更改头像</a>
+					<div class="upload-div"
+		        ng-file-drop="onFileSelect($files)"
+		        ng-file-drag-over-class="drop-box-over"
+		        ng-file-drag-over-delay="100"
+		        ng-file-select="onFileSelect($files)" title="{{'LANG_USER_UPLOAD_NEW_AVATOR' | translate}}" accept="image/*">
+		      </div>
+				</span>
+			</div>
+		</div>
+		<!-- profile-l -->
+
+		<div class="profile-r">
+			<div id="" class="form">
+				<div class="form-group">
+					<div class="input-group">
+						<span class="group-tit">用户名</span>
+						<input type="text" maxlength="50" class="form-control" ng-model="userInfo.user_name" disabled/>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group">
+						<span class="group-tit">姓名</span>
+						<input type="text" maxlength="50" class="form-control" ng-model="userInfo.real_name" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group">
+						<span class="group-tit">联系邮箱</span>
+						<input type="text" maxlength="50" class="form-control" ng-model="userInfo.email"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group">
+						<span class="group-tit">电话</span>
+						<input type="text" maxlength="50" class="form-control" ng-model="userInfo.phone"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group">
+						<span class="group-tit">公司/团队</span>
+						<input type="text" maxlength="50" id="team" class="form-control" ng-model="userInfo.cloud_name" disabled />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group">
+						<span class="group-tit">职位</span>
+						<input type="text" maxlength="50" id="job" class="form-control" ng-model="userInfo.position"/>
+					</div>
+				</div>
+				<div class="from-btn">
+					<button class="btn btn-block btn-primary" ng-click="updateUserInfo(userInfo)">保&nbsp;&nbsp;&nbsp;存</button>
+				</div>
+
+			</div>
+			<!-- from -->
+		</div>
+		<!-- profile-r -->
+	</perfect-scrollbar>
+
+</div>

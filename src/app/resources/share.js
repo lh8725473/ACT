@@ -18,6 +18,12 @@ angular.module('App.Resources').factory('Share', [
           action: 'getLink'
         }
       },
+      deleteLink: {
+        method: "DELETE",
+        params: {
+          action: 'deleteLink'
+        }
+      },
       update: {
         method: "PUT",
         params: {
@@ -32,16 +38,36 @@ angular.module('App.Resources').factory('Share', [
           id : ''
         }
       },
-      sendEmail: {
+      sendLink: {
         method: "POST",
         params: {
-          action: 'sendEmail'
+          action: 'sendLink'
         }
       },
       viewLink: {
         method: "GET",
         params: {
           action: 'viewLink'
+        }
+      },
+      linkList: {
+        method: "GET",
+        params: {
+          action: 'linkList'
+        },
+        isArray: true
+      },
+      linkRecordList: {
+        method: "GET",
+        params: {
+          action: 'linkRecordList'
+        },
+        isArray: true
+      },
+      deleteLinkRecord: {
+        method: "delete",
+        params: {
+          action: 'deleteLinkRecord'
         }
       }
     })

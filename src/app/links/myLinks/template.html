@@ -1,0 +1,36 @@
+<div class="my-links" ng-controller="App.Links.Mylinks.Controller">
+  <div class="title">
+    <div class="title-name col">
+      <span>{{'LANG_TEAM_COLLABORATION_FILE_NAME' | translate}}</span>
+    </div>
+    <div class="title-state col">
+      <span>{{'LANG_TEAM_COLLABORATION_CREATION_TIME' | translate}}</span>
+    </div>
+    <div class="title-size col">
+      <span>{{'LANG_TEAM_COLLABORATION_FILE_OPERATION' | translate}}</span>
+    </div>
+  </div>
+  <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="1" refresh-on-change="">
+    <loading-indicator ng-show="loading"></loading-indicator>
+    <div class="folder-grid">
+      <div class="table">
+        <div class="file-row" ng-repeat="myLink in myLinksList" ng-class = "{ selected: myLink.checked }" ng-click = "selectRecycle($event, myLink)">
+          <div class="img-name-td">
+            <img ng-src = "{{myLink.smallIcon}}" height="42px" width="42px"/>
+            <div class="file-name">
+              <a ng-show = "myLink.folder" title="{{myLink.path}}" ng-click="openNewWindow(myLink)">{{myLink.folder_name}}</a>
+              <a ng-show = "!myLink.folder" title="{{myLink.path}}" ng-click="openNewWindow(myLink)">{{myLink.file_name}}</a>
+            </div>
+          </div>
+          <div class="state-td" title="{{myLink.format_date}}">
+            {{myLink.format_date}}
+          </div>
+          <div class="file-sise-td">
+            <img class="edit-img" src="./images/edit.png" tooltip="{{'LANG_NOTE_EDIT' | translate}}" tooltip-placement="top" tooltip-append-to-body="true" ng-click="editMyLink(myLink)">
+            <img class="delete-img" src="./images/delete.png" tooltip="{{'LANG_FILE_DELETE' | translate}}" tooltip-placement="top" tooltip-append-to-body="true" ng-click="deleteMyLink(myLink)">
+          </div>
+        </div>
+      </div>
+    </div>
+  </perfect-scrollbar>
+</div>

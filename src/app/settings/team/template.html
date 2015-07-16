@@ -1,0 +1,20 @@
+<div class="settings-team" ng-controller="App.Settings.Team.Controller">
+	<div class="team-main">
+		<div class="title">
+			<div class="title-name col-md-5">团队名称</div>
+			<div class="title-name col-md-7">操作</div>
+		</div>
+		<!-- title -->
+		<perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="1" refresh-on-change="cloudList">
+			<div class="team-row" ng-repeat="cloud in cloudList" ng-if="cloud.cloud_id != '0'">
+				<div class="col-md-5">{{cloud.cloud_name}}</div>
+				<div class="col-md-7">
+					<span class="cur" ng-show="cloud.cloud_id == userInfo.cloud_id_default">默认团队</span>
+					<a ng-hide="cloud.cloud_id == userInfo.cloud_id_default" ng-click = "updateUserInfo(cloud)">设为默认</a>
+				</div>
+			</div>
+			<!-- team-row -->
+		</perfect-scrollbar>
+	</div>
+
+</div>

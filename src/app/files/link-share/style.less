@@ -1,48 +1,229 @@
 //链接分享
-.link-share{
-    .modal-dialog{
-        width: 350px;
-        .input-group{
-            margin-bottom: 5px;
+.link-share {
+  .modal-dialog {
+    width: 100%;
+    .modal-content {
+      border: none;
+      border-radius: none;
+      background: transparent;
+      box-shadow: none;
+      label{
+        font-weight: normal;
+      }
+      .modal-body{
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-right: 0;
+        height: 480px;
+        &.has-link {
+          height: 530px;
         }
-        .dropdown{
-          button{
-            text-align: left;
-            span.caret{
-              float: right;/* IE */
-              margin-top: 8px;/* IE */
-            }
-
-            @media screen and (-webkit-min-device-pixel-ratio:0) {
-              .link-share .modal-dialog .dropdown button span.caret {
-                float: right;/* Chrome 4 */
-                margin-top: 8px;/* Chrome 4 */
-                margin-left:0px;/* Chrome 4 */
-              }
-            }
-
-            @-moz-document url-prefix() {
-              .link-share .modal-dialog .dropdown button span.caret {
-                float: right;/* Firefox 4 */
-                margin-top: -10px;/* Firefox 4 */
-                margin-left:0px;/* Firefox 4 */
-              }
-            }
-          }
-          .dropdown-menu{
-              text-align: left;
-              width: 100%;
-              li{
-                  cursor: pointer;
-              }
-          }
-        }
-
-        .input-password{
-            margin-top: 5px;
-        }
-        .code_src{
-            margin-right: 5px;
-        }
+      }
     }
+    .selected-groups-users{
+      border: 1px solid #e5e5e5;
+      height: 80px;
+      margin-left: 15px;
+      overflow-y: hidden;
+      overflow-x: hidden;
+      padding: 0;
+      position: relative;
+      width: 93%;
+    }
+    .selectedItem{
+      background: none repeat scroll 0 0 #eee;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      float: left;
+      margin: 5px;
+      padding: 3px;
+      &.delete{
+        background-color: #d4d4d4;
+      }
+      .deleteSelected{
+        cursor: pointer;
+        padding: 5px;
+      }
+    }
+    .selected-input{
+      border: none;
+      padding: 6px 12px;
+      width: 50%;
+      min-width: 200px;
+      float: left;
+    }
+    .selected-input:focus{
+      box-shadow:none;
+      border: none;
+    }
+    .link-share-content {
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+    .select-invite{
+      border-left: 1px solid #bbbbbb;
+      height: 100%;
+      padding: 0;
+      .select-all{
+        margin-left: 20px;
+        border-bottom: 1px solid #bbbbbb;
+        padding-bottom: 5px;
+      }
+      .group {
+        padding: 5px;
+        .group-user {
+          padding-top: 5px;
+          padding-bottom: 5px;
+          padding-left: 40px;
+        }
+      }
+      .user {
+        padding: 5px;
+      }
+      .user.is_invited {
+        color: #c0c0c0;
+      }
+      .group.is_invited {
+        color: #c0c0c0;
+      }
+      .user-checkbox {
+        float: left;
+        padding: 2px;
+        width: 25px;
+      }
+      .group-checkbox {
+        float: left;
+        padding: 2px;
+        width: 25px;
+      }
+      .arrows-img {
+        background: url("../../images/arrows.png") no-repeat scroll 0 -113px rgba(0, 0, 0, 0);
+        cursor: pointer;
+        float: right;
+        height: 8px;
+        margin-top: 8px;
+        transition: -moz-transform 0.2s ease 0s;
+        width: 15px;
+      }
+      .scroller {
+        overflow-x: hidden;
+        overflow-y: hidden;
+        bottom: 30px;
+        left: 0;
+        margin-left: 13px;
+        right: 0;
+        top: 100px;
+        position: absolute;
+        padding-right: 5px;
+        .group-name {
+          max-width: 90px;
+        }
+      }
+    }
+    .searchText{
+      background-color: #eceff1;
+      padding: 10px 20px;
+      input{
+        background: url("../../images/search_icon.png") no-repeat scroll 5px 10px white;
+        padding-left: 25px;
+      }
+    }
+    .link-share-inner {
+      //transition: width 0.5s;
+      //-moz-transition: width 0.5s; /* Firefox 4 */
+      //-webkit-transition: width 0.5s; /* Safari and Chrome */
+      //-o-transition: width 0.5s; /* Opera */
+      width: 450px;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 6px;
+      margin: 0 auto;
+      background: white;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      &.broad {
+        width: 750px;
+      }
+    }
+    .input-group {
+      margin-bottom: 10px;
+    }
+    .save-setting{
+      margin-top: 50px;
+    }
+    .link-url{
+      margin-bottom: 5px;
+    }
+    .link-setting{
+      margin-top: 5px;
+      margin-bottom: 15px;
+      a{
+        cursor: pointer;
+      }
+    }
+    .link-send{
+      border-bottom: 1px solid #bbbbbb;
+      margin-right: -15px;
+      padding-bottom: 5px;
+    }
+    .link-send-selected{
+      margin-bottom: 20px;
+    }
+    .invite{
+      background: url("../../images/file_invite_contact_btn_off.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+      cursor: pointer;
+      height: 17px;
+      width: 20px;
+      margin-right: 15px;
+    }
+    .invite:hover{
+      background: url("../../images/file_invite_contact_btn_pressed.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0)
+    }
+    .select2-container-multi .select2-choices {
+      border-radius: 4px;
+      min-height: 90px;
+    }
+    .link-desciption-head{
+      border-bottom: 1px solid #bbbbbb;
+      margin-right: -15px;
+      padding-bottom: 5px;
+    }
+    .link-desciption{
+      padding-bottom: 20px;
+    }
+    .dropdown {
+      button {
+        text-align: left;
+        span.caret {
+          float: right; /* IE */
+          margin-top: 8px; /* IE */
+        }
+        @media screen and (-webkit-min-device-pixel-ratio:0) {
+          .link-share .modal-dialog .dropdown button span.caret {
+            float: right; /* Chrome 4 */
+            margin-top: 8px; /* Chrome 4 */
+            margin-left: 0px; /* Chrome 4 */
+          }
+        }
+        @-moz-document url-prefix() {
+          .link-share .modal-dialog .dropdown button span.caret {
+            float: right; /* Firefox 4 */
+            margin-top: -10px; /* Firefox 4 */
+            margin-left: 0px; /* Firefox 4 */
+          }
+        }
+      }
+      .dropdown-menu {
+        text-align: left;
+        width: 100%;
+        li {
+          cursor: pointer;
+        }
+      }
+    }
+    .input-password {
+      margin-top: 5px;
+    }
+    .code_src {
+      margin-right: 5px;
+    }
+  }
 }

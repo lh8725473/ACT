@@ -1,4 +1,5 @@
 <div class="files-view" ng-controller="App.Files.Controller">
+<div ng-hide="cloudId==-1">
   <div class="top-bar">
     <div class="pull-left root-path" ng-class="{ isRoot: isRoot }">
       <a ui-sref="files({folderId: 0})">{{'LANG_FILE_ROOT_FOLDER' | translate}}</a>
@@ -9,7 +10,7 @@
     </div>
     <!--<div class="view-model-swither pull-right">视图转换and排序</div>
   -->
-</div>
+  </div>
 <div class="top-bar-bottom"></div>
 <div class="buttonGroup">
   <button ng-click="upload()" class="btn btn-default" ng-disabled="!folder_upload">{{'LANG_UPLOAD_FILE' | translate}}</button>
@@ -19,6 +20,7 @@
   <button ng-click="deleteObjList()" class="btn btn-default" ng-show="show_dele_btn">{{'LANG_FILE_DELETE' | translate}}</button>
   <button ng-click="removeObjList()" class="btn btn-default" ng-show="show_dele_btn">{{'LANG_FILE_MOVE' | translate}}</button>
   <button ng-click="copyObjList()" class="btn btn-default" ng-show="show_dele_btn">{{'LANG_FILE_COPY' | translate}}</button>
+  <button ng-click="downloadZip()" class="btn btn-default" ng-show="show_dele_btn">{{'LANG_FILE_DOWNLOAD' | translate}}</button>
 </div>
 <div class="title">
   <div class="title-checkbox col">
@@ -63,8 +65,7 @@
 
           <div class="file-name" ng-hide = "obj.rename">
             <a ui-sref="files({folderId: obj.folder_id})" ng-show = "obj.folder" title="{{obj.folder_name}}">{{obj.folder_name}}</a>
-            <a ng-show = "!obj.folder&&obj.isPreview&&!obj.isNote" ng-click = "previewFile($event, obj)" title="{{obj.file_name}}">{{obj.file_name}}</a>
-            <a ng-show = "!obj.folder&&!obj.isPreview&&!obj.isNote" ng-class = "{ noPreview: !obj.isPreview }" title="{{obj.file_name}}">{{obj.file_name}}</a>
+            <a ng-show = "!obj.folder&&!obj.isNote" ng-click = "previewFile($event, obj)" title="{{obj.file_name}}" ng-class = "{ noPreview: !obj.is_preview }">{{obj.file_name}}</a>
             <a ng-click = "previewNote(obj)" ng-show = "!obj.folder&&obj.isNote" ng-class = "{ noPreview: !obj.is_preview }" title="{{obj.file_name}}">{{obj.file_name}}</a>
             <div class="tag">
               <span ng-repeat = "tag in obj.tags" ng-show = "obj.tags.length != 0">{{tag.tag_name}}</span>
@@ -101,9 +102,12 @@
       <div class="dropdown position-fixed" id="myMenu">
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
           <li ng-show = "show_download_menu">
-            <a class="pointer" role="menuitem" tabindex="1" ng-click="dowloadFile(checkedObj)">{{'LANG_FILE_DOWNLOAD' | translate}}</a>
+            <a class="pointer" role="menuitem" tabindex="1" ng-click="downloadFile(checkedObj)">{{'LANG_FILE_DOWNLOAD' | translate}}</a>
           </li>
-          <li ng-show = "show_download_menu && checkedObj.folder && checkedObj.isSyncObj == checkedObj.isSynced">
+          <li ng-show = "folder_upload">
+            <a class="pointer" role="menuitem" tabindex="1" ng-click="uploadNew(checkedObj)">{{'LANG_PREVIEW_UPLOAD_NEW_VERSION' | translate}}</a>
+          </li>
+          <li ng-show = "show_sync_menu">
             <a class="pointer" role="menuitem" tabindex="2" ng-click="setSync(checkedObj)">{{syncText | translate}}</a>
           </li>
           <li ng-show = "show_delete_menu">
@@ -121,7 +125,7 @@
           <li ng-show = "show_discuss_menu">
             <a ng-click="openUserDiscuss($event, checkedObj, true)" class="large button">{{'LANG_FILE_DISCUSS' | translate}}</a>
           </li>
-          <li>
+          <li ng-show = "show_add_tag_menu">
             <a ng-click="createTag(checkedObj)" class="large button">{{'LANG_FILE_ADD_TAG' | translate}}</a>
           </li>
           <li ng-show = "show_quit_menu">
@@ -133,5 +137,20 @@
   </div>
   <loading-indicator ng-show="loading"></loading-indicator>
 </perfect-scrollbar>
+</div>
+
+<div ng-show="cloudId==-1">
+    <div class="top-bar">
+    </div>
+  <div class="top-bar-bottom"></div>
+  <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="1" refresh-on-change="objList" on-scroll="onFileListScroll(scrollTop, scrollHeight)">
+  <div class="noCloud">
+    <h2>尊敬的{{realName}}:</h2>
+    <h3>您好，您目前无任何团队，您可以：</h3>
+    <a class="btn btn-primary" href="create-team.html">创建新的团队</a>
+  </div>
+  </perfect-scrollbar>
+</div>
+
 </div>
 <div ng-include="'src/app/files/team-collaboration/template.html'"></div>

@@ -7,6 +7,9 @@ angular.module('App.Users.ManagedUsers.EditUser').controller('App.Users.ManagedU
   'Group',
   'CONFIG',
   'Share',
+  '$translate',
+  '$cookieStore',
+  'Utils',
   function(
     $scope,
     $modal,
@@ -15,11 +18,19 @@ angular.module('App.Users.ManagedUsers.EditUser').controller('App.Users.ManagedU
     Users,
     Group,
     CONFIG,
-    Share
+    Share,
+    $translate,
+    $cookieStore,
+    Utils
   ) {
+    //是否是管理员
+    $scope.is_admin = $cookieStore.readCookie('roleId') == '1';
 
   	$scope.permission_key = CONFIG.PERMISSION_KEY
-	  $scope.permission_value = ['协同拥有者', '编辑者', '查看上传者', '预览上传者', '查看者', '预览者', '上传者']
+	  $scope.permission_value = []
+    angular.forEach(CONFIG.PERMISSION_VALUE, function(key, index) {
+      $scope.permission_value.push($translate.instant(key))
+    })
     $scope.permissions = []
   	angular.forEach($scope.permission_key, function(key, index) {
       var permissionMap = {
@@ -37,8 +48,8 @@ angular.module('App.Users.ManagedUsers.EditUser').controller('App.Users.ManagedU
     $scope.coAdmin = true;
 
     $scope.user.$promise.then(function() {
-      if($scope.user.config.co_admin == undefined){
-        $scope.coAdmin = false
+      if(!$scope.user.config.co_admin){
+        $scope.coAdmin = false;
       }
       $scope.userGroup = $scope.user.groups
       $scope.showUserGroup = $scope.user.groups.map(function(group){
@@ -343,16 +354,18 @@ angular.module('App.Users.ManagedUsers.EditUser').controller('App.Users.ManagedU
         Notification.show({
           title: '成功',
           type: 'success',
-          msg: '修改用户成功',
+          msg: '更新了' + user.real_name + '的账号设置',
           closeable: true
         })
       }, function(error) {
-        Notification.show({
-          title: '失败',
-          type: 'danger',
-          msg: error.data.result,
-          closeable: true
-        })
+        if(!Utils.isReturnErrorDetails(error)){
+          Notification.show({
+            title: '失败',
+            type: 'danger',
+            msg: '更新账号设置时遇到了问题，请再试一次',
+            closeable: true
+          })
+        }
      })
     }
 

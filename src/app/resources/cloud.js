@@ -5,12 +5,11 @@ angular.module('App.Resources').factory('Cloud', [
 		$resource,
 		CONFIG
 	) {
-		return $resource(CONFIG.API_ROOT + '/cloud/:action?folder_id=:folder_id', {}, {
+		return $resource(CONFIG.API_ROOT + '/cloud/:action', {}, {
 			cloudUserList: {
 				method: "GET",
 				params: {
-					action: 'userList',
-					folder_id: 0
+					action: 'userList'
 				},
 				isArray: false
 			},
@@ -20,6 +19,19 @@ angular.module('App.Resources').factory('Cloud', [
           action: 'checkPackage'
         },
         isArray: false
+      },
+      cloudList: {
+        method: "GET",
+        params: {
+          action: 'list'
+        },
+        isArray: true
+      },
+      switch: {
+        method: "POST",
+        params: {
+          action: 'switch'
+        }
       }
 		})
 	}

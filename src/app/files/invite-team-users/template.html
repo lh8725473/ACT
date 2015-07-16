@@ -9,7 +9,7 @@
     <form role="form" class="form-horizontal invite-content" ng-class="{'col-sm-12':!broad, 'col-sm-8':broad}">
       <div class="form-group input-from-group">
         <div class="col-sm-12">
-          <input type="name" class="form-control" placeholder="{{'LANG_INVITE_EXTERNAL_USER_HINT' | translate}}" ng-model="inviteInputValue" ng-keydown="inviteBypress($event, inviteInputValue)">
+          <input type="name" class="form-control" placeholder="{{'LANG_INVITE_EXTERNAL_USER_HINT' | translate}}" ng-model="inviteInputValue" ng-keydown="inviteBypress($event, inviteInputValue)" typeahead="user as user.name for user in inviteTypeaheadList | filter:{name: $viewValue}" typeahead-template-url="src/app/files/invite-team-users/contactsTemplate.html" typeahead-on-select="onSelect($item, $modal, $label)">
         </div>
       </div>
       <div class="form-group or-from-group">
@@ -19,7 +19,7 @@
       </div>
       <div class="form-group select-from-group">
         <div class="col-sm-12">
-          <input type="button" class="btn btn-default form-control" ng-click="showGRroupUser()" value="{{'LANG_INVITE_SELECT' | translate}}"></input>
+          <input type="button" class="btn btn-default form-control" ng-click="showGRroupUser()" value="{{'LANG_INVITE_SELECT' | translate}}"/>
         </div>
       </div>
       <h5>{{'LANG_INVITE_SELECTED' | translate}}</h5>

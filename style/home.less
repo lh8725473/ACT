@@ -93,11 +93,7 @@ a, a:hover, a:link, a:active {
 
 
 
-.quick-for-test, .quick-for-test:hover {
-    width: 125px;
-    line-height: 32px;
-    margin-top: 15px;
-}
+
 
 .scroll-page {
     display: none;
@@ -239,13 +235,15 @@ body {
     .member-area dd a {
         text-decoration: none;
         display: block;
-        width: 70px;
-        line-height: 26px;
+        width: 70px;        
         text-align: center;
         border: 1px solid #fff;
         border-radius: 5px;
         color: #fff;
         font-size: 14px;
+        padding:3px 0;
+
+
     }
 
         .member-area dd a:hover, .register-botton a {
@@ -272,9 +270,10 @@ body {
             font-size: 16px;
             color: #fff;
             line-height: 26px;
+            padding: 5px 0;
         }
 
-            .main-menu dd a:hover {
+            .main-menu dd.active a,.main-menu dd a:hover {
                 border-bottom: 2px solid #fff;
             }
 
@@ -284,8 +283,11 @@ body {
     color: #fff;
     line-height: 32px;
 }
-
 .quick-for-test, .quick-for-test:hover {
+    width: 125px;
+    
+    margin-top: 15px;
+    padding:6px 0;
     color: #fff;
     text-decoration: none;
     border: 1px solid #fff;
@@ -328,7 +330,7 @@ body {
     color: #7a7a7a;
 }
 
-    .main-menu-gray dd a:hover {
+    .main-menu-gray dd.active a,.main-menu-gray dd a:hover {
         padding: 28px 0;
         border-bottom: 2px solid #1f69ba;
     }
@@ -359,7 +361,7 @@ body {
 
 .border-bottom-gray {
     border-bottom: 1px solid #e3e3e3;
-    padding-bottom: 5px;
+    padding-bottom: 4px;
     background: #fff;
     position: absolute;
     left: 0;
@@ -698,7 +700,11 @@ body {
  
 
 @media (min-width:@screen-sm-min) and (max-width:@screen-sm-max) {
-
+    .main-menu dd a {
+        margin-left: 9px;
+        margin-right: 9px;
+    }
+    
     .homepage-bottom {
         padding-top: 40px;
     }
@@ -740,8 +746,7 @@ body {
 
     .quick-for-test, .quick-for-test:hover {
         width: 200px;
-        height: 42px;
-        line-height: 42px;
+        padding:10px 0;
         border-radius: 5px;
     }
 
@@ -781,6 +786,10 @@ body {
 }
 
 @media (min-width:@screen-md-min) and (max-width:@screen-md-max) {
+    .main-menu dd a {
+        margin-left: 9px;
+        margin-right: 9px;
+    }
 
     .homepage-bottom {
         padding-top: 60px;

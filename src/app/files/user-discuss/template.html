@@ -60,7 +60,7 @@
             <div class="version-info">
               <img class="pull-left version-user-head" ng-src = "{{fileHistory.avatar}}" alt="" />     
               <div class="pull-left user-operation" title="{{fileHistory.user_name | translate}} {{(fileHistory | personAction) | translate}}">{{fileHistory.user_name | translate}} {{(fileHistory | personAction) | translate}}</div>
-              <div class="file-preview pull-left" tooltip-append-to-body="true" tooltip-placement="top" tooltip="{{'USER_DISCUSS_FILE_PREVIEW' | translate}}" ng-click = "previewFile(fileHistory)" ng-show = "isPreview && !$first">
+              <div class="file-preview pull-left" tooltip-append-to-body="true" tooltip-placement="top" tooltip="{{'USER_DISCUSS_FILE_PREVIEW' | translate}}" ng-click = "previewFile(fileHistory)" ng-show = "isPreview && (!$first || fileHistoryList.length > 1)">
               </div>
               <div class="clearfix"></div>
             </div>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>全携通注册送流量活动8月</title>
+	<style type="text/css">
+		@charset "utf-8";
+		/* CSS Document */
+		*{margin: 0;padding: 0;}
+		html{
+			overflow: scroll;
+		}
+		li, ul ,ol{list-style: none;}
+		a {text-decoration: none;}
+		img {border:none;}
+		.hd_content{
+			width: 1000px;
+			margin: 0 auto;
+			height: 2400px;
+			position: relative;
+		}
+		.hd_img{
+			width:1280px;
+			position: absolute;
+			left:50%;
+			margin-left: -640px;
+		}
+		.hd_img001{
+			top:0;
+		}
+		.hd_img002{
+			top:821px;
+		}
+		.hd_img003{
+			top:1600px;
+		}
+		.hd_lj{
+			display: block;
+			cursor:pointer;
+			width: 193px;
+			height: 30px;
+			position: absolute;
+			left:457px;
+			top:519px;
+			z-index: 33;
+		}
+		.hd_zc{
+			display: block;
+			cursor:pointer;
+			width: 285px;
+			height: 66px;
+			position: absolute;
+			left:500px;
+			top:678px;
+			z-index: 33;
+		}
+		
+		.hd_float{
+			position:fixed;
+			top:30%;
+			left: 50%;
+			margin-left:500px;
+			width: 115px;
+			height: 359px;
+			background: url("huodong4/images/hd4_img004.png") no-repeat 0 0;
+			z-index: 1111;
+		}
+		.hd_float .close{
+			position: absolute;
+			top:0;
+			right: 0;
+			display: block;
+			width: 25px;
+			height: 25px;
+			cursor: pointer;
+		}
+		.hd_float ul{
+			width: 100%;
+			height: 125px;
+			margin-top: 234px;
+		}
+		.hd_float ul li{
+			width: 100%;
+			height: 33%;
+		}
+		.hd_float ul li a{
+			display: block;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			background: none;
+			text-indent: -11111111em;
+		}
+
+		@media (max-width:1280px){
+			.hd_float{
+				left:auto;
+				margin-left: auto;
+				right: 0;
+			}
+		}
+		
+	</style>
+	<script>
+	  var _hmt = _hmt || [];
+	  (function() {
+	    var hm = document.createElement("script");
+	    hm.src = "//hm.baidu.com/hm.js?4c3c918cadc6ad3aceb76b34c3c29302";
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(hm, s);
+	  })();
+	</script>
+	<script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+	<script>
+	  $(document).ready(function(){
+			$(".hd_float ul li a").click(function() {
+	        $("html, body").animate({
+	            scrollTop: $($(this).attr("href")).offset().top + "px"
+	        }, {
+	            duration: 1000,
+	            easing: "swing"
+	        });
+			});//锚点缓冲
+
+			$(".hd_float .close").click(function(){
+				$(".hd_float").fadeOut(400);
+			});
+
+			$(window).scroll(function(){
+        if($(window).width()<1215&&$(window).scrollTop()>1400){
+        	$(".hd_float").fadeOut(400);
+	      }else{
+	        	$(".hd_float").fadeIn(400);
+	      }
+			});
+
+		});
+	</script>
+</head>
+<body>
+	<div class="hd_content">
+		<div class="hd_img hd_img001" id="1F"><a href="http://www.quanxietong.com/#ref=106" target="_blank" class="hd_lj"></a><a href="http://www.quanxietong.com/regist.html#ref=106" target="_blank" class="hd_zc"></a><img src="huodong4/images/hd4_img001.png" alt="流量免费送"></div>
+		<div class="hd_img hd_img002" id="2F"><img src="huodong4/images/hd4_img002.png" alt="惊喜二重奏"></div>
+		<div class="hd_img hd_img003" id="3F"><img src="huodong4/images/hd4_img003.png" alt="关于全携通"></div>
+	</div>
+	<div class="hd_float">
+		<a class="close" href="javascript:void(0);"> </a>
+		<ul>
+			<li><a href="#1F">流量免费送</a></li>
+			<li><a href="#2F">惊喜二重奏</a></li>
+			<li><a href="#3F">关于全携通</a></li>
+		</ul>
+	</div>
+</body>
+</html>

@@ -51,7 +51,21 @@ angular.module('App.Resources').factory('Share', [
         params: {
           action: 'check'
         }
-      }
+      },
+      saveLinkObj: {
+        method: "POST",
+        params: {
+          action: 'saveLinkObj',
+          key: '@key',
+          pwd: '@pwd'
+        }
+      },
+      addLinkRecord: {
+        method: "POST",
+        params: {
+          action: 'addLinkRecord'
+        }
+      } 
     })
   }  
 ])

@@ -6,7 +6,7 @@ angular.module('App.Resources').factory('Search', [
     CONFIG
   ) {
     return $resource(CONFIG.API_ROOT + '/Search', {}, {
-      cloudUserList: {
+      query: {
         method: "GET",
         isArray: true
       }

@@ -1,0 +1,1 @@
+angular.module('App.Discussion', ['App.Discussion.blockedDiscussion', 'App.Discussion.folderList']);

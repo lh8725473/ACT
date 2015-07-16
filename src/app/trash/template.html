@@ -1,4 +1,5 @@
 <div class="trash-view" ng-controller="App.Trash.Controller">
+<div ng-hide="cloudId==-1">
   <div class="top-bar">
     <div class="pull-left root-path" ng-class = "{ isRoot: isRoot }">
       <a>{{'LANG_TRASH_RECYCLE_BIN' |  translate}}</a>
@@ -45,7 +46,7 @@
 
             </div>
           </div>
-          <div class="state-td" title="{{recycle.create_uname}}{{'LANG_TRASH_RECYCLE_ON' | translate}}{{recycle.format_date}}{{'LANG_TRASH_RECYCLE_UPDATE' | translate}}"> {{recycle.create_uname}}{{'LANG_TRASH_RECYCLE_ON' | translate}}{{recycle.format_date}}{{'LANG_TRASH_RECYCLE_UPDATE' | translate}} </div>
+          <div class="state-td" title="{{recycle.action}}"> {{recycle.action}}</div>
           <div class="file-sise-td">
             <img src="images/file_icon.png" ng-show = "recycle.folder"/>
             <span ng-show = "recycle.folder">{{recycle.file_count}}</span>
@@ -55,6 +56,21 @@
     </div>
   </div>
   </perfect-scrollbar>
+</div>
+
+<div ng-show="cloudId==-1">
+    <div class="top-bar">
+    </div>
+  <div class="top-bar-bottom"></div>
+  <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="1" refresh-on-change="objList" on-scroll="onFileListScroll(scrollTop, scrollHeight)">
+  <div class="noCloud">
+    <h2>尊敬的{{realName}}:</h2>
+    <h3>您好，您目前无任何团队，您可以：</h3>
+    <a class="btn btn-primary" href="create-team.html">创建新的团队</a>
+  </div>
+  </perfect-scrollbar>
+</div>
+
 </div>
 <div class="team-collaboration" ng-controller="App.Files.TeamController">
   <div class="no-groups-users">

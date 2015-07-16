@@ -1,94 +1,106 @@
 .sidebar-view {
-    .nav > li > a{
-        color: #7B7B7B;
+  .nav > li > a {
+    color: #7B7B7B;
+  }
+  .nav > li > a:hover, .nav > li > a:focus {
+    transition: all 0.3s;
+    color: #7B7B7B;
+    text-decoration: none;
+    background-color: #d6dce2;
+  }
+  .updates {
+    padding-left: 45px;
+  }
+  .updates-img {
+    background: url("../../images/leftmenu_icon.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background-position: 0px -15px;
+    height: 19px;
+    width: 19px;
+    left: 20px;
+    position: absolute;
+  }
+  .links{
+    padding-left: 45px;
+  }
+  .links-img {
+    background: url("../../images/contact_comment_link_icon.png") no-repeat scroll 0 -38px rgba(0, 0, 0, 0);
+    height: 19px;
+    width: 16px;
+    left: 20px;
+    position: absolute;
+  }
+  .files {
+    padding-left: 45px;
+  }
+  .files-img {
+    background: url("../../images/leftmenu_icon.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background-position: 0px -65px;
+    height: 19px;
+    width: 19px;
+    left: 20px;
+    position: absolute;
+  }
+  .discussion-img{
+    background: url("../../images/leftmenu_icon.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background-position: 0px -198px;
+    height: 19px;
+    width: 19px;
+    left: 20px;
+    position: absolute;
+  }
+  .contacts {
+    padding-left: 45px;
+  }
+  .contacts-img {
+    background: url("../../images/leftmenu_icon.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background-position: 0px -115px;
+    height: 19px;
+    width: 19px;
+    left: 20px;
+    position: absolute;
+  }
+  .trash {
+    padding-left: 45px;
+  }
+  .trash-img {
+    background: url("../../images/leftmenu_icon.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background-position: 0px -165px;
+    height: 19px;
+    width: 19px;
+    left: 20px;
+    position: absolute;
+  }
+  .active {
+    transition: all 0.3s;
+    background-color: #d6dce2;
+    border-left: 5px solid #1f69ba;
+    a {
+      padding-right: 10px;
     }
-    .nav > li > a:hover,
-    .nav > li > a:focus {
-        transition: all 0.3s;
-        color: #7B7B7B;
-        text-decoration: none;
-        background-color: #d6dce2;
+  }
+  .storage {
+    background-color: #eceff1;
+    border-top: 1px solid #c8c8c8;
+    bottom: 0;
+    height: 80px;
+    padding-top: 14px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 10px;
+    .storage-progressbar {
+      padding-left: 20px;
+      padding-right: 20px;
     }
-    
-    .updates{
-        padding-left: 45px; 
+    span {
+      padding-right: 20px;
+      font-size: 12px;
+      color: #888;
     }
-    .updates-img{
-        background: url("../../images/leftmenu_icon.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-        background-position: 0px -15px;
-        height:19px;
-        width: 19px;
-        left: 20px;
-        position: absolute;
-    }
-    .files{
-        padding-left: 45px;
-    }
-    .files-img{
-        background: url("../../images/leftmenu_icon.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-        background-position: 0px -65px;
-        height:19px;
-        width: 19px;
-        left: 20px;
-        position: absolute;
-    }
-    .contacts{
-        padding-left: 45px;
-    }
-    .contacts-img{
-        background: url("../../images/leftmenu_icon.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-        background-position: 0px -115px;
-        height:19px;
-        width: 19px;
-        left: 20px;
-        position: absolute;
-    }
-    .trash{
-        padding-left: 45px;
-    }
-    .trash-img{
-        background: url("../../images/leftmenu_icon.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-        background-position: 0px -165px;
-        height:19px;
-        width: 19px;
-        left: 20px;
-        position: absolute;
-    }
-    .active{
-        transition: all 0.3s;
-        background-color: #d6dce2;
-        border-left: 5px solid #1f69ba;
-        a{
-            padding-right: 10px;
-        }
-        
-    }
-
-    
-    .storage{
-        background-color: #eceff1;
-        border-top: 1px solid #c8c8c8;
-        bottom: 0;
-        height: 80px;
-        padding-top: 14px;
-        position: absolute;
-        text-align: center;
-        width: 100%;
-        margin-bottom: 10px;
-        .storage-progressbar{
-            padding-left: 20px;
-            padding-right: 20px;
-        }
-        span{
-            padding-right: 20px;
-            font-size: 12px;
-            color: #888;
-        }
-    }
-    
-    .progress{
-        height: 12px;
-        margin-bottom: 5px;
-        background-color: #BDBFC1;
-    }
+  }
+  .progress {
+    height: 12px;
+    margin-bottom: 5px;
+    background-color: #BDBFC1;
+  }
 }

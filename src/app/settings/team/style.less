@@ -1,0 +1,48 @@
+//我的团队
+.settings-team {
+  padding: 0px 20px 20px 40px;
+  width: 100%;  
+  .team-main {
+    width: 60%;
+    overflow: hidden;
+    .scroller {
+    overflow-y: hidden;
+    bottom: 20px;
+    left: 40px;
+    right: 40%;
+    top: 100px;
+    position: absolute;
+  }
+    .title {
+      width: 100%;
+      text-align: left;
+      line-height: 3em;
+      height: 3em;
+      font-weight: bold;
+      border-bottom: 1px solid #ccc;
+    }
+    .team-row {
+      width: 100%;
+      text-align: left;
+      line-height: 3em;
+      height: 3em;
+      border-bottom: 1px solid #E8E8E8;
+      overflow: hidden;
+      .col-md-5{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      a{
+        cursor: pointer;
+        text-decoration: none;
+      }
+      span.cur{
+        color: #333;
+      }
+
+    }
+    //team-row
+  }
+  //team-main
+}

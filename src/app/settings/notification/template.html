@@ -1,0 +1,139 @@
+<div class="settings-notification" ng-controller="App.Settings.Notification.Controller">
+	<perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="1" refresh-on-change="userLogList" on-scroll="onUserLogListScroll(scrollTop, scrollHeight)">
+		<div class="notification-main">
+			<h2>邮件通知</h2>
+			<div class="title">
+				<div class="title-name col-md-4">当有人做如下动作时通知我</div>
+				<div class="title-name col-md-4">我拥有的文件夹中</div>
+				<div class="title-name col-md-4">我加入的文件夹中</div>
+			</div>
+			<!-- title -->
+			<div class="notification-row">
+				<div class="col-md-4">上传</div>
+				<div class="col-md-4">
+					<input type="checkbox" ng-model="userInfo.config.email_attention.user_owner.upload"/>
+				</div>
+				<div class="col-md-4">
+					<input type="checkbox" ng-model="userInfo.config.email_attention.user_partner.upload"/>
+				</div>
+			</div>
+			<!-- notification-row -->
+			<div class="notification-row">
+				<div class="col-md-4">下载</div>
+				<div class="col-md-4">
+					<input type="checkbox" ng-model="userInfo.config.email_attention.user_owner.download"/>
+				</div>
+				<div class="col-md-4">
+					<input type="checkbox" ng-model="userInfo.config.email_attention.user_partner.download"/>
+				</div>
+			</div>
+			<!-- notification-row -->
+			<div class="notification-row">
+				<div class="col-md-4">评论</div>
+				<div class="col-md-4">
+					<input type="checkbox" ng-model="userInfo.config.email_attention.user_owner.comment"/>
+				</div>
+				<div class="col-md-4">
+					<input type="checkbox" ng-model="userInfo.config.email_attention.user_partner.comment"/>
+				</div>
+			</div>
+			<!-- notification-row -->
+			<div class="notification-row">
+				<div class="col-md-4">删除</div>
+				<div class="col-md-4">
+					<input type="checkbox" ng-model="userInfo.config.email_attention.user_owner.delete"/>
+				</div>
+				<div class="col-md-4">
+					<input type="checkbox" ng-model="userInfo.config.email_attention.user_partner.delete"/>
+				</div>
+			</div>
+			<!-- notification-row -->
+		</div>
+
+		<div class="notification-main" ng-show="false">
+			<h2>推送通知</h2>
+			<div class="notification-tit">收到协作邀请时：&nbsp;&nbsp;<input type="checkbox" />&nbsp;&nbsp;自动接受协作邀请</div>
+			<div class="notification-tit"> <b>协作动态：</b>
+			</div>
+			<div class="title">
+				<div class="title-name col-md-4">当有人做如下动作时通知我</div>
+				<div class="title-name col-md-4">我拥有的文件夹中</div>
+				<div class="title-name col-md-4">我加入的文件夹中</div>
+			</div>
+			<!-- title -->
+			<div class="notification-row">
+				<div class="col-md-4">上传</div>
+				<div class="col-md-4">
+					<input type="checkbox" />
+				</div>
+				<div class="col-md-4">
+					<input type="checkbox" />
+				</div>
+			</div>
+			<!-- notification-row -->
+			<div class="notification-row">
+				<div class="col-md-4">删除</div>
+				<div class="col-md-4">
+					<input type="checkbox" />
+				</div>
+				<div class="col-md-4">
+					<input type="checkbox" />
+				</div>
+			</div>
+			<!-- notification-row -->
+			<div class="notification-row">
+				<div class="col-md-4">编辑</div>
+				<div class="col-md-4">
+					<input type="checkbox" />
+				</div>
+				<div class="col-md-4">
+					<input type="checkbox" />
+				</div>
+			</div>
+			<!-- notification-row -->
+			<div class="notification-row">
+				<div class="col-md-4">新增</div>
+				<div class="col-md-4">
+					<input type="checkbox" />
+				</div>
+				<div class="col-md-4">
+					<input type="checkbox" />
+				</div>
+			</div>
+			<!-- notification-row -->
+			<div class="notification-row">
+				<div class="col-md-4">协作人加入</div>
+				<div class="col-md-4">
+					<input type="checkbox" />
+				</div>
+				<div class="col-md-4">
+					<input type="checkbox" />
+				</div>
+			</div>
+			<!-- notification-row -->
+			<div class="notification-row">
+				<div class="col-md-4">协作人离开</div>
+				<div class="col-md-4">
+					<input type="checkbox" />
+				</div>
+				<div class="col-md-4">
+					<input type="checkbox" />
+				</div>
+			</div>
+			<!-- notification-row -->
+			<div class="notification-row">
+				<div class="col-md-4">协作人权限更改</div>
+				<div class="col-md-4">
+					<input type="checkbox" />
+				</div>
+				<div class="col-md-4">
+					<input type="checkbox" />
+				</div>
+			</div>
+			<!-- notification-row -->
+		</div>
+		<div class="from-btn">
+		  <button class="btn btn-block btn-primary" ng-click="updateUserInfo(userInfo)">保&nbsp;&nbsp;&nbsp;存</button>
+		</div>
+	</perfect-scrollbar>
+</div>

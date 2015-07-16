@@ -1,0 +1,205 @@
+*{font-family: "微软雅黑","Microsoft YaHei","WenQuanYi Micro Hei","sans-serif";}
+
+.section{	 
+	background: #1593c4 url('../images/introduction/bg.jpg') no-repeat center top;
+	background-size: auto 100%;
+}
+
+.active .page1_wrap{
+	padding-top: 130px;
+}
+.introduction-text{
+	color:#fff;
+	font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.computer-wrap{
+	padding-top:25px;
+}
+.quick-start{ 
+	background: #e79349;
+	padding:15px 50px;
+	color:#fff;
+	font-size: 16px;	 
+	position: absolute;
+	left:15px;
+	bottom: 0;
+	text-shadow:5px 2px 6px #000;
+}
+.quick-start:hover{
+	color:#fff;
+	text-shadow:5px 2px 6px #000;
+}
+.page2-title{
+	font-size: 20px;
+	color:#fff;
+
+
+}
+.page2-title b{
+	font-size: 20px;
+	color:#4c4b4b;
+	font-weight: 900;
+}
+
+.page2-des{
+	padding-top: 20px;
+	color:#fff;
+	font-size: 13px;
+}
+.thinking-person{
+
+	margin-top: 38px;
+}
+.page02-padding-top{
+	padding-top: 400px;
+}
+.active .page02-padding-top{
+	padding-top: 140px;
+}
+
+
+
+.solve-problem-des{
+	padding-top: 15px;
+	color:#fff;
+	font-size: 18px;
+}
+.solve-problem-des b{
+	color:#4c4b4b;
+	font-weight: 900;
+}
+.handsSync-logo{
+	max-width: 200px;
+	margin-top: 25px;
+}
+.page3-right-text{
+	color:#fff;
+	line-height: 24px;
+	font-size:13px; 
+}
+.page3-right-text a{
+	color:#f90;
+}
+.active .page3-padding-top{
+	padding-top: 220px;
+}
+
+
+.what-is-logo{
+	width: 0;
+	height: 0;
+	display: block;
+}
+.active .what-is-logo{
+	width:auto;
+	height:auto;
+	max-width: 100%;
+}
+
+.thinking-person{
+	display: none;
+}
+
+.page02-padding-top,.page3-padding-top,.how-to-use,.page1_wrap,.quick-start,.what-is-logo{
+	transition:all 1s;
+	-moz-transition:all 1s; /* Firefox 4 */
+	-webkit-transition:all 1s; /* Safari and Chrome */
+	-o-transition:width all 1s; /* Opera */
+}
+
+.quick-start:hover{
+	 
+	max-width: 100%;
+	transform:rotate(720deg);
+	-moz-transform:rotate(720deg); /* Firefox 4 */
+	-webkit-transform:rotate(720deg); /* Safari and Chrome */
+	-o-transform:rotate(720deg); /* Opera */
+}
+.how-to-use:hover,.what-is-logo:hover{
+	 
+	max-width: 100%;
+	transform:rotate(-30deg);
+	-moz-transform:rotate(-30deg); /* Firefox 4 */
+	-webkit-transform:rotate(-30deg); /* Safari and Chrome */
+	-o-transform:rotate(-30deg); /* Opera */
+}
+@media (min-width: 1025px){
+	.thinking-person{
+		display: block;
+
+	}
+	.thinking-only{
+		display: none;
+	}
+	.title-01{
+		position: absolute;
+		left:0;
+		top:0; 
+	}
+	.title-02{
+		position: absolute;
+		left:0;
+		top:132px; 
+	}
+	.title-03{
+		position: absolute;
+		right:0;
+		top: 52px;
+		padding-left: 30px;
+	}
+	.last-text-center{
+		text-align: center;
+	}
+	.active .page1_wrap{
+		padding-top: 210px;
+	}
+}
+ 
+@media (min-width: 768px) and (max-width: 1024px){
+	.handsSync-logo{
+		max-width: 160px;
+	}
+	.thinking-only{
+	 	position: absolute;
+	 	right: 0;
+	 	bottom:0;
+	}
+
+	.introduction-text{
+		padding-top: 35px;
+	}
+	.page3-right-text{
+		padding-top: 35px;
+	}
+	.active .page02-padding-top {
+	  padding-top: 140px;
+	}
+	.page2-title{
+		font-size: 28px;
+	}
+	.page2-des{
+		font-size: 15px;
+		padding-bottom:15px;
+	}
+	.introduction-text{
+		font-size:18px;
+		line-height: 28px;
+	}
+	.quick-start{
+		bottom: 15px;
+	}
+
+}
+
+
+
+
+
+
+
+
+
+/*****************************creat by Jasen 13127952680 QQ 447124329****************************************/

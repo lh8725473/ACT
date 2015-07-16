@@ -39,7 +39,7 @@ angular.module('App.UploadProgressDialog').controller('App.UploadProgressDialog.
         file.fomateSize = Utils.formateSize(file.size);
         (function(file) {
           file.upload = $upload.upload({
-            url: CONFIG.API_ROOT + '/share/fileAdd' + '?key=' + $state.params.key + '&pwd=' + $cookieStore.get('password'),
+            url: CONFIG.API_ROOT + '/share/fileAdd' + '?key=' + $state.params.key + '&pwd=' + $cookieStore.get($state.params.key + '_pwd'),
             method: 'POST',
             withCredentials: true,
             data: {
@@ -55,12 +55,14 @@ angular.module('App.UploadProgressDialog').controller('App.UploadProgressDialog.
             file.progress = 100
             console.log(data);
           }).error(function(error){
-            Notification.show({
-              title: '失败',
-              type: 'danger',
-              msg: error.result,
-              closeable: false
-            })
+            if(error != ''){//中断请求
+              Notification.show({
+                title: '失败',
+                type: 'danger',
+                msg: error.result,
+                closeable: false
+              })
+            }
           });
         })(file);
         $scope.files.push(file)
@@ -71,6 +73,11 @@ angular.module('App.UploadProgressDialog').controller('App.UploadProgressDialog.
         $rootScope.$broadcast('uploadFilesDone');
       })
     })
+    
+    //删除上传列表
+    $scope.remove = function(file){
+      file.removed = true
+    }
 
     $scope.max = function() {
       $scope.isMax = true

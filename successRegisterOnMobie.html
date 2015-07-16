@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>全携通 - 下载APP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="apple-itunes-app" content="app-id=914925405">
+  <link href="style/sucessRegisterOnMobile.css" rel="stylesheet" />
+  <script type="text/javascript">
+    window.onload = function(){ 
+      //如果不是从微信浏览器下载
+      if(!isWeiXin()){ 
+        var downloadForIphone = document.getElementById('downloadForIphone'); 
+        var downloadForAndroid = document.getElementById('downloadForAndroid');
+        downloadForIphone.href = 'https://itunes.apple.com/us/app/quan-xie-tong/id914925405'; 
+        downloadForAndroid.href = 'http://www.quanxietong.com/quanxietong.apk';
+      } 
+    } 
+    function isWeiXin(){ 
+      var ua = window.navigator.userAgent.toLowerCase(); 
+      if(ua.match(/MicroMessenger/i) == 'micromessenger'){ 
+        return true; 
+      } else { 
+        return false; 
+      } 
+    } 
+  </script> 
+</head>
+
+<body>
+  <div class="container">
+    <h3 class="text-center title">全携通</h3>
+    <p class="text-center describe">
+      高效便捷的云协作体验<br />
+      您可以在电脑浏览器上访问quanxietong.com<br />
+      或者下载app
+    </p>
+    <div class="text-center">
+       <img class="pcAndPhone" src="images/registerOnMobile/pcAndPhone.png" alt="全携通" />
+    </div>
+   
+
+    <div class="downLoadWrap">
+
+      <a id="downloadForIphone" class="downLoadIphone" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.icocoa_flybox"><i class="pull-left"><img src="images/registerOnMobile/Iphone.png" /></i><span>下载至 iPhone</span></a>
+
+ 
+      <a id="downloadForAndroid" class="downLoadAndroid" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.icocoa_flybox"><i class="pull-left"><img src="images/registerOnMobile/andriod.png" /></i><span>下载至 Android</span></a>
+
+    </div>
+
+
+    <p class="text-center">关注“全携通”微信公众号<br />
+以获取更多产品信息</p>
+    <div class="weixinWrap text-center">
+      <img src="images/getqrcode-ACT.jpg" alt="全携通二维码" />
+    </div>
+    
+     <p class="text-center">（长按二维码图片以识别）</p>
+  </div>
+
+</body>
+</html>

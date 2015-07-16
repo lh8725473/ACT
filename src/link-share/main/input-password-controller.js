@@ -21,7 +21,7 @@ angular.module('App.LinkShare').controller('App.LinkShare.InputPasswordControlle
     $cookieStore,
     Notification
   ) {
-    
+
     $scope.$on('neddPassword', function($event, neddPassword) {
       $scope.neddPassword = neddPassword
     })
@@ -34,10 +34,10 @@ angular.module('App.LinkShare').controller('App.LinkShare.InputPasswordControlle
       Share.checkPassword({
         key: $scope.key,
         pwd: md5.createHash(password)
-      }).$promise.then(function() {
+      }).$promise.then(function() {   
         $scope.neddPassword = false
+        $cookieStore.put($scope.key + '_pwd', md5.createHash(password))        
         $rootScope.$broadcast('password', md5.createHash(password));
-        $cookieStore.put('password', md5.createHash(password))
       }, function (error) {
             Notification.show({
                 title: '失败',

@@ -6,6 +6,7 @@ angular.module('App.Files').controller('App.Files.PreviewFileController', [
   'CONFIG',
   'obj',
   'fileVersionPreview',
+  'objList',
   'Files',
   '$cookies',
   '$sce',
@@ -14,6 +15,7 @@ angular.module('App.Files').controller('App.Files.PreviewFileController', [
   'Folders',
   'ngSocket',
   'Notification',
+  '$state',
   function(
     $scope,
     $rootScope,
@@ -22,6 +24,7 @@ angular.module('App.Files').controller('App.Files.PreviewFileController', [
     CONFIG,
     obj,
     fileVersionPreview,
+    objList,
     Files,
     $cookies,
     $sce,
@@ -29,25 +32,212 @@ angular.module('App.Files').controller('App.Files.PreviewFileController', [
     $modal,
     Folders,
     ngSocket,
-    Notification
+    Notification,
+    $state
   ) {
+      $scope.currentVersion = '';
+      if(fileVersionPreview.version_id) {
+        $scope.currentVersion = fileVersionPreview.version_id;
+      }
+
+      var imageListCachePre = new Image();
+      var imageListCacheNext = new Image();
+      // 浏览上（下）一个图片文件
+      var imageFileList = [];
+      var imageFileIndex = 0;
+      $scope.imageFileList = imageFileList;
+      $scope.imageFileIndex = imageFileIndex;
+      // 控制图片文件切换的按钮
+      var imageChangeBottonStatus = function() {
+        if(imageFileIndex == 0) {
+          $scope.preShow = false;
+        } else {
+          $scope.preShow = true;
+        }
+        if(imageFileIndex == imageFileList.length - 1) {
+          $scope.nextShow = false;
+        } else {
+          $scope.nextShow = true;
+        }
+      }
+      //图片文件在list中的位置     
+      if(!obj.isFolder && 'image' == Utils.getFileTypeByName(obj.file_name)){
+        // foreach计数
+        var objListIndex = -1;
+        angular.forEach(objList, function(item){
+          /*console.log(item.file_name);*/
+          if(!item.isFolder && 'image' == Utils.getFileTypeByName(item.file_name)) {
+            this.push(item);
+            objListIndex++;
+            if(item.file_id == obj.file_id){
+              imageFileIndex = objListIndex;              
+            }                       
+          }  
+        }, imageFileList);
+        if(imageFileIndex != 0){
+          imageListCachePre.src = CONFIG.API_ROOT + '/file/preview/' + imageFileList[imageFileIndex - 1].file_id + '?token=' + $cookies.token + '&_=' + new Date().getTime(); 
+        } 
+        if(imageFileIndex != imageFileList.length - 1){       
+          imageListCacheNext.src = CONFIG.API_ROOT + '/file/preview/' + imageFileList[imageFileIndex + 1].file_id + '?token=' + $cookies.token + '&_=' + new Date().getTime();
+        }
+        imageChangeBottonStatus();
+      }  
+      
+      //加载user dicuss list
+      var reloadUserDicuss = function(){
+        //讨论的文件
+        $scope.file = obj
+
+        //文件关联的协作人
+        var fileType = Utils.getFileTypeByName($scope.file.file_name)
+        $scope.isPreview = fileType ? true : false
+        if($scope.file.folder_id != 0){
+          $scope.shareObj = Folders.queryShareObj({
+            folder_id : $scope.file.folder_id
+          })
+          $scope.shareObj.$promise.then(function(shareObj){
+            var userNameList = []
+            $scope.userList = shareObj.list.users
+            $scope.groupList = shareObj.list.groups
+            angular.forEach($scope.userList, function(user){
+              userNameList.push(user.real_name)
+            })
+            angular.forEach($scope.groupList, function(group) {
+              angular.forEach(group.users, function(user) {
+                userNameList.push(user.real_name)
+              })
+            })
+            $scope.atOptions.data = userNameList;
+            //预览讨论
+            $scope.userDiscussList = UserDiscuss.getUserDiscussList({
+              obj_id : obj.file_id
+            })
+
+            $scope.userDiscussList.$promise.then(function(userDiscussList) {
+              angular.forEach(userDiscussList, function(userDiscuss) {
+                if(userDiscuss.is_deleted != 'true'){
+                  userDiscuss.content = Utils.replaceURLWithHTMLLinks(userDiscuss.content)
+                  userDiscuss.content = Utils.highLightAtWhos(userDiscuss.content, $scope.atOptions.data);
+                }
+                userDiscuss.content = userDiscuss.content.replace(/\n/g, "<br/>")
+                if (userDiscuss.user_id == $cookies.userId) { //讨论是否是当前用户
+                  userDiscuss.is_owner = true
+                }
+              })
+      //      $scope.loading = false
+            }, function(error) {
+              Notification.show({
+                title: '失败',
+                type: 'danger',
+                msg: error.data.result,
+                closeable: false
+              })
+            })
+          })
+        } else{    
+          //预览讨论
+          $scope.userDiscussList = UserDiscuss.getUserDiscussList({
+            obj_id : obj.file_id
+          })
+
+          $scope.userDiscussList.$promise.then(function(userDiscussList) {
+            angular.forEach(userDiscussList, function(userDiscuss) {
+              if(userDiscuss.is_deleted != 'true'){
+                userDiscuss.content = Utils.replaceURLWithHTMLLinks(userDiscuss.content)
+                userDiscuss.content = Utils.highLightAtWhos(userDiscuss.content, $scope.atOptions.data);
+              }
+              userDiscuss.content = userDiscuss.content.replace(/\n/g, "<br/>")
+              if (userDiscuss.user_id == $cookies.userId) { //讨论是否是当前用户
+                userDiscuss.is_owner = true
+              }
+            })
+    //      $scope.loading = false
+          }, function(error) {
+            Notification.show({
+              title: '失败',
+              type: 'danger',
+              msg: error.data.result,
+              closeable: false
+            })
+          }) 
+        }       
+      } 
+      
+      //重新加载数据
+      var reloadView = function(previewOperation){
+        //版本更新为最新版本，空的代表最新版本
+        $scope.currentVersion = '';
+        obj = imageFileList[imageFileIndex];
+        $scope.obj = obj;
+        if($scope.obj.file_size < 10 * 1024 *1024) {
+          $scope.file_size_limit = false;
+        } else {
+          $scope.file_size_limit = true;
+        }
+        $scope.imageSrcMax = CONFIG.API_ROOT + '/file/preview/' + obj.file_id + '?token=' + $cookies.token + '&_=' + new Date().getTime() + '&size=max' +'&save_action=true';
+        imageChangeBottonStatus();                      
+        if(previewOperation == 'pre'){
+          imageListCacheNext.src = $scope.imageSrc;
+          // 缓存的前一张图片失败，需要重现获取
+          if (!imageListCachePre.complete || typeof imageListCachePre.complete === "undefined") {
+            $scope.imageSrc = CONFIG.API_ROOT + '/file/preview/' + imageFileList[imageFileIndex].file_id + '?token=' + $cookies.token + '&_=' + new Date().getTime();
+            imageListCachePre.src = $scope.imageSrc;
+          } else {
+            $scope.imageSrc = imageListCachePre.src;
+          }
+        } else{
+          imageListCachePre.src = $scope.imageSrc;
+          // 缓存的后一张图片失败，需要重现获取
+          if (!imageListCacheNext.complete || typeof imageListCacheNext.complete === "undefined") {
+            $scope.imageSrc = CONFIG.API_ROOT + '/file/preview/' + imageFileList[imageFileIndex].file_id + '?token=' + $cookies.token + '&_=' + new Date().getTime();
+            imageListCacheNext.src = $scope.imageSrc;
+          } else {
+            $scope.imageSrc = imageListCacheNext.src;
+          }
+        }
+        if(imageFileIndex != 0 && previewOperation == 'pre'){
+          imageListCachePre.src = CONFIG.API_ROOT + '/file/preview/' + imageFileList[imageFileIndex - 1].file_id + '?token=' + $cookies.token + '&_=' + new Date().getTime(); 
+        } 
+        if(imageFileIndex != (imageFileList.length - 1) && previewOperation == 'next'){       
+          imageListCacheNext.src = CONFIG.API_ROOT + '/file/preview/' + imageFileList[imageFileIndex + 1].file_id + '?token=' + $cookies.token + '&_=' + new Date().getTime();
+        }
+        $scope.angle = 0;
+        reloadUserDicuss();
+        $scope.fileHistoryList = Files.history({
+          file_id : obj.file_id
+        })
+      }     
+      
+      //向前预览
+      $scope.prePreview = function(){
+        imageFileIndex--;
+        reloadView('pre');
+      }
+      
+      //向后预览
+      $scope.nextPreview = function(){
+        imageFileIndex++;
+        reloadView('next');
+      }
+
+      //图片旋转
+      $scope.angle = 0;
+      $scope.rotate = function (degree) {
+        $scope.isRotate = true;
+        $scope.angle += parseInt(degree);
+      }
+
+      //关闭或展开右侧评论或版本内容
+      $scope.showRightWrap = false;
+      $scope.closeRightWrap = function () {       
+        $scope.showRightWrap = !$scope.showRightWrap;
+        $scope.navType = '';
+        
+      }
       //获取ueditor内容
       $scope.getcontent = function(){
         console.log($scope.content)
       }
-
-//    $scope.config = {
-//      //这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
-//      toolbars:[['Source', 'Undo', 'Redo','Bold','test','link', 'unlink','fontfamily','fontsize','underline', 'fontborder', 'strikethrough', 'superscript', 'subscript']],
-//      //focus时自动清空初始化时的内容
-//      autoClearinitialContent:true,
-//      //关闭字数统计
-//      wordCount:false,
-//      //关闭elementPath
-//      elementPathEnabled:false
-//    }
-
-      $scope.content = "<h4>rfwerfwetetest</h4>"
 
       //ngSocket
       var ws = ngSocket('ws://' + CONFIG.SOCKET_HOST)
@@ -64,7 +254,7 @@ angular.module('App.Files').controller('App.Files.PreviewFileController', [
         console.log(msg)
         var userDiscuss = angular.fromJson(msg.data)
         userDiscuss.content = Utils.replaceURLWithHTMLLinks(userDiscuss.content)
-        userDiscuss.content = Utils.highLightAtWhos(userDiscuss.content);
+        userDiscuss.content = Utils.highLightAtWhos(userDiscuss.content, $scope.atOptions.data);
         userDiscuss.content = userDiscuss.content.replace(/\n/g, "<br/>");
         userDiscuss.avatar = CONFIG.API_ROOT + '/user/avatar/' + userDiscuss.user_id + '?token=' + $cookies.token
         if(userDiscuss.user_id == $cookies.userId){//是否是当前用户
@@ -96,7 +286,7 @@ angular.module('App.Files').controller('App.Files.PreviewFileController', [
       $scope.obj = obj      
 
       //右侧菜单 讨论or版本
-      $scope.navType = 'dis'
+      $scope.navType = ''
 
       //加载动画
       $scope.loading = true
@@ -105,43 +295,79 @@ angular.module('App.Files').controller('App.Files.PreviewFileController', [
       $scope.textareaFocus = false
 
       $scope.changeNavType = function(navType) {
-        $scope.navType = navType
-      }
+        if($scope.navType == navType) {
+          $scope.navType = '';
+          $scope.showRightWrap = false;
+        } else {
+        $scope.navType = navType;
+          $scope.showRightWrap = true;//改变右侧评论或版本的展示状态
+        }        
+        }
 
       $scope.fileType = Utils.getFileTypeByName(obj.file_name)
 
-      if('note' == $scope.fileType){//笔记类型
-        $scope.loading = false
-      }else if ('image' == $scope.fileType) {//图片预览
-        if(fileVersionPreview.version_id){
-          $scope.imageSrc = CONFIG.API_ROOT + '/file/preview/' + obj.file_id + '?token=' + $cookies.token + '&version_id=' + fileVersionPreview.version_id + '&_=' + new Date().getTime()
-        } else{
-           $scope.imageSrc = CONFIG.API_ROOT + '/file/preview/' + obj.file_id + '?token=' + $cookies.token + '&_=' + new Date().getTime();        
+      if ('image' == $scope.fileType) {//图片预览   
+        if(!Utils.checkFileValid(obj)){//无法预览（超过预览大小限制）
+          $scope.file_size_limit = true
+          if(fileVersionPreview.version_id){
+            $scope.imageSrcMax = CONFIG.API_ROOT + '/file/preview/' + obj.file_id + '?token=' + $cookies.token + '&version_id=' + fileVersionPreview.version_id + '&_=' + new Date().getTime() + '&size=max' +'&save_action=true';            
+          }else{
+            $scope.imageSrcMax = CONFIG.API_ROOT + '/file/preview/' + obj.file_id + '?token=' + $cookies.token + '&_=' + new Date().getTime() + '&size=max' +'&save_action=true';      
+          }
+        }else{
+          $scope.file_size_limit = false
+          if(fileVersionPreview.version_id){
+            $scope.imageSrc = CONFIG.API_ROOT + '/file/preview/' + obj.file_id + '?token=' + $cookies.token + '&version_id=' + fileVersionPreview.version_id + '&_=' + new Date().getTime() +'&save_action=true'
+            $scope.imageSrcMax = CONFIG.API_ROOT + '/file/preview/' + obj.file_id + '?token=' + $cookies.token + '&version_id=' + fileVersionPreview.version_id + '&_=' + new Date().getTime() + '&size=max' +'&save_action=true';
+          } else{
+             $scope.imageSrc = CONFIG.API_ROOT + '/file/preview/' + obj.file_id + '?token=' + $cookies.token + '&_=' + new Date().getTime() +'&save_action=true'; 
+             $scope.imageSrcMax = CONFIG.API_ROOT + '/file/preview/' + obj.file_id + '?token=' + $cookies.token + '&_=' + new Date().getTime() + '&size=max' +'&save_action=true';       
+          }
         }
         $scope.loading = false
-      } else {//office或者pdf预览
-        Files.preview(obj.file_id, true, fileVersionPreview.version_id).then(function(htmlData) {
+      } else if($scope.fileType == 'office' || $scope.fileType == 'pdf' || $scope.fileType == 'txt'){//office或者pdf预览
+        if(!Utils.checkFileValid(obj)){//无法预览（超过预览大小限制）
+          $scope.file_size_limit = true
           $scope.loading = false
-          $scope.previewValue = htmlData
-        })
-      }
-
-      $scope.$on('uploadNewFileDone', function() {
-        $scope.fileType = Utils.getFileTypeByName(obj.file_name)
-
-        if ('image' == $scope.fileType) {//图片预览
-          if(fileVersionPreview.version_id){
-            $scope.imageSrc = CONFIG.API_ROOT + '/file/preview/' + obj.file_id + '?token=' + $cookies.token + '&version_id=' + fileVersionPreview.version_id + '&_=' + new Date().getTime()
-          } else{
-             $scope.imageSrc = CONFIG.API_ROOT + '/file/preview/' + obj.file_id + '?token=' + $cookies.token + '&_=' + new Date().getTime();        
-          }
-          obj.smallIcon = $scope.imageSrc + '&size=48'
-          $scope.loading = false
-        } else {//office或者pdf预览
+        }else{
+          $scope.file_size_limit = false
           Files.preview(obj.file_id, true, fileVersionPreview.version_id).then(function(htmlData) {
             $scope.loading = false
             $scope.previewValue = htmlData
           })
+        }
+        
+      } else{//不能预览类型
+        $scope.loading = false
+      }
+
+      $scope.$on('uploadNewFileDone', function($event, file) {
+        file.file_name = file.name
+        file.file_size = file.size
+        $scope.fileType = Utils.getFileTypeByName(obj.file_name)
+
+        if ('image' == $scope.fileType) {//图片预览    
+          obj.smallIcon = $scope.imageSrc + '&size=48'
+          if(!Utils.checkFileValid(file)){//无法预览（超过预览大小限制）
+            $scope.file_size_limit = true
+            $scope.imageSrcMax = CONFIG.API_ROOT + '/file/preview/' + obj.file_id + '?token=' + $cookies.token + '&_=' + new Date().getTime() + '&size=max' +'&save_action=true';
+          }else{
+            $scope.file_size_limit = false
+            $scope.imageSrc = CONFIG.API_ROOT + '/file/preview/' + obj.file_id + '?token=' + $cookies.token + '&_=' + new Date().getTime() +'&save_action=true';  
+            $scope.imageSrcMax = CONFIG.API_ROOT + '/file/preview/' + obj.file_id + '?token=' + $cookies.token + '&_=' + new Date().getTime() + '&size=max' +'&save_action=true';
+          }
+          $scope.loading = false
+        } else if($scope.fileType == 'office' || $scope.fileType == 'pdf' || $scope.fileType == 'txt'){//office或者pdf预览
+          if(!Utils.checkFileValid(obj)){//无法预览（超过预览大小限制）
+            $scope.file_size_limit = true
+            $scope.loading = false
+          }else{
+            $scope.file_size_limit = false
+            Files.preview(obj.file_id, true, fileVersionPreview.version_id).then(function(htmlData) {
+              $scope.loading = false
+              $scope.previewValue = htmlData
+            })
+          }
         }
 
         $scope.fileHistoryList = Files.history({
@@ -215,57 +441,7 @@ angular.module('App.Files').controller('App.Files.PreviewFileController', [
         })
       }
 
-      //预览讨论
-      $scope.userDiscussList = UserDiscuss.getUserDiscussList({
-        obj_id : obj.file_id
-      })
-
-      $scope.userDiscussList.$promise.then(function(userDiscussList) {
-        angular.forEach(userDiscussList, function(userDiscuss) {
-          if(userDiscuss.is_deleted != 'true'){
-            userDiscuss.content = Utils.replaceURLWithHTMLLinks(userDiscuss.content)
-            userDiscuss.content = Utils.highLightAtWhos(userDiscuss.content);
-          }
-          userDiscuss.content = userDiscuss.content.replace(/\n/g, "<br/>")
-          if (userDiscuss.user_id == $cookies.userId) { //讨论是否是当前用户
-            userDiscuss.is_owner = true
-          }
-        })
-//      $scope.loading = false
-      }, function(error) {
-        Notification.show({
-          title: '失败',
-          type: 'danger',
-          msg: error.data.result,
-          closeable: false
-        })
-      })
-
-      //讨论的文件
-      $scope.file = obj
-
-      //文件关联的协作人
-      var fileType = Utils.getFileTypeByName($scope.file.file_name)
-      $scope.isPreview = fileType ? true : false
-      if($scope.file.folder_id != 0){
-        $scope.shareObj = Folders.queryShareObj({
-          folder_id : $scope.file.folder_id
-        })
-        $scope.shareObj.$promise.then(function(shareObj){
-          var userNameList = []
-          $scope.userList = shareObj.list.users
-          $scope.groupList = shareObj.list.groups
-          angular.forEach($scope.userList, function(user){
-            userNameList.push(user.real_name)
-          })
-          angular.forEach($scope.groupList, function(group) {
-            angular.forEach(group.users, function(user) {
-              userNameList.push(user.real_name)
-            })
-          })
-          $scope.atOptions.data = userNameList
-        })
-      }
+      reloadUserDicuss();
 
       //回复讨论
       $scope.replyUserDiscuss = function(userDiscuss) {
@@ -377,7 +553,7 @@ angular.module('App.Files').controller('App.Files.PreviewFileController', [
         }
         sendUserDiscuss.content = sendUserDiscuss.content.replace(/\n/g, "<br/>")
         sendUserDiscuss.content = Utils.replaceURLWithHTMLLinks(sendUserDiscuss.content)
-        sendUserDiscuss.content = Utils.highLightAtWhos(sendUserDiscuss.content);
+        sendUserDiscuss.content = Utils.highLightAtWhos(sendUserDiscuss.content, $scope.atOptions.data);
         sendUserDiscuss.is_owner = true
         $scope.userDiscussList.push(sendUserDiscuss)
 
@@ -391,22 +567,13 @@ angular.module('App.Files').controller('App.Files.PreviewFileController', [
           createFlag = true
           $scope.discussCount = 0
           $scope.discussButton = true
-          ws.send({
-            file_id : obj.file_id,
-            token : $cookies.token,
-            format_date : userDiscuss.format_date,
-            real_name : userDiscuss.real_name,
-            content : userDiscuss.content,
-            user_id : userDiscuss.user_id,
-            id : userDiscuss.id,
-            "type":"send",
-            "to_client_id":"all"
-          })
+          $scope.textareaFocus = true
 //        $scope.userDiscussList.push(userDiscuss)
         }, function(error) {
           $scope.textareaDisabled = false
           $scope.postbtn = 'LANG_FILE_POST'
           createFlag = true
+          $scope.textareaFocus = true
           Notification.show({
             title: '失败',
             type: 'danger',
@@ -475,7 +642,8 @@ angular.module('App.Files').controller('App.Files.PreviewFileController', [
           version_id: fileHistory.version_id
         }).$promise.then(function(r){
           //历史版本
-          obj.version_count = parseInt(obj.version_count) + 1;
+          //obj.version_count = parseInt(obj.version_count) + 1;
+          obj.version_count = r.version_num;
           $scope.fileHistoryList = Files.history({
             file_id: obj.file_id
           });  
@@ -493,16 +661,35 @@ angular.module('App.Files').controller('App.Files.PreviewFileController', [
 
       //文件预览
       $scope.previewFile = function(fileHistory){
+        $scope.currentVersion = fileHistory.version_id
         if ('image' == $scope.fileType) {//图片预览
-          if(fileHistory.version_id){
-            $scope.imageSrc = CONFIG.API_ROOT + '/file/preview/' + fileHistory.file_id + '?token=' + $cookies.token + '&version_id=' + fileHistory.version_id + '&_=' + new Date().getTime()
-          } else{
-             $scope.imageSrc = CONFIG.API_ROOT + '/file/preview/' + fileHistory.file_id + '?token=' + $cookies.token + '&_=' + new Date().getTime();        
+          if(!Utils.checkFileValid(fileHistory)){//无法预览（超过预览大小限制）
+            $scope.file_size_limit = true
+            if($scope.currentVersion){
+              $scope.imageSrcMax = CONFIG.API_ROOT + '/file/preview/' + obj.file_id + '?token=' + $cookies.token + '&version_id=' + $scope.currentVersion + '&_=' + new Date().getTime() + '&size=max' +'&save_action=true';            
+            }else{
+              $scope.imageSrcMax = CONFIG.API_ROOT + '/file/preview/' + obj.file_id + '?token=' + $cookies.token + '&_=' + new Date().getTime() + '&size=max' +'&save_action=true';      
+            }
+          }else{
+            $scope.file_size_limit = false
+            if(fileHistory.version_id){
+              $scope.imageSrc = CONFIG.API_ROOT + '/file/preview/' + fileHistory.file_id + '?token=' + $cookies.token + '&version_id=' + fileHistory.version_id + '&_=' + new Date().getTime() +'&save_action=true'
+              $scope.imageSrcMax = CONFIG.API_ROOT + '/file/preview/' + fileHistory.file_id + '?token=' + $cookies.token + '&version_id=' + fileHistory.version_id + '&_=' + new Date().getTime() + '&size=max' +'&save_action=true';
+            } else{
+               $scope.imageSrc = CONFIG.API_ROOT + '/file/preview/' + fileHistory.file_id + '?token=' + $cookies.token + '&_=' + new Date().getTime() +'&save_action=true'; 
+               $scope.imageSrcMax = CONFIG.API_ROOT + '/file/preview/' + fileHistory.file_id + '?token=' + $cookies.token + '&_=' + new Date().getTime() + '&size=max' +'&save_action=true';       
+            }
           }
+          $scope.angle = 0;
         } else {//office或者pdf预览
-          Files.preview(fileHistory.file_id, true, fileHistory.version_id).then(function(htmlData) {
-            $scope.previewValue = htmlData
-          })
+          if(!Utils.checkFileValid(fileHistory)){//无法预览（超过预览大小限制）
+            $scope.file_size_limit = true
+          }else{
+            $scope.file_size_limit = false
+            Files.preview(fileHistory.file_id, true, fileHistory.version_id).then(function(htmlData) {
+              $scope.previewValue = htmlData
+            })
+          }     
         }
       }    
 
@@ -516,7 +703,7 @@ angular.module('App.Files').controller('App.Files.PreviewFileController', [
           iframe.style.display = 'none'
           document.body.appendChild(iframe)
         }
-        iframe.src = CONFIG.API_ROOT + '/file/get/' + fileHistory.file_id + '?token=' + $cookies.token + '&v=' + fileHistory.version_id
+        iframe.src = CONFIG.API_ROOT + '/file/get/' + fileHistory.file_id + '?token=' + $cookies.token + '&v=' + fileHistory.version_id + '&cloud_id=' + $state.params.cloudId
       }
 
       //下载单个文件或者文件夹
@@ -529,7 +716,11 @@ angular.module('App.Files').controller('App.Files.PreviewFileController', [
           iframe.style.display = 'none'
           document.body.appendChild(iframe)
         }
-        iframe.src = CONFIG.API_ROOT + '/file/get/' + obj.file_id + '?token=' + $cookies.token
+        if($scope.currentVersion) {
+          iframe.src = CONFIG.API_ROOT + '/file/get/' + obj.file_id + '?token=' + $cookies.token + '&v=' + $scope.currentVersion + '&cloud_id=' + $state.params.cloudId
+        } else {
+          iframe.src = CONFIG.API_ROOT + '/file/get/' + obj.file_id + '?token=' + $cookies.token + '&cloud_id=' + $state.params.cloudId
+        }
       }
 
       $scope.cancel = function() {
@@ -539,4 +730,74 @@ angular.module('App.Files').controller('App.Files.PreviewFileController', [
         })
       }
   }
-])
+
+]).directive('rotate', ['$timeout', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+
+            // initialize dom height          
+            var timeout = $timeout(function () {
+              $('.image-preview-td').height($('.image-preview').height());
+            }, 1000);
+            
+            // destroy timmer when view dismiss
+            scope.$on('$destroy', function() {
+              $timeout.cancel(timeout);
+            });
+
+            scope.$watch(attrs.degrees, function (rotateDegrees) {
+              if(!scope.isRotate) {
+                $('.image-preview-td img').removeAttr('style');
+                scope.originWidth = 0;
+              }
+              else {
+                scope.isRotate = false;
+                var r = 'rotate(' + rotateDegrees + 'deg)';
+                element.css({
+                    '-moz-transform': r,
+                    '-webkit-transform': r,
+                    '-o-transform': r,
+                    '-ms-transform': r,
+                    //'-webkit-transition': 'transform ease 250ms',
+                    //'-moz-transition': 'transform ease 250ms',
+                    //'-o-transition': 'transform ease 250ms',
+                    //'-ms-transition': 'transform ease 250ms',
+                    //'transition': 'transform ease 250ms'
+                });
+                if (scope.originWidth > 0 && element.width() == $('.image-preview').height()) {
+                    element.css({
+                        'width': scope.originWidth
+                    });
+                } else if (element.width() > $('.image-preview').height()) {
+                    if (!scope.originWidth || scope.originWidth == 0) {
+                        scope.originWidth = element.width();
+                    }
+                    element.css({
+                        'width': $('.image-preview').height()
+                    });
+                }
+              }
+            });
+        }
+    }
+}]).directive('resize', ['$window', function ($window) {
+    return function (scope, element) {
+        var w = angular.element($window);
+        scope.getWindowDimensions = function () {
+            return { 'h': w.height(), 'w': w.width() };
+        };
+        scope.$watch(scope.getWindowDimensions, function (newValue, oldValue) {
+            $(".preview-file .modal-dialog").height(newValue.h - 60);
+            $(".preview-file .modal-dialog").width(newValue.w - 60);
+            $('.image-preview-td').height($('.image-preview').height());
+        }, true);
+
+        w.bind('resize', function () {
+            scope.$apply();
+        });
+    }
+}]); 
+
+ 
+ 

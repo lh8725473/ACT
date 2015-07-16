@@ -1,3 +1,132 @@
 <div class="settings-view" ng-controller="App.Settings.Controller">
-  settings
+	<perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="1" refresh-on-change="userLogList" on-scroll="onUserLogListScroll(scrollTop, scrollHeight)">
+		<div class="settings-main">
+			<h2>公司或团队</h2>
+			<div id="" class="form">
+				<div class="form-group">
+					<div class="input-group">
+						<span class="group-tit">公司或团队名称</span>
+						<input type="text" class="form-control" ng-model="cloudInfo.cloud_name"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group">
+						<span class="group-tit">通信地址</span>
+						<input type="text" class="form-control" ng-model="cloudInfo.address"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group">
+						<span class="group-tit">邮编</span>
+						<input onkeypress='return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 8 || event.charCode == 0' maxlength="6" class="form-control" ng-model="cloudInfo.zipcode"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group">
+						<span class="group-tit">是否需要发票</span>
+						<div class="group-radio"><input type="radio" name="invoice" ng-model="cloudInfo.is_invoice" value="true"/>&nbsp;&nbsp;是 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="invoice" value="false" ng-model="cloudInfo.is_invoice"/>&nbsp;&nbsp;否</div>
+					</div>
+				</div>
+
+				<div class="from-btn">
+					<button class="btn btn-block btn-primary" ng-click="updateCloudInfo(cloudInfo)">保&nbsp;&nbsp;&nbsp;存</button>
+				</div>
+
+			</div>
+			<!-- from -->
+		</div><!-- settings-main -->
+
+		<div class="settings-main">
+			<h2>账单详情</h2>
+			<table ng-repeat="packageInfo in packageInfoList">
+				<tr>
+			    <th colspan="2">{{packageInfo.format_start_date}} ～ {{packageInfo.format_expiration}}</th>
+			  </tr>
+			  <tr>
+			    <td class="tit">套餐：</td>
+			    <td>{{packageInfo.package_name}}</td>
+			  </tr>
+			  <tr>
+			    <td class="tit">付费：</td>
+			    <td>{{packageInfo.package_price}} 元</td>
+			  </tr>
+			  <tr>
+			    <td class="tit">容量（已用/全部）：</td>
+			    <td>{{packageInfo.used_space}} / {{packageInfo.total_space}}</td>
+			  </tr>
+			  <tr>
+			    <td class="tit">人数（已用/全部）：</td>
+			    <td>{{packageInfo.used_users}} / {{packageInfo.total_users}}</td>
+			  </tr>
+			</table>
+
+			<!-- <table>
+			  <tr>
+			    <th colspan="2">2014年9月1日 ～ 2014年12月1日：</th>
+			  </tr>
+			  <tr>
+			    <td class="tit">套餐：</td>
+			    <td>免费版</td>
+			  </tr>
+			  <tr>
+			    <td class="tit">付费：</td>
+			    <td>0 元</td>
+			  </tr>
+			  <tr>
+			    <td class="tit">容量（已用/全部）：</td>
+			    <td>19.12G / 20G</td>
+			  </tr>
+			  <tr>
+			    <td class="tit">人数（已用/全部）：</td>
+			    <td>10 / 1</td>
+			  </tr>
+			</table>
+
+			<table>
+			  <tr>
+			    <th colspan="2">2014年12月1日 ～ 2015年12月1日：</th>
+			  </tr>
+			  <tr>
+			    <td class="tit">套餐：</td>
+			    <td>中级协作版</td>
+			  </tr>
+			  <tr>
+			    <td class="tit">付费：</td>
+			    <td>2800 元</td>
+			  </tr>
+			  <tr>
+			    <td class="tit">容量（已用/全部）：</td>
+			    <td>28.73G / 500G</td>
+			  </tr>
+			  <tr>
+			    <td class="tit">人数（已用/全部）：</td>
+			    <td>31 / 50</td>
+			  </tr>
+			</table>
+
+			<table>
+			  <tr>
+			    <th colspan="2">2014年12月1日 ～ 2015年12月1日：</th>
+			  </tr>
+			  <tr>
+			    <td class="tit">套餐：</td>
+			    <td>中级协作版</td>
+			  </tr>
+			  <tr>
+			    <td class="tit">付费：</td>
+			    <td>2800 元</td>
+			  </tr>
+			  <tr>
+			    <td class="tit">容量（已用/全部）：</td>
+			    <td>28.73G / 500G</td>
+			  </tr>
+			  <tr>
+			    <td class="tit">人数（已用/全部）：</td>
+			    <td>31 / 50</td>
+			  </tr>
+			</table> -->
+
+		</div>
+	</perfect-scrollbar>
+
 </div>

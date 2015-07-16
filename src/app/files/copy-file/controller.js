@@ -8,6 +8,7 @@ angular.module('App.Files').controller('App.Files.CopyFileController', [
   'Files',
   'Notification',
   'Confirm',
+  'Utils',
   function (
     $scope,
     $modal,
@@ -17,8 +18,10 @@ angular.module('App.Files').controller('App.Files.CopyFileController', [
     Folders,
     Files,
     Notification,
-    Confirm
+    Confirm,
+    Utils
   ) {
+      $scope.copyMenuClicked = false;
       $scope.obj = obj
       $scope.copyList = copyList
 
@@ -52,7 +55,8 @@ angular.module('App.Files').controller('App.Files.CopyFileController', [
           },
           callback: {
               onClick: function (event, treeId, treeNode, clickFlag) {
-                  $scope.folderTreeId = treeNode.id
+                  $scope.folderTreeId = treeNode.id;
+                  $scope.folderTreeName = treeNode.name;
               }
           }
       }
@@ -72,33 +76,48 @@ angular.module('App.Files').controller('App.Files.CopyFileController', [
               title: 'LANG_COPY_FILES',
               content: 'LANG_COPY_FILES_CONFIRM',
               ok: function ($modalInstance) {
-                  copyFiles($scope.copyList, $scope.folderTreeId, $modalInstance)
+                  Notification.show({
+                      title: '成功',
+                      type: 'success',
+                      msg: '正在复制 ' + ($scope.copyList.file_ids.length + $scope.copyList.folder_ids.length) + ' 条记录到' + $scope.folderTreeName,
+                      closeable: false
+                  })
+                  copyFiles($scope.copyList, $scope.folderTreeId, $modalInstance);
               }
           })
 
           function copyFiles(copyList, folderTreeId, $modalInstance) {
+              $scope.copyMenuClicked = true;
               Files.copyFileList({
                   parent_id: folderTreeId
               }, {
                   file_ids: copyList.file_ids,
                   folder_ids: copyList.folder_ids
               }).$promise.then(function (copyListResponse) {
-                  copyListObj(copyListResponse);
+                  $scope.copyMenuClicked = false;
+                  copyListObj(copyListResponse, $scope.folderTreeName);
               }, function (error) {
+                $scope.copyMenuClicked = false;
+                if(!Utils.isReturnErrorDetails(error)){
                   Notification.show({
                       title: '失败',
                       type: 'danger',
-                      msg: error.data.result,
+                      msg: '复制文件时遇到了问题，请再试一次',
                       closeable: false
                   })
+                }
               })
 
               $modalInstance.dismiss('cancel');
           }
       }
 
-      function copyListObj(copyListResponse) {
-          $modalInstance.close(copyListResponse);
+      function copyListObj(copyListResponse, folderTreeName) {
+          var copyResponse = {
+            copyListResponse: copyListResponse,
+            copyFolderName: folderTreeName
+          }
+          $modalInstance.close(copyResponse);
       }
 
       $scope.cancel = function () {

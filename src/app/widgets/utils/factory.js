@@ -1,9 +1,11 @@
 angular.module('App.Widgets').factory('Utils', [
   '$modal',
   'CONFIG',
+  'Notification',
   function(
     $modal,
-    CONFIG
+    CONFIG,
+    Notification
   ) {
   return {
     getIconByExtension : function(ext) {//获取文件夹或者文件的图标
@@ -89,6 +91,36 @@ angular.module('App.Widgets').factory('Utils', [
       return size.toFixed(2) + " " + name[pos];
     },
 
+    isReturnErrorDetails: function(error){
+      if(error != '') {
+        Notification.show({
+          title: '失败',
+          type: 'danger',
+          msg: error.data.result,
+          closeable: false
+        });
+        return true;
+      } 
+      return false;
+    },
+
+    checkFileValid: function(obj){//检查预览的文件大小及类型(是否能被预览)
+      var fileSize = obj.file_size;
+      var fileType = this.getFileTypeByName(obj.file_name);
+      if ('office' == fileType || 'image' == fileType || 'txt' == fileType) {
+        //office文档最大预览为10M
+        if (fileSize > 10485760) {
+          return false;
+        }
+      } else if ('pdf' == fileType) {
+        //pdf设置最大预览为50M
+        if (fileSize > 52428800) {
+          return false;
+        }
+      }
+      return true;
+    },
+
     formateTime: function(time, fmt){//格式化时间
       var o = {
         "M+" : time.getMonth()+1,                 //月份
@@ -125,11 +157,11 @@ angular.module('App.Widgets').factory('Utils', [
     },
     
     //高亮显示@whos
-    highLightAtWhos: function(content){
-      var toBeHighLightedStringArray = content.match(/@[^ ]+/g);//匹配atwhos      
+    highLightAtWhos: function(content, toBeHighLightedStringArray){
       angular.forEach(toBeHighLightedStringArray, function(item){
+        item = '@' + item;//匹配atwhos
         var highLightedString = item.fontcolor('#428bca');
-        content = content.replace(item, highLightedString);
+        content = content.replace(new RegExp(item,"g"), highLightedString);
       });
       return content; 
     },
@@ -174,95 +206,95 @@ angular.module('App.Widgets').factory('Utils', [
         }
       }
 
-      if(htmlcore == "MSIE"){
-        try{
-          var swf1 = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
-        }catch(e){
-          var flashDownloadController = [
-            '$scope',
-            '$modalInstance',
-            function(
-              $scope,
-              $modalInstance
-            ) {
+//       if(htmlcore == "MSIE"){
+//         try{
+//           var swf1 = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
+//         }catch(e){
+//           var flashDownloadController = [
+//             '$scope',
+//             '$modalInstance',
+//             function(
+//               $scope,
+//               $modalInstance
+//             ) {
 
-              $scope.ok = function() {
-                $modalInstance.close()
-              };
+//               $scope.ok = function() {
+//                 $modalInstance.close()
+//               };
 
-              $scope.cancel = function() {
-                $modalInstance.dismiss('cancel')
-              }
-            }
-          ]
+//               $scope.cancel = function() {
+//                 $modalInstance.dismiss('cancel')
+//               }
+//             }
+//           ]
 
-          var flashDownloadModal = $modal.open({
-            templateUrl: 'src/app/widgets/utils/flash-download.html',
-            windowClass: 'flash-download',
-            backdrop: 'static',
-            controller: flashDownloadController
-          })
+//           var flashDownloadModal = $modal.open({
+//             templateUrl: 'src/app/widgets/utils/flash-download.html',
+//             windowClass: 'flash-download',
+//             backdrop: 'static',
+//             controller: flashDownloadController
+//           })
 
 
-        }
-      }else {
-        try{
-          var swf2 = navigator.plugins['Shockwave Flash'];
-          if(swf2 == undefined){
-            var flashDownloadController = [
-              '$scope',
-              '$modalInstance',
-              function(
-                $scope,
-                $modalInstance
-              ) {
-                $scope.ok = function() {
-                  $modalInstance.close()
-                };
+//         }
+//       }else {
+//         try{
+//           var swf2 = navigator.plugins['Shockwave Flash'];
+//           if(swf2 == undefined){
+//             var flashDownloadController = [
+//               '$scope',
+//               '$modalInstance',
+//               function(
+//                 $scope,
+//                 $modalInstance
+//               ) {
+//                 $scope.ok = function() {
+//                   $modalInstance.close()
+//                 };
 
-                $scope.cancel = function() {
-                  $modalInstance.dismiss('cancel')
-                }
-              }
-            ]
+//                 $scope.cancel = function() {
+//                   $modalInstance.dismiss('cancel')
+//                 }
+//               }
+//             ]
 
-            var flashDownloadModal = $modal.open({
-              templateUrl: 'src/app/widgets/utils/flash-download.html',
-              windowClass: 'flash-download',
-              backdrop: 'static',
-              controller: flashDownloadController
-            })
+//             var flashDownloadModal = $modal.open({
+//               templateUrl: 'src/app/widgets/utils/flash-download.html',
+//               windowClass: 'flash-download',
+//               backdrop: 'static',
+//               controller: flashDownloadController
+//             })
 
-          }else {
-//            alert('安装了Flash');
-          }
-        }catch(e){
-          var flashDownloadModal = $modal.open({
-            templateUrl: 'src/app/widgets/utils/flash-download.html',
-            windowClass: 'flash-download',
-            backdrop: 'static',
-            controller: flashDownloadController
-          })
+//           }else {
+// //            alert('安装了Flash');
+//           }
+//         }catch(e){
+//           var flashDownloadModal = $modal.open({
+//             templateUrl: 'src/app/widgets/utils/flash-download.html',
+//             windowClass: 'flash-download',
+//             backdrop: 'static',
+//             controller: flashDownloadController
+//           })
 
-          var flashDownloadController = [
-            '$scope',
-            '$modalInstance',
-            function(
-              $scope,
-              $modalInstance
-            ) {
+//           var flashDownloadController = [
+//             '$scope',
+//             '$modalInstance',
+//             function(
+//               $scope,
+//               $modalInstance
+//             ) {
 
-              $scope.ok = function() {
-                $modalInstance.close()
-              };
+//               $scope.ok = function() {
+//                 $modalInstance.close()
+//               };
 
-              $scope.cancel = function() {
-                $modalInstance.dismiss('cancel')
-              }
-            }
-          ]
-        }
-      }
+//               $scope.cancel = function() {
+//                 $modalInstance.dismiss('cancel')
+//               }
+//             }
+//           ]
+//         }
+//       }
     }
   }
 }])

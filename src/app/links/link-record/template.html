@@ -1,0 +1,34 @@
+<div class="lately-visit-links" ng-controller="App.Links.LinkRecordList.Controller">
+  <div class="title">
+    <div class="title-name col">
+      <span>{{'LANG_TEAM_COLLABORATION_FILE_NAME' | translate}}</span>
+    </div>
+    <div class="title-state col">
+      <span>{{'LANG_TEAM_COLLABORATION_ACCESS_TIME' | translate}}</span>
+    </div>
+    <div class="title-size col">
+      <span>{{'LANG_TEAM_COLLABORATION_FILE_OPERATION' | translate}}</span>
+    </div>
+  </div>
+  <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="1" refresh-on-change="">
+    <loading-indicator ng-show="loading"></loading-indicator>
+    <div class="folder-grid">
+      <div class="table">
+        <div class="file-row" ng-repeat="linkRecord in linkRecordList" ng-class = "{ selected: linkRecord.checked }" ng-click = "selectRecycle($event, linkRecord)">
+          <div class="img-name-td">
+            <img ng-src = "{{linkRecord.smallIcon}}" height="42px" width="42px"/>
+            <div class="file-name">
+              <a  ng-show = "linkRecord.folder" title="{{linkRecord.folder_name}}" ng-click="openLink(linkRecord)">{{linkRecord.folder_name}}</a>
+              <a ng-show = "!linkRecord.folder" title="{{linkRecord.file_name}}" ng-click="openLink(linkRecord)">{{linkRecord.file_name}}</a>
+            </div>
+          </div>
+          <div class="state-td" title="{{linkRecord.format_date}}">
+            {{linkRecord.format_date}}
+          </div>
+          <div class="file-sise-td">
+            <img class="record-delete-img" src="./images/delete.png" tooltip="{{'LANG_FILE_DELETE' | translate}}" tooltip-placement="top" tooltip-append-to-body="true" ng-click="deleteLinkRecord(linkRecord)"></div>
+        </div>
+      </div>
+    </div>
+  </perfect-scrollbar>
+</div>

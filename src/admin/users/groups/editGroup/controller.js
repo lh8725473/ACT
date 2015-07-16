@@ -7,6 +7,7 @@ angular.module('App.Users.Groups.EditGroup').controller('App.Users.Groups.EditGr
 	'Group',
 	'CONFIG',
 	'Share',
+	'$translate',
 	function(
 		$scope,
 		$modal,
@@ -15,11 +16,18 @@ angular.module('App.Users.Groups.EditGroup').controller('App.Users.Groups.EditGr
 		Users,
 		Group,
 		CONFIG,
-		Share
+		Share,
+		$translate
 	) {
 
 		$scope.permission_key = CONFIG.PERMISSION_KEY
-		$scope.permission_value = ['协同拥有者', '编辑者', '查看上传者', '预览上传者', '查看者', '预览者', '上传者']
+		$scope.permission_value = []
+    angular.forEach(CONFIG.PERMISSION_VALUE, function(key, index) {
+      $scope.permission_value.push($translate.instant(key))
+    })
+
+    var users_old = []
+    var folders_old = []
 
 		$scope.permissions = []
 		angular.forEach($scope.permission_key, function(key, index) {
@@ -37,6 +45,9 @@ angular.module('App.Users.Groups.EditGroup').controller('App.Users.Groups.EditGr
 		})
 
 		$scope.group.$promise.then(function() {
+      angular.copy($scope.group.users, users_old)
+      angular.copy($scope.group.folders, folders_old)
+
 			$scope.groupUser = $scope.group.users
 			$scope.showGroupUser = $scope.group.users.map(function(user) {
 				return user
@@ -317,6 +328,8 @@ angular.module('App.Users.Groups.EditGroup').controller('App.Users.Groups.EditGr
 		]
 
 		$scope.updateGroup = function(group) {
+      group.users_old = users_old
+      group.folders_old = folders_old
 			Group.update({
 				id: group.group_id
 			}, group).$promise.then(function() {

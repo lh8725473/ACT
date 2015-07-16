@@ -1,0 +1,79 @@
+<div class="link-main link-preview" ng-controller='App.LinkShare.PreviewFileController'>
+  <div class="open-link-top" resize>
+    <div class="col-md-8">
+      <div class="file-name">
+        <span class="open-link-title" title="{{currentObj.file_name}}">
+          {{currentObj.file_name}}
+          <!-- "2014-12-19-需求集合.jpg" --> </span>
+      </div>
+      <button class="btn btn-default btn-sm" ng-show="linkDetail.is_download" ng-click='downloadFile()' type="button">{{ 'LANG_DOWNLOAD_FILE' | translate }}</button>
+      <button class="btn btn-default btn-sm" ng-disabled="linkDetail.preview_only || linkDetail.upload_only" ng-click='open()' ng-show="linkDetail.is_download" type="button">{{ 'LANG_SAVE_TO_HANDSSYNC' | translate }}</button>
+
+    </div>
+    <div class="col-md-4 text-right" ng-show="linkDetail.expiration_date">{{ 'LANG_LINK_EXPIRATION' | translate: '{date: linkDetail.expiration_date}' }}</div>
+    <div class="clearfix"></div>
+  </div>
+  <loading-indicator ng-show="loading"></loading-indicator>
+  <div>    
+    <div class="image-preview" ng-show = "fileType == 'image' || !fileType || !isFilePreview" ng-mousemove="showToolBar = true" ng-mouseleave="showToolBar = false">
+      <table>
+        <tr>
+          <td class="image-preview-td">
+            <img ng-hide="!isFilePreview" degrees='angle' rotate ng-src="{{imageSrc}}" alt="" />
+            <p ng-show="!fileType" translate="LANG_NOT_SUPPORT_FILE_TYPE" translate-values="{ is_download: linkDetail.is_download }" translate-compile></p>
+            <p ng-show="!isFilePreview" class="over-preview-size" translate="LANG_NOT_SUPPORT_BIG_FILE" translate-values="{ is_download: linkDetail.is_download }" translate-compile></p>
+          </td>
+        </tr>
+      </table>
+      <a href="javascript:" class="pre-button" ng-click="prePreview()" ng-show="preShow && showToolBar && fileType && (isFilePreview || fileType == 'image')"></a>
+      <a href="javascript:" class="next-button" ng-click="nextPreview()" ng-show="nextShow && showToolBar && fileType && (isFilePreview || fileType == 'image')"></a>
+      <div class="preview-oprate-warp" ng-show="showToolBar && fileType && (isFilePreview || fileType == 'image')">
+        <ul>
+          <li>
+            <a ng-href="{{imageSrcMax}}" target="_blank"> <i class="preview-icon icon-view-original "></i>
+              {{ 'LANG_VIEW_ORIGINAL' | translate }}
+            </a>
+          </li>
+          <li>
+            <a href="javascript:" ng-click="rotate('-90')"> <i class="preview-icon rotate-to-left "></i>
+              {{ 'LANG_LEFT_ROTATE' | translate }}
+            </a>
+          </li>
+          <li>
+            <a href="javascript:" ng-click="rotate('90')">
+              <i class="preview-icon rotate-to-right "></i>
+              {{ 'LANG_RIGHT_ROTATE' | translate }}
+            </a>
+          </li>
+          <li>
+            <a href="javascript:" ng-click="downloadFile()" ng-show="linkDetail.is_download">
+              <i class="preview-icon down-load-files"></i>
+              {{ 'LANG_DOWNLOAD_PREVIEW' | translate }}
+            </a>
+          </li>
+
+          <!-- <li>
+          <a class="ng-binding" href="javascript:" ng-click="upload()">
+            <i class="preview-icon download-files"></i>
+            上传
+          </a>
+        </li>
+        -->
+        <li>
+          <a href="javascript:" class="disc" ng-class="{ active: navType == 'ver'}" ng-click='open()'>
+            <i class="preview-icon save-files"></i>
+            {{ 'LANG_SAVE_TO_HANDSSYNC' | translate }}
+          </a>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="txt-preview" ng-show = "fileType == 'txt'" ng-bind-html = "previewValue"></div>
+<div class="note-preview" ng-show = "fileType == 'note'" ng-bind-html = "previewValue"></div>
+<div class="office-preview" ng-show = "fileType == 'office' || fileType == 'pdf'" ng-bind-html = "previewValue"></div>
+
+</div>

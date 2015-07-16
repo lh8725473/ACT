@@ -20,10 +20,13 @@ angular.module('App.Note').controller('App.Note.Controller', [
 		$timeout
 	) {
     //是否是编辑状态
-    $scope.edit_flag = false
+    $scope.edit_flag = false;
+    //是否是修改
+    $scope.is_update = false;
 
     $scope.changeEdit = function(){
-      $scope.edit_flag = !$scope.edit_flag
+      $scope.edit_flag = !$scope.edit_flag;
+      $scope.is_update = true;
     }
 
 		//note所在folder_id
@@ -54,6 +57,9 @@ angular.module('App.Note').controller('App.Note.Controller', [
         var extStart = note.file_name.lastIndexOf(".")
         $scope.file_name = note.file_name.substring(0, extStart)
         $scope.content = note.file_content
+        if($scope.editor){
+          $scope.editor.setContent(note.file_content)
+        }
         //编辑权限
         var is_edit = note.permission.substring(2, 3)
         $scope.is_edit = (is_edit == '1') ? true : false
@@ -72,7 +78,7 @@ angular.module('App.Note').controller('App.Note.Controller', [
 
 		$scope.goBack = function() {
 		  $rootScope.$broadcast('closeDiscussPannel')
-			history.go(-1)
+			$state.go('files', {cloudId: $state.params.cloudId, folderId: folder_id})
 		}
 
     //保存note
@@ -102,13 +108,23 @@ angular.module('App.Note').controller('App.Note.Controller', [
         file_id: file_id,
         file_name: $scope.file_name,
         file_content: $scope.content
-      }).$promise.then(function(){
-        Notification.show({
-          title: '成功',
-          type: 'success',
-          msg: '发布成功',
-          closeable: true
-        })
+      }).$promise.then(function(r){
+        file.file_name = r.file_name;
+        if(is_new && !$scope.is_update) {
+          Notification.show({
+            title: '成功',
+            type: 'success',
+            msg: 'LANG_NOTE_PUBLISH_SUCCESS',
+            closeable: true
+          })
+        } else {
+          Notification.show({
+            title: '成功',
+            type: 'success',
+            msg: 'LANG_NOTE_UPDATE_SUCCESS',
+            closeable: true
+          })
+        }
         $scope.edit_flag = false
       }, function(error) {
         Notification.show({
@@ -117,9 +133,6 @@ angular.module('App.Note').controller('App.Note.Controller', [
           msg: error.data.result,
           closeable: false
         })
-        $timeout(function(){
-          history.go(-1)
-        }, 4000)
       })
       $rootScope.$broadcast('closeDiscussPannel')
 		}

@@ -14,6 +14,7 @@ angular.module('App.Files').controller('App.Files.InviteTeamUsersController', [
   'Folders',
   '$cookies',
   'Notification',
+  'Utils',
   function(
     $scope,
     $rootScope,
@@ -29,8 +30,9 @@ angular.module('App.Files').controller('App.Files.InviteTeamUsersController', [
     Share,
     Folders,
     $cookies,
-    Notification
-  ) {
+    Notification,
+    Utils
+  ) {      
       //右侧列表是否显示
       $scope.broad = false
       //分享文件夹ID
@@ -42,6 +44,15 @@ angular.module('App.Files').controller('App.Files.InviteTeamUsersController', [
       $scope.permission_value = CONFIG.PERMISSION_VALUE
       //表单提交按钮文字
       $scope.invite_send = 'LANG_INVITE_SENT_INVITATION'
+      //邀请按下回车键是否是通过typeahead
+      $scope.is_enter_from_typeahead = false;
+
+      // Contacts typeahead select event
+      $scope.onSelect = function($item, $modal, $label){
+        $scope.is_enter_from_typeahead = true;
+        $scope.inviteBySelect($item.entity, $item.entity.selected);
+        $scope.inviteInputValue = '';
+      }
 
       if(folder_permission != '1111111'){
         $scope.permission_value_list = CONFIG.NOOWNER_PERMISSION_VALUE_TOOLTIP
@@ -84,6 +95,13 @@ angular.module('App.Files').controller('App.Files.InviteTeamUsersController', [
           }
         }
         $scope.invitedList.userList.splice(i, 1)
+        //从下拉框中增加一个user
+        var userEntity = {
+          name: user.real_name + '(' + user.email + ')', 
+          avatar: user.avatar,
+          entity: user
+        };
+        $scope.inviteTypeaheadList.push(userEntity);
 
         if ($scope.invitedList.userList.length > 0 || $scope.invitedList.groupList.length > 0) {
           $scope.disableBtn = false;
@@ -102,6 +120,13 @@ angular.module('App.Files').controller('App.Files.InviteTeamUsersController', [
           }
         }
         $scope.invitedList.groupList.splice(i, 1)
+        //从下拉框中增加一个group
+        var groupEntity = {
+          name: group.group_name, 
+          avatar: './images/grouplist_icon.png',
+          entity: group
+        };
+        $scope.inviteTypeaheadList.push(groupEntity);
 
         if ($scope.invitedList.userList.length > 0 || $scope.invitedList.groupList.length > 0) {
           $scope.disableBtn = false;
@@ -112,21 +137,35 @@ angular.module('App.Files').controller('App.Files.InviteTeamUsersController', [
       }
 
       //协作 人员和组的接口
-      $scope.cloudUserList = Cloud.cloudUserList({
-        folder_id: $scope.folder_id
-      })
+      $scope.cloudUserList = Cloud.cloudUserList({},{folder_id: $scope.folder_id})
 
       $scope.cloudUserList.$promise.then(function(cloudUser) {
         $scope.userList = cloudUser.list.users
         $scope.groupList = cloudUser.list.groups
-
+        $scope.inviteTypeaheadList = [];
         angular.forEach($scope.userList, function(user) {
-          user.selected = (user.invited) ? true : false
+          user.selected = (user.invited) ? true : false;
+          if(!user.selected){
+            var userEntity = {
+              name: user.real_name + '(' + user.email + ')', 
+              avatar: user.avatar,
+              entity: user
+            };
+            $scope.inviteTypeaheadList.push(userEntity);
+          }
         })
 
         angular.forEach($scope.groupList, function(group) {
           group.selected = (group.invited) ? true : false
           group.show = false
+          if(!group.selected){
+            var groupEntity = {
+              name: group.group_name, 
+              avatar: './images/grouplist_icon.png',
+              entity: group
+            };
+            $scope.inviteTypeaheadList.push(groupEntity);
+          }
         })
       })
 
@@ -147,7 +186,8 @@ angular.module('App.Files').controller('App.Files.InviteTeamUsersController', [
       //输入框输入增加协作人或组
       $scope.inviteBypress = function($event, inviteInputValue) {
         $event.stopPropagation()
-        if($event.which != 13){
+        if($event.which != 13 || $scope.is_enter_from_typeahead){
+          $scope.is_enter_from_typeahead = false;
           return
         }
         if(inviteInputValue.replace(/^\s+|\s+$/g, "") == ''){
@@ -202,6 +242,13 @@ angular.module('App.Files').controller('App.Files.InviteTeamUsersController', [
               if ($scope.invitedList.groupList[i].group_id == groupOrUser.group_id)
                 break
             }
+            //从下拉框中增加一个group
+            var groupEntity = {
+              name: groupOrUser.group_name, 
+              avatar: './images/grouplist_icon.png',
+              entity: groupOrUser
+            };
+            $scope.inviteTypeaheadList.push(groupEntity);
             $scope.invitedList.groupList.splice(i, 1)
           } else { //取消的是用户
             angular.forEach($scope.userList, function(user) {
@@ -213,12 +260,41 @@ angular.module('App.Files').controller('App.Files.InviteTeamUsersController', [
               if ($scope.invitedList.userList[i].user_id == groupOrUser.user_id)
                 break
             }
+            //从下拉框中增加一个user
+            var userEntity = {
+              name: groupOrUser.real_name + '(' + groupOrUser.email + ')', 
+              avatar: groupOrUser.avatar,
+              entity: groupOrUser
+            };
+            $scope.inviteTypeaheadList.push(userEntity);
             $scope.invitedList.userList.splice(i, 1)
           }
         } else { //选中列表中组或者协作人
           if (groupOrUser.group_id) { //选中的是组
+            angular.forEach($scope.groupList, function(group) {
+              if (groupOrUser.group_id == group.group_id) {
+                group.selected = true;
+              }
+            })
+            for (var i = 0; i < $scope.inviteTypeaheadList.length; ++i) {
+              if ($scope.inviteTypeaheadList[i].entity.group_id == groupOrUser.group_id)
+                break
+            }
+            //从typeahead下拉框中删除一个group
+            $scope.inviteTypeaheadList.splice(i, 1);
             $scope.invitedList.groupList.push(groupOrUser)
           } else { //选中的是用户
+            angular.forEach($scope.userList, function(user) {
+              if (groupOrUser.user_id == user.user_id) {
+                user.selected = true;
+              }
+            });
+            for (var i = 0; i < $scope.inviteTypeaheadList.length; ++i) {
+              if ($scope.inviteTypeaheadList[i].entity.user_id == groupOrUser.user_id)
+                break
+            }
+            //从typeahead下拉框中删除一个user
+            $scope.inviteTypeaheadList.splice(i, 1);
             $scope.invitedList.userList.push(groupOrUser)
           }
         }
@@ -236,7 +312,7 @@ angular.module('App.Files').controller('App.Files.InviteTeamUsersController', [
 
       //发送邀请
       $scope.createShare = function() {
-        $scope.invite_send = 'LOADING'
+        $scope.invite_send = 'LANG_INVITE_SENTING_INVITATION'
         $scope.disableBtn = true
         var toUserList = []
         var toGroupList = []
@@ -276,25 +352,31 @@ angular.module('App.Files').controller('App.Files.InviteTeamUsersController', [
             title: '成功',
             type: 'success',
             msg: 'LANG_INVITE_MESSAGE_INVITE_SUCCESS',
+            param: toUserList.length + toGroupList.length,
             closeable: true
           })
           if (obj.owner_uid == $cookies.userId){
             obj.permission_value = 'OWNER_PERMISSION_VALUE'
           }
           obj.smallIcon = CONFIG.ICONS_PATH + CONFIG.ICONS.folder.small_share
-          Folders.queryShareObj({
-            folder_id: $scope.folder_id
-          }).$promise.then(function(reShareObj) {
-            obj.user_count = reShareObj.user_count
-          })
-          $rootScope.$broadcast('inviteDone');
+          if(obj != ''){//列表中邀请
+            Folders.queryShareObj({
+              folder_id: $scope.folder_id
+            }).$promise.then(function(reShareObj) {
+              obj.user_count = reShareObj.user_count
+            })
+          }else{//右侧人员列表中邀请
+            $rootScope.$broadcast('inviteDone')
+          }     
         }, function (error) {
-          Notification.show({
-            title: '失败',
-            type: 'danger',
-            msg: error.data.result,
-            closeable: false
-          })
+          if(!Utils.isReturnErrorDetails(error)){
+            Notification.show({
+              title: '失败',
+              type: 'danger',
+              msg: 'LANG_INVITE_MESSAGE_INVITE_ERROR',
+              closeable: false
+            })
+          }
           $scope.invite_send = 'LANG_INVITE_SENT_INVITATION'
         })
       }

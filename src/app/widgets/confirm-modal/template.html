@@ -5,11 +5,21 @@
   <h3 class="modal-title">{{confirm.title | translate}}</h3>
 </div>
 <div class="modal-body">
-  {{confirm.content | translate}}
+  <div ng-show="confirm.complexContent">
+    <img ng-src="{{confirm.complexContent.img}}" alt="" />
+    <span>{{confirm.complexContent.name}}</span>
+  </div>
+  {{confirm.content | translate: '{param: confirm.param}'}}
 </div>
 <div class="modal-footer">
-  <button class="btn btn-primary" ng-click="ok()">
+  <button class="btn btn-primary" ng-hide="confirm.okButtonContent" ng-click="ok()">
     {{'LANG_BUTTON_CONFIRM' | translate}}
+  </button>
+  <button class="btn btn-primary" ng-show="confirm.okButtonContent" ng-click="ok()">
+    {{confirm.okButtonContent | translate}}
+  </button>
+  <button class="btn btn-primary" ng-show="confirm.extraButtonContent" ng-click="extraButtonClick()">
+    {{confirm.extraButtonContent | translate}}
   </button>
   <button class="btn btn-default" ng-click="cancel()">
     {{'LANG_BUTTON_CANCEL' | translate}}

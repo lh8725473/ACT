@@ -118,7 +118,9 @@ module.exports = function(grunt) {
         'production/regist-success.html',
         'production/resetpassword.html',
         'production/verify-failed.html',
-        'production/verify-success.html'
+        'production/verify-success.html',
+        'production/wap-link.html',
+        'production/create-team.html'
       ],
       options: {
         root: './',
@@ -148,7 +150,9 @@ module.exports = function(grunt) {
         'production/regist-success.html',
         'production/resetpassword.html',
         'production/verify-failed.html',
-        'production/verify-success.html'
+        'production/verify-success.html',
+        'production/wap-link.html',
+        'production/create-team.html'
       ]
     },
     inline_angular_templates: {

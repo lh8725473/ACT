@@ -1,9 +1,11 @@
 angular.module('App.Widgets').factory('Utils', [
   '$modal',
   'CONFIG',
+  'Notification',
   function(
     $modal,
-    CONFIG
+    CONFIG,
+    Notification
   ) {
 	return {
 		getIconByExtension : function(ext) {
@@ -70,6 +72,18 @@ angular.module('App.Widgets').factory('Utils', [
 
 			return false;
 		},
+		isReturnErrorDetails: function(error){
+	      if(error != '') {
+	        Notification.show({
+	          title: '失败',
+	          type: 'danger',
+	          msg: error.data.result,
+	          closeable: false
+	        });
+	        return true;
+	      } 
+	      return false;
+	    },
 		formateSize: function(size){
 		  var name = ['B', 'KB', 'MB', 'GB', 'TB', 'PB'];
       var pos = 0;

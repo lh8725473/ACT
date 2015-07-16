@@ -1,21 +1,27 @@
 <div class="sidebar-view" ng-controller="App.Sidebar.Controller">
   <ul class="nav nav-sidebar">
     <li ng-class="{ active: $state.includes('overview') }">
-      <a ui-sref="overview" class="overview">
+      <a ui-sref="overview({cloudId: $state.params.cloudId})" class="overview">
         <span class="overview-img"></span>
         	概况
       </a>
     </li>
     <li ng-class="{ active: $state.includes('users') }">
-      <a ui-sref="users.managedUsers" class="users">
+      <a ui-sref="users.managedUsers({cloudId: $state.params.cloudId})" class="users">
         <span class="users-img"></span>
         	用户与群组
       </a>
     </li>
     <li ng-class="{ active: $state.includes('reports') }">
-      <a ui-sref="reports" class="reports">
+      <a ui-sref="reports({cloudId: $state.params.cloudId})" class="reports">
         <span class="reports-img"></span>
         	报表
+      </a>
+    </li>
+    <li ng-class="{ active: $state.includes('settings') }">
+      <a ui-sref="settings({cloudId: $state.params.cloudId})" class="settings">
+        <span class="settings-img"></span>
+          设置
       </a>
     </li>
   </ul>

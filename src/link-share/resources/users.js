@@ -57,6 +57,12 @@ angular.module('App.Resources').factory('Users', [
         params: {
           action: 'info'
         }
+      },
+      login: {
+        method: "POST",
+        params: {
+          action: 'login'
+        }
       }
     })
   }  

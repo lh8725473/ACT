@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>全携通</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+  <!-- build:css css/wap/wap-link/wap-link.css -->
+  <link rel="stylesheet" href="bower_components/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css">
+  <link rel="stylesheet" href="src/wap/link-share/link_share.css">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- endbuild -->
+
+  <!-- build:js js/wap-link.js -->
+  <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="src/global/_config.js"></script>
+  <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="bower_components/jquery/dist/jquery.md5.js"></script>
+  <script type="text/javascript" src="src/wap/link-share/link_share.js"></script>
+  <script type="text/javascript" src="bower_components/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <!-- endbuild -->
+</head>
+
+<body>
+  <div data-role="page" class="page">
+    <!-- data-dom-cache="true" -->
+    <div data-role="header" data-position="fixed" data-theme="custom" class="wap_header" data-id="PersistentHeader" data-tap-toggle="false">
+      <div class="logo">
+        <img src="images/wap/wap_logo.png" alt="">
+      </div>
+      <div class="download_text">
+        <!-- “链接分享给我的文件夹名称” -->
+      </div>
+      <div class="popup-btn">
+        <img src="images/wap/download_btn.png" alt="">
+      </div>
+      <div class="popup-menu">
+        <span class="square">square</span>
+        <ul data-role="listview" class="ui-overlay-shadow ui-corner-all">
+          <li data-icon="false" data-theme="custom" class="downloadLi"><a href="#" class="downloadFile">下载</a></li>
+          <li data-icon="false"><a href="" data-rel="dialog" data-transition="slidedown" class="saveFile">保存到我的全携通</a></li>
+          <li data-icon="false" data-theme="custom" class="exit"><a href="#" class="signOut">退出</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- /wap_header-->
+    <div data-role="content" data-theme="custom" class="">
+      <!-- <ul data-role="listview" data-theme="custom" class="folder-list">
+      </ul> -->
+    </div>
+    <!-- /ui-content-->
+    <div data-role="footer" data-theme="custom" class="download_suggestion" data-position="fixed" data-id="PersistentFooter" data-tap-toggle="false">
+      <!-- data-tap-toggle = "false" -->
+      <div class="logo">
+        <img src="images/wap/download_logo.png" alt="">
+      </div>
+      <div class="download_text">
+        <a id="downloadApp" href="#">
+            <span>下载客户端</span>
+            <br/> 免费获得2G空间
+        </a>
+      </div>
+      <a href="#" data-role="button" data-theme="open" onclick="try_to_open_app()">在应用内打开</a>
+      <div class="close">
+        <a href="#"><img src="images/wap/download_close.png" alt=""></a>
+      </div>
+    </div>
+    <!-- /download_suggestion-->
+  </div><!--  end page -->
+
+  <div data-role="page" data-close-btn="right" id="dialog-login">
+      <div data-role="header" data-theme="custom" class="dialog-header">
+          <h1>将文件保存到我的全携通</h1>
+      </div>
+      <div role="main" class="content">
+          <span class="dialog-txt">成功登录后文件将自动保存到你的全携通账户 </span>
+              <div class="form-group-m">
+                  <label class="un"></label>
+                  <input name="user_name" placeholder="用户名或邮箱" type="text" id="username">
+              </div>
+              <div class="form-group-m">
+                  <label class="pw"></label>
+                  <input name="password" placeholder="密码" type="password" id="password">
+              </div>
+              <button type="submit" data-rel="button" class="dialog-btn" data-theme="custom" id="login">登录</button>
+              <!-- <a class="dialog-btn ui-btn ui-btn-custom ui-shadow ui-corner-all" data-theme="custom" id="login" data-rel="back">登录</a> -->
+      </div>
+  </div>
+
+  <!-- 弹出提示 -->
+  <div class="alert alert-dismissable alert-danger errorMsg" style="display: none; position: fixed; z-index: 10002;">
+    <button class="close" type="button" data-role="none">
+        ×
+    </button>
+    <p style="margin-right: 15px;">
+    </p>
+  </div>
+  <!-- 密码验证 -->
+  <div class="enter-password">
+    <header class="main-header">
+        <div class="container">
+            <img src="images/web_openlink_login_logo.png" class="logohome" />
+        </div>
+    </header>
+    <div class="container">
+      <div class="form-group">
+        <div class="col-sm-6 col-sm-offset-2">
+          <input class="form-control" type="password" placeholder="输入文件提取密码" />
+        </div>
+        <div class="col-sm-2">
+          <input type="button" class="btn btn-warning" value="确定" />
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

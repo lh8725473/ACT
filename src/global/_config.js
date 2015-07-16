@@ -4,7 +4,7 @@
   SOCKET_HOST: '192.168.1.52:3232',
 
   // develop
-  // API_ROOT: 'http://101.231.216.75:8888/api',
+  //API_ROOT: 'http://101.231.216.75:8888/api',
 
   // production
   API_ROOT: '/api',
@@ -20,6 +20,9 @@
 
   //历史版本数(默认免费10个)
   HISTORY_VERSIONS: 10,
+  
+  //文件夹讨论页中，每次刷新获取多少笔记录
+  FOLDER_DISCUSS_PAGE_SIZE:10,
 
   //permission
   PERMISSION_KEY: ['1111111', '0111111', '0001111', '0000101', '0001110', '0000100', '0000001'],
@@ -53,7 +56,8 @@
       small: 'web_files_personal.png',
       large: 'file_folder_large.png',
       small_share: 'web_files_shared.png',
-      large_share: 'file_folder_share_large.png'
+      large_share: 'file_folder_share_large.png',
+      hide_ring: 'hide_ring.png'
     },
     pdf: {
       small: 'web_files_pdf.png',

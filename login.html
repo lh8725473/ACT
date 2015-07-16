@@ -1,24 +1,18 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>全携通</title>
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
-    <script>
-      var _hmt = _hmt || [];
-      (function() {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?4c3c918cadc6ad3aceb76b34c3c29302";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
     <!-- build:css css/login/login.css -->
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <!-- endbuild -->
     <!-- build:js js/login.js -->
     <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="src/global/fromURL.js"></script>
+    <script type="text/javascript" src="bower_components/blueimp-md5/js/md5.min.js"></script>
     <!-- endbuild -->
     <!-- build:js js/global/config.js -->
     <script type="text/javascript" src="src/global/_config.js"></script>
@@ -110,7 +104,6 @@
         height: 400px;
         background: url(images/form-back.png) no-repeat top;
       }
-
     </style>
 
     <script type="text/javascript">
@@ -198,7 +191,7 @@
               createCookie('token', token, 30);
               createCookie('userName', user_name, 30);
               createCookie('realName', real_name, 30);
-              createCookie('passWord', passWord, 30);
+              createCookie('passWord', $('#password').attr('data-pass') == passWord ? passWord : md5(passWord), 30);
               createCookie('userpic', user_pic, 30);
               createCookie('userId', user_id, 30);
               createCookie('userType', 'qxt', 30);
@@ -218,14 +211,12 @@
               createCookie('lang', 'zh-CN');
               createCookie('remember', false);
             }
-            var folderId = getUrlParameter('folderId')
-            var path = ''
-            if(folderId != null){
-              path = '#/files/'+ folderId
+            var returnUrl = getUrlParameter('returnUrl')
+            if(returnUrl){
+               window.location.href = decodeURIComponent(returnUrl)
             }else{
-              path = ''
+               window.location.href = 'index.html'
             }
-            window.location.href = 'index.html' + path;
           }).fail(function(xhr, status, error) {
             var err = eval('(' + xhr.responseText + ')');
             errorMsg(err.result);
@@ -265,6 +256,7 @@
         if(readCookie('remember') == 'true'){
           $('#username').val(readCookie('userName'));
           $('#password').val(readCookie('passWord'));
+          $('#password').attr('data-pass', readCookie('passWord'));
           $('#checkbox')[0].checked = true;
         }else{
           $('#username').val(readCookie('userName'));
@@ -325,6 +317,15 @@
         });
       });
     </script>
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?4c3c918cadc6ad3aceb76b34c3c29302";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
 
   </head>
   <body>
@@ -367,7 +368,7 @@
     <div class="footer text-center">
       <a href="http://www.sharpinteract.com/agreement.html" target="_blank"> 服务条款</a>
       &nbsp;<a href="http://www.sharpinteract.com/privacy_policy.html" target="_blank">隐私政策</a>
-      &nbsp;
+      <br/>
       <span style="color: #999999">版权所有 ©2014  上海灵利信息技术有限公司</span>
     </div>
     <div class="alert alert-dismissable alert-danger errorMsg" style="display: none; position: fixed; z-index: 10002;">

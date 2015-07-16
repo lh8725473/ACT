@@ -1,25 +1,33 @@
 <div class="sidebar-view" ng-controller="App.Sidebar.Controller">
   <ul class="nav nav-sidebar">
     <li ng-class="{ active: $state.includes('files') }">
-      <a ui-sref="files({folderId:0})" class="files">
+      <a ui-sref="files({cloudId: $state.params.cloudId,folderId:0})" class="files">
         <span class="files-img"></span>
         {{'LANG_SIDE_BAR_ALL_FILES' | translate}}
       </a>
     </li>
-<!--     <li ng-class="{ active: $state.includes('updates') }">
-      <a ui-sref="updates" class="updates">
-        <span class="updates-img"></span>
-          最近更新
+    
+    <li ng-class="{ active: $state.includes('discussion')}">
+     <a ui-sref="discussion.folderList({cloudId: $state.params.cloudId})" class="files">
+       <span class="discussion-img"></span>   
+       {{'LANG_SIDE_BAR_ALL_DISCUSSION' | translate}}
+     </a>
+   </li>
+
+    <li ng-class="{ active: $state.includes('links') }">
+      <a ui-sref="links.myLinks({cloudId: $state.params.cloudId})" class="links">
+        <span class="links-img"></span>
+          {{'LANG_SIDE_BAR_LINK' | translate}}
       </a>
-    </li> -->
+    </li>
     <li ng-class="{ active: $state.includes('contacts') }">
-      <a ui-sref="contacts" class="contacts">
+      <a ui-sref="contacts({cloudId: $state.params.cloudId})" class="contacts">
         <span class="contacts-img"></span>
         {{'LANG_SIDE_BAR_CONTACT' | translate}}
       </a>
     </li>
     <li ng-class="{ active: $state.includes('trash') }">
-      <a ui-sref="trash" class="trash">
+      <a ui-sref="trash({cloudId: $state.params.cloudId})" class="trash">
         <span class="trash-img"></span>
         {{'LANG_SIDE_BAR_TRASH' | translate}}
       </a>

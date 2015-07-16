@@ -1,0 +1,23 @@
+<div class="discussion-view" ng-controller="App.Discussion.Controller">
+  <div class="top-bar">   
+    <a ui-sref="discussion.folderList" class="" ng-class="{ active: $state.includes('discussion.folderList')}">{{'LANG_TEAM_COLLABORATION_RECENT_DISCUSSION' | translate}}</a>
+    <a ui-sref="discussion.blockedDiscussion" class="lately-a" ng-class="{ active: $state.includes('discussion.blockedDiscussion')}">{{'LANG_TEAM_COLLABORATION_HAD_HIDDEN_DISCUSSION' | translate}}</a>
+  </div>
+  <div class="top-bar-bottom"></div>
+   
+  <div ui-view class=""></div>
+
+</div>
+<div class="team-collaboration">
+  <div class="no-groups-users">
+    <div class="groups-users-header col-sm-12">
+      <span class="pull-left">{{'LANG_TEAM_COLLABORATION_TIPS' | translate}} </span>
+    </div>
+    <perfect-scrollbar class="empty-scroller" wheel-propagation="true" wheel-speed="1" suppress-scroll-x = "true">
+      <div class="h4_add_guide pull-left col-sm-12">{{'LANG_TEAM_COLLABORATION_COLLABORATE_SHARE' | translate}}</div>
+      <div class="add_guide pull-left col-sm-12"></div>
+      <div class="h4_add_link pull-left col-sm-12">{{'LANG_TEAM_COLLABORATION_LINK_SHARE' | translate}}</div>
+      <div class="add_link pull-left col-sm-12"></div>
+    </perfect-scrollbar>
+  </div>
+</div>

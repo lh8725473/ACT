@@ -46,7 +46,9 @@ angular.module('App', [
     $rootScope,
     CONFIG
   ) {
+     
     return {
+
       request: function(config) {
         // do something on success
         var d = config.url.length - '.html'.length
@@ -127,14 +129,29 @@ angular.module('App', [
     $httpProvider,
     CONFIG
   ) {
-    $urlRouterProvider.otherwise('/overview')
+    function readCookie(name) {
+      var nameEQ = name + '=';
+      var ca = document.cookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1, c.length);
+        }
+        if (c.indexOf(nameEQ) == 0) {
+          return c.substring(nameEQ.length, c.length);
+        }
+      }
+      return null;
+    }
+
+    $urlRouterProvider.otherwise('/'+ readCookie('cloudId') +'/overview')
     $stateProvider
       .state('overview', {
-        url: '/overview',
+        url: '/:cloudId/overview',
         templateUrl: 'src/admin/overview/template.html'
       })
       .state('users', {
-        url: '/users',
+        url: '/:cloudId/users',
         templateUrl: 'src/admin/users/template.html'
       })
       .state('users.managedUsers', {
@@ -162,11 +179,11 @@ angular.module('App', [
         templateUrl: 'src/admin/users/groups/editGroup/update-group-modal.html'
       })
       .state('reports', {
-        url: '/reports',
+        url: '/:cloudId/reports',
         templateUrl: 'src/admin/reports/template.html'
       })
       .state('settings', {
-        url: '/settings',
+        url: '/:cloudId/settings',
         templateUrl: 'src/admin/settings/template.html'
       })
 
@@ -188,7 +205,15 @@ angular.module('App', [
     $translate
   ) {
 
+    var cloudId;
+    var queryString = window.location.toString().split("#");
+    if (queryString.length > 1) {
+      var params = queryString[1].split("/");
+      cloudId = params[1]
+    }
+
     $translate.use($cookieStore.readCookie('lang'))
+    $http.defaults.headers.common['CLOUD_ID'] = cloudId
     $http.defaults.headers.common['HTTP_X_OAUTH'] = $cookies.token
   }
 ])

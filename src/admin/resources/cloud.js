@@ -15,6 +15,32 @@ angular.module('App.Resources').factory('Cloud', [
           }
         },
         isArray: true
+      },
+      checkPackage: {
+        method: "GET",
+        params: {
+          action: 'checkPackage'
+        },
+        isArray: false
+      },
+      info: {
+        method: "GET",
+        params: {
+          action: 'info'
+        }
+      },
+      updateInfo: {
+        method: "PUT",
+        params: {
+          action: 'info'
+        }
+      },
+      getPackage: {
+        method: "GET",
+        params: {
+          action: 'package'
+        },
+        isArray: true
       }
     })
   }

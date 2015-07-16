@@ -3,3 +3,4 @@
 3.删除web 下的所有文件（除了favicon.ico  app.apk 如果有跟新需复制最新安卓app到本目录下）
 4.复制production 下所有文件到web目录
 5.复制js，style 目录下的文件到对应目录下
+6.复制安卓Release 最新版本到根目录下 改名quanxietong.apk 

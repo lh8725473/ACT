@@ -1,0 +1,26 @@
+<div class="settings-security" ng-controller="App.Settings.Security.Controller">
+	<perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="1" refresh-on-change="userLogList" on-scroll="onUserLogListScroll(scrollTop, scrollHeight)">
+		<div id="" class="form">
+			<h2>更改密码</h2>
+			<div class="form-group">
+				<div class="input-group">
+					<span class="group-tit">当前密码</span>
+					<input type="password" class="form-control" ng-model="userInfo.old_password"></div>
+			</div>
+			<div class="form-group">
+				<div class="input-group">
+					<span class="group-tit">新密码</span>
+					<input type="password" class="form-control" ng-model="userInfo.new_password"></div>
+			</div>
+			<div class="form-group">
+				<div class="input-group">
+					<span class="group-tit">确认新密码</span>
+					<input type="password" class="form-control" ng-model="userInfo.confim_password"></div>
+			</div>
+			<div class="from-btn">
+				<button class="btn btn-block btn-primary" ng-click="updateUserInfo(userInfo)">保&nbsp;&nbsp;&nbsp;存</button>
+			</div>
+
+		</div>
+	</perfect-scrollbar>
+</div>

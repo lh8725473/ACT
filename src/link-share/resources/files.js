@@ -41,7 +41,11 @@ angular.module('App.Resources').factory('Files', [
           url: CONFIG.API_ROOT + '/share/key?act=preview&key=' + key + '&pwd=' + pwd + '&file_id=' + file_id,
           method: 'GET'
         }).then(function(response) {
-          deferred.resolve($sce.trustAsHtml(response.data))
+          if(typeof response.data.file_content === "undefined") {
+            deferred.resolve($sce.trustAsHtml(response.data))
+          } else{
+            deferred.resolve($sce.trustAsHtml(response.data.file_content))
+          }
         }, function(err) {
           deferred.reject(err);
         })

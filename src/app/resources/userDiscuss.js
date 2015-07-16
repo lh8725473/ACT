@@ -9,25 +9,50 @@ angular.module('App.Resources').factory('UserDiscuss', [
       getUserDiscussList: {
         method: "GET",
         params: {
-          action: 'list',
-          obj_id : 0
+          action: 'list'
         },
         isArray: true
       },
       createUserDiscuss: {
         method: "POST",
         params: {
-          action: 'create',
-          obj_id : 0
+          action: 'create'
         }
       },
       deleteUserDiscuss: {
         method: "DELETE",
         params: {
-          action: 'delete',
-          id : ''
+          action: 'delete'
         }
-      }
+      },
+      folderList: {
+        method: "GET",
+        params: {
+          action: 'folderList'
+        },
+        isArray: true
+      },
+      blockList: {
+        method: "GET",
+        params: {
+          action: 'blockList'
+        },
+        isArray: true
+      },
+      List: {
+        method: "GET",
+        params: {
+          action: 'list'          
+        },
+        isArray: true
+      },
+       deleteFolderList: {
+        method: "POST",
+        params: {
+          action: 'delete'
+        }
+      },
     })
   }
 ])
+

@@ -1,17 +1,21 @@
 angular.module('App.Trash').controller('App.Trash.Controller', [
   '$scope',
+  '$state',
   'CONFIG',
   'Trash',
   'Utils',
   '$modal',
+  '$cookieStore',
   'Notification',
   '$rootScope',
   function(
     $scope,
+    $state,
     CONFIG,
     Trash,
     Utils,
     $modal,
+    $cookieStore,
     Notification,
     $rootScope
   ) {
@@ -27,6 +31,11 @@ angular.module('App.Trash').controller('App.Trash.Controller', [
 
     //加载动画
     $scope.loading = true
+
+    //真实姓名
+    $scope.realName = $cookieStore.readCookie('realName')
+
+    $scope.cloudId = $state.params.cloudId
 
     $scope.recycleList.$promise.then(function(recycleList) {
       angular.forEach(recycleList, function(recycle) {
@@ -251,6 +260,12 @@ angular.module('App.Trash').controller('App.Trash.Controller', [
                   }
                 }
                 $scope.showEmpty = (recycleList.length == 0) ? false : true
+                Notification.show({
+                  title: '成功',
+                  type: 'success',
+                  msg: 'LANG_TRASH_REVERT_SELECTED_FILES',
+                  closeable: true
+                })
               }, function(error) {
                 Notification.show({
                   title: '失败',

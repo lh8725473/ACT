@@ -1,6 +1,6 @@
 <div class="modal-header">
 	<button class="bootbox-close-button close" type="button" ng-click="cancel()">×</button>
-	<h3 class="modal-title">添加内部人员</h3>
+	<h3 class="modal-title">添加用户</h3>
 </div>
 <div class="modal-body">
 	<form role="form" class="form-horizontal userDetail"  name="myForm" ng-submit="ok(user)">
@@ -16,7 +16,7 @@
 				<input type="email" placeholder="此邮箱将作为登录名使用，请准确填写" class="form-control" ng-model="user.email" required></div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-2 control-label">容量</label>
+			<label class="col-sm-2 control-label">存储空间</label>
 			<div class="col-sm-2">
 				<input type="text"  class="form-control" ng-disabled="user.space_unlimited" ng-model="user.total_space"/>
 			</div>
@@ -68,7 +68,7 @@
 		</div>
 
 		<div class="modal-footer">
-			<button class="btn btn-primary" type="submit">保存</button>
+			<button class="btn btn-primary" type="submit">添加</button>
 			<input type="button" class="btn" ng-click="cancel()" value="取消" />
 		</div>
 	</form>

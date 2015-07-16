@@ -1,3 +1,84 @@
 .settings-view {
-  color:blue;
+	padding: 0px 20px 20px 20px;
+	width: 100%;
+
+	input[type="radio"] {
+		margin: -4px 0 0;
+		vertical-align: middle;
+	}
+	.scroller {
+		overflow-y: hidden;
+		bottom: 30px;
+		left: 20px;
+		right: 20px;
+		top: 0px;
+		position: absolute;
+	}
+	.settings-main {
+		width: 100%;
+		overflow: hidden;
+		border-bottom: 1px dashed #ccc;
+
+		h2 {
+			width: 100%;
+			font-size: 18px;
+			line-height: 2.5em;
+			padding-left: 20px;
+			border-bottom: 1px solid #ccc;
+			margin: 10px 0 0 0;
+		}
+		.form {
+			margin: 30px 0 30px 0;
+
+			.form-group {
+				width: 670px;
+				margin-bottom: 20px;
+
+				.input-group {
+					.group-tit {
+						display: block;
+						float: left;
+						width: 150px;
+						line-height: 34px;
+						text-align: right;
+						padding-right: 20px;
+					}
+					.form-control {
+						float: left;
+						width: 500px;
+
+						&:last-child {
+							border-bottom-left-radius: 3px;
+							border-top-left-radius: 3px;
+						}
+					}
+					.group-radio {
+						float: left;
+						width: 500px;
+						line-height: 34px;
+					}
+				}
+			}
+			//form-group
+			.from-btn {
+				width: 100px;
+				margin-left: 150px;
+			}
+		}
+		//form
+		table {
+			margin: 15px auto 30px 30px;
+			line-height: 34px;
+
+			td {
+				padding-left: 10px;
+
+				&.tit {
+					padding-left: 30px;
+				}
+			}
+		}
+	}
+	//settings-main
 }
+//settings-view

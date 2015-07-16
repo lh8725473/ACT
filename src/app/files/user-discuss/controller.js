@@ -13,6 +13,7 @@ angular.module('App.Files').controller('App.Files.UserDiscussController', [
   '$timeout',
   'ngSocket',
   'Confirm',
+  '$state',
   function(
     $scope,
     CONFIG,
@@ -27,7 +28,8 @@ angular.module('App.Files').controller('App.Files.UserDiscussController', [
     Notification,
     $timeout,
     ngSocket,
-    Confirm
+    Confirm,
+    $state
   ) {
     //讨论输入框焦点
     $scope.textareaFocus = false
@@ -73,7 +75,7 @@ angular.module('App.Files').controller('App.Files.UserDiscussController', [
         angular.forEach(userDiscussList, function(userDiscuss) {
           if (userDiscuss.is_deleted != 'true') {
             userDiscuss.content = Utils.replaceURLWithHTMLLinks(userDiscuss.content)
-            userDiscuss.content = Utils.highLightAtWhos(userDiscuss.content);
+            userDiscuss.content = Utils.highLightAtWhos(userDiscuss.content, $scope.atOptions.data);
           }
           userDiscuss.content = userDiscuss.content.replace(/\n/g, "<br/>")
           if (userDiscuss.user_id == $cookies.userId) { //讨论是否是当前用户
@@ -99,28 +101,27 @@ angular.module('App.Files').controller('App.Files.UserDiscussController', [
         refreshDiscuss(discuss_file_id)
       }
       //    $timeout(pollForDiscuss, 10000)
-    }
+    }    
+	
+		//是否关闭websocket
+		var reconnectTime;
 
-    pollForDiscuss()
-
-    //是否关闭websocket
-    var reconnectTime;
-
-    //监听讨论的文件ID
-    $scope.$on('discuss_file', function($event, discuss_file, navType) {
-      $scope.navType = navType;
-      ws = ngSocket('ws://' + CONFIG.SOCKET_HOST);
-      //定时断线重连websocket
-      reconnectTime = setInterval(function() {
-        ws.reconnect(ws.socket.readyState)
-      }, 5000);
-      ws.onMessage(function(msg) {
+		//监听讨论的文件ID
+		$scope.$on('discuss_file', function($event, discuss_file, navType, objList) {
+	  $scope.objList = objList;
+      $scope.navType = navType;		  
+		  ws = ngSocket('ws://' + CONFIG.SOCKET_HOST);
+		  //定时断线重连websocket
+		  reconnectTime = setInterval(function(){
+		  	ws.reconnect(ws.socket.readyState)
+		  }, 5000);
+		  ws.onMessage(function (msg) {
         console.log(msg)
         var userDiscuss = angular.fromJson(msg.data)
         userDiscuss.content = Utils.replaceURLWithHTMLLinks(userDiscuss.content)
-        userDiscuss.content = Utils.highLightAtWhos(userDiscuss.content);
+        userDiscuss.content = Utils.highLightAtWhos(userDiscuss.content, $scope.atOptions.data);
         userDiscuss.content = userDiscuss.content.replace(/\n/g, "<br/>")
-        userDiscuss.avatar = CONFIG.API_ROOT + '/user/avatar/' + userDiscuss.user_id + '?token=' + $cookies.token
+        userDiscuss.avatar = CONFIG.API_ROOT + '/user/avatar/' + userDiscuss.user_id + '?token=' + $cookies.token + '&_=' + new Date().getTime()
         if (userDiscuss.user_id == $cookies.userId) { //是否是当前用户
           userDiscuss.is_owner = true
         }
@@ -138,7 +139,8 @@ angular.module('App.Files').controller('App.Files.UserDiscussController', [
         })
       })
       $scope.discuss_file = discuss_file;
-      $scope.is_edit = $scope.discuss_file.permission.substring(2, 3); //编辑权限
+      var is_edit = $scope.discuss_file.permission.substring(2, 3); //编辑权限
+      $scope.is_edit = (is_edit == '1') ? true : false
       $scope.loading = true
       discuss_file_id = discuss_file.file_id
       $scope.discussContent = ''
@@ -172,8 +174,11 @@ angular.module('App.Files').controller('App.Files.UserDiscussController', [
                 userNameList.push(user.real_name)
               })
             })
-            $scope.atOptions.data = userNameList
+            $scope.atOptions.data = userNameList;
+            pollForDiscuss();
           })
+        } else{
+          $scope.atOptions.data = [];
         }
 
       }
@@ -214,12 +219,12 @@ angular.module('App.Files').controller('App.Files.UserDiscussController', [
         content: $scope.discussContent,
         user_id: $cookies.userId,
         id: 0,
-        avatar: CONFIG.API_ROOT + '/user/avatar/' + $cookies.userId + '?token=' + $cookies.token
+        avatar: CONFIG.API_ROOT + '/user/avatar/' + $cookies.userId + '?token=' + $cookies.token + '&_=' + new Date().getTime()
       }
       sendUserDiscuss.is_owner = true
       sendUserDiscuss.content = sendUserDiscuss.content.replace(/\n/g, "<br/>")
       sendUserDiscuss.content = Utils.replaceURLWithHTMLLinks(sendUserDiscuss.content)
-      sendUserDiscuss.content = Utils.highLightAtWhos(sendUserDiscuss.content);
+      sendUserDiscuss.content = Utils.highLightAtWhos(sendUserDiscuss.content, $scope.atOptions.data);
       $scope.userDiscussList.push(sendUserDiscuss)
       //			$scope.postbtn = 'LANG_FILE_POSTING'
       UserDiscuss.createUserDiscuss({
@@ -235,17 +240,7 @@ angular.module('App.Files').controller('App.Files.UserDiscussController', [
         $scope.postbtn = 'LANG_FILE_POST'
         $scope.discussCount = 0
         userDiscuss.is_owner = true
-        ws.send({
-          file_id: discuss_file_id,
-          token: $cookies.token,
-          format_date: userDiscuss.format_date,
-          real_name: userDiscuss.real_name,
-          content: userDiscuss.content,
-          user_id: userDiscuss.user_id,
-          id: userDiscuss.id,
-          "type": "send",
-          "to_client_id": "all"
-        })
+        $scope.textareaFocus = true
 
         //				$scope.userDiscussList.push(userDiscuss)
       }, function(error) {
@@ -253,6 +248,7 @@ angular.module('App.Files').controller('App.Files.UserDiscussController', [
         $scope.textareaDisabled = false
         $scope.postbtn = 'LANG_FILE_POST'
         createFlag = true
+        $scope.textareaFocus = true
         Notification.show({
           title: '失败',
           type: 'danger',
@@ -406,34 +402,37 @@ angular.module('App.Files').controller('App.Files.UserDiscussController', [
       return true;
     }
 
-    //文件预览
-    $scope.previewFile = function(fileHistory) {
-      var validFile = checkFileValid($scope.file);
-      if (validFile) {
-        var previewFileModal = $modal.open({
-          templateUrl: 'src/app/files/preview-file/template.html',
-          windowClass: 'preview-file',
-          backdrop: 'static',
-          controller: 'App.Files.PreviewFileController',
-          resolve: {
-            obj: function() {
-              return $scope.file;
-            },
-            fileVersionPreview: function() {
-              return fileHistory;
-            }
-          }
-        })
-        $scope.discussOpened = false
-      } else {
-        Notification.show({
-          title: '失败',
-          type: 'danger',
-          msg: 'LANG_FILES_PREVIEW_LIMITATION_MESSAGE',
-          closeable: false
-        })
-      }
-    }
+		//文件预览
+		$scope.previewFile = function(fileHistory) {
+			var validFile = checkFileValid($scope.file);
+			if (validFile) {
+				var previewFileModal = $modal.open({
+					templateUrl: 'src/app/files/preview-file/template.html',
+					windowClass: 'preview-file',
+					backdrop: 'static',
+					controller: 'App.Files.PreviewFileController',
+					resolve: {
+						obj: function() {
+							return $scope.file;
+						},
+						fileVersionPreview: function() {
+							return fileHistory;
+						},
+						objList: function(){
+							return $scope.objList;
+						}
+					}
+				})
+				$scope.discussOpened = false
+			} else {
+				Notification.show({
+					title: '失败',
+					type: 'danger',
+					msg: 'LANG_FILES_PREVIEW_LIMITATION_MESSAGE',
+					closeable: false
+				})
+			}
+		}
 
     //下载历史版本
     $scope.downLoadHistory = function(fileHistory) {
@@ -445,7 +444,7 @@ angular.module('App.Files').controller('App.Files.UserDiscussController', [
         iframe.style.display = 'none'
         document.body.appendChild(iframe)
       }
-      iframe.src = CONFIG.API_ROOT + '/file/get/' + fileHistory.file_id + '?token=' + $cookies.token + '&v=' + fileHistory.version_id
+      iframe.src = CONFIG.API_ROOT + '/file/get/' + fileHistory.file_id + '?token=' + $cookies.token + '&v=' + fileHistory.version_id + '&cloud_id=' + $state.params.cloudId
     }
 
     //还原版本
@@ -456,7 +455,8 @@ angular.module('App.Files').controller('App.Files.UserDiscussController', [
         version_id: version_id
       }).$promise.then(function(r) {
         //历史版本
-        $scope.discuss_file.version_count = parseInt($scope.discuss_file.version_count) + 1;
+        //$scope.discuss_file.version_count = parseInt($scope.discuss_file.version_count) + 1;
+        $scope.discuss_file.version_count = r.version_num; 
         $scope.fileHistoryList = Files.history({
           file_id: discuss_file_id
         });

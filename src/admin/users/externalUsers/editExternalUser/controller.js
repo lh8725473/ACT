@@ -7,67 +7,74 @@ angular.module('App.Users.ExternalUsers.EditExternalUser').controller('App.Users
   'Group',
   'ExternalUser',
   'CONFIG',
+  '$translate',
   function(
-  	$scope,
-  	$modal,
-  	Notification,
-  	$state,
-  	Users,
-  	Group,
-  	ExternalUser,
-  	CONFIG) {
+    $scope,
+    $modal,
+    Notification,
+    $state,
+    Users,
+    Group,
+    ExternalUser,
+    CONFIG,
+    $translate
+  ) {
 
-  	$scope.permission_key = CONFIG.PERMISSION_KEY
-	  $scope.permission_value = ['协同拥有者', '编辑者', '查看上传者', '预览上传者', '查看者', '预览者', '上传者']
-
+    $scope.permission_key = CONFIG.PERMISSION_KEY
+    $scope.permission_value = []
+    angular.forEach(CONFIG.PERMISSION_VALUE, function(key, index) {
+      $scope.permission_value.push($translate.instant(key))
+    })
     $scope.permissions = []
-  	angular.forEach($scope.permission_key, function(key, index) {
+    angular.forEach($scope.permission_key, function(key, index) {
       var permissionMap = {
-        key : key,
-        value : $scope.permission_value[index]
+        key: key,
+        value: $scope.permission_value[index]
       }
       $scope.permissions.push(permissionMap)
     })
 
-  	$scope.id = $state.params.id
+    $scope.id = $state.params.id
 
-  	$scope.externalUser = ExternalUser.getExternalUserById({id: $scope.id})
+    $scope.externalUser = ExternalUser.getExternalUserById({
+      id: $scope.id
+    })
 
     $scope.externalUser.$promise.then(function() {
       $scope.externalUserFolder = $scope.externalUser.folders
-      $scope.showUserExternalUserFolder = $scope.externalUser.folders.map(function(folder){
+      $scope.showUserExternalUserFolder = $scope.externalUser.folders.map(function(folder) {
         return folder
       })
     })
 
-	 $scope.gridFolder = {
-    data: 'showUserExternalUserFolder',
-    selectedItems: $scope.selectedData,
-    enableRowSelection : false,
-    columnDefs: [{
-      field: 'folder_name',
-      displayName: '文件夹名'
-    }, {
-      field: 'owner_name',
-      displayName: '拥有者'
-    }, {
-      field: 'file_count',
-      displayName: '文件数量'
-    }, {
-      displayName: '权限',
-      cellTemplate : 'src/admin/users/externalUsers/editExternalUser/row-externalUser-role.html'
-    }, {
-      displayName: '操作',
-      cellTemplate : 'src/admin/users/externalUsers/editExternalUser/row-externalUser-remove.html'
-    }]
-  }
+    $scope.gridFolder = {
+      data: 'showUserExternalUserFolder',
+      selectedItems: $scope.selectedData,
+      enableRowSelection: false,
+      columnDefs: [{
+        field: 'folder_name',
+        displayName: '文件夹名'
+      }, {
+        field: 'owner_name',
+        displayName: '拥有者'
+      }, {
+        field: 'file_count',
+        displayName: '文件数量'
+      }, {
+        displayName: '权限',
+        cellTemplate: 'src/admin/users/externalUsers/editExternalUser/row-externalUser-role.html'
+      }, {
+        displayName: '操作',
+        cellTemplate: 'src/admin/users/externalUsers/editExternalUser/row-externalUser-remove.html'
+      }]
+    }
 
-    $scope.removeExternalUser = function(row){
+    $scope.removeExternalUser = function(row) {
       $scope.showUserExternalUserFolder.splice(row.rowIndex, 1);
-        angular.forEach($scope.externalUserFolder, function(folder, index) {
-          if(row.entity.folder_id == folder.folder_id){
-            $scope.externalUserFolder.splice(index, 1);
-          }
+      angular.forEach($scope.externalUserFolder, function(folder, index) {
+        if (row.entity.folder_id == folder.folder_id) {
+          $scope.externalUserFolder.splice(index, 1);
+        }
       })
     }
 
@@ -86,7 +93,7 @@ angular.module('App.Users.ExternalUsers.EditExternalUser').controller('App.Users
       })
     }
 
-    $scope.updateExternalUser = function(externalUser){
+    $scope.updateExternalUser = function(externalUser) {
       ExternalUser.updateExternalUser({
         id: externalUser.user_id
       }, externalUser).$promise.then(function() {
@@ -105,5 +112,5 @@ angular.module('App.Users.ExternalUsers.EditExternalUser').controller('App.Users
         })
       })
     }
-	}
- ])
+  }
+])

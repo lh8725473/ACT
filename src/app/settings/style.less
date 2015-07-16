@@ -1,0 +1,35 @@
+//setting列表
+.settings-view{
+  .top-bar{
+  	height: 45px;
+  	padding-left: 40px;
+  	padding-top: 12px;
+  	font-size: 15px;
+  	a{
+  	  color: #333;
+  	  text-decoration: none;
+  	  padding-bottom: 11px;
+  	  padding-left: 5px;
+  	  padding-right: 5px;
+  	  &.active{
+  	    color: #428bca;
+  	    border-bottom: 5px solid;
+  	  }
+  	}
+  	.lately-a{
+  	  margin-left: 10px;
+  	}
+
+  }//top-bar
+  .top-bar-bottom {
+    height: 6px;
+    background-size: 100% 100%;
+    background-image: url("../../images/top_shadow.png");
+  }
+
+}//setttings-view
+
+@import "profile/style.less";
+@import "security/style.less";
+@import "notification/style.less";
+@import "team/style.less";

@@ -1,0 +1,25 @@
+<div class="lately-visit-links" ng-controller="App.Discussion.blockedDiscussion.Controller">
+  <p class="file-null text-center" ng-show="isblockedNull">暂无已屏蔽的讨论</p>
+  <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="1" refresh-on-change="">
+    <loading-indicator ng-show="loading"></loading-indicator>
+    <div class="folder-grid">
+      <div class="table">
+        <div class="file-row" ng-repeat="block in blockList" ng-class = "{ selected: block.checked }" >
+          <div class="img-name-td">
+            <img ng-src = "{{block.hideRing}}" height="42px" width="42px"/>
+            <div class="red_cirle" ng-show="!block.is_read"></div>
+            <img src="images/web_sync.png" class="isSynced" ng-show = "!block.isSynced"/>
+            <div class="file-name ">
+              <a class="file-hidden-name" title="{{block.folder_name}}" ui-sref="files({cloudId: $state.params.cloudId,folderId:block.folder_id})">{{block.folder_name}}</a>
+              <div class="discussion-content">{{block.discussionContent}}</div>           
+              <div class="file_location">{{block.path}}</div>
+            </div> 
+          </div> 
+           <div class="file-sise-td">
+             {{block.create_date}}
+           </div>
+        </div>
+      </div>
+    </div>
+  </perfect-scrollbar>
+</div>

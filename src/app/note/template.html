@@ -1,13 +1,13 @@
 <div class="note-view"  id = "note-view" ng-controller="App.Note.Controller">
   <div class="note-btn">
-    <button class="btn btn-default" ng-click = "goBack()">返回</button>
-    <button class="btn btn-primary" ng-click = "changeEdit()" ng-show = "is_edit && !edit_flag">编辑</button>
-    <button class="btn btn-primary" ng-click = "saveNote()" ng-show = "edit_flag">发布</button>
-    <button class="btn btn-primary pull-right" ng-click = "openUserDiscuss()">打开讨论</button>
+    <button class="btn btn-default" ng-click = "goBack()">{{'LANG_NOTE_BACK' | translate}}</button>
+    <button class="btn btn-primary save-note" ng-click = "changeEdit()" ng-show = "is_edit && !edit_flag">{{'LANG_NOTE_EDIT' | translate}}</button>
+    <button class="btn btn-primary save-note" ng-click = "saveNote()" ng-show = "edit_flag">{{'LANG_NOTE_PUBLISH' | translate}}</button>
+    <button class="btn btn-primary pull-right" ng-click = "openUserDiscuss()">{{'LANG_NOTE_OPEN_DISCUSS' | translate}}</button>
   </div>
   <div class="note-editor" ng-show = "edit_flag">
     <div class="note-title">
-      <input class="title-input form-control" type="text" placeholder="请填写标题" ng-model = "file_name"/>
+      <input class="title-input form-control" type="text" placeholder="{{'LANG_NOTE_INPUT_TITLE' | translate}}" ng-model = "file_name"/>
     </div>
     <div class="umeditor" id = "umeditor"></div>
 
@@ -17,4 +17,18 @@
 
   </div>
 
+</div>
+
+<div class="team-collaboration">
+  <div class="no-groups-users">
+    <div class="groups-users-header col-sm-12">
+      <span class="pull-left">{{'LANG_TEAM_COLLABORATION_TIPS' | translate}} </span>
+    </div>
+    <perfect-scrollbar class="empty-scroller" wheel-propagation="true" wheel-speed="1" suppress-scroll-x = "true">
+      <div class="h4_add_guide pull-left col-sm-12">{{'LANG_TEAM_COLLABORATION_COLLABORATE_SHARE' | translate}}</div>
+      <div class="add_guide pull-left col-sm-12"></div>
+      <div class="h4_add_link pull-left col-sm-12">{{'LANG_TEAM_COLLABORATION_LINK_SHARE' | translate}}</div>
+      <div class="add_link pull-left col-sm-12"></div>
+    </perfect-scrollbar>
+  </div>
 </div>

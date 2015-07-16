@@ -1,0 +1,1 @@
+angular.module('App.Links', ['App.Links.Mylinks', 'App.Links.LinkRecordList']);

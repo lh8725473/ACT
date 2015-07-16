@@ -41,6 +41,13 @@ angular.module('App.Resources').factory('Message', [
           action: 'delete',
           id : ''
         }
+      },
+      emptyMessage : {
+        method: "POST",
+        params: {
+          action: 'empty',
+          id : ''
+        }
       }
     })
   }

@@ -1,0 +1,355 @@
+body {
+  font-family: Microsoft YaHei, sans-serif;
+}
+
+.ui-page {
+  -webkit-backface-visibility: hidden;
+}
+
+.wap_header {
+  background-color: #1f69ba;
+  border-color: #195495;
+  height: 70px;
+}
+
+.wap_header .logo {
+  width: 100px;
+  margin: 15px 5px 15px 10px;
+  float: left;
+}
+
+.wap_header .logo img {
+  width: 100%;
+}
+
+.wap_header .download_text {
+  position: absolute;
+  left: 120px;
+  top: 18px;
+  color: #fff;
+  font-size: 0.9em;
+  line-height: 2.8em;
+  font-weight: normal;
+  text-shadow: none;
+  white-space: nowrap;
+  width: 150px;
+  overflow:hidden;
+  text-overflow:ellipsis; 
+}
+
+.wap_header .popup-btn {
+  position: absolute;
+  right: 10px;
+  top: 25px;
+  width: 20px;
+  height: 20px;
+}
+
+.wap_header .popup-btn img {
+  width: 100%;
+}
+
+.popup-menu {
+  position: fixed;
+  z-index: 1000000;
+  right: 10px;
+  top: 50px;
+  display: none;
+}
+
+.popup-menu .square {
+  position: absolute;
+  display: block;
+  text-indent: -1000000000em;
+  overflow: hidden;
+  top: -9px;
+  right: 5px;
+  width: 0px;
+  height: 0px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #f6f6f6;
+  font-size: 0px;
+  line-height: 0px;
+  z-index: 10000
+}
+
+.folder-list .ui-li-has-thumb>.ui-btn-active {
+  background-color: #e8e8e8;
+  border-color: #ddd;
+  color: #333;
+  text-shadow: none;
+}
+
+.folder-list .ui-li-has-thumb>.ui-btn>img:first-child {
+  left: 20px;
+  top: 18px;
+  width: 48px;
+  height: 48px;
+}
+
+.folder-list .ui-li-has-thumb>.ui-btn>h2 {
+  color: #4a4a4a;
+}
+
+.folder-list .ui-li-has-thumb>.ui-btn>p {
+  color: #999;
+}
+
+.folder-list .ui-li-has-thumb>.ui-btn>p>span {
+  padding: 0 10px;
+  color: #555;
+}
+
+.folder-list .ui-btn-icon-right::after {
+  background: url(../../../images/arrow_icon.png) no-repeat center;
+}
+
+.download_suggestion {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.download_suggestion .logo {
+  width: 50px;
+  margin: 20px 10px;
+  float: left;
+}
+
+.download_suggestion .logo img {
+  width: 100%;
+}
+
+.download_suggestion .download_text {
+  position: absolute;
+  left: 70px;
+  top: 23px;
+  overflow: hidden;
+  border: 1px solid #fff;
+  border-radius: 0.3em;
+  padding: 0 5px 0 5px;
+  white-space: nowrap;
+}
+
+.download_suggestion .download_text a {
+  color: #fff;
+  line-height: 1.6em;
+  font-size: 0.9em;
+  font-weight: normal;
+  text-shadow: none;
+  text-decoration: none;
+}
+
+.download_suggestion .download_text span {
+  font-size: 1.2em;
+}
+
+.download_suggestion .ui-btn-open {
+  position: absolute;
+  left: 196px;
+  top: 20px;
+  padding: 8px 5px;
+  font-size: 1em;
+  color: #323232;
+  background-color: #e1e1e1;
+  border-radius: 0.2em;
+}
+
+.download_suggestion .close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 25px;
+  height: 25px;
+}
+
+.download_suggestion .close img {
+  width: 100%;
+}
+
+.wap_content {
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  top: 69px;
+  bottom: 0px;
+  overflow-y: hidden;
+}
+
+.img_content{
+  margin: 0;
+  padding:10px 0;
+}
+
+.imgdiv{
+  margin:0 10px;
+  text-align: center;
+}
+.imgdiv img{
+  max-width: 100%;
+}
+
+.note_content{
+  margin:0;
+  padding:10px 0;
+}
+
+.notediv{
+  margin:0 10px;
+}
+
+.notediv img{
+  max-width: 100%;
+}
+
+.ui-dialog {
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7) !important;
+}
+
+.content{
+  background: #fff;
+  padding: 15px;
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+
+
+.dialog-header {
+  border-color: #e5e5e5;
+  background-color: #1f69ba;
+}
+
+.dialog-header .ui-title {
+  margin: 0 15px;
+  line-height: 2.2em;
+  color: #fff;
+  font-weight: normal;
+  text-shadow: none;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.dialog-header .ui-btn-icon-notext::after {
+  background-color: rgba(0, 0, 0, 0);
+  margin-top: -5px
+}
+
+.ui-page-theme-a .dialog-header .ui-btn {
+  background-color: rgba(0, 0, 0, 0);
+  border-width: 0;
+}
+
+.ui-page-theme-a .dialog-header .ui-btn:focus {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.dialog-txt {
+  padding: 10px 0 20px 0;
+  display: block;
+  color: #ff0000;
+  font-size: 0.9em;
+}
+
+.form-group-m {
+  margin-bottom: 15px;
+}
+
+.form-group-m label {
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 2.5em;
+  position: absolute;
+  border-right: 1px solid #e5e5e5;
+  overflow: hidden;
+  text-indent: -1111111111em;
+}
+
+.form-group-m label.un {
+  background: url(../../../images/wap/icon_users.png) no-repeat center;
+}
+
+.form-group-m label.pw {
+  background: url(../../../images/wap/icon_password.png) no-repeat center;
+}
+
+.form-group-m .ui-shadow-inset {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.form-group-m .ui-input-text input {
+    line-height: 1.9em;
+    padding-left: 60px;
+}
+
+.ui-page-theme-a .dialog-btn,
+.ui-page-theme-a .dialog-btn:hover {
+  background-color: #1f69ba;
+  color: #fff;
+  font-weight: 700;
+  text-shadow: none;
+  white-space: nowrap;
+  margin: 30px 0 20px 0;
+  letter-spacing: 1em;
+}
+
+.ui-page-theme-a .dialog-btn:hover {
+  background-color: #2477c5;
+}
+
+.ui-page-theme-a .dialog-btn:focus {
+  background-color: #0f5cb0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.errMsg{
+  text-align: center;
+  padding: 30px 20px;
+  font-size: 24px;
+  line-height: 1.5em;
+  color: #999;
+}
+
+/* 密码弹出验证 */
+
+.enter-password {
+  background-color: #1f69ba;
+  bottom: 0;
+  color: white;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 10000;
+  overflow-y: hidden;
+}
+
+.main-header {
+  text-align: center;
+  padding: 15% 0 50px 0;
+}
+
+.main-header .logohome {
+  max-width: 100%;
+}
+
+.enter-password .btn {
+  width: 100%;
+}
+
+.enter-password .form-control {
+  margin-bottom: 30px;
+}
+
+@media (max-width: 320px) {
+  .dialog-txt {
+      font-size: 0.8em;
+  }
+}
+/* max-width 320px */

@@ -9,6 +9,7 @@ angular.module('App.Users.ManagedUsers').controller('App.Users.ManagedUsers.Cont
   'CONFIG',
   '$rootScope',
   '$upload',
+  'Utils',
   function(
     $scope,
     $modal,
@@ -19,7 +20,8 @@ angular.module('App.Users.ManagedUsers').controller('App.Users.ManagedUsers.Cont
     $cookies,
     CONFIG,
     $rootScope,
-    $upload
+    $upload,
+    Utils
   ) {
 
     //加载动画
@@ -187,17 +189,19 @@ angular.module('App.Users.ManagedUsers').controller('App.Users.ManagedUsers.Cont
             Notification.show({
               title: '成功',
               type: 'success',
-              msg: '添加用户成功',
+              msg: '已经添加了' + user.real_name + '，对方将会收到邮件来进行账号激活',
               closeable: true
             })
             $modalInstance.close()
           }, function(error) {
-            Notification.show({
-              title: '失败',
-              type: 'danger',
-              msg: error.data.result,
-              closeable: false
-            })
+            if(!Utils.isReturnErrorDetails(error)){
+              Notification.show({
+                title: '失败',
+                type: 'danger',
+                msg: '添加用户时遇到了问题，请再试一次',
+                closeable: false
+              })
+            }
           })
         }
 
@@ -374,6 +378,12 @@ angular.module('App.Users.ManagedUsers').controller('App.Users.ManagedUsers.Cont
         $scope.loading = false
 
         $scope.onFileSelect = function($files) {
+          Notification.show({
+            title: '成功',
+            type: 'success',
+            msg: '正在创建用户…',
+            closeable: true             
+          })
           $scope.loading = true
           for (var i = 0; i < $files.length; i++) {
             var file = $files[i];
@@ -394,7 +404,7 @@ angular.module('App.Users.ManagedUsers').controller('App.Users.ManagedUsers.Cont
                 Notification.show({
                   title: '成功',
                   type: 'success',
-                  msg: '导入用户成功',
+                  msg: '添加了 ' + data.success_list.length + ' 个用户',
                   closeable: true
                 })
                 $scope.loading = false

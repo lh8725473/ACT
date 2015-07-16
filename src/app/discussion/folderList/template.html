@@ -1,0 +1,29 @@
+<div class="my-links" ng-controller="App.Discussion.folderList.Controller">
+  <p class="file-null text-center" ng-show="isfolderListNull">暂无最近讨论</p>
+  <perfect-scrollbar class="scroller" wheel-propagation="true" wheel-speed="1" refresh-on-change="">
+    <loading-indicator ng-show="loading"></loading-indicator>
+    <div class="folder-grid">
+      <div class="table">
+        <div class="file-row" ng-repeat="folder in folderList" ng-class = "{ selected: folder.checked }" >
+          <div class="img-name-td">
+            <img ng-src = "{{folder.folderIcon}}" height="42px" width="42px"/>
+            <div class="red_cirle" ng-show="folder.is_read == 'false'"></div>
+             <img src="images/web_sync.png" class="isSynced" ng-show = "!folder.isSynced"/>
+
+            <div class="file-name">
+              <a ui-sref="files({cloudId: $state.params.cloudId,folderId:folder.folder_id})" title="{{folder.path}}" >{{folder.folder_name}}</a>
+              <div class="discussion-content">{{folder.discussionContent | translate}}</div>           
+              <div class="file_location">{{folder.path}}</div>
+            </div>
+          </div>
+           
+          
+          <div class="file-sise-td">
+             <div>{{folder.create_date}}</div>
+            <img class="delete-img" src="./images/close.png" tooltip="{{'LANG_FILE_DELETE' | translate}}" tooltip-placement="top" tooltip-append-to-body="true" ng-click="deleteFolderList(folder)">
+          </div>
+        </div>
+      </div>
+    </div>
+  </perfect-scrollbar>
+</div>
