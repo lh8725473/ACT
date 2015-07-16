@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/jquery.js"></script>
+		<script src="js/jquery.highLightText.js"></script>
+		<script src="js/angular.js"></script>
+		<script src="js/ng-highLightText.js"></script>
+		<script type="text/javascript">
+		  angular.module('App', ['ngHighLightText']).controller('highLightText', [
+        '$scope',
+        function($scope) {
+          $scope.options = {
+            text : "刘",
+            markColor: "red"
+          }
+        }
+      ])
+		</script>
+	</head>
+	<body ng-controller="highLightText">
+	  <div class="test1" high-light-text = "options">刘浩刘</div>
+	</body>
+</html>

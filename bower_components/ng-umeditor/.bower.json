@@ -1,0 +1,39 @@
+{
+  "name": "ng-umeditor",
+  "homepage": "https://github.com/YinChangSheng/angular-umeditor",
+  "authors": [
+    "yinchangsheng <ychangsheng@gmail.com>"
+  ],
+  "description": "百度 umeditor 富文本编辑器 angularjs 插件",
+  "main": "angular-umeditor.coffee",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "angular",
+    "baidu",
+    "umeditor",
+    "plupload",
+    "qiniu"
+  ],
+  "license": "MIT",
+  "public": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    ".idea",
+    "test",
+    "tests"
+  ],
+  "_release": "56b49a6641",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "56b49a6641850abee9041285ef258548ab9b5532"
+  },
+  "_source": "git://github.com/YinChangSheng/angular-umeditor.git",
+  "_target": "*",
+  "_originalSource": "ng-umeditor",
+  "_direct": true
+}

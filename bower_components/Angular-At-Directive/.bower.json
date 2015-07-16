@@ -1,0 +1,14 @@
+{
+  "name": "Angular-At-Directive",
+  "homepage": "https://github.com/scarletsky/Angular-At-Directive",
+  "_release": "befcab71dd",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "befcab71dd07a63dd43c3944806ef9488930dfb7"
+  },
+  "_source": "https://github.com/scarletsky/Angular-At-Directive.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/scarletsky/Angular-At-Directive.git",
+  "_direct": true
+}

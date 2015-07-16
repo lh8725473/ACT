@@ -1,0 +1,14 @@
+{
+  "name": "ng-highLightText",
+  "homepage": "https://github.com/lh8725473/ng-highLightText",
+  "_release": "d2e26eb421",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "d2e26eb42143a5625fbe1077f06320743dcf6be5"
+  },
+  "_source": "https://github.com/lh8725473/ng-highLightText.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/lh8725473/ng-highLightText.git",
+  "_direct": true
+}
